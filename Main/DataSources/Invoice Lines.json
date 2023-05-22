@@ -46,6 +46,8 @@
       "zx_cgstvalue": "CGST Value",
       "zx_cgstvalue_base": "CGST Value (Base)",
       "zx_Customer": "Customer",
+      "zx_discountperunit": "Discount Per Unit",
+      "zx_discountperunit_base": "Discount Per Unit (Base)",
       "zx_emptyjar": "Empty Jar",
       "zx_exceptionaltax": "Exceptional Tax %",
       "zx_igst": "IGST",
