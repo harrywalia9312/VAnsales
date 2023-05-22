@@ -1,0 +1,108 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "new_branchmasters",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "new_branchmaster",
+    "MaxGetRowsCount": 2000,
+    "Name": "Branch Masters",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "new_branchmaster_AsyncOperations": "System Jobs",
+      "new_branchmaster_BulkDeleteFailures": "Bulk Delete Failures",
+      "new_branchmaster_DuplicateBaseRecord": "Duplicate Records (new_branchmaster_DuplicateBaseRecord)",
+      "new_branchmaster_DuplicateMatchingRecord": "Duplicate Records (new_branchmaster_DuplicateMatchingRecord)",
+      "new_branchmaster_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "new_branchmaster_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "new_branchmaster_ProcessSession": "Process Sessions",
+      "new_branchmaster_SyncErrors": "Sync Errors",
+      "new_branchmasterid": "Branch Master",
+      "new_name": "Name",
+      "new_new_branchmaster_account_Branch": "Customers",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_new_branchmaster_zx_discountheader_Branch": "Discount Headers",
+      "zx_systemuser_BranchMater_new_branchmaster": "Users",
+      "zx_zx_area_SiteBranch_new_branchmaster": "Areas",
+      "zx_zx_itemmaster_Site_new_branchmaster": "Item Masters",
+      "zx_zx_itempricing_Site_new_branchmaster": "Item Pricing lines",
+      "zx_zx_itempricingmaster_BranchSite_new_branc": "Item pricing masters",
+      "zx_zx_itemuom_Site_new_branchmaster": "Item UOMS",
+      "zx_zx_schemeapplicability_SiteBranch_new_bra": "Scheme Applicabilities",
+      "zx_zx_skumaster_Site_new_branchmaster": "Variant Masters",
+      "zx_zx_warehouse_SiteCode_new_branchmaster": "Warehouses"
+    },
+    "PreferredName": "Branch Masters",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Branch Masters (Views)",
+    "Name": "_new_branchmaster_views",
+    "RelatedEntityName": "Branch Masters",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "5abe5867-ed6e-440e-879a-a08c5b50d1b3": "Branch Master Associated View",
+      "6ac9e63f-dec8-4377-81e5-a3221ec125c4": "Inactive Branch Masters",
+      "a43fb892-e2bd-4f28-99d6-67c9b78f2ec5": "Branch Master Advanced Find View",
+      "dec7da68-9a8e-497a-967d-445759724595": "Active Branch Masters",
+      "ea6abb0d-d190-4bb2-8e6d-77f60a20a754": "Branch Master Lookup View"
+    }
+  },
+  {
+    "DisplayName": "Status (Branch Masters)",
+    "Name": "new_branchmaster_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Branch Masters"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Branch Masters",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Branch Masters)",
+    "Name": "new_branchmaster_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Branch Masters"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Branch Masters",
+    "Type": "OptionSetInfo"
+  }
+]

@@ -1,0 +1,1735 @@
+"SettlementScreen As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+    Fill: =_VarGblAppColors.LightText
+    OnVisible: |
+        =ClearCollect(
+            sumdataCahPayment,
+            Filter(
+                Payments,
+                'Created On' >= Today() && Salesperson.'Primary Email' = User().Email && 'Payment Mode' = 'Payment Mode (Choice)'.CASH
+            )
+        );
+         ClearCollect(
+                colOfflineOrderHeader,
+                Filter(
+                    'Order Headers',
+                    'Order Date' >= Today() && 'Owning User'.'Primary Email' = User().Email
+                )
+            );
+        ClearCollect(
+            colOfflineAllOrderLines,
+            Filter(
+                'Order Lines',
+                'Order Number'.'Order Id' in AddColumns(
+                    colOfflineOrderHeader,
+                    "orderId",
+                    'Order Id'
+                ).orderId && 'Owning User'.'Primary Email' = User().Email
+            )
+        );
+        
+        ///////
+        
+        Set(
+            varStockInventoryPatch,
+            AddColumns(
+                Filter(
+                    'Stock Transfer Headers',
+                    'To Location'.Warehouse = StockTransferWarehouse && 'Created On' >= Today()
+                ),
+                "headerInventoryGUID",
+                'Stock Transfer Header'
+            )
+        );
+        Set(
+            varFromLocationStock,
+            AddColumns(
+                Filter(
+                    'Stock Transfer Headers',
+                    'From Location'.Warehouse = StockTransferWarehouse && 'Created On' >= Today() && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer'
+                ),
+                "headerInventoryGUID",
+                'Stock Transfer Header'
+            )
+        );
+        Set(
+            varToLocationStock,
+            AddColumns(
+                Filter(
+                    'Stock Transfer Headers',
+                    'To Location'.Warehouse = StockTransferWarehouse && 'Created On'>=Today() && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer'
+                ),
+                "headerInventoryGUID",
+                'Stock Transfer Header'
+            )
+        );
+        Set(
+            varAttendance,
+            0
+        );
+
+    canBaseScreen_1 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =App.Height-175
+        Width: =Parent.Width
+        Y: =80
+        ZIndex: =3
+
+        dataCardBaseScreen_1 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =1790
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            contHomeReplacementUpperVertical_1 As groupContainer.verticalAutoLayoutContainer:
+                Height: =750
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMode: =LayoutMode.Auto
+                Width: =640
+                ZIndex: =1
+
+                contHomeReplacementUpper_1 As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    FillPortions: =0
+                    Height: =Parent.Height
+                    LayoutMinHeight: =112
+                    LayoutMinWidth: =250
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+                    contHomeReplacementLowerVertical_1 As groupContainer.verticalAutoLayoutContainer:
+                        Height: =Parent.Height
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutMode: =LayoutMode.Auto
+                        LayoutOverflowX: =LayoutOverflow.Scroll
+                        Width: =Parent.Width
+                        Y: =6
+                        ZIndex: =1
+
+                        contHomeReplacementHeading_1 As groupContainer.manualLayoutContainer:
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            FillPortions: =0
+                            Height: =60
+                            LayoutMinHeight: =70
+                            LayoutMinWidth: =750
+                            Width: =2038
+                            ZIndex: =1
+
+                            btnNewOrderHeaderProduct_21 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.5
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Subtitle
+                                Text: ="Item Code"
+                                Width: =202
+                                X: =5
+                                Y: =5
+                                ZIndex: =2
+
+                            btnNewOrderHeaderCases_24 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.5
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Subtitle
+                                Text: ="Loaded Cases"
+                                Width: =102
+                                X: =btnNewOrderHeaderProduct_21.X+btnNewOrderHeaderProduct_21.Width+5
+                                Y: =5
+                                ZIndex: =3
+
+                            btnNewOrderHeaderPcs_21 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.5
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Subtitle
+                                Text: ="Loaded Unit"
+                                Width: =102
+                                X: =btnNewOrderHeaderCases_24.X+btnNewOrderHeaderCases_24.Width+5
+                                Y: =5
+                                ZIndex: =4
+
+                            btnNewOrderHeaderPcs_22 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.5
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Subtitle
+                                Text: ="Filled Cases"
+                                Width: =102
+                                X: =btnNewOrderHeaderPcs_21.X+btnNewOrderHeaderPcs_21.Width+5
+                                Y: =5
+                                ZIndex: =5
+
+                            btnNewOrderHeaderPcs_23 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.5
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Subtitle
+                                Text: ="Filled Units"
+                                Width: =102
+                                X: =btnNewOrderHeaderPcs_22.X+btnNewOrderHeaderPcs_22.Width+5
+                                Y: =5
+                                ZIndex: =6
+
+                            btnNewOrderHeaderPcs_27 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.5
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Subtitle
+                                Text: ="E.Jar Return"
+                                Width: =102
+                                X: =btnNewOrderHeaderPcs_23.X+btnNewOrderHeaderPcs_23.Width+5
+                                Y: =5
+                                ZIndex: =7
+
+                            btnNewOrderHeaderPcs_28 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.5
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Subtitle
+                                Text: ="Sold Cases"
+                                Width: =102
+                                X: =btnNewOrderHeaderPcs_27.X+btnNewOrderHeaderPcs_27.Width+5
+                                Y: =5
+                                ZIndex: =8
+
+                            btnNewOrderHeaderPcs_29 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.5
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Subtitle
+                                Text: ="Sold Units"
+                                Width: =102
+                                X: =btnNewOrderHeaderPcs_28.X+btnNewOrderHeaderPcs_28.Width+5
+                                Y: =5
+                                ZIndex: =9
+
+                            btnNewOrderHeaderPcs_30 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.5
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Subtitle
+                                Text: ="Replace Cases"
+                                Width: =102
+                                X: =btnNewOrderHeaderPcs_29.X+btnNewOrderHeaderPcs_29.Width+5
+                                Y: =5
+                                ZIndex: =10
+
+                            btnNewOrderHeaderPcs_31 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.5
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Subtitle
+                                Text: ="Replace Units"
+                                Width: =102
+                                X: =btnNewOrderHeaderPcs_30.X+btnNewOrderHeaderPcs_30.Width+5
+                                Y: =5
+                                ZIndex: =11
+
+                            btnNewOrderHeaderPcs_32 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.5
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Subtitle
+                                Text: ="FOC Cases"
+                                Width: =102
+                                X: =btnNewOrderHeaderPcs_31.X+btnNewOrderHeaderPcs_31.Width+5
+                                Y: =5
+                                ZIndex: =12
+
+                            btnNewOrderHeaderPcs_33 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.5
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Subtitle
+                                Text: ="FOC Units"
+                                Width: =102
+                                X: =btnNewOrderHeaderPcs_32.X+btnNewOrderHeaderPcs_32.Width+5
+                                Y: =5
+                                ZIndex: =13
+
+                            btnNewOrderHeaderPcs_34 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.5
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Subtitle
+                                Text: ="Return Cases"
+                                Width: =102
+                                X: =btnNewOrderHeaderPcs_33.X+btnNewOrderHeaderPcs_33.Width+5
+                                Y: =5
+                                ZIndex: =14
+
+                            btnNewOrderHeaderPcs_35 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.5
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Subtitle
+                                Text: ="Return Units"
+                                Width: =102
+                                X: =btnNewOrderHeaderPcs_34.X+btnNewOrderHeaderPcs_34.Width+5
+                                Y: =5
+                                ZIndex: =15
+
+                            btnNewOrderHeaderPcs_36 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.5
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Subtitle
+                                Text: ="Transfer in Cases"
+                                Width: =102
+                                X: =btnNewOrderHeaderPcs_35.X+btnNewOrderHeaderPcs_35.Width+5
+                                Y: =5
+                                ZIndex: =16
+
+                            btnNewOrderHeaderPcs_37 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.5
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Subtitle
+                                Text: ="Transfer in Units"
+                                Width: =102
+                                X: =btnNewOrderHeaderPcs_36.X+btnNewOrderHeaderPcs_36.Width+5
+                                Y: =5
+                                ZIndex: =17
+
+                            btnNewOrderHeaderPcs_38 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.5
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Subtitle
+                                Text: ="Transfer out Cases"
+                                Width: =102
+                                X: =btnNewOrderHeaderPcs_37.X+btnNewOrderHeaderPcs_37.Width+5
+                                Y: =5
+                                ZIndex: =18
+
+                            btnNewOrderHeaderPcs_39 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.5
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Subtitle
+                                Text: ="Transfer out Units"
+                                Width: =102
+                                X: =btnNewOrderHeaderPcs_38.X+btnNewOrderHeaderPcs_38.Width+5
+                                Y: =5
+                                ZIndex: =19
+
+                        contHomeReplacementData_1 As groupContainer.horizontalAutoLayoutContainer:
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            FillPortions: =0
+                            Height: =Parent.Height-60
+                            LayoutMinHeight: =570
+                            LayoutMinWidth: =850
+                            LayoutMode: =LayoutMode.Auto
+                            Width: =2038
+                            ZIndex: =2
+
+                            galHomeReplacementData_1 As gallery.galleryVertical:
+                                AccessibleLabel: ="galHomeReplacementData"
+                                AlignInContainer: =AlignInContainer.SetByContainer
+                                Fill: |-
+                                    =//RGBA(0, 0, 0, 0)
+                                    _VarGblAppColors.LightText
+                                FillPortions: =0
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.5
+                                Height: =Parent.Height
+                                Items: |-
+                                    =/*Distinct(
+                                        Filter(
+                                            'Current Stocks',
+                                            IsToday('Created On') && 'Van No'.Warehouse = LookUp(
+                                                Warehouses,
+                                                Warehouse = varUserVanNo.Van.Warehouse
+                                            ).Warehouse
+                                        ),
+                                        'Item SKU'.'SKU Code'
+                                    )*/
+                                    Filter(
+                                        'Stock Transfer Lines',
+                                        'Transfer Order No'.'Stock Transfer Header' in varStockInventoryPatch.headerInventoryGUID && 'Transfer status' = 'Transfer status (Stock Transfer Lines)'.'Transfer accepted'
+                                    )
+                                Layout: =Layout.Vertical
+                                LayoutMinHeight: =287
+                                LayoutMinWidth: =1200
+                                ShowScrollbar: =false
+                                TabIndex: =0
+                                TemplateSize: =60
+                                Width: =Parent.Width
+                                ZIndex: =1
+
+                                btnHomeReplacementBackground_1 As button:
+                                    DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        ColorFade( _VarGblAppColors.BisleriBlue, 80%)
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =60
+                                    OnSelect: =Select(Parent)
+                                    Size: =24
+                                    Text: =""
+                                    Width: =Parent.Width-10
+                                    ZIndex: =1
+
+                                lblHomeReplacementProduct_1 As label:
+                                    Align: =Align.Center
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: |-
+                                        =//ThisItem.'Item SKU'.'Pack Title'
+                                        ThisItem.SKU.'SKU Code'
+                                    Width: =btnNewOrderHeaderProduct_21.Width
+                                    X: =btnNewOrderHeaderProduct_21.X-5
+                                    Y: =5
+                                    ZIndex: =2
+
+                                lblHomeReplacementQty_1 As label:
+                                    Align: =Align.Center
+                                    Fill: |-
+                                        =RGBA(0, 0, 0, 0)
+                                        //_VarGblAppColors.LightText
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: |-
+                                        =/*ThisItem.Cases - (Sum(
+                                            Filter(
+                                                'Order Lines', !IsBlank('Order Number'.'Order Type') &&
+                                                'Item SKU'.'SKU Master' = ThisItem.SKU.'SKU Master' && IsToday('Created On') && Salesperson.'Primary Email' = User().Email
+                                            ),
+                                            Cases
+                                        )+Sum(
+                                            Filter(
+                                                'Stock Transfer Lines',
+                                                'From Location'.Warehouse = LookUp(
+                                                    Warehouses,
+                                                    Warehouse = varUserVanNo.Van.Warehouse
+                                                ).Warehouse && 'Manufacturing date'=ThisItem.'Manufacturing date' && SKU.'SKU Master' = ThisItem.SKU.'SKU Master' && IsToday('Created On') && 'Transfer status' = 'Transfer status (Stock Transfer Lines)'.'Transfer accepted' && 'Transfer Order No'.'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer'
+                                            ),
+                                            Cases
+                                        ))*/
+                                        ThisItem.'Remaining Qty Cases'
+                                    Width: =btnNewOrderHeaderPcs_22.Width
+                                    X: =btnNewOrderHeaderPcs_22.X-5
+                                    Y: =5
+                                    ZIndex: =3
+
+                                lblHomeReplacementReason_1 As label:
+                                    Align: =Align.Center
+                                    Fill: |-
+                                        =RGBA(0, 0, 0, 0)
+                                        //_VarGblAppColors.LightText
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: |-
+                                        =/*Sum(
+                                            Filter(
+                                                'Stock Transfer Lines',
+                                                SKU.'SKU Code' = ThisItem.Value && IsToday('Created On') && 'Transfer status' = 'Transfer status (Stock Transfer Lines)'.'Transfer accepted' && 'To Location'.Warehouse = LookUp(
+                                                    Warehouses,
+                                                    Warehouse = varUserVanNo.Van.Warehouse
+                                                ).Warehouse
+                                            ),
+                                            Cases
+                                        )*/
+                                        If(ThisItem.Cases>0, ThisItem.Cases, 0)
+                                    Width: =btnNewOrderHeaderCases_24.Width
+                                    X: =btnNewOrderHeaderCases_24.X-5
+                                    Y: =5
+                                    ZIndex: =5
+
+                                shpHomeReplacementRect3_1 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =60
+                                    OnSelect: =Select(Parent)
+                                    Width: =1
+                                    X: =204
+                                    ZIndex: =6
+
+                                shpHomeReplacementRect2_1 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =60
+                                    OnSelect: =Select(Parent)
+                                    Width: =1
+                                    X: =624
+                                    ZIndex: =7
+
+                                shpHomeReplacementRect1_1 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =60
+                                    OnSelect: =Select(Parent)
+                                    Width: =1
+                                    X: =419
+                                    ZIndex: =8
+
+                                lblHomeReplacementUOM_1 As label:
+                                    Align: =Align.Center
+                                    Fill: |-
+                                        =RGBA(0, 0, 0, 0)
+                                        //_VarGblAppColors.LightText
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: |-
+                                        =/*Sum(
+                                            Filter(
+                                                'Stock Transfer Lines',
+                                                SKU.'SKU Code' = ThisItem.Value && IsToday('Created On') && 'Transfer status' = 'Transfer status (Stock Transfer Lines)'.'Transfer accepted' && 'To Location'.Warehouse = LookUp(
+                                                    Warehouses,
+                                                    Warehouse = varUserVanNo.Van.Warehouse
+                                                ).Warehouse
+                                            ),
+                                            PCs
+                                        )*/
+                                        If(ThisItem.PCs>0, ThisItem.PCs, 0)
+                                    Width: =btnNewOrderHeaderPcs_21.Width
+                                    X: =btnNewOrderHeaderPcs_21.X-5
+                                    Y: =5
+                                    ZIndex: =9
+
+                                shpHomeReplacementRect1_2 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =60
+                                    OnSelect: =Select(Parent)
+                                    Width: =1
+                                    X: =524
+                                    ZIndex: =10
+
+                                lblHomeReplacementUOM_2 As label:
+                                    Align: =Align.Center
+                                    Fill: |-
+                                        =RGBA(0, 0, 0, 0)
+                                        //_VarGblAppColors.LightText
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: |-
+                                        =/*ThisItem.PCs - (Sum(
+                                            Filter(
+                                                'Order Lines',!IsBlank('Order Number'.'Order Type') &&
+                                                'Item SKU'.'SKU Master' = ThisItem.SKU.'SKU Master' && IsToday('Created On') && Salesperson.'Primary Email' = User().Email
+                                            ),
+                                            PCs
+                                        )+Sum(
+                                            Filter(
+                                                'Stock Transfer Lines',
+                                                'From Location'.Warehouse = LookUp(
+                                                    Warehouses,
+                                                    Warehouse = varUserVanNo.Van.Warehouse
+                                                ).Warehouse && 'Manufacturing date'=ThisItem.'Manufacturing date' && SKU.'SKU Master' = ThisItem.SKU.'SKU Master' && IsToday('Created On') && 'Transfer status' = 'Transfer status (Stock Transfer Lines)'.'Transfer accepted' && 'Transfer Order No'.'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer'
+                                            ),
+                                            PCs
+                                        ))*/
+                                        ThisItem.'Remaining Qty Pcs'
+                                    Width: =btnNewOrderHeaderPcs_23.Width
+                                    X: =btnNewOrderHeaderPcs_23.X-5
+                                    Y: =5
+                                    ZIndex: =11
+
+                                lblHomeReplacementUOM_3 As label:
+                                    Align: =Align.Center
+                                    Fill: |-
+                                        =RGBA(0, 0, 0, 0)
+                                        //_VarGblAppColors.LightText
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: |-
+                                        =Sum(
+                                            /*Filter(
+                                                'Order Lines',
+                                                'Order Number'.'Order Type' <> Blank() && 'Item SKU'.'SKU Master' = ThisItem.SKU.'SKU Master' && 'Created On' >= Today() && Salesperson.'Primary Email' = User().Email && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'Empty jar Order'
+                                            )*/
+                                            Filter(
+                                                colOfflineAllOrderLines,
+                                                'Order Number'.'Order Type' <> Blank() && 'Item SKU'.'SKU Master' = ThisItem.SKU.'SKU Master' && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'Empty jar Order'
+                                            ),
+                                            'Total Quantity'
+                                        ) + Sum(
+                                            Filter(
+                                                'Order Lines',
+                                                'Order Number'.'Order Type' <> Blank() && 'Item SKU'.'SKU Master' = ThisItem.SKU.'SKU Master' && 'Created On' >= Today() && Salesperson.'Primary Email' = User().Email && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'Sales Order'
+                                            ),
+                                            'Empty Jars'
+                                        )
+                                    Width: =btnNewOrderHeaderPcs_27.Width
+                                    X: =btnNewOrderHeaderPcs_27.X-5
+                                    Y: =5
+                                    ZIndex: =12
+
+                                lblHomeReplacementUOM_4 As label:
+                                    Align: =Align.Center
+                                    Fill: |-
+                                        =RGBA(0, 0, 0, 0)
+                                        //_VarGblAppColors.LightText
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: |-
+                                        =If(
+                                            Sum(
+                                                Filter(
+                                                    'Order Lines',
+                                                    'Order Number'.'Order Type' <> Blank() && 'Order Number'.'Payment Status' = 'Payment Status Choice'.Completed && 'Item SKU'.'SKU Master' = ThisItem.SKU.'SKU Master' && 'Created On' >= Today() && Salesperson.'Primary Email' = User().Email && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'Sales Order'
+                                                ),
+                                                Cases
+                                            ) > 0,
+                                            Sum(
+                                                Filter(
+                                                    'Order Lines',
+                                                    'Order Number'.'Order Type' <> Blank() && 'Order Number'.'Payment Status' = 'Payment Status Choice'.Completed && 'Item SKU'.'SKU Master' = ThisItem.SKU.'SKU Master' && 'Created On' >= Today() && Salesperson.'Primary Email' = User().Email && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'Sales Order'
+                                                ),
+                                                Cases
+                                            ),
+                                            0
+                                        )
+                                    Width: =btnNewOrderHeaderPcs_28.Width
+                                    X: =btnNewOrderHeaderPcs_28.X-5
+                                    Y: =5
+                                    ZIndex: =13
+
+                                lblHomeReplacementUOM_5 As label:
+                                    Align: =Align.Center
+                                    Fill: |-
+                                        =RGBA(0, 0, 0, 0)
+                                        //_VarGblAppColors.LightText
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: |-
+                                        =If(
+                                            Sum(
+                                                Filter(
+                                                    'Order Lines',
+                                                    'Order Number'.'Order Type' <> Blank() && 'Order Number'.'Payment Status' = 'Payment Status Choice'.Completed && 'Item SKU'.'SKU Master' = ThisItem.SKU.'SKU Master' && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'Sales Order' && 'Created On' >= Today() && Salesperson.'Primary Email' = User().Email
+                                                ),
+                                                PCs
+                                            ) > 0,
+                                            Sum(
+                                                Filter(
+                                                    'Order Lines',
+                                                    'Order Number'.'Order Type' <> Blank() && 'Order Number'.'Payment Status' = 'Payment Status Choice'.Completed && 'Item SKU'.'SKU Master' = ThisItem.SKU.'SKU Master' && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'Sales Order' && 'Created On' >= Today() && Salesperson.'Primary Email' = User().Email
+                                                ),
+                                                PCs
+                                            ),
+                                            0
+                                        )
+                                    Width: =btnNewOrderHeaderPcs_29.Width
+                                    X: =btnNewOrderHeaderPcs_29.X-5
+                                    Y: =5
+                                    ZIndex: =14
+
+                                lblHomeReplacementUOM_7 As label:
+                                    Align: =Align.Center
+                                    Fill: |-
+                                        =RGBA(0, 0, 0, 0)
+                                        //_VarGblAppColors.LightText
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: |-
+                                        =If(
+                                            Sum(
+                                                Filter(
+                                                    'Order Lines',
+                                                    'Order Number'.'Order Type' <> Blank() && 'Item SKU'.'SKU Master' = ThisItem.SKU.'SKU Master' && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'Replacement Order' && 'Created On' >= Today() && Salesperson.'Primary Email' = User().Email
+                                                ),
+                                                Cases
+                                            ) > 0,
+                                            Sum(
+                                                Filter(
+                                                    'Order Lines',
+                                                    'Order Number'.'Order Type' <> Blank() && 'Item SKU'.'SKU Master' = ThisItem.SKU.'SKU Master' && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'Replacement Order' && 'Created On' >= Today() && Salesperson.'Primary Email' = User().Email
+                                                ),
+                                                Cases
+                                            ),
+                                            0
+                                        )
+                                    Width: =btnNewOrderHeaderPcs_30.Width
+                                    X: =btnNewOrderHeaderPcs_30.X-5
+                                    Y: =5
+                                    ZIndex: =15
+
+                                lblHomeReplacementUOM_8 As label:
+                                    Align: =Align.Center
+                                    Fill: |-
+                                        =RGBA(0, 0, 0, 0)
+                                        //_VarGblAppColors.LightText
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: |-
+                                        =If(
+                                            Sum(
+                                                Filter(
+                                                    'Order Lines',
+                                                    'Order Number'.'Order Type' <> Blank() && 'Item SKU'.'SKU Master' = ThisItem.SKU.'SKU Master' && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'Replacement Order' && 'Created On' >= Today() && Salesperson.'Primary Email' = User().Email
+                                                ),
+                                                PCs
+                                            ) > 0,
+                                            Sum(
+                                                Filter(
+                                                    'Order Lines',
+                                                    'Order Number'.'Order Type' <> Blank() && 'Item SKU'.'SKU Master' = ThisItem.SKU.'SKU Master' && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'Replacement Order' && 'Created On' >= Today() && Salesperson.'Primary Email' = User().Email
+                                                ),
+                                                PCs
+                                            ),
+                                            0
+                                        )
+                                    Width: =btnNewOrderHeaderPcs_31.Width
+                                    X: =btnNewOrderHeaderPcs_31.X-5
+                                    Y: =5
+                                    ZIndex: =16
+
+                                lblHomeReplacementUOM_9 As label:
+                                    Align: =Align.Center
+                                    Fill: |-
+                                        =RGBA(0, 0, 0, 0)
+                                        //_VarGblAppColors.LightText
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: |-
+                                        =If(
+                                            Sum(
+                                                Filter(
+                                                    'Order Lines',
+                                                    'Order Number'.'Order Type' <> Blank() && 'Item SKU'.'SKU Master' = ThisItem.SKU.'SKU Master' && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'FOC Order' && 'Created On' >= Today() && Salesperson.'Primary Email' = User().Email
+                                                ),
+                                                Cases
+                                            ) > 0,
+                                            Sum(
+                                                Filter(
+                                                    'Order Lines',
+                                                    'Order Number'.'Order Type' <> Blank() && 'Item SKU'.'SKU Master' = ThisItem.SKU.'SKU Master' && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'FOC Order' && 'Created On' >= Today() && Salesperson.'Primary Email' = User().Email
+                                                ),
+                                                Cases
+                                            ),
+                                            0
+                                        )
+                                    Width: =btnNewOrderHeaderPcs_32.Width
+                                    X: =btnNewOrderHeaderPcs_32.X-5
+                                    Y: =5
+                                    ZIndex: =17
+
+                                lblHomeReplacementUOM_10 As label:
+                                    Align: =Align.Center
+                                    Fill: |-
+                                        =RGBA(0, 0, 0, 0)
+                                        //_VarGblAppColors.LightText
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: |-
+                                        =If(
+                                            Sum(
+                                                Filter(
+                                                    'Order Lines',
+                                                    'Order Number'.'Order Type' <> Blank() && 'Item SKU'.'SKU Master' = ThisItem.SKU.'SKU Master' && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'FOC Order' && 'Created On' >= Today() && Salesperson.'Primary Email' = User().Email
+                                                ),
+                                                PCs
+                                            ) > 0,
+                                            Sum(
+                                                Filter(
+                                                    'Order Lines',
+                                                    'Order Number'.'Order Type' <> Blank() && 'Item SKU'.'SKU Master' = ThisItem.SKU.'SKU Master' && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'FOC Order' && 'Created On' >= Today() && Salesperson.'Primary Email' = User().Email
+                                                ),
+                                                PCs
+                                            ),
+                                            0
+                                        )
+                                    Width: =btnNewOrderHeaderPcs_33.Width
+                                    X: =btnNewOrderHeaderPcs_33.X-5
+                                    Y: =5
+                                    ZIndex: =18
+
+                                lblHomeReplacementUOM_11 As label:
+                                    Align: =Align.Center
+                                    Fill: |-
+                                        =RGBA(0, 0, 0, 0)
+                                        //_VarGblAppColors.LightText
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: |-
+                                        =/*Sum(Filter('Order Lines', 'Item SKU'.'SKU Master'=ThisItem.SKU.'SKU Master' && 'Order Number'.'Order Type'='Order Type (Choice)'.'Replacement Order' && IsToday('Created On') && Salesperson.'Primary Email'=User().Email), Cases)*/
+                                        0
+                                    Width: =btnNewOrderHeaderPcs_34.Width
+                                    X: =btnNewOrderHeaderPcs_34.X-5
+                                    Y: =5
+                                    ZIndex: =19
+
+                                lblHomeReplacementUOM_12 As label:
+                                    Align: =Align.Center
+                                    Fill: |-
+                                        =RGBA(0, 0, 0, 0)
+                                        //_VarGblAppColors.LightText
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: |-
+                                        =/*Sum(Filter('Order Lines', 'Item SKU'.'SKU Master'=ThisItem.SKU.'SKU Master' && 'Order Number'.'Order Type'='Order Type (Choice)'.'Replacement Order' && IsToday('Created On') && Salesperson.'Primary Email'=User().Email), PCs)*/
+                                        0
+                                    Width: =btnNewOrderHeaderPcs_35.Width
+                                    X: =btnNewOrderHeaderPcs_35.X-5
+                                    Y: =5
+                                    ZIndex: =20
+
+                                lblHomeReplacementUOM_13 As label:
+                                    Align: =Align.Center
+                                    Fill: |-
+                                        =RGBA(0, 0, 0, 0)
+                                        //_VarGblAppColors.LightText
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: |-
+                                        =If(CountRows(varToLocationStock)>0,
+                                        
+                                        Sum(
+                                            Filter(
+                                                'Stock Transfer Lines',
+                                                SKU.'SKU Master' = ThisItem.SKU.'SKU Master' && 'Manufacturing date'=ThisItem.'Manufacturing date' && 'Batch no.'=ThisItem.'Batch no.' && 'Lot no.'=ThisItem.'Lot no.' && 'Transfer status' = 'Transfer status (Stock Transfer Lines)'.'Transfer accepted' && 'Transfer Order No'.'Stock Transfer Header' in varToLocationStock.headerInventoryGUID
+                                            ),
+                                            Cases
+                                        ),0)
+                                        
+                                        
+                                        
+                                        
+                                        /*If(
+                                            ThisItem.'Transfer Order No'.'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer' && ThisItem.'To Location'.Warehouse = LookUp(
+                                                Warehouses,
+                                                Warehouse = varUserVanNo.Van.Warehouse
+                                            ).Warehouse && IsToday(ThisItem.'Created On') && ThisItem.'Transfer status' = 'Transfer status (Stock Transfer Lines)'.'Transfer accepted',
+                                            ThisItem.Cases,
+                                            0
+                                        )*/
+                                    Width: =btnNewOrderHeaderPcs_36.Width
+                                    X: =btnNewOrderHeaderPcs_36.X-5
+                                    Y: =5
+                                    ZIndex: =21
+
+                                lblHomeReplacementUOM_14 As label:
+                                    Align: =Align.Center
+                                    Fill: |-
+                                        =RGBA(0, 0, 0, 0)
+                                        //_VarGblAppColors.LightText
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: |-
+                                        =If(CountRows(varToLocationStock)>0,
+                                        
+                                        Sum(
+                                            Filter(
+                                                'Stock Transfer Lines',
+                                                SKU.'SKU Master' = ThisItem.SKU.'SKU Master' && 'Manufacturing date'=ThisItem.'Manufacturing date' && 'Batch no.'=ThisItem.'Batch no.' && 'Lot no.'=ThisItem.'Lot no.' && 'Transfer status' = 'Transfer status (Stock Transfer Lines)'.'Transfer accepted' && 'Transfer Order No'.'Stock Transfer Header' in varToLocationStock.headerInventoryGUID
+                                            ),
+                                            PCs
+                                        ),0)
+                                    Width: =btnNewOrderHeaderPcs_37.Width
+                                    X: =btnNewOrderHeaderPcs_37.X-5
+                                    Y: =5
+                                    ZIndex: =22
+
+                                lblHomeReplacementUOM_15 As label:
+                                    Align: =Align.Center
+                                    Fill: |-
+                                        =RGBA(0, 0, 0, 0)
+                                        //_VarGblAppColors.LightText
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: |-
+                                        =If(CountRows(varFromLocationStock)>0,
+                                        
+                                        Sum(
+                                            Filter(
+                                                'Stock Transfer Lines',
+                                                SKU.'SKU Master' = ThisItem.SKU.'SKU Master' && 'Manufacturing date'=ThisItem.'Manufacturing date' && 'Batch no.'=ThisItem.'Batch no.' && 'Lot no.'=ThisItem.'Lot no.' && 'Transfer status' = 'Transfer status (Stock Transfer Lines)'.'Transfer accepted' && 'Transfer Order No'.'Stock Transfer Header' in varFromLocationStock.headerInventoryGUID
+                                            ),
+                                            Cases
+                                        ),0)
+                                    Width: =btnNewOrderHeaderPcs_38.Width
+                                    X: =btnNewOrderHeaderPcs_38.X-5
+                                    Y: =5
+                                    ZIndex: =23
+
+                                lblHomeReplacementUOM_16 As label:
+                                    Align: =Align.Center
+                                    Fill: |-
+                                        =RGBA(0, 0, 0, 0)
+                                        //_VarGblAppColors.LightText
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: |-
+                                        =If(CountRows(varFromLocationStock)>0,
+                                        
+                                        Sum(
+                                            Filter(
+                                                'Stock Transfer Lines',
+                                                SKU.'SKU Master' = ThisItem.SKU.'SKU Master' && 'Manufacturing date'=ThisItem.'Manufacturing date' && 'Batch no.'=ThisItem.'Batch no.' && 'Lot no.'=ThisItem.'Lot no.' && 'Transfer status' = 'Transfer status (Stock Transfer Lines)'.'Transfer accepted' && 'Transfer Order No'.'Stock Transfer Header' in varFromLocationStock.headerInventoryGUID
+                                            ),
+                                            PCs
+                                        ),0)
+                                    Width: =btnNewOrderHeaderPcs_39.Width
+                                    X: =btnNewOrderHeaderPcs_39.X-5
+                                    Y: =5
+                                    ZIndex: =24
+
+                                shpHomeReplacementRect3_2 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =60
+                                    OnSelect: =Select(Parent)
+                                    Width: =1
+                                    X: =740
+                                    ZIndex: =25
+
+                                shpHomeReplacementRect3_3 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =60
+                                    OnSelect: =Select(Parent)
+                                    Width: =1
+                                    X: =845
+                                    ZIndex: =26
+
+                                shpHomeReplacementRect3_4 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =60
+                                    OnSelect: =Select(Parent)
+                                    Width: =1
+                                    X: =952
+                                    ZIndex: =27
+
+                                shpHomeReplacementRect3_5 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =60
+                                    OnSelect: =Select(Parent)
+                                    Width: =1
+                                    X: =1060
+                                    ZIndex: =28
+
+                                shpHomeReplacementRect3_6 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =60
+                                    OnSelect: =Select(Parent)
+                                    Width: =1
+                                    X: =1165
+                                    ZIndex: =29
+
+                                shpHomeReplacementRect3_7 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =60
+                                    OnSelect: =Select(Parent)
+                                    Width: =1
+                                    X: =1275
+                                    ZIndex: =30
+
+                                shpHomeReplacementRect3_8 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =60
+                                    OnSelect: =Select(Parent)
+                                    Width: =1
+                                    X: =1380
+                                    ZIndex: =31
+
+                                shpHomeReplacementRect3_9 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =60
+                                    OnSelect: =Select(Parent)
+                                    Width: =1
+                                    X: =1490
+                                    ZIndex: =32
+
+                                shpHomeReplacementRect3_10 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =60
+                                    OnSelect: =Select(Parent)
+                                    Width: =1
+                                    X: =1595
+                                    ZIndex: =33
+
+                                shpHomeReplacementRect3_11 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =60
+                                    OnSelect: =Select(Parent)
+                                    Width: =1
+                                    X: =1700
+                                    ZIndex: =34
+
+                                shpHomeReplacementRect3_12 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =60
+                                    OnSelect: =Select(Parent)
+                                    Width: =1
+                                    X: =1810
+                                    ZIndex: =35
+
+                                shpHomeReplacementRect3_13 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =60
+                                    OnSelect: =Select(Parent)
+                                    Width: =1
+                                    X: =1916
+                                    ZIndex: =36
+
+            Button6 As button:
+                DisplayMode: |-
+                    =/*If(
+                        Sum(
+                            Gallery1_3.AllItems,
+                            Label4_4
+                        ) = RoundUp(
+                            Sum(
+                                Filter(
+                                    Payments,
+                                    IsToday('Created On') && Salesperson.'Primary Email' = User().Email
+                                ),
+                                Amount
+                            ),
+                            0
+                        ) && CountRows(galHomeReplacementData_1.AllItems) > 0,
+                        DisplayMode.Edit,
+                        DisplayMode.Disabled
+                    )*/
+                    If(
+                        Sum(
+                            Gallery1_3.AllItems,
+                            Label4_4
+                        ) = RoundUp(
+                            Sum(
+                                sumdataCahPayment,
+                                Amount
+                            ),
+                            0
+                        ) && CountRows(galHomeReplacementData_1.AllItems)>0,
+                        DisplayMode.Edit,
+                        DisplayMode.Disabled
+                    )
+                Fill: =_VarGblAppColors.BisleriBlue
+                HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+                OnSelect: |
+                    =Set(
+                        Attid,
+                        LookUp(
+                            Attendances,
+                            User.'Primary Email' = User().Email && 'Created On' >= Today()
+                        ).Attendance
+                    );
+                    Patch(
+                        Attendances,
+                        LookUp(
+                            Attendances,
+                            Date = Today() && User.'Primary Email' = User().Email
+                        ),
+                        {
+                            'Check-Out Latitude': Location.Latitude,
+                            'Check-Out Longitude': Location.Longitude,
+                            'Check-out Time': Now()
+                        }
+                    );
+                    ClearCollect(
+                        colOfflineTodayAttendance,
+                        LookUp(
+                            Attendances,
+                            User.'Primary Email' = User().Email && 'Created On' >= Today() && IsBlank('Check-out Time')
+                        )
+                    );
+                    ///////////////////////Patch Stock Inventory////////////////////////////
+                    ForAll(
+                        galHomeReplacementData_1.AllItems As StkInv,
+                        Patch(
+                            'Stock Inventories',
+                            Defaults('Stock Inventories'),
+                            {
+                                'Check-in Date': LookUp(
+                                    Attendances,
+                                    Date = Today() && User.'Primary Email' = User().Email
+                                ).'Check-in Time',
+                                Route: LookUp(
+                                    Areas,
+                                    Area = varUserArea.Area.Area
+                                ),
+                                'Vehicle Code': LookUp(
+                                    Warehouses,
+                                    Warehouse = varUserVanNo.Van.Warehouse
+                                ),
+                                'Item Code': LookUp(
+                                    'SKU Masters',
+                                    'SKU Master' = StkInv.SKU.'SKU Master'
+                                ),
+                                'Item Description': LookUp(
+                                    'SKU Masters',
+                                    'SKU Master' = StkInv.SKU.'SKU Master'
+                                ).'Item Description ',
+                                'Loaded Cases': Value(StkInv.lblHomeReplacementReason_1.Text),
+                                'Loaded Units': Value(StkInv.lblHomeReplacementUOM_1.Text),
+                                'Filled Cases': Value(StkInv.lblHomeReplacementQty_1.Text),
+                                'Filled Units': Value(StkInv.lblHomeReplacementUOM_2.Text),
+                                'Empties Returned': Value(StkInv.lblHomeReplacementUOM_3.Text),
+                                'Sold Cases': Value(StkInv.lblHomeReplacementUOM_4.Text),
+                                'Sold Units': Value(StkInv.lblHomeReplacementUOM_5.Text),
+                                'Replacement Cases': Value(StkInv.lblHomeReplacementUOM_7.Text),
+                                'Replacement Units': Value(StkInv.lblHomeReplacementUOM_8.Text),
+                                'FOC Cases': Value(StkInv.lblHomeReplacementUOM_9.Text),
+                                'FOC Units': Value(StkInv.lblHomeReplacementUOM_10.Text),
+                                'Return Cases': 0,
+                                'Return Units': 0,
+                                'Transfer in Cases': Value(StkInv.lblHomeReplacementUOM_13.Text),
+                                'Transfer in Units': Value(StkInv.lblHomeReplacementUOM_14.Text),
+                                'Transfer out Cases': Value(StkInv.lblHomeReplacementUOM_15.Text),
+                                'Transfer out Units': Value(StkInv.lblHomeReplacementUOM_16.Text),
+                                'Batch No': LookUp(
+                                    'Stock Transfer Lines',
+                                    SKU.'SKU Master' = StkInv.SKU.'SKU Master'
+                                ).'Batch no.',
+                                'Lot No': LookUp(
+                                    'Stock Transfer Lines',
+                                    SKU.'SKU Master' = StkInv.SKU.'SKU Master'
+                                ).'Lot no.',
+                                'Mfg Date': LookUp(
+                                    'Stock Transfer Lines',
+                                    SKU.'SKU Master' = StkInv.SKU.'SKU Master'
+                                ).'Manufacturing date'
+                            }
+                        )
+                    );
+                    'AutorunPush-Invoices'.Run(Attid);
+                    'AutorunPush-Invoices-Pune'.Run(Attid);
+                    'AutorunPush-Payments'.Run(Attid);
+                    'AutorunPush-Payments-Pune'.Run(Attid);
+                    'AutorunPush-CheckinDemand'.Run(Attid);
+                    'AutorunPush-CheckinDemand_pune'.Run(Attid);
+                    'AutorunPush-Stockinventory'.Run(Attid);
+                    'AutorunPush-Stockinventory-pune'.Run(Attid);
+                    Clear(EitherCasesOrPcs);
+                    Set(
+                        varDayEnd,
+                        true
+                    );
+                    Set(
+                        varDayEndPopup,
+                        true
+                    );
+                    //Navigate('Attendance Screen');
+                Size: =_VarGblAppFonts.Size.Title
+                Text: ="End"
+                Width: =150
+                X: =414
+                Y: =1714
+                ZIndex: =2
+
+            btnNewOrderHeaderProduct_19 As button:
+                DisabledBorderColor: |-
+                    =//RGBA(166, 166, 166, 1)
+                    _VarGblAppColors.BisleriBlue
+                DisabledColor: |-
+                    =//RGBA(166, 166, 166, 1)
+                    _VarGblAppColors.LightText
+                DisabledFill: |-
+                    =//RGBA(244, 244, 244, 1)
+                    _VarGblAppColors.BisleriBlue
+                DisplayMode: =DisplayMode.Disabled
+                FocusedBorderColor: =Color.Transparent
+                FocusedBorderThickness: =0.5
+                Height: =50
+                OnSelect: =
+                Size: =_VarGblAppFonts.Size.Subtitle
+                Text: ="Currency"
+                Width: =206
+                X: =5
+                Y: =845
+                ZIndex: =3
+
+            btnNewOrderHeaderCases_25 As button:
+                DisabledBorderColor: |-
+                    =//RGBA(166, 166, 166, 1)
+                    _VarGblAppColors.BisleriBlue
+                DisabledColor: |-
+                    =//RGBA(166, 166, 166, 1)
+                    _VarGblAppColors.LightText
+                DisabledFill: |-
+                    =//RGBA(244, 244, 244, 1)
+                    _VarGblAppColors.BisleriBlue
+                DisplayMode: =DisplayMode.Disabled
+                FocusedBorderColor: =Color.Transparent
+                FocusedBorderThickness: =0.5
+                Height: =50
+                OnSelect: =
+                Size: =_VarGblAppFonts.Size.Subtitle
+                Text: ="Qty"
+                Width: =206
+                X: =btnNewOrderHeaderProduct_19.X + btnNewOrderHeaderProduct_19.Width +5
+                Y: =845
+                ZIndex: =4
+
+            btnNewOrderHeaderPcs_25 As button:
+                DisabledBorderColor: |-
+                    =//RGBA(166, 166, 166, 1)
+                    _VarGblAppColors.BisleriBlue
+                DisabledColor: |-
+                    =//RGBA(166, 166, 166, 1)
+                    _VarGblAppColors.LightText
+                DisabledFill: |-
+                    =//RGBA(244, 244, 244, 1)
+                    _VarGblAppColors.BisleriBlue
+                DisplayMode: =DisplayMode.Disabled
+                FocusedBorderColor: =Color.Transparent
+                FocusedBorderThickness: =0.5
+                Height: =50
+                OnSelect: =
+                Size: =_VarGblAppFonts.Size.Subtitle
+                Text: ="Amount"
+                Width: =206
+                X: =btnNewOrderHeaderCases_25.X + btnNewOrderHeaderCases_25.Width +5
+                Y: =845
+                ZIndex: =5
+
+            Gallery1_3 As gallery.galleryVertical:
+                AccessibleLabel: ="Gallery1"
+                FocusedBorderColor: =Color.Transparent
+                FocusedBorderThickness: =0.5
+                Height: =789
+                Items: |-
+                    =Table(
+                        {Currency:"2000",Sign:"₹"},
+                        {Currency:"500",Sign:"₹"},
+                        {Currency:"200",Sign:"₹"},
+                        {Currency:"100",Sign:"₹"},
+                        {Currency:"50",Sign:"₹"},
+                        {Currency:"20",Sign:"₹"},
+                        {Currency:"10",Sign:"₹"},
+                        {Currency:"5",Sign:"₹"},
+                        {Currency:"2",Sign:"₹"},
+                        {Currency:"1",Sign:"₹"}
+                        )
+                Layout: =Layout.Vertical
+                TabIndex: =
+                TemplateSize: =73
+                Y: =893
+                ZIndex: =6
+
+                Button3_1 As button:
+                    DisabledFill: =_VarGblAppColors.BisleriBlueLight
+                    DisplayMode: =DisplayMode.Disabled
+                    Height: =70
+                    Size: =24
+                    Text: =""
+                    Width: =Gallery1_3.Width-10
+                    Y: =3
+                    ZIndex: =1
+
+                Label4_3 As label:
+                    Align: =Align.Center
+                    Height: =55
+                    OnSelect: =Select(Parent)
+                    Size: =_VarGblAppFonts.Size.Subtitle
+                    Text: =ThisItem.Currency
+                    Width: =191
+                    X: =17
+                    Y: =10
+                    ZIndex: =2
+
+                Label4_4 As label:
+                    Align: =Align.Center
+                    Height: =55
+                    OnSelect: =Select(Parent)
+                    Size: =_VarGblAppFonts.Size.Subtitle
+                    Text: =ThisItem.Currency*TextInput1_1.Text
+                    Width: =206
+                    X: =424
+                    Y: =10
+                    ZIndex: =3
+
+                TextInput1_1 As text:
+                    AccessibleLabel: ="TextInput1"
+                    Align: =Align.Center
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    Default: =""
+                    FocusedBorderThickness: =2
+                    Format: =TextFormat.Number
+                    HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                    HoverFill: =_VarGblAppColors.BisleriBlueLight
+                    OnChange: |-
+                        =If(
+                            (Self.Text <> "" And Value(Self.Text) <> RoundDown(
+                                Value(Self.Text),
+                                0
+                            ) Or Value(Self.Text) < 1) And !IsBlank(Value(Self.Text)),
+                            Notify(
+                                "Please enter whole number",
+                                NotificationType.Information,
+                                1000
+                            );
+                            Reset(Self),false)
+                    OnSelect: =Select(Parent)
+                    Reset: =true
+                    Size: =_VarGblAppFonts.Size.Subtitle
+                    Width: =102
+                    X: =265
+                    Y: =20
+                    ZIndex: =4
+
+                Label4_5 As label:
+                    Align: =Align.Center
+                    Height: =47
+                    OnSelect: =Select(Parent)
+                    Size: =_VarGblAppFonts.Size.Subtitle
+                    Text: =ThisItem.Sign
+                    Width: =20
+                    X: =69
+                    Y: =14
+                    ZIndex: =5
+
+            htmOrderListQty_8 As htmlViewer:
+                Color: =RGBA(242, 242, 242, 1)
+                Height: =64
+                HtmlText: |-
+                    ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:0px solid #00B3A1; width:300px; height:50px'></div>"
+                Width: =310
+                X: =315
+                Y: =773
+                ZIndex: =7
+
+            lblOrderListQty_3 As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =_VarGblAppColors.SecondaryText
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Font: =Font.Lato
+                FontWeight: =FontWeight.Semibold
+                Height: =31
+                Size: =12
+                TabIndex: =0
+                Text: ="Total Payment"
+                Width: =116
+                X: =340
+                Y: =789
+                ZIndex: =8
+
+            lblOrderListQty_4 As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =_VarGblAppColors.SecondaryText
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Font: =Font.Lato
+                FontWeight: =FontWeight.Semibold
+                Height: =31
+                Size: =12
+                TabIndex: =0
+                Text: |-
+                    ="₹" & Text(
+                        Sum(
+                            sumdataCahPayment,
+                            Amount
+                        )
+                    )
+                Width: =116
+                X: =487
+                Y: =789
+                ZIndex: =9
+
+            htmOrderListQty_17 As htmlViewer:
+                Color: =RGBA(242, 242, 242, 1)
+                Height: =64
+                HtmlText: |-
+                    ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:0px solid #00B3A1; width:300px; height:50px'></div>"
+                Width: =314
+                X: =1
+                Y: =773
+                ZIndex: =10
+
+            lblOrderListQty_8 As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =_VarGblAppColors.SecondaryText
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Font: =Font.Lato
+                FontWeight: =FontWeight.Semibold
+                Height: =31
+                Size: =12
+                TabIndex: =0
+                Text: ="Total Amount"
+                Width: =116
+                X: =31
+                Y: =789
+                ZIndex: =11
+
+            lblOrderListQty_9 As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =_VarGblAppColors.SecondaryText
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Font: =Font.Lato
+                FontWeight: =FontWeight.Semibold
+                Height: =31
+                Size: =12
+                TabIndex: =0
+                Text: |-
+                    ="₹"&Sum(Gallery1_3.AllItems, Label4_4)
+                    
+                    //"₹"&Text(Sum(Filter(Payments, IsToday('Created On') && Salesperson.'Primary Email'=User().Email), Amount))
+                Width: =116
+                X: =178
+                Y: =789
+                ZIndex: =12
+
+    compBaseHeader_1 As Header:
+        HeaderText: ="Settlement"
+        ZIndex: =4
+
+    compBaseBottomBar_1 As BottomBar:
+        Fill: |-
+            =RGBA(
+                242,
+                242,
+                242,
+                0
+            )
+        NavItem: |-
+            =Table(
+                {
+                    Title: If(
+                        CountRows(colOfflineTodayAttendance)=0,
+                        "Start",
+                        (CountRows(colOfflineTodayAttendance) = 1 && !IsBlank(First(colOfflineTodayAttendance).'Check-in Time') && IsBlank(First(colOfflineTodayAttendance).'Check-out Time') ),
+                        "End",
+                        (CountRows(colOfflineTodayAttendance) = 1 && !IsBlank(First(colOfflineTodayAttendance).'Check-in Time') && !IsBlank(First(colOfflineTodayAttendance).'Check-out Time')),
+                        "Ended"
+                    ),
+                    Icon: Icon.CalendarBlank,
+                    Screen: 'Attendance Screen',
+                    Active: true
+                },
+                {
+                    Title: "Visit",
+                    Icon: Icon.Waypoint,
+                    Screen: 'Visit Screen',
+                    Active: false
+                },
+                {
+                    Title: "Dashboard",
+                    Icon: Icon.Waffle,
+                    Screen: 'Home Screen',
+                    Active: false
+                },
+                {
+                    Title: "Customers",
+                    Icon: Icon.People,
+                    Screen: 'Customer Screen',
+                    Active: false
+                },
+                {
+                    Title: "Menu",
+                    Icon: Icon.Hamburger,
+                    Screen: 'Menu Screen',
+                    Active: false
+                }
+            )
+        Y: =1026
+        ZIndex: =5
+
+    Icon12 As icon.Reload:
+        AccessibleLabel: ="Icone12"
+        Color: =_VarGblAppColors.LightText
+        Height: =40
+        Icon: =Icon.Reload
+        OnSelect: |-
+            =Refresh('Stock Inventories');
+            Refresh('Order Lines');
+            Refresh('Stock Transfer Lines');
+        TabIndex: =0
+        Width: =50
+        X: =479
+        Y: =20
+        ZIndex: =6
+
+    Rectangle7 As rectangle:
+        Fill: =RGBA(0, 0, 0, 0.55)
+        Height: =App.Height
+        Visible: =If(varDayEndPopup, true, false)
+        Width: =App.Width
+        ZIndex: =7
+
+    Container11 As groupContainer.manualLayoutContainer:
+        Fill: =_VarGblAppColors.LightText
+        Height: =285
+        Visible: =If(varDayEndPopup, true, false)
+        X: =70
+        Y: =426
+        ZIndex: =8
+
+        Label20 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Bold
+            Height: =135
+            Size: =_VarGblAppFonts.Size.Title
+            Text: ="End day has been submitted successfully."
+            Width: =500
+            Y: =6
+            ZIndex: =1
+
+        Button14 As button:
+            Fill: =_VarGblAppColors.BisleriBlue
+            Height: =60
+            HoverFill: =_VarGblAppColors.BisleriBlue
+            OnSelect: |-
+                =Set(varDayEndPopup, false);
+                Navigate('Attendance Screen');
+            Size: =_VarGblAppFonts.Size.Title
+            Text: ="OK"
+            Width: =200
+            X: =150
+            Y: =157
+            ZIndex: =2
+

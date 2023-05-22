@@ -1,0 +1,99 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_customergroupdetailses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_customergroupdetails",
+    "MaxGetRowsCount": 2000,
+    "Name": "Customer group details",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_Customer": "Customer",
+      "zx_customergroupdetails_AsyncOperations": "System Jobs",
+      "zx_customergroupdetails_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_customergroupdetails_DuplicateBaseRecord": "Duplicate Records (zx_customergroupdetails_DuplicateBaseRecord)",
+      "zx_customergroupdetails_DuplicateMatchingRecord": "Duplicate Records (zx_customergroupdetails_DuplicateMatchingRecord)",
+      "zx_customergroupdetails_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_customergroupdetails_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_customergroupdetails_ProcessSession": "Process Sessions",
+      "zx_customergroupdetails_SyncErrors": "Sync Errors",
+      "zx_customergroupdetailsid": "Customer group details",
+      "zx_Customerpricegroup": "Customer price  group",
+      "zx_name": "Name"
+    },
+    "PreferredName": "Customer group details",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Customer group details (Views)",
+    "Name": "_zx_customergroupdetails_views",
+    "RelatedEntityName": "Customer group details",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "1c8fc7e9-a6c3-4ec1-bdf8-5ce8f001f375": "Inactive Customer group details",
+      "3e1bf25f-86bf-4ade-b613-64487b403334": "Customer group details Advanced Find View",
+      "6b4adcdb-5a9f-481a-bd10-f2c9e9227eb4": "Customer group details Associated View",
+      "6f2792a3-2137-45fe-8739-64699c116754": "Active Customer group details",
+      "b2feb6c2-a917-4668-a246-77acc9d15dd2": "Customer group details Lookup View"
+    }
+  },
+  {
+    "DisplayName": "Status (Customer group details)",
+    "Name": "zx_customergroupdetails_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Customer group details"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Customer group details",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Customer group details)",
+    "Name": "zx_customergroupdetails_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Customer group details"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Customer group details",
+    "Type": "OptionSetInfo"
+  }
+]

@@ -1,0 +1,678 @@
+NewEmptyJar As screen:
+    Fill: =_VarGblAppColors.BackgroundColor
+    OnVisible: |-
+        =Reset(cmbNewEmptyJarSelectCustomer);
+        Clear(colEJarsItem);
+
+    compNewEmptyJarHeader As Header:
+        HeaderText: ="New Empty Jar"
+
+    cmbNewEmptyJarSelectCustomer As combobox:
+        AccessibleLabel: ="cmbNewEmptyJarSelectCustomer"
+        BorderColor: =_VarGblAppColors.BisleriBlueMediumLight
+        ChevronBackground: =_VarGblAppColors.BisleriBlue
+        ChevronFill: =Color.White
+        ChevronHoverBackground: =_VarGblAppColors.BisleriBlue
+        ChevronHoverFill: =_VarGblAppColors.BisleriBlue
+        Color: =_VarGblAppColors.BisleriBlue
+        DisplayFields: =["zx_customername"]
+        Height: =49
+        HoverFill: =_VarGblAppColors.BisleriBlueMediumLight
+        InputTextPlaceholder: ="Select Customer"
+        Items: =Filter(Customers_1, 'Customer status'='Customer status (Choice)'.Customer && Salesperson.'Primary Email'=User().Email)
+        PressedFill: =_VarGblAppColors.BisleriBlueMediumLight
+        SearchFields: =["zx_customername"]
+        SearchItems: =Search(Filter(Customers_1, 'Customer status'='Customer status (Choice)'.Customer && Salesperson.'Primary Email'=User().Email),cmbNewEmptyJarSelectCustomer.SearchText,"zx_customername")
+        SelectionFill: =_VarGblAppColors.BisleriBlue
+        SelectMultiple: =false
+        Size: =18
+        Width: =580
+        X: =32
+        Y: =93
+        ZIndex: =2
+
+    btnNewEmptyJarConfirm As button:
+        DisplayMode: =If(CountRows(colEJarsItem)>0 && !IsBlank(cmbNewEmptyJarSelectCustomer.Selected) ,DisplayMode.Edit, DisplayMode.Disabled)
+        Fill: =_VarGblAppColors.BisleriBlue
+        FocusedBorderThickness: =2
+        Height: =50
+        HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+        OnSelect: |-
+            =Set(_varConfirmEjarPopup, true)
+            /*---Create Empty jar Order Header----------------*/
+            /*ClearCollect(
+                CreateEjarsOrder,
+                Patch(
+                    'Order Headers',
+                    Defaults('Order Headers'),
+                    {
+                        'Order Date': Today(),
+                        'Order Type': 'Order Type (Choice)'.'Empty jar Order',
+                        Latitude: Location.Latitude,
+                        Longitude: Location.Longitude,
+                        Salesperson: LookUp(
+                            Users,
+                            'Primary Email' = User().Email
+                        ),
+                        'Van No': LookUp(
+                            Warehouses,
+                            Warehouse = varUserVanNo.Van.Warehouse
+                        ),
+                        'Payment Type': 'Payment Type (Order Headers)'.Cash,
+                        'Route No': LookUp(
+                            Areas,
+                            Area = varUserArea.Area.Area
+                        ),
+                        'Total Amount': Sum(
+                            colEJarsItem,
+                            Qty
+                        ) * 150
+                    }
+                )
+            );*/
+            /*---Create Empty jar Order Line----------------*/
+            /*If(
+                !IsBlank(CreateEjarsOrder),
+                ClearCollect(
+                    createEjarItemRecord,
+                    ForAll(
+                        colEJarsItem As EJarsItem,
+                        Patch(
+                            'Order Lines',
+                            Defaults('Order Lines'),
+                            {
+                                'Order Number': LookUp(
+                                    'Order Headers',
+                                    'Order Number' = First(CreateEjarsOrder).'Order Number'
+                                ),
+                                Salesperson: LookUp(
+                                    Users,
+                                    'Primary Email' = User().Email
+                                ),
+                                'Item Type': 'Item Type'.Paid,
+                                'Van No': LookUp(
+                                    Warehouses,
+                                    Warehouse = varUserVanNo.Van.Warehouse
+                                ),
+                                'Item SKU': LookUp(
+                                    'SKU Masters',
+                                    'SKU Master' = EJarsItem.productId
+                                ),
+                                'Total Quantity': EJarsItem.Qty,
+                                'Customer no.': cmbNewEmptyJarSelectCustomer.Selected,
+                                'Base Price': 150,
+                                'Route No': LookUp(
+                                    Areas,
+                                    Area = varUserArea.Area.Area
+                                )
+                            }
+                        );
+                        Notify(
+                            "Your Empty Jars order is placed successfully",
+                            NotificationType.Success,
+                            2000
+                        );
+                        //Navigate(EmptyJarPreviewScreen)
+                    )
+                )
+            );*/
+            /*---Create Payment----------------*/
+            /*If(
+                !IsBlank(CreateEjarsOrder),
+                Patch(
+                    Payments,
+                    Defaults(Payments),
+                    {
+                        'Receipt Date': Today(),
+                        Customer: cmbNewEmptyJarSelectCustomer.Selected,
+                        Salesperson: LookUp(
+                            Users,
+                            'Primary Email' = User().Email
+                        ),
+                        'Van No': LookUp(
+                            Warehouses,
+                            Warehouse = varUserVanNo.Van.Warehouse
+                        ),
+                        Route: LookUp(
+                            Areas,
+                            Area = varUserArea.Area.Area
+                        ),
+                        'Payment Type': 'Payment Type (Payments)'.'Empty Jar',
+                        Amount: -Sum(
+                            colEJarsItem,
+                            Qty
+                        ) * 150
+                    }
+                )
+            );*/
+            /*---update current stock----------------*/
+            /*ForAll(
+                colEJarsItem As EjarSt,
+                Patch(
+                    'Current Stocks',
+                    LookUp(
+                        'Current Stocks',
+                        'Item SKU'.'SKU Master' = EjarSt.productId && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse && IsToday('Created On'),
+                        {
+                            Cases: If(
+                                !IsBlank(
+                                    LookUp(
+                                        'Current Stocks',
+                                        'Item SKU'.'SKU Master' = EjarSt.productId && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse && IsToday('Created On')
+                                    ).Cases
+                                ),
+                                LookUp(
+                                    'Current Stocks',
+                                    'Item SKU'.'SKU Master' = EjarSt.productId && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse && IsToday('Created On')
+                                ).Cases- EjarSt.Cases
+                            )
+                        }
+                    )
+                )
+            )*/
+        Size: =_VarGblAppFonts.Size.UpperMedium
+        Text: ="Confirm"
+        Width: =150
+        X: =245
+        Y: =920
+        ZIndex: =3
+
+    Rectangle5 As rectangle:
+        DisplayMode: =DisplayMode.Disabled
+        Fill: =_VarGblAppColors.BackgroundColor
+        Height: =App.Height-160
+        Visible: =If(_varConfirmEjarPopup, true, false)
+        Width: =App.Width
+        Y: =80
+        ZIndex: =4
+
+    compNewEmptyJarBottomBar As BottomBar:
+        Y: =1026
+        ZIndex: =5
+
+    Container4 As groupContainer.manualLayoutContainer:
+        Height: =290
+        Visible: =If(_varConfirmEjarPopup, true, false)
+        Width: =635
+        Y: =766
+        ZIndex: =6
+
+        htmOrderListQty_12 As htmlViewer:
+            Color: =RGBA(242, 242, 242, 1)
+            Height: =71
+            HtmlText: |-
+                ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:0px solid #00B3A1; width:400px; height:50px'></div>"
+            Width: =411
+            X: =107
+            Y: =13
+            ZIndex: =1
+
+        htmOrderListQty_13 As htmlViewer:
+            Color: =RGBA(242, 242, 242, 1)
+            Height: =66
+            HtmlText: |-
+                ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:0px solid #00B3A1; width:400px; height:50px'></div>"
+            Width: =411
+            X: =106
+            Y: =80
+            ZIndex: =2
+
+        Group7_2 As group:
+            Height: =5
+            Width: =5
+            X: =-73
+            Y: =-642
+            ZIndex: =9
+
+            Button9_4 As button:
+                Fill: =_VarGblAppColors.BisleriBlue
+                FocusedBorderThickness: =2
+                HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+                OnSelect: =Set(_varConfirmEjarPopup, false)
+                Size: =_VarGblAppFonts.Size.Title
+                Text: ="Edit"
+                Width: =150
+                X: =141
+                Y: =225
+                ZIndex: =7
+
+            Button9_5 As button:
+                Fill: =_VarGblAppColors.BisleriBlue
+                FocusedBorderThickness: =2
+                HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+                OnSelect: |
+                    =/*---Create Empty jar Order Header----------------*/
+                    ClearCollect(
+                        CreateEjarsOrder,
+                        Patch(
+                            'Order Headers',
+                            Defaults('Order Headers'),
+                            {
+                                'Order Date': Now(),
+                                'Delivery Date':Today(),
+                                'Order Type': 'Order Type (Choice)'.'Empty jar Order',
+                                Latitude: Location.Latitude,
+                                Longitude: Location.Longitude,
+                                Salesperson: LookUp(
+                                    Users,
+                                    'Primary Email' = User().Email
+                                ),
+                                'Van No': LookUp(
+                                    Warehouses,
+                                    Warehouse = varUserVanNo.Van.Warehouse
+                                ),
+                                'Payment Type': 'Payment Type (Order Headers)'.Cash,
+                                'Route No': LookUp(
+                                    Areas,
+                                    Area = varUserArea.Area.Area
+                                ),
+                                'Total Amount': Sum(
+                                    colEJarsItem,
+                                    Qty
+                                ) * 150,
+                                Customer: cmbNewEmptyJarSelectCustomer.Selected,
+                                'Total Quantity': Value(Label10_13.Text),
+                                'Payment Status':'Payment Status Choice'.Completed
+                            }
+                        )
+                    );
+                    /*---Create Empty jar Order Line----------------*/
+                    If(
+                        !IsBlank(CreateEjarsOrder),
+                        ClearCollect(
+                            createEjarItemRecord,
+                            ForAll(
+                                colEJarsItem As EJarsItem,
+                                Patch(
+                                    'Order Lines',
+                                    Defaults('Order Lines'),
+                                    {
+                                        'Order Number':First(CreateEjarsOrder) /*LookUp(
+                                            'Order Headers',
+                                            'Order Number' = First(CreateEjarsOrder).'Order Number'
+                                        )*/,
+                                        Salesperson: LookUp(
+                                            Users,
+                                            'Primary Email' = User().Email
+                                        ),
+                                        'Item Type': 'Item Type (Choice)'.Paid,
+                                        'Van No': LookUp(
+                                            Warehouses,
+                                            Warehouse = varUserVanNo.Van.Warehouse
+                                        ),
+                                        'Item SKU': LookUp(
+                                            'SKU Masters',
+                                            'SKU Master' = EJarsItem.productId
+                                        ),
+                                        'Total Quantity': EJarsItem.Qty,
+                                        'Customer no.': cmbNewEmptyJarSelectCustomer.Selected,
+                                        'Net Amount': 150 * EJarsItem.Qty,
+                                        'Route No': LookUp(
+                                            Areas,
+                                            Area = varUserArea.Area.Area
+                                        )
+                                    }
+                                );
+                                //Navigate(EmptyJarPreviewScreen)
+                            )
+                        );
+                        Notify(
+                            "Your Empty Jars order is placed successfully",
+                            NotificationType.Success,
+                            2000
+                        );
+                        
+                    );
+                    /*---Create Payment----------------*/
+                    If(
+                        !IsBlank(CreateEjarsOrder),
+                        Patch(
+                            Payments,
+                            Defaults(Payments),
+                            {
+                                'Receipt Date': Today(),
+                                Customer: cmbNewEmptyJarSelectCustomer.Selected,
+                                Salesperson: LookUp(
+                                    Users,
+                                    'Primary Email' = User().Email
+                                ),
+                                'Van No': LookUp(
+                                    Warehouses,
+                                    Warehouse = varUserVanNo.Van.Warehouse
+                                ),
+                                Route: LookUp(
+                                    Areas,
+                                    Area = varUserArea.Area.Area
+                                ),
+                                'Payment Type': 'Payment Type (Payments)'.'Empty Jar',
+                                Amount: Value(-Sum(
+                                    colEJarsItem,
+                                    Qty
+                                ) * 150),
+                                //'Mode of Payment': 'Payment Type (choice)'.CASH,
+                                'Payment Mode':'Payment Mode (Choice)'.CASH,
+                                Order: First(CreateEjarsOrder) /*LookUp(
+                                    'Order Headers',
+                                    'Order Number' = First(CreateEjarsOrder).'Order Number'
+                                )*/
+                            }
+                        )
+                    );
+                    /*---update current stock----------------*/
+                    ForAll(
+                        colEJarsItem As EjarSt,
+                        Patch(
+                            'Current Stocks',
+                            LookUp(
+                                'Current Stocks',
+                                'Item SKU'.'SKU Master' = EjarSt.productId && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse && 'Created On'>=Today(),
+                                {
+                                    Cases: If(
+                                        !IsBlank(
+                                            LookUp(
+                                                'Current Stocks',
+                                                'Item SKU'.'SKU Master' = EjarSt.productId && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse && 'Created On'>=Today()
+                                            ).Cases
+                                        ),
+                                        LookUp(
+                                            'Current Stocks',
+                                            'Item SKU'.'SKU Master' = EjarSt.productId && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse && 'Created On'>=Today()
+                                        ).Cases/*- EjarSt.Cases*/
+                                    )
+                                }
+                            )
+                        )
+                    );
+                    Set(
+                        _varConfirmEjarPopup,
+                        false
+                    );
+                    Clear(colEJarsItem);
+                    Navigate(EmptyJarScreen);
+                Size: =_VarGblAppFonts.Size.Title
+                Text: ="Confirm"
+                Width: =150
+                X: =334
+                Y: =225
+                ZIndex: =8
+
+        htmOrderListQty_14 As htmlViewer:
+            Color: =RGBA(242, 242, 242, 1)
+            Height: =66
+            HtmlText: |-
+                ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:0px solid #00B3A1; width:400px; height:50px'></div>"
+            Width: =411
+            X: =105
+            Y: =146
+            ZIndex: =10
+
+        Group9_2 As group:
+            Height: =5
+            Width: =5
+            X: =-73
+            Y: =-642
+            ZIndex: =11
+
+            Label10_10 As label:
+                Height: =37
+                Size: =_VarGblAppFonts.Size.Title
+                Text: |-
+                    ="Price Per Unit :"
+                Width: =200
+                X: =139
+                Y: =24
+                ZIndex: =3
+
+            Label10_11 As label:
+                Height: =37
+                Size: =_VarGblAppFonts.Size.Title
+                Text: ="₹150"
+                Width: =170
+                X: =342
+                Y: =24
+                ZIndex: =5
+
+        Group11_3 As group:
+            Height: =5
+            Width: =5
+            X: =-73
+            Y: =-642
+            ZIndex: =12
+
+            Label10_12 As label:
+                Height: =37
+                Size: =_VarGblAppFonts.Size.Title
+                Text: |-
+                    ="Total Qty :"
+                Width: =170
+                X: =139
+                Y: =91
+                ZIndex: =4
+
+            Label10_13 As label:
+                Height: =37
+                Size: =_VarGblAppFonts.Size.Title
+                Text: |-
+                    =//Sum(galNewEmptyJarData.AllItems, txtNewEmptyJarGalQty)
+                    Sum(colEJarsItem, Qty)
+                Width: =170
+                X: =342
+                Y: =91
+                ZIndex: =6
+
+        Group11_4 As group:
+            Height: =5
+            Width: =5
+            X: =-73
+            Y: =-642
+            ZIndex: =15
+
+            Label10_14 As label:
+                Height: =37
+                Size: =_VarGblAppFonts.Size.Title
+                Text: |-
+                    ="Total Amount :"
+                Width: =200
+                X: =138
+                Y: =157
+                ZIndex: =13
+
+            Label10_15 As label:
+                Height: =37
+                Size: =_VarGblAppFonts.Size.Title
+                Text: ="₹"&Label10_13.Text*150
+                Width: =170
+                X: =341
+                Y: =157
+                ZIndex: =14
+
+    galNewEmptyJarData As gallery.galleryVertical:
+        AccessibleLabel: ="galNewEmptyJarData"
+        Fill: |-
+            =//RGBA(0, 0, 0, 0)
+            _VarGblAppColors.BackgroundColor
+        FocusedBorderColor: =Color.Transparent
+        FocusedBorderThickness: =0.5
+        Height: =545
+        Items: |-
+            =//Filter('SKU Masters', 'Item Code'.'Product group code'='Product group code (Item Masters)'.'2WAY')
+            Filter('SKU Masters', 'Product group code'='Product group code (Choice)'.'2WAY')
+        Layout: =Layout.Vertical
+        ShowScrollbar: =false
+        TabIndex: =0
+        TemplateSize: =80
+        Width: =628
+        X: =7
+        Y: =221
+        ZIndex: =7
+
+        btnNewEmptyJarGalBackground As button:
+            DisabledFill: |-
+                =//RGBA(244, 244, 244, 1)
+                ColorFade( _VarGblAppColors.BisleriBlue, 80%)
+            DisplayMode: =DisplayMode.Disabled
+            Height: =galNewEmptyJarData.TemplateHeight
+            OnSelect: =Select(Parent)
+            Size: =24
+            Text: =""
+            Width: =614
+            X: =2
+            Y: =4
+            ZIndex: =1
+
+        lblNewEmptyJarGalProductCode As label:
+            Align: =Align.Center
+            Color: =_VarGblAppColors.BisleriBlue
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Size: =_VarGblAppFonts.Size.Regular
+            Text: =ThisItem.'Pack Title'
+            Width: =404
+            X: =1
+            Y: =6
+            ZIndex: =2
+
+        shpNewEmptyJarGalRect1 As rectangle:
+            Fill: |-
+                =//RGBA(56, 96, 178, 1)
+                _VarGblAppColors.LightText
+            Height: =galNewEmptyJarData.TemplateHeight
+            OnSelect: =Select(Parent)
+            Width: =2
+            X: =405
+            ZIndex: =10
+
+        txtNewEmptyJarGalQty As text:
+            AccessibleLabel: ="txtNewEmptyJarGalQty"
+            Align: =Align.Center
+            BorderColor: |-
+                =//RGBA(0, 18, 107, 1)
+                ColorFade( _VarGblAppColors.BisleriBlue, -30%)
+            Default: =LookUp(colEJarsItem, productId = ThisItem.'SKU Master').Qty
+            DisplayMode: =If(_varConfirmEjarPopup, DisplayMode.View, DisplayMode.Edit)
+            FocusedBorderThickness: =2
+            Format: =TextFormat.Number
+            HoverBorderColor: =ColorFade( _VarGblAppColors.BisleriBlue, 30%)
+            HoverFill: |-
+                =//RGBA(186, 202, 226, 1)
+                ColorFade(_VarGblAppColors.BisleriBlue, 100%)
+            OnChange: |-
+                =If(
+                    (Self.Text <> "" And Value(Self.Text) <> RoundDown(
+                        Value(Self.Text),
+                        0
+                    ) Or Value(Self.Text) < 1) And !IsBlank(Value(Self.Text)),
+                    Notify(
+                        "Please enter whole number",
+                        NotificationType.Information,
+                        1000
+                    );
+                    Reset(Self),
+                    If(
+                        !IsBlank(txtNewEmptyJarGalQty),
+                        If(
+                            IsBlank(
+                                LookUp(
+                                    colEJarsItem,
+                                    productId = ThisItem.'SKU Master'
+                                )
+                            ),
+                            Collect(
+                                colEJarsItem,
+                                {
+                                    productId: ThisItem.'SKU Master',
+                                    Qty: Value(Self.Text)
+                                }
+                            ),
+                            Patch(
+                                colEJarsItem,
+                                LookUp(
+                                    colEJarsItem,
+                                    productId = ThisItem.'SKU Master'
+                                ),
+                                {
+                                    productId: ThisItem.'SKU Master',
+                                    Qty: Value(Self.Text)
+                                }
+                            )
+                        ),
+                        Value(Self.Text) = 0 || IsBlank(Self.Text),
+                        Remove(
+                            colEJarsItem,
+                            LookUp(
+                                colEJarsItem,
+                                productId = ThisItem.'SKU Master'
+                            )
+                        )
+                    )
+                )
+            OnSelect: =Select(Parent)
+            Size: =_VarGblAppFonts.Size.Subtitle
+            Width: =100
+            X: =472
+            Y: =23
+            ZIndex: =11
+
+        lblNewEmptyJarGalProductDescription As label:
+            Align: =Align.Center
+            Height: =50
+            OnSelect: =Select(Parent)
+            Size: =_VarGblAppFonts.Size.Tiny
+            Text: =ThisItem.'Item Description '
+            Width: =403
+            X: =2
+            Y: =30
+            ZIndex: =12
+
+    btnNewOrderHeaderProduct_14 As button:
+        DisabledBorderColor: |-
+            =//RGBA(166, 166, 166, 1)
+            _VarGblAppColors.BisleriBlue
+        DisabledColor: |-
+            =//RGBA(166, 166, 166, 1)
+            _VarGblAppColors.LightText
+        DisabledFill: |-
+            =//RGBA(244, 244, 244, 1)
+            _VarGblAppColors.BisleriBlue
+        DisplayMode: =DisplayMode.Disabled
+        Height: =50
+        OnSelect: =
+        Size: =_VarGblAppFonts.Size.Subtitle
+        Text: ="Product"
+        Width: =400
+        X: =15
+        Y: =171
+        ZIndex: =8
+
+    btnNewOrderHeaderPcs_16 As button:
+        DisabledBorderColor: |-
+            =//RGBA(166, 166, 166, 1)
+            _VarGblAppColors.BisleriBlue
+        DisabledColor: |-
+            =//RGBA(166, 166, 166, 1)
+            _VarGblAppColors.LightText
+        DisabledFill: |-
+            =//RGBA(244, 244, 244, 1)
+            _VarGblAppColors.BisleriBlue
+        DisplayMode: =DisplayMode.Disabled
+        Height: =50
+        OnSelect: =
+        Size: =_VarGblAppFonts.Size.Subtitle
+        Text: ="Qty"
+        Width: =210
+        X: =btnNewOrderHeaderProduct_14.X+btnNewOrderHeaderProduct_14.Width+5
+        Y: =171
+        ZIndex: =9
+
+    Label4 As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Bold
+        Height: =70
+        Size: =_VarGblAppFonts.Size.Title
+        Text: =cmbNewEmptyJarSelectCustomer.Selected.'Customer Name'
+        Visible: =If(_varConfirmEjarPopup, true, false)
+        Width: =560
+        X: =40
+        Y: =90
+        ZIndex: =10
+

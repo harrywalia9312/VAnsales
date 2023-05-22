@@ -1,0 +1,99 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_customersubcategories",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_customersubcategory",
+    "MaxGetRowsCount": 2000,
+    "Name": "Customer sub-categories",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_account_CustomerSubcategory_zx_customersu": "Customers",
+      "zx_customersubcategory_AsyncOperations": "System Jobs",
+      "zx_customersubcategory_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_customersubcategory_DuplicateBaseRecord": "Duplicate Records (zx_customersubcategory_DuplicateBaseRecord)",
+      "zx_customersubcategory_DuplicateMatchingRecord": "Duplicate Records (zx_customersubcategory_DuplicateMatchingRecord)",
+      "zx_customersubcategory_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_customersubcategory_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_customersubcategory_ProcessSession": "Process Sessions",
+      "zx_customersubcategory_SyncErrors": "Sync Errors",
+      "zx_customersubcategoryid": "Customer sub-category",
+      "zx_description": "Description",
+      "zx_name": "Name"
+    },
+    "PreferredName": "Customer sub-categories",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Customer sub-categories (Views)",
+    "Name": "_zx_customersubcategory_views",
+    "RelatedEntityName": "Customer sub-categories",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "26979adb-9e1c-4909-8312-f59c98e02c54": "Customer sub-category Lookup View",
+      "28eccb4c-5765-42cc-8349-61a1f57068e3": "Active Customer sub-categories",
+      "5252d8fd-b27f-4297-8b41-f6f01721a40f": "Customer sub-category Associated View",
+      "60cc4510-963c-4191-8ecd-ee6fda270eda": "Customer sub-category Advanced Find View",
+      "d7b07f49-6367-42de-804d-013fdc518c3f": "Inactive Customer sub-categories"
+    }
+  },
+  {
+    "DisplayName": "Status (Customer sub-categories)",
+    "Name": "zx_customersubcategory_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Customer sub-categories"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Customer sub-categories",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Customer sub-categories)",
+    "Name": "zx_customersubcategory_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Customer sub-categories"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Customer sub-categories",
+    "Type": "OptionSetInfo"
+  }
+]

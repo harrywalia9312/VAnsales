@@ -1,0 +1,107 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_currentstocks",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_currentstock",
+    "MaxGetRowsCount": 2000,
+    "Name": "Current Stocks",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_cases": "Cases",
+      "zx_currentstock_AsyncOperations": "System Jobs",
+      "zx_currentstock_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_currentstock_DuplicateBaseRecord": "Duplicate Records (zx_currentstock_DuplicateBaseRecord)",
+      "zx_currentstock_DuplicateMatchingRecord": "Duplicate Records (zx_currentstock_DuplicateMatchingRecord)",
+      "zx_currentstock_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_currentstock_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_currentstock_ProcessSession": "Process Sessions",
+      "zx_currentstock_SyncErrors": "Sync Errors",
+      "zx_currentstockid": "Current Stock",
+      "zx_date": "Created Date",
+      "zx_ItemSKU": "Item SKU",
+      "zx_lastupdateddate": "Last Updated Date",
+      "zx_name": "ID",
+      "zx_pcs": "PCs",
+      "zx_RouteNo": "Route No",
+      "zx_salespersoncode": "Salesperson code",
+      "zx_VanNo": "Van No"
+    },
+    "PreferredName": "Current Stocks",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Current Stocks (Views)",
+    "Name": "_zx_currentstock_views",
+    "RelatedEntityName": "Current Stocks",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "17994c70-0b42-4a24-a689-5f45c4ba0f8b": "Current Stock Advanced Find View",
+      "2598b4f2-93b6-ed11-b597-002248d5db8a": "ALL Stocks",
+      "36ae663a-2567-42fb-9e8b-e53056cdc1f8": "Current Stock Lookup View",
+      "68d088e8-af07-463f-ab8c-a01b5084623f": "Inactive Current Stocks",
+      "beea39c5-93b6-ed11-b597-002248d5db8a": "Today's Stock",
+      "c90c9fa5-2dee-45d4-a192-cb1aa96e685b": "Current Stock Associated View",
+      "e5d076cb-ec9c-4117-a216-03a182d614f7": "Active Current Stocks"
+    }
+  },
+  {
+    "DisplayName": "Status (Current Stocks)",
+    "Name": "zx_currentstock_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Current Stocks"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Current Stocks",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Current Stocks)",
+    "Name": "zx_currentstock_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Current Stocks"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Current Stocks",
+    "Type": "OptionSetInfo"
+  }
+]

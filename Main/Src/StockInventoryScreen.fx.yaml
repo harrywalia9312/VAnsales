@@ -1,0 +1,249 @@
+"StockInventoryScreen As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+    Fill: =_VarGblAppColors.LightText
+
+    compSearchStockInventory As SearchComp:
+        SearchHintText: ="Search By Product"
+        X: =28
+        Y: =80
+        ZIndex: =4
+
+    contStockInventoryUpperVertical As groupContainer.verticalAutoLayoutContainer:
+        Height: =729
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: |-
+            =//Parent.Width
+            640
+        Y: =150
+        ZIndex: =5
+
+        contStockInventoryUpper As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: =978
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            Width: =Parent.Width
+            ZIndex: =1
+
+            contStockInventoryLowerVertical As groupContainer.verticalAutoLayoutContainer:
+                Height: =906
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMode: =LayoutMode.Auto
+                LayoutOverflowX: =LayoutOverflow.Scroll
+                Width: =640
+                Y: =6
+                ZIndex: =1
+
+                contStockInventoryHeading As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    FillPortions: =0
+                    Height: =60
+                    LayoutMinHeight: =70
+                    LayoutMinWidth: =750
+                    Width: =640
+                    ZIndex: =1
+
+                    btnNewOrderHeaderProduct_11 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Subtitle
+                        Text: ="Product"
+                        Width: =350
+                        X: =5
+                        Y: =5
+                        ZIndex: =1
+
+                    btnNewOrderHeaderCases_11 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Subtitle
+                        Text: ="Cases"
+                        Width: =135
+                        X: =btnNewOrderHeaderProduct_11.X + btnNewOrderHeaderProduct_11.Width +5
+                        Y: =5
+                        ZIndex: =2
+
+                    btnNewOrderHeaderPcs_12 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Subtitle
+                        Text: ="Pcs"
+                        Width: =135
+                        X: =btnNewOrderHeaderCases_11.X + btnNewOrderHeaderCases_11.Width +5
+                        Y: =5
+                        ZIndex: =3
+
+                contStockInventoryData As groupContainer.horizontalAutoLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    FillPortions: =0
+                    Height: =687
+                    LayoutMinHeight: =570
+                    LayoutMinWidth: =640
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =640
+                    ZIndex: =2
+
+                    galStockInventoryData As gallery.galleryVertical:
+                        AccessibleLabel: ="galStockInventoryData"
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        Fill: |-
+                            =//RGBA(0, 0, 0, 0)
+                            _VarGblAppColors.LightText
+                        FillPortions: =0
+                        FocusedBorderColor: =Color.Transparent
+                        FocusedBorderThickness: =0.5
+                        Height: =675
+                        Items: |-
+                            =If(
+                                !IsBlank(compSearchStockInventory.SearchText),
+                                Filter(
+                                    Filter(
+                                        colOfflineCurrentStock,
+                                        'Created Date' >= Today() && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse
+                                    ),
+                                    compSearchStockInventory.SearchText in 'Item SKU'.'Pack Title' || compSearchStockInventory.SearchText in 'Item SKU'.'Item Description '
+                                ),
+                                Filter(
+                                    'Current Stocks',
+                                    'Created Date' >= Today() && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse
+                                )
+                            )
+                        Layout: =Layout.Vertical
+                        LayoutMinHeight: =287
+                        LayoutMinWidth: =1200
+                        ShowScrollbar: =false
+                        TabIndex: =0
+                        TemplateSize: =80
+                        Width: =contStockInventoryData.Width
+                        ZIndex: =1
+
+                        btnStockInventoryBackground As button:
+                            DisabledBorderColor: =_VarGblAppColors.BisleriBlueMediumLight
+                            DisabledFill: =_VarGblAppColors.BisleriBlueLight
+                            DisplayMode: =DisplayMode.Disabled
+                            Height: =galStockInventoryData.TemplateHeight
+                            OnSelect: =Select(Parent)
+                            Size: =24
+                            Text: =""
+                            Width: =Parent.Width-10
+                            ZIndex: =1
+
+                        lblStockInventoryProductName As label:
+                            Align: =Align.Center
+                            Color: =_VarGblAppColors.BisleriBlue
+                            FontWeight: =FontWeight.Semibold
+                            Height: =41
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Regular
+                            Text: =ThisItem.'Item SKU'.'Pack Title'
+                            Width: =352
+                            ZIndex: =2
+
+                        lblStockInventoryPcsValue As label:
+                            Align: =Align.Center
+                            Fill: |-
+                                =RGBA(0, 0, 0, 0)
+                                //_VarGblAppColors.LightText
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Subtitle
+                            Text: =ThisItem.Cases
+                            Width: =80
+                            X: =379
+                            Y: =20
+                            ZIndex: =3
+
+                        lblStockInventoryPacksValue As label:
+                            Align: =Align.Center
+                            Fill: |-
+                                =RGBA(0, 0, 0, 0)
+                                //_VarGblAppColors.LightText
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Subtitle
+                            Text: =ThisItem.PCs
+                            Width: =80
+                            X: =516
+                            Y: =20
+                            ZIndex: =5
+
+                        shpStockInventoryDataPart2 As rectangle:
+                            Fill: |-
+                                =//RGBA(56, 96, 178, 1)
+                                _VarGblAppColors.LightText
+                            Height: =galStockInventoryData.TemplateHeight
+                            OnSelect: =Select(Parent)
+                            Width: =2
+                            X: =352
+                            ZIndex: =7
+
+                        shpStockInventoryDataPart1 As rectangle:
+                            Fill: |-
+                                =//RGBA(56, 96, 178, 1)
+                                _VarGblAppColors.LightText
+                            Height: =galStockInventoryData.TemplateHeight
+                            OnSelect: =Select(Parent)
+                            Width: =2
+                            X: =492
+                            ZIndex: =8
+
+                        lblStockInventoryProductName_1 As label:
+                            Align: =Align.Center
+                            Height: =50
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Tiny
+                            Text: =ThisItem.'Item SKU'.'Item Description '
+                            Width: =352
+                            Y: =30
+                            ZIndex: =9
+
+    compStockInventoryHeader As Header:
+        HeaderText: ="Stock Inventory"
+        ZIndex: =6
+
+    compStockInventoryBottomBar As BottomBar:
+        Y: =1026
+        ZIndex: =7
+
+    Icon13 As icon.Reload:
+        AccessibleLabel: ="Icon13"
+        Color: =_VarGblAppColors.LightText
+        FocusedBorderColor: =Color.Transparent
+        Height: =40
+        Icon: =Icon.Reload
+        OnSelect: =Refresh('Current Stocks')
+        TabIndex: =0
+        Width: =50
+        X: =477
+        Y: =20
+        ZIndex: =8
+

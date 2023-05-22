@@ -1,0 +1,258 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_attendances",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_attendance",
+    "MaxGetRowsCount": 2000,
+    "Name": "Attendances",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr8eb_createddate": "Created Date",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "new_paymentflag": "Payment flag",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_attendance_AsyncOperations": "System Jobs",
+      "zx_attendance_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_attendance_DuplicateBaseRecord": "Duplicate Records (zx_attendance_DuplicateBaseRecord)",
+      "zx_attendance_DuplicateMatchingRecord": "Duplicate Records (zx_attendance_DuplicateMatchingRecord)",
+      "zx_attendance_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_attendance_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_attendance_ProcessSession": "Process Sessions",
+      "zx_attendance_SyncErrors": "Sync Errors",
+      "zx_attendanceid": "Attendance",
+      "zx_attendancetype": "Attendance Type",
+      "zx_autocheckedoutyesno": "Auto checked out - Yes/No",
+      "zx_branchname": "Branch Name",
+      "zx_checkindemandstaging": "Check In Demand Staging",
+      "zx_checkinlatitude": "Check-in Latitude",
+      "zx_checkinlongitude": "Check-in Longitude",
+      "zx_checkintime": "Check-in Time",
+      "zx_checkoutlatitude": "Check-Out Latitude",
+      "zx_checkoutlongitude": "Check-Out Longitude",
+      "zx_checkouttime": "Check-out Time",
+      "zx_date": "Date",
+      "zx_flag": "Flag",
+      "zx_flagstockinvent": "Flag Stock Invent",
+      "zx_name": "Name",
+      "zx_pushcustomers": "Push customers",
+      "zx_salespersonemployeecode": "Sales Person Employee Code",
+      "zx_User": "User",
+      "zx_workinghours": "Working Hours"
+    },
+    "PreferredName": "Attendances",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Attendances (Views)",
+    "Name": "_zx_attendance_views",
+    "RelatedEntityName": "Attendances",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "4669ee82-4ab3-ed11-83fe-002248d5db8a": "EOT",
+      "8e7695ac-afc4-ed11-b597-002248d5db8a": "My Attendance",
+      "9d2279c4-c439-4803-9e84-ea972b495af9": "Inactive Attendances",
+      "bb1cabba-889e-47df-8e47-4df2204fb181": "Attendance Advanced Find View",
+      "c840af97-c3bc-41ee-bbba-ebc9db76f099": "Active Attendances",
+      "cd83f731-6cfa-451a-8c53-d021291903d1": "Attendance Associated View",
+      "d0096456-a33d-402e-9e1e-7d003cfea2dd": "Attendance Lookup View"
+    }
+  },
+  {
+    "DisplayName": "Payment flag (Attendances)",
+    "Name": "new_zx_attendance_new_paymentflag",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "new_paymentflag",
+        "OptionSetReferenceEntityName": "Attendances"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "new_paymentflag",
+    "RelatedEntityName": "Attendances",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Attendances)",
+    "Name": "zx_attendance_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Attendances"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Attendances",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Attendances)",
+    "Name": "zx_attendance_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Attendances"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Attendances",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Auto checked out - Yes/No (Attendances)",
+    "Name": "zx_attendance_zx_autocheckedoutyesno",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_autocheckedoutyesno",
+        "OptionSetReferenceEntityName": "Attendances"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_autocheckedoutyesno",
+    "RelatedEntityName": "Attendances",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Check In Demand Staging (Attendances)",
+    "Name": "zx_attendance_zx_checkindemandstaging",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_checkindemandstaging",
+        "OptionSetReferenceEntityName": "Attendances"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_checkindemandstaging",
+    "RelatedEntityName": "Attendances",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Flag (Attendances)",
+    "Name": "zx_attendance_zx_flag",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_flag",
+        "OptionSetReferenceEntityName": "Attendances"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_flag",
+    "RelatedEntityName": "Attendances",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Flag Stock Invent (Attendances)",
+    "Name": "zx_attendance_zx_flagstockinvent",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_flagstockinvent",
+        "OptionSetReferenceEntityName": "Attendances"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_flagstockinvent",
+    "RelatedEntityName": "Attendances",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Push customers (Attendances)",
+    "Name": "zx_attendance_zx_pushcustomers",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_pushcustomers",
+        "OptionSetReferenceEntityName": "Attendances"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_pushcustomers",
+    "RelatedEntityName": "Attendances",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Attendance Type (Choice)",
+    "Name": "zx_attendancetype",
+    "OptionSetInfoNameMapping": {
+      "425120000": "Present",
+      "425120001": "Absent"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_attendancetype",
+        "OptionSetReferenceEntityName": "Attendances"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_attendancetype",
+    "RelatedEntityName": "Attendances",
+    "Type": "OptionSetInfo"
+  }
+]

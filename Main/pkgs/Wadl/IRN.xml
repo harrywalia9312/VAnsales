@@ -1,0 +1,275 @@
+<application xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:service="https://india-001.azure-apim.net/apim/irn-2d1-20solution-5f7ae3c468c3353edd-5f1ad5e1bf43efcde8" xmlns:siena="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11" siena:serviceId="IRN" xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="IRN"></doc>
+  <grammars>
+    <jsonTypes targetNamespace="https://india-001.azure-apim.net/apim/irn-2d1-20solution-5f7ae3c468c3353edd-5f1ad5e1bf43efcde8" xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+      <string name="IRn_param_body_def_Version_def" />
+      <string name="IRn_param_body_def_TranDtls_def_TaxSch_def" />
+      <string name="IRn_param_body_def_TranDtls_def_SupTyp_def" />
+      <string name="IRn_param_body_def_TranDtls_def_RegRev_def" />
+      <string name="IRn_param_body_def_TranDtls_def_IgstOnIntra_def" />
+      <object name="IRn_param_body_def_TranDtls_def">
+        <property name="TaxSch" type="string" />
+        <property name="SupTyp" type="string" />
+        <property name="RegRev" type="string" />
+        <property name="IgstOnIntra" type="string" />
+      </object>
+      <string name="IRn_param_body_def_DocDtls_def_Typ_def" />
+      <string name="IRn_param_body_def_DocDtls_def_No_def" />
+      <string name="IRn_param_body_def_DocDtls_def_Dt_def" />
+      <object name="IRn_param_body_def_DocDtls_def">
+        <property name="Typ" type="string" />
+        <property name="No" type="string" />
+        <property name="Dt" type="string" />
+      </object>
+      <string name="IRn_param_body_def_SellerDtls_def_Gstin_def" />
+      <string name="IRn_param_body_def_SellerDtls_def_LglNm_def" />
+      <string name="IRn_param_body_def_SellerDtls_def_TrdNm_def" />
+      <string name="IRn_param_body_def_SellerDtls_def_Addr1_def" />
+      <string name="IRn_param_body_def_SellerDtls_def_Addr2_def" />
+      <string name="IRn_param_body_def_SellerDtls_def_Loc_def" />
+      <integer name="IRn_param_body_def_SellerDtls_def_Pin_def" />
+      <string name="IRn_param_body_def_SellerDtls_def_Stcd_def" />
+      <string name="IRn_param_body_def_SellerDtls_def_Ph_def" />
+      <string name="IRn_param_body_def_SellerDtls_def_Em_def" />
+      <object name="IRn_param_body_def_SellerDtls_def">
+        <property name="Gstin" type="string" />
+        <property name="LglNm" type="string" />
+        <property name="TrdNm" type="string" />
+        <property name="Addr1" type="string" />
+        <property name="Addr2" type="string" />
+        <property name="Loc" type="string" />
+        <property name="Pin" type="integer" />
+        <property name="Stcd" type="string" />
+        <property name="Ph" type="string" />
+        <property name="Em" type="string" />
+      </object>
+      <string name="IRn_param_body_def_BuyerDtls_def_Gstin_def" />
+      <string name="IRn_param_body_def_BuyerDtls_def_LglNm_def" />
+      <string name="IRn_param_body_def_BuyerDtls_def_TrdNm_def" />
+      <string name="IRn_param_body_def_BuyerDtls_def_Pos_def" />
+      <string name="IRn_param_body_def_BuyerDtls_def_Addr1_def" />
+      <string name="IRn_param_body_def_BuyerDtls_def_Addr2_def" />
+      <string name="IRn_param_body_def_BuyerDtls_def_Loc_def" />
+      <integer name="IRn_param_body_def_BuyerDtls_def_Pin_def" />
+      <string name="IRn_param_body_def_BuyerDtls_def_Stcd_def" />
+      <string name="IRn_param_body_def_BuyerDtls_def_Ph_def" />
+      <string name="IRn_param_body_def_BuyerDtls_def_Em_def" />
+      <object name="IRn_param_body_def_BuyerDtls_def">
+        <property name="Gstin" type="string" />
+        <property name="LglNm" type="string" />
+        <property name="TrdNm" type="string" />
+        <property name="Pos" type="string" />
+        <property name="Addr1" type="string" />
+        <property name="Addr2" type="string" />
+        <property name="Loc" type="string" />
+        <property name="Pin" type="integer" />
+        <property name="Stcd" type="string" />
+        <property name="Ph" type="string" />
+        <property name="Em" type="string" />
+      </object>
+      <string name="IRn_param_body_def_DispDtls_def_Nm_def" />
+      <string name="IRn_param_body_def_DispDtls_def_Addr1_def" />
+      <string name="IRn_param_body_def_DispDtls_def_Addr2_def" />
+      <string name="IRn_param_body_def_DispDtls_def_Loc_def" />
+      <integer name="IRn_param_body_def_DispDtls_def_Pin_def" />
+      <string name="IRn_param_body_def_DispDtls_def_Stcd_def" />
+      <object name="IRn_param_body_def_DispDtls_def">
+        <property name="Nm" type="string" />
+        <property name="Addr1" type="string" />
+        <property name="Addr2" type="string" />
+        <property name="Loc" type="string" />
+        <property name="Pin" type="integer" />
+        <property name="Stcd" type="string" />
+      </object>
+      <string name="IRn_param_body_def_ShipDtls_def_Gstin_def" />
+      <string name="IRn_param_body_def_ShipDtls_def_LglNm_def" />
+      <string name="IRn_param_body_def_ShipDtls_def_TrdNm_def" />
+      <string name="IRn_param_body_def_ShipDtls_def_Addr1_def" />
+      <string name="IRn_param_body_def_ShipDtls_def_Addr2_def" />
+      <string name="IRn_param_body_def_ShipDtls_def_Loc_def" />
+      <integer name="IRn_param_body_def_ShipDtls_def_Pin_def" />
+      <string name="IRn_param_body_def_ShipDtls_def_Stcd_def" />
+      <object name="IRn_param_body_def_ShipDtls_def">
+        <property name="Gstin" type="string" />
+        <property name="LglNm" type="string" />
+        <property name="TrdNm" type="string" />
+        <property name="Addr1" type="string" />
+        <property name="Addr2" type="string" />
+        <property name="Loc" type="string" />
+        <property name="Pin" type="integer" />
+        <property name="Stcd" type="string" />
+      </object>
+      <string name="IRn_param_body_def_ItemList_def_items_def_SlNo_def" />
+      <string name="IRn_param_body_def_ItemList_def_items_def_PrdDesc_def" />
+      <string name="IRn_param_body_def_ItemList_def_items_def_IsServc_def" />
+      <string name="IRn_param_body_def_ItemList_def_items_def_HsnCd_def" />
+      <string name="IRn_param_body_def_ItemList_def_items_def_Barcde_def" />
+      <integer name="IRn_param_body_def_ItemList_def_items_def_Qty_def" />
+      <integer name="IRn_param_body_def_ItemList_def_items_def_FreeQty_def" />
+      <string name="IRn_param_body_def_ItemList_def_items_def_Unit_def" />
+      <number name="IRn_param_body_def_ItemList_def_items_def_UnitPrice_def" />
+      <number name="IRn_param_body_def_ItemList_def_items_def_TotAmt_def" />
+      <integer name="IRn_param_body_def_ItemList_def_items_def_Discount_def" />
+      <integer name="IRn_param_body_def_ItemList_def_items_def_PreTaxVal_def" />
+      <number name="IRn_param_body_def_ItemList_def_items_def_AssAmt_def" />
+      <integer name="IRn_param_body_def_ItemList_def_items_def_GstRt_def" />
+      <integer name="IRn_param_body_def_ItemList_def_items_def_IgstAmt_def" />
+      <number name="IRn_param_body_def_ItemList_def_items_def_CgstAmt_def" />
+      <number name="IRn_param_body_def_ItemList_def_items_def_SgstAmt_def" />
+      <integer name="IRn_param_body_def_ItemList_def_items_def_CesRt_def" />
+      <number name="IRn_param_body_def_ItemList_def_items_def_CesAmt_def" />
+      <integer name="IRn_param_body_def_ItemList_def_items_def_CesNonAdvlAmt_def" />
+      <integer name="IRn_param_body_def_ItemList_def_items_def_StateCesRt_def" />
+      <integer name="IRn_param_body_def_ItemList_def_items_def_StateCesAmt_def" />
+      <integer name="IRn_param_body_def_ItemList_def_items_def_StateCesNonAdvlAmt_def" />
+      <integer name="IRn_param_body_def_ItemList_def_items_def_OthChrg_def" />
+      <number name="IRn_param_body_def_ItemList_def_items_def_TotItemVal_def" />
+      <string name="IRn_param_body_def_ItemList_def_items_def_OrdLineRef_def" />
+      <string name="IRn_param_body_def_ItemList_def_items_def_OrgCntry_def" />
+      <string name="IRn_param_body_def_ItemList_def_items_def_PrdSlNo_def" />
+      <string name="IRn_param_body_def_ItemList_def_items_def_BchDtls_def_Nm_def" />
+      <string name="IRn_param_body_def_ItemList_def_items_def_BchDtls_def_ExpDt_def" />
+      <string name="IRn_param_body_def_ItemList_def_items_def_BchDtls_def_WrDt_def" />
+      <object name="IRn_param_body_def_ItemList_def_items_def_BchDtls_def">
+        <property name="Nm" type="string" />
+        <property name="ExpDt" type="string" />
+        <property name="WrDt" type="string" />
+      </object>
+      <string name="IRn_param_body_def_ItemList_def_items_def_AttribDtls_def_items_def_Nm_def" />
+      <string name="IRn_param_body_def_ItemList_def_items_def_AttribDtls_def_items_def_Val_def" />
+      <object name="IRn_param_body_def_ItemList_def_items_def_AttribDtls_def_items_def">
+        <property name="Nm" type="string" />
+        <property name="Val" type="string" />
+      </object>
+      <array typeRef="IRn_param_body_def_ItemList_def_items_def_AttribDtls_def_items_def" name="IRn_param_body_def_ItemList_def_items_def_AttribDtls_def" />
+      <object name="IRn_param_body_def_ItemList_def_items_def">
+        <property name="SlNo" type="string" />
+        <property name="PrdDesc" type="string" />
+        <property name="IsServc" type="string" />
+        <property name="HsnCd" type="string" />
+        <property name="Barcde" type="string" />
+        <property name="Qty" type="integer" />
+        <property name="FreeQty" type="integer" />
+        <property name="Unit" type="string" />
+        <property name="UnitPrice" type="number" />
+        <property name="TotAmt" type="number" />
+        <property name="Discount" type="integer" />
+        <property name="PreTaxVal" type="integer" />
+        <property name="AssAmt" type="number" />
+        <property name="GstRt" type="integer" />
+        <property name="IgstAmt" type="integer" />
+        <property name="CgstAmt" type="number" />
+        <property name="SgstAmt" type="number" />
+        <property name="CesRt" type="integer" />
+        <property name="CesAmt" type="number" />
+        <property name="CesNonAdvlAmt" type="integer" />
+        <property name="StateCesRt" type="integer" />
+        <property name="StateCesAmt" type="integer" />
+        <property name="StateCesNonAdvlAmt" type="integer" />
+        <property name="OthChrg" type="integer" />
+        <property name="TotItemVal" type="number" />
+        <property name="OrdLineRef" type="string" />
+        <property name="OrgCntry" type="string" />
+        <property name="PrdSlNo" type="string" />
+        <property name="BchDtls" typeRef="IRn_param_body_def_ItemList_def_items_def_BchDtls_def" />
+        <property name="AttribDtls" typeRef="IRn_param_body_def_ItemList_def_items_def_AttribDtls_def" />
+      </object>
+      <array typeRef="IRn_param_body_def_ItemList_def_items_def" name="IRn_param_body_def_ItemList_def" />
+      <number name="IRn_param_body_def_ValDtls_def_AssVal_def" />
+      <number name="IRn_param_body_def_ValDtls_def_CgstVal_def" />
+      <number name="IRn_param_body_def_ValDtls_def_SgstVal_def" />
+      <integer name="IRn_param_body_def_ValDtls_def_IgstVal_def" />
+      <integer name="IRn_param_body_def_ValDtls_def_CesVal_def" />
+      <integer name="IRn_param_body_def_ValDtls_def_StCesVal_def" />
+      <integer name="IRn_param_body_def_ValDtls_def_Discount_def" />
+      <integer name="IRn_param_body_def_ValDtls_def_OthChrg_def" />
+      <number name="IRn_param_body_def_ValDtls_def_RndOffAmt_def" />
+      <number name="IRn_param_body_def_ValDtls_def_TotInvVal_def" />
+      <integer name="IRn_param_body_def_ValDtls_def_TotInvValFc_def" />
+      <object name="IRn_param_body_def_ValDtls_def">
+        <property name="AssVal" type="number" />
+        <property name="CgstVal" type="number" />
+        <property name="SgstVal" type="number" />
+        <property name="IgstVal" type="integer" />
+        <property name="CesVal" type="integer" />
+        <property name="StCesVal" type="integer" />
+        <property name="Discount" type="integer" />
+        <property name="OthChrg" type="integer" />
+        <property name="RndOffAmt" type="number" />
+        <property name="TotInvVal" type="number" />
+        <property name="TotInvValFc" type="integer" />
+      </object>
+      <object name="IRn_param_body_def">
+        <property name="Version" type="string" />
+        <property name="TranDtls" typeRef="IRn_param_body_def_TranDtls_def" />
+        <property name="DocDtls" typeRef="IRn_param_body_def_DocDtls_def" />
+        <property name="SellerDtls" typeRef="IRn_param_body_def_SellerDtls_def" />
+        <property name="BuyerDtls" typeRef="IRn_param_body_def_BuyerDtls_def" />
+        <property name="DispDtls" typeRef="IRn_param_body_def_DispDtls_def" />
+        <property name="ShipDtls" typeRef="IRn_param_body_def_ShipDtls_def" />
+        <property name="ItemList" typeRef="IRn_param_body_def_ItemList_def" />
+        <property name="ValDtls" typeRef="IRn_param_body_def_ValDtls_def" />
+      </object>
+      <string name="IRn_responses_default_def_Success_def" />
+      <integer name="IRn_responses_default_def_AckNo_def" />
+      <string name="IRn_responses_default_def_AckDt_def" />
+      <string name="IRn_responses_default_def_Irn_def" />
+      <string name="IRn_responses_default_def_SignedInvoice_def" />
+      <string name="IRn_responses_default_def_SignedQRCode_def" />
+      <string name="IRn_responses_default_def_Status_def" />
+      <string name="IRn_responses_default_def_info_def_items_def_InfCd_def" />
+      <string name="IRn_responses_default_def_info_def_items_def_Desc_def" />
+      <object name="IRn_responses_default_def_info_def_items_def">
+        <property name="InfCd" type="string" />
+        <property name="Desc" type="string" />
+      </object>
+      <array typeRef="IRn_responses_default_def_info_def_items_def" name="IRn_responses_default_def_info_def" />
+      <object name="IRn_responses_default_def">
+        <property name="Success" type="string" />
+        <property name="AckNo" type="integer" />
+        <property name="AckDt" type="string" />
+        <property name="Irn" type="string" />
+        <property name="SignedInvoice" type="string" />
+        <property name="SignedQRCode" type="string" />
+        <property name="Status" type="string" />
+        <property name="info" typeRef="IRn_responses_default_def_info_def" />
+      </object>
+    </jsonTypes>
+  </grammars>
+  <resources siena:authenticationProviderHref="#PowerAppAuth" base="https://india-001.azure-apim.net/apim/irn-2d1-20solution-5f7ae3c468c3353edd-5f1ad5e1bf43efcde8">
+    <resource path="/{connectionId}/einv/v1/govt/api/Invoice">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="POST" id="IRn" actionName="IRn" siena:isDeprecated="false">
+        <request>
+          <param style="header" name="x-cleartax-auth-token" type="xs:string" />
+          <param style="header" name="Content-Type" type="xs:string" />
+          <param style="header" name="x-cleartax-product" type="xs:string" />
+          <param style="header" name="owner_id" type="xs:string" />
+          <param style="header" name="gstin" type="xs:string" />
+          <representation mediaType="application/json">
+            <param style="plain" name="Version" path="/Version" type="xs:string" />
+            <param style="plain" name="TranDtls" path="/TranDtls" type="service:IRn_param_body_def_TranDtls_def" />
+            <param style="plain" name="DocDtls" path="/DocDtls" type="service:IRn_param_body_def_DocDtls_def" />
+            <param style="plain" name="SellerDtls" path="/SellerDtls" type="service:IRn_param_body_def_SellerDtls_def" />
+            <param style="plain" name="BuyerDtls" path="/BuyerDtls" type="service:IRn_param_body_def_BuyerDtls_def" />
+            <param style="plain" name="DispDtls" path="/DispDtls" type="service:IRn_param_body_def_DispDtls_def" />
+            <param style="plain" name="ShipDtls" path="/ShipDtls" type="service:IRn_param_body_def_ShipDtls_def" />
+            <param style="plain" name="ItemList" path="/ItemList" type="service:IRn_param_body_def_ItemList_def" />
+            <param style="plain" name="ValDtls" path="/ValDtls" type="service:IRn_param_body_def_ValDtls_def" />
+          </representation>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:IRn_responses_default_def" />
+        </response>
+      </method>
+    </resource>
+  </resources>
+  <authenticationProviders xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <connectionProvider id="PowerAppAuth" siena:connectionProviderId="shared_irn-2d1-20solution-5f7ae3c468c3353edd-5f1ad5e1bf43efcde8" />
+  </authenticationProviders>
+  <template xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <variable name="connectionId">
+      <modifyParams style="template" name="connectionId" attribute="fixed" />
+    </variable>
+  </template>
+</application>

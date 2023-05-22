@@ -1,0 +1,360 @@
+"'Retailer Onboarding Screen' As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+    Fill: =Color.Transparent
+    OnVisible: =
+
+    compOnboardingHeader As Header:
+        HeaderText: ="Customer Onboarding"
+
+    btnOnboardingNew As button:
+        Color: =_VarGblAppColors.BisleriBlue
+        Fill: =Color.White
+        FocusedBorderThickness: =2
+        HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+        OnSelect: |-
+            =Navigate('New Retailer Screen', ScreenTransition.Cover, {OnBoCust:Blank()});
+        Size: =_VarGblAppFonts.Size.Title
+        Text: ="New"
+        Width: =122
+        X: =420
+        Y: =20
+        ZIndex: =2
+
+    galOnboardingList As gallery.galleryVertical:
+        AccessibleLabel: ="galOnboardingList"
+        FocusedBorderColor: =Color.White
+        FocusedBorderThickness: =0.5
+        Height: =844
+        Items: |-
+            =Filter(
+                Sort(
+                    If(
+                        galOnboardingFilter.Selected.Value = "All",
+                        Filter(
+                            Customers_1,
+                            Salesperson.'Primary Email' = User().Email
+                        ),
+                        galOnboardingFilter.Selected.Value = "Customer",
+                        Filter(
+                            Customers_1,
+                            'Customer status' = 'Customer status (Choice)'.Customer && 'Owning User'.'Primary Email'=User().Email
+                        ),
+                        galOnboardingFilter.Selected.Value = "Requested for On-Boarding",
+                        Filter(
+                            Customers_1,
+                            'Customer status' = 'Customer status (Choice)'.'Requested for On-Boarding' && 'Owning User'.'Primary Email'=User().Email
+                        ),
+                        galOnboardingFilter.Selected.Value = "Pushed to ERP",
+                        Filter(
+                            Customers_1,
+                            'Customer status' = 'Customer status (Choice)'.'Pushed to ERP' && 'Owning User'.'Primary Email'=User().Email
+                        ),
+                        galOnboardingFilter.Selected.Value = "Rejected On-Boarding",
+                        Filter(
+                            Customers_1,
+                            'Customer status' = 'Customer status (Choice)'.'Rejected On-Boarding' && 'Owning User'.'Primary Email'=User().Email
+                        ),
+                        galOnboardingFilter.Selected.Value = "On-Boarded",
+                        Filter(
+                            Customers_1,
+                            'Customer status' = 'Customer status (Choice)'.'On-Boarded' && 'Owning User'.'Primary Email'=User().Email
+                        )
+                    ),
+                    'Created On',
+                    SortOrder.Descending
+                ),
+                compOnboardingSearch.SearchText in 'Customer Code' || compOnboardingSearch.SearchText in 'Contact Person name' || compOnboardingSearch.SearchText in 'Customer Name'
+            )
+        Layout: =Layout.Vertical
+        ShowScrollbar: =false
+        TabIndex: =
+        TemplateSize: =189
+        Width: =App.Width
+        Y: =206
+        ZIndex: =3
+
+        btnGalOnboardingBackground As button:
+            BorderColor: =ColorFade(Self.Fill, -40%)
+            DisabledBorderColor: =_VarGblAppColors.BisleriBlueMediumLight
+            DisabledFill: =_VarGblAppColors.BisleriBlueLight
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =_VarGblAppColors.LightText
+            FocusedBorderThickness: =2
+            Height: =181
+            HoverBorderColor: =ColorFade(Self.Fill, -40%)
+            HoverFill: =_VarGblAppColors.LightText
+            OnSelect: =Select(Parent)
+            PressedBorderColor: =ColorFade(Self.Fill, -40%)
+            RadiusBottomLeft: =12
+            RadiusBottomRight: =12
+            RadiusTopLeft: =12
+            RadiusTopRight: =12
+            Size: =24
+            Text: =""
+            Width: =595
+            X: =15
+            ZIndex: =1
+
+        lblGalOnboardingName As label:
+            BorderColor: =RGBA(237, 102, 102, 1)
+            BorderStyle: =BorderStyle.None
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Height: =45
+            OnSelect: |-
+                =If(ThisItem.'Customer status'='Customer status (Choice)'.Customer, Navigate(CustomerOnboardingDetailScreen, ScreenTransition.Cover, {OnBoCust:ThisItem}), Navigate('New Retailer Screen', ScreenTransition.Cover, {OnBoCust:ThisItem}))
+            Size: =_VarGblAppFonts.Size.Title
+            TabIndex: =0
+            Text: =ThisItem.'Customer Code'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =246
+            X: =27
+            Y: =10
+            ZIndex: =2
+
+        icoGalOnboardingPhone As icon.Phone:
+            AccessibleLabel: ="icoGalOnboardingPhone"
+            BorderColor: =RGBA(109, 109, 109, 1)
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(220, 220, 220, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =40
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Icon: =Icon.Phone
+            OnSelect: |-
+                =Launch("tel://"&ThisItem.'Mobile No')
+            PaddingBottom: =5
+            PaddingLeft: =5
+            PaddingRight: =5
+            PaddingTop: =5
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            TabIndex: =
+            Width: =40
+            X: =557
+            Y: =8
+            ZIndex: =3
+
+        lblGalOnboardingIdValue As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =30
+            OnSelect: =Select(Parent)
+            Size: =_VarGblAppFonts.Size.Tiny
+            Text: =ThisItem.'Contact Person name'
+            Width: =230
+            X: =43
+            Y: =147
+            ZIndex: =5
+
+        lblGalOnboardingSubCategoryValue As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =30
+            OnSelect: =Select(Parent)
+            Size: =_VarGblAppFonts.Size.Tiny
+            Text: =ThisItem.'Customer Name'
+            Width: =260
+            X: =340
+            Y: =147
+            ZIndex: =7
+
+        btnGalOnboardingId As button:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderThickness: =0
+            Color: =_VarGblAppColors.HeaderBg
+            DisabledBorderColor: =RGBA(255, 191, 0, 1)
+            DisabledColor: =_VarGblAppColors.HeaderBg
+            DisabledFill: =_VarGblAppColors.BisleriBlueMediumLight
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =RGBA(255, 200, 61, 1)
+            FocusedBorderColor: =ColorFade(Self.Fill, 75%)
+            Font: =Font.'Segoe UI'
+            Height: =30
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =ColorFade(RGBA(255, 200, 61, 1), 10%)
+            OnSelect: =Select(Parent)
+            PressedBorderColor: =ColorFade(RGBA(255, 200, 61, 1), 50%)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+            RadiusBottomLeft: =25
+            RadiusBottomRight: =25
+            RadiusTopLeft: =25
+            RadiusTopRight: =25
+            Size: =11
+            Text: ="Contact Person"
+            Width: =230
+            X: =43
+            Y: =117
+            ZIndex: =8
+
+        btnGalOnboardingSubCategory As button:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderThickness: =0
+            DisabledBorderColor: =RGBA(255, 191, 0, 1)
+            DisabledColor: =_VarGblAppColors.HeaderBg
+            DisabledFill: =_VarGblAppColors.BisleriBlueMediumLight
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =RGBA(255, 200, 61, 1)
+            FocusedBorderColor: =ColorFade(Self.Fill, 75%)
+            Font: =Font.'Segoe UI'
+            Height: =30
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =ColorFade(RGBA(255, 200, 61, 1), 10%)
+            OnSelect: =Select(Parent)
+            PressedBorderColor: =ColorFade(RGBA(255, 200, 61, 1), 50%)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+            RadiusBottomLeft: =25
+            RadiusBottomRight: =25
+            RadiusTopLeft: =25
+            RadiusTopRight: =25
+            Size: =11
+            Text: ="Customer Name"
+            Width: =230
+            X: =354
+            Y: =117
+            ZIndex: =10
+
+        lblGalOnboardingAddress As label:
+            BorderColor: =RGBA(237, 102, 102, 1)
+            BorderStyle: =BorderStyle.None
+            Color: =_VarGblAppColors.HeaderBg
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =71
+            LineHeight: =1
+            OnSelect: =
+            Size: =_VarGblAppFonts.Size.Regular
+            Text: =ThisItem.'Address 1'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =568
+            X: =29
+            Y: =43
+            ZIndex: =11
+
+        btnGalOnboardingSubCategory_1 As button:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderThickness: =0
+            DisabledBorderColor: =RGBA(255, 191, 0, 1)
+            DisabledColor: =_VarGblAppColors.BisleriBlue
+            DisabledFill: =_VarGblAppColors.LightText
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =RGBA(255, 200, 61, 1)
+            FocusedBorderColor: =ColorFade(Self.Fill, 75%)
+            Font: =Font.'Segoe UI'
+            Height: =35
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =ColorFade(RGBA(255, 200, 61, 1), 10%)
+            OnSelect: =Select(Parent)
+            PressedBorderColor: =ColorFade(RGBA(255, 200, 61, 1), 50%)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+            RadiusBottomLeft: =25
+            RadiusBottomRight: =25
+            RadiusTopLeft: =25
+            RadiusTopRight: =25
+            Size: =_VarGblAppFonts.Size.Tiny
+            Text: =Text(DateValue(ThisItem.'Created On'), "dd mmm yyyy")
+            Visible: =If(Not(galOnboardingFilter.Selected.Value="All"), false, true)
+            Width: =116
+            X: =424
+            Y: =8
+            ZIndex: =12
+
+        btnGalOnboardingSubCategory_2 As button:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderThickness: =0
+            DisabledBorderColor: =RGBA(255, 191, 0, 1)
+            DisabledColor: =_VarGblAppColors.BisleriBlue
+            DisabledFill: =_VarGblAppColors.LightText
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =RGBA(255, 200, 61, 1)
+            FocusedBorderColor: =ColorFade(Self.Fill, 75%)
+            Font: =Font.'Segoe UI'
+            Height: =35
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =ColorFade(RGBA(255, 200, 61, 1), 10%)
+            OnSelect: =Select(Parent)
+            PressedBorderColor: =ColorFade(RGBA(255, 200, 61, 1), 50%)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+            RadiusBottomLeft: =25
+            RadiusBottomRight: =25
+            RadiusTopLeft: =25
+            RadiusTopRight: =25
+            Size: =_VarGblAppFonts.Size.Tiny
+            Text: =ThisItem.'Customer status'
+            Visible: =If(Not(galOnboardingFilter.Selected.Value="All"), false, true)
+            Width: =154
+            X: =251
+            Y: =8
+            ZIndex: =13
+
+    compOnboardingSearch As SearchComp:
+        SearchHintText: ="Search by Name"
+        X: =27
+        Y: =80
+        ZIndex: =4
+
+    galOnboardingFilter As gallery.galleryHorizontal:
+        AccessibleLabel: ="galOnboardingFilter"
+        BorderColor: =RGBA(109, 109, 109, 1)
+        FocusedBorderColor: =Color.Transparent
+        FocusedBorderThickness: =0.5
+        Height: =64
+        Items: =["All","Customer", "Requested for On-Boarding", "Pushed to ERP","Rejected On-Boarding", "On-Boarded"]
+        OnSelect: =
+        ShowScrollbar: =false
+        TabIndex: =0
+        TemplateSize: =151
+        Width: =App.Width
+        Y: =143
+        ZIndex: =5
+
+        btnGalOnboardingFilter As button:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            Color: =If(ThisItem.IsSelected, _VarGblAppColors.BisleriBlueLight,_VarGblAppColors.BisleriBlue)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            Fill: =If(ThisItem.IsSelected, _VarGblAppColors.BisleriBlue,_VarGblAppColors.BisleriBlueLight)
+            FocusedBorderColor: =
+            FocusedBorderThickness: =2
+            Height: =45
+            HoverBorderColor: =RGBA(202, 202, 202, 1)
+            HoverColor: =RGBA(31, 31, 31, 1)
+            HoverFill: =ColorFade(Self.Color, 10%)
+            OnSelect: =Select(Parent)
+            PressedBorderColor: =
+            PressedColor: =RGBA(31, 31, 31, 1)
+            PressedFill: =
+            Size: =_VarGblAppFonts.Size.Regular
+            Text: =ThisItem.Value
+            Width: =142
+            X: =7
+            Y: =5
+            ZIndex: =1
+
+    compOnboardingBottomBar As BottomBar:
+        Y: =1026
+        ZIndex: =6
+

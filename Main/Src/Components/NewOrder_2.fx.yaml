@@ -1,0 +1,1300 @@
+NewOrder_2 As CanvasComponent:
+    Customer: =First('Item Pricing lines')
+    Fill: =_VarGblAppColors.BackgroundColor
+    Height: =900
+    Width: =App.Width
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    contNewOrderUpperVertical_2 As groupContainer.verticalAutoLayoutContainer:
+        Height: =525
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: =App.Width
+        ZIndex: =1
+
+        contNewOrderUpper_2 As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: =978
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            Width: =Parent.Width
+            ZIndex: =1
+
+            contNewOrderLowerVertical_2 As groupContainer.verticalAutoLayoutContainer:
+                Height: =906
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMode: =LayoutMode.Auto
+                LayoutOverflowX: =LayoutOverflow.Scroll
+                Width: =Parent.Width
+                Y: =6
+                ZIndex: =1
+
+                contNewOrderHeader_2 As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    FillPortions: =0
+                    Height: =60
+                    LayoutMinHeight: =60
+                    LayoutMinWidth: =250
+                    Width: =App.Width
+                    ZIndex: =1
+
+                    btnNewOrderHeaderProduct_18 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Subtitle
+                        Text: ="Product"
+                        Width: =220
+                        X: =5
+                        ZIndex: =1
+
+                    btnNewOrderHeaderCases_35 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Regular
+                        Text: ="Stock (Cases)"
+                        Width: =77
+                        X: =btnNewOrderHeaderProduct_18.X + btnNewOrderHeaderProduct_18.Width +5
+                        ZIndex: =2
+
+                    btnNewOrderHeaderPcs_42 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Regular
+                        Text: ="Stock (Pcs)"
+                        Width: =77
+                        X: =btnNewOrderHeaderCases_35.X + btnNewOrderHeaderCases_35.Width +5
+                        ZIndex: =3
+
+                    btnNewOrderHeaderReceivedEmptyJar_3 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Subtitle
+                        Text: ="Cases"
+                        Width: =77
+                        X: =btnNewOrderHeaderPcs_42.X + btnNewOrderHeaderPcs_42.Width +5
+                        ZIndex: =4
+
+                    btnNewOrderHeaderCases_36 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Subtitle
+                        Text: ="Pcs"
+                        Width: =77
+                        X: =btnNewOrderHeaderReceivedEmptyJar_3.X + btnNewOrderHeaderReceivedEmptyJar_3.Width +5
+                        ZIndex: =5
+
+                    btnNewOrderHeaderPcs_43 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Tiny
+                        Text: ="Received Empty Jar"
+                        Width: =77
+                        X: =btnNewOrderHeaderCases_36.X + btnNewOrderHeaderCases_36.Width +5
+                        ZIndex: =6
+
+                contNewOrderData_2 As groupContainer.horizontalAutoLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    FillPortions: =0
+                    Height: =461
+                    LayoutMinHeight: =570
+                    LayoutMinWidth: =640
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =contNewOrderHeader_2.Width
+                    ZIndex: =3
+
+                    galNewOrderProduct_2 As gallery.galleryVertical:
+                        AccessibleLabel: ="galNewOrderProduct"
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        Fill: |-
+                            =//RGBA(0, 0, 0, 0)
+                            _VarGblAppColors.BackgroundColor
+                        FillPortions: =0
+                        FocusedBorderColor: =Color.Transparent
+                        FocusedBorderThickness: =0.2
+                        Height: =450
+                        Items: |-
+                            =//Filter('Current Stocks', IsToday('Created On') && 'Van No'.Warehouse= varUserVanNo.Van.Warehouse)
+                            Filter(
+                                'Current Stocks',
+                                'Created Date' >= Today() && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse
+                            )
+                        Layout: =Layout.Vertical
+                        LayoutMinHeight: =460
+                        LayoutMinWidth: =1200
+                        ShowScrollbar: =false
+                        TabIndex: =0
+                        TemplateSize: =80
+                        Width: =contNewOrderHeader_2.Width
+                        ZIndex: =1
+
+                        btnNewOrderDataBackground_2 As button:
+                            DisabledFill: |-
+                                =//RGBA(244, 244, 244, 1)
+                                ColorFade( _VarGblAppColors.BisleriBlue, 80%)
+                            DisplayMode: =DisplayMode.Disabled
+                            Height: =galNewOrderProduct_2.TemplateHeight
+                            OnSelect: =Select(Parent)
+                            Size: =24
+                            Text: =""
+                            Width: =Parent.Width-10
+                            ZIndex: =1
+
+                        lblNewOrderProductCode_2 As label:
+                            Align: =Align.Center
+                            Color: =_VarGblAppColors.BisleriBlue
+                            FontWeight: =FontWeight.Semibold
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Regular
+                            Text: |-
+                                =Concatenate(
+                                    ThisItem.'Item SKU'.'Pack Title',
+                                    " MRP",
+                                    If(
+                                        IsBlank(
+                                            LookUp(
+                                                'Item Pricing lines',
+                                                'Item price header'.'Item pricing master' = varPricingMaster.'Item pricing master' && 'Variant code'.'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                            ).'Sales Price'
+                                        ),
+                                        LookUp(
+                                            'Item Pricing lines',
+                                            'Item price header'.'Item pricing master' = varPricingMaster.'Item pricing master' && 'Variant code'.'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                        ).MRP,
+                                        LookUp(
+                                            'Item Pricing lines',
+                                            'Item price header'.'Item pricing master' = varPricingMaster.'Item pricing master' && 'Variant code'.'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                        ).'Sales Price'
+                                    )
+                                )
+                            Width: =220
+                            ZIndex: =2
+
+                        txtNewOrderPcs_2 As text:
+                            AccessibleLabel: ="txtNewOrderActualDel"
+                            Align: =Align.Center
+                            BorderColor: |-
+                                =//RGBA(0, 18, 107, 1)
+                                ColorFade( _VarGblAppColors.BisleriBlue, -30%)
+                            Default: |-
+                                =/*If(
+                                    LookUp(
+                                        'Item Masters',
+                                        'Item Master' = LookUp(
+                                            'SKU Masters',
+                                            'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                        ).'Item Code'.'Item Master'
+                                    ).UOM = 'UOM (Item Masters)'.PCS,
+                                    LookUp(
+                                        colCartItems,
+                                        productId = ThisItem.'Item SKU'.'SKU Master'
+                                    ).qtyCases
+                                )*/
+                                
+                                If(
+                                    LookUp(
+                                        'Item Masters',
+                                        'Item Master' = varSku/*LookUp(
+                                            colOfflineVariantMaster,
+                                            'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                        ).'Item Code'.'Item Master'*/
+                                    ).UOM = 'UOM (Item Masters)'.PCS,
+                                    LookUp(
+                                        colCartItems,
+                                        productId = ThisItem.'Item SKU'.'SKU Master'
+                                    ).qtyCases
+                                )
+                            DisplayMode: |-
+                                =/*If(
+                                    LookUp(
+                                        'Item Masters',
+                                        'Item Master' = LookUp(
+                                            'SKU Masters',
+                                            'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                        ).'Item Code'.'Item Master'
+                                    ).UOM = 'UOM (Item Masters)'.PCs,
+                                    DisplayMode.Edit,
+                                    DisplayMode.Disabled
+                                )*/
+                                DisplayMode.Edit
+                            FocusedBorderThickness: =2
+                            Format: =TextFormat.Number
+                            HoverBorderColor: =ColorFade( _VarGblAppColors.BisleriBlue, 30%)
+                            HoverFill: |-
+                                =//RGBA(186, 202, 226, 1)
+                                ColorFade(_VarGblAppColors.BisleriBlue, 100%)
+                            OnChange: |
+                                =Set(
+                                    varSku,
+                                    LookUp(
+                                        'SKU Masters',
+                                        'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                    ).'Item Code'.'Item Master'
+                                );
+                                Set(
+                                    varHSNN,
+                                    LookUp(
+                                        'SKU Masters',
+                                        'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                    ).'HSN Code'.'HSN Code'
+                                );
+                                Set(
+                                    varDiscountDate,
+                                    LookUp(
+                                        'Discount Lines',
+                                        'Applicable for'.'Customer group' = varCustomerGroup.'Customer group' && 'Discount Date' >= Today() && Variant.'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                    ).'Discount Date'
+                                );
+                                Set(
+                                    varline,
+                                    Filter(
+                                        'Order Lines' As Item,
+                                        (Item.'Customer no.'.Account = varOrderData.Account) && Item.'Item SKU'.'SKU Master' = ThisItem.'Item SKU'.'SKU Master' && Item.'Created On' >= varDiscountDate && Item.'Created On' <= varDiscountDate
+                                    )
+                                );
+                                If(
+                                    Value(Self.Text) <= ThisItem.PCs,
+                                    If(
+                                        !IsBlank(
+                                            LookUp(
+                                                colCartItems,
+                                                productId = ThisItem.'Item SKU'.'SKU Master'
+                                            )
+                                        ),
+                                        With(
+                                            {
+                                                DiscountLine: LookUp(
+                                                    'Discount Lines',
+                                                    'Applicable for'.'Customer group' = varCustomerGroup.'Customer group' && 'Discount Date' >= Today() && Variant.'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                ),
+                                                PriceLine: LookUp(
+                                                    'Item Pricing lines',
+                                                    'Item price header'.'Item pricing master' = varPricingMaster.'Item pricing master' && 'Variant code'.'SKU Master' = ThisItem.'Item SKU'.'SKU Master' && UOM = 'UOM (Item Pricing lines)'.PCS
+                                                ),
+                                                OrderLinesSum: Sum(
+                                                   varline/* Filter(
+                                                        'Order Lines' As Item,
+                                                        (Item.'Customer no.'.Account = varOrderData.Account) && Item.'Item SKU'.'SKU Master' = ThisItem.'Item SKU'.'SKU Master' && Item.'Created On' >= varDiscountDate && Item.'Created On' <= varDiscountDate
+                                                        (DateValue(Item.'Created On') >= DateValue(
+                                                            LookUp(
+                                                                'Discount Lines',
+                                                                'Applicable for'.'Customer group' = varCustomerGroup.'Customer group' && 'Discount Date' >= Today() && Variant.'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                            ).'Discount Date'
+                                                        )) && (DateValue(Item.'Created On') <= DateValue(
+                                                            LookUp(
+                                                                'Discount Lines',
+                                                                'Applicable for'.'Customer group' = varCustomerGroup.'Customer group' && 'Discount Date' >= Today() && Variant.'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                            ).'Discount Date'
+                                                        ))
+                                                    )*/,
+                                                    'Total Quantity'
+                                                )
+                                            },
+                                            Patch(
+                                                colCartItems,
+                                                LookUp(
+                                                    colCartItems,
+                                                    productId = ThisItem.'Item SKU'.'SKU Master'
+                                                ),
+                                                {
+                                                    qtyPcs: Value(Self.Text),
+                                                    pcsPrice: PriceLine.'Sales Price' * Value(Self.Text),
+                                                    price: (LookUp(
+                                                        colCartItems,
+                                                        productId = ThisItem.'Item SKU'.'SKU Master'
+                                                    ).casesPrice) + (PriceLine.'Sales Price' * Value(Self.Text)),
+                                                    discount: If(
+                                                        OrderLinesSum >= DiscountLine.'Maximum Quantity',
+                                                        "0",
+                                                        OrderLinesSum < DiscountLine.'Maximum Quantity',
+                                                        If(
+                                                            Value(Self.Text) <= DiscountLine.'Maximum Quantity' - OrderLinesSum,
+                                                            (DiscountLine.'Discount (in %)' * 0.01 * PriceLine.'Sales Price') * Value(Self.Text),
+                                                            (DiscountLine.'Discount (in %)' * 0.01 * PriceLine.'Sales Price') * (DiscountLine.'Maximum Quantity' - OrderLinesSum)
+                                                        )
+                                                    ),
+                                                    discountedPrice: (PriceLine.'Sales Price' * Value(Self.Text)) - Value(
+                                                        If(
+                                                            OrderLinesSum >= DiscountLine.'Maximum Quantity',
+                                                            "0",
+                                                            OrderLinesSum < DiscountLine.'Maximum Quantity',
+                                                            If(
+                                                                Value(Self.Text) <= DiscountLine.'Maximum Quantity' - OrderLinesSum,
+                                                                (DiscountLine.'Discount (in %)' * 0.01 * PriceLine.'Sales Price') * Value(Self.Text),
+                                                                (DiscountLine.'Discount (in %)' * 0.01 * PriceLine.'Sales Price') * (DiscountLine.'Maximum Quantity' - OrderLinesSum)
+                                                            )
+                                                        )
+                                                    ),
+                                                    emptyJar: Value(""),
+                                                    emptyJarValue: If(
+                                                        LookUp(
+                                                            'Item Masters',
+                                                            'Item Master' = varSku
+                                                            /*LookUp(
+                                                                'SKU Masters',
+                                                                'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                            ).'Item Code'.'Item Master'*/
+                                                        ).'Product group code' = 'Product group code (Item Masters)'.'2WAY',
+                                                        (Value(Self.Text) - LookUp(
+                                                            colCartItems,
+                                                            productId = ThisItem.'Item SKU'.'SKU Master'
+                                                        ).emptyJar) * 150,
+                                                        0
+                                                    )
+                                                }
+                                            );
+                                        );
+                                        ,
+                                        With(
+                                            {
+                                                DiscountLine: LookUp(
+                                                    'Discount Lines',
+                                                    'Applicable for'.'Customer group' = varCustomerGroup.'Customer group' && 'Discount Date' >= Today() && Variant.'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                ),
+                                                PriceLine: LookUp(
+                                                    'Item Pricing lines',
+                                                    'Item price header'.'Item pricing master' = varPricingMaster.'Item pricing master' && 'Variant code'.'SKU Master' = ThisItem.'Item SKU'.'SKU Master' && UOM = 'UOM (Item Pricing lines)'.PCS
+                                                ),
+                                                OrderLinesSum: Sum(
+                                                    varline
+                                                    /*Filter(
+                                                        'Order Lines' As Item,
+                                                        (Item.'Customer no.'.Account = varOrderData.Account) && Item.'Item SKU'.'SKU Master' = ThisItem.'Item SKU'.'SKU Master' && Item.'Created On' >= varDiscountDate && Item.'Created On' <= varDiscountDate
+                                                        
+                                                    )*/
+                                                    ,
+                                                    'Total Quantity'
+                                                ),
+                                                taxStructure: LookUp(
+                                                    'HSN Masters' As ItemHsn,
+                                                    ItemHsn.'HSN Code' = varHSNN/*LookUp(
+                                                                'SKU Masters',
+                                                                'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                            ).'HSN Code'.'HSN Code'*/
+                                                )
+                                                        /*LookUp(
+                                                    colOfflineHSNMasters,
+                                                    'HSN Code' = LookUp(
+                                                        'Item Masters',
+                                                        'Item Master' = varSku lookUp(
+                                                            colOfflineVariantMaster,
+                                                            'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                        ).'Item Code'.'Item Master'
+                                                    ).HSNSAC
+                                                )*/
+                                            },
+                                            Collect(
+                                                colCartItems,
+                                                {
+                                                    productId: ThisItem.'Item SKU'.'SKU Master',
+                                                    qtyPcs: Value(Self.Text),
+                                                    qtyCases: Value(""),
+                                                    discount: If(
+                                                        OrderLinesSum >= DiscountLine.'Maximum Quantity',
+                                                        "0",
+                                                        OrderLinesSum < DiscountLine.'Maximum Quantity',
+                                                        If(
+                                                            Value(Self.Text) <= DiscountLine.'Maximum Quantity' - OrderLinesSum,
+                                                            (DiscountLine.'Discount (in %)' * 0.01 * PriceLine.'Sales Price') * Value(Self.Text),
+                                                            (DiscountLine.'Discount (in %)' * 0.01 * PriceLine.'Sales Price') * (DiscountLine.'Maximum Quantity' - OrderLinesSum)
+                                                        )
+                                                    ),
+                                                    maxQty: DiscountLine.'Maximum Quantity',
+                                                    pcsPrice: PriceLine.'Sales Price' * Value(Self.Text),
+                                                    casesPrice: 0,
+                                                    price: PriceLine.'Sales Price' * Value(Self.Text),
+                                                    discountedPrice: (PriceLine.'Sales Price' * Value(Self.Text)) - Value(
+                                                        If(
+                                                            OrderLinesSum >= DiscountLine.'Maximum Quantity',
+                                                            "0",
+                                                            OrderLinesSum < DiscountLine.'Maximum Quantity',
+                                                            If(
+                                                                Value(Self.Text) <= DiscountLine.'Maximum Quantity' - OrderLinesSum,
+                                                                (DiscountLine.'Discount (in %)' * 0.01 * PriceLine.'Sales Price') * Value(Self.Text),
+                                                                (DiscountLine.'Discount (in %)' * 0.01 * PriceLine.'Sales Price') * (DiscountLine.'Maximum Quantity' - OrderLinesSum)
+                                                            )
+                                                        )
+                                                    ),
+                                                    emptyJar: Value(""),
+                                                    emptyJarValue: If(
+                                                        LookUp(
+                                                            'Item Masters',
+                                                            'Item Master' = varSku
+                                                            /*LookUp(
+                                                                'SKU Masters',
+                                                                'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                            ).'Item Code'.'Item Master'*/
+                                                        ).'Product group code' = 'Product group code (Item Masters)'.'2WAY',
+                                                        (Value(Self.Text) - LookUp(
+                                                            colCartItems,
+                                                            productId = ThisItem.'Item SKU'.'SKU Master'
+                                                        ).emptyJar) * 150,
+                                                        0
+                                                    ),
+                                                    schemeOrder: false,
+                                                    uom: "PCS",
+                                                    schemeOrderValue: Blank(),
+                                                    tax: taxStructure.CESS + taxStructure.CGST + taxStructure.IGST + taxStructure.'SGST/UGST (zx_sgstugst)',
+                                                    cess: taxStructure.CESS
+                                                }
+                                            );
+                                        )
+                                    );
+                                     //____________________________________________________________________________________________________________
+                                If(
+                                        CountRows(colSchemeApplicability) > 0,
+                                        Collect(
+                                            colSchemeOrder,
+                                            Filter(
+                                                'Scheme Orders',
+                                                ('Scheme Code'.'Scheme Header' in AddColumns(
+                                                    colSchemeHeader,
+                                                    "SchemeCode",
+                                                    'Scheme Header'
+                                                ).SchemeCode) && ('Item Code'.'SKU Master' = ThisItem.'Item SKU'.'SKU Master') && ('Ordered Quantity' <= Value(Self.Text))
+                                            )
+                                        )
+                                    );
+                                    //_________________________________________________________________________________________________________________
+                                ForAll(
+                                        colSchemeOrder As item,
+                                        Collect(
+                                            colSchemeOffers,
+                                            Filter(
+                                                'Scheme Offers',
+                                                ('Scheme Code'.'Scheme Header' in AddColumns(
+                                                    colSchemeHeader,
+                                                    "SchemeCode",
+                                                    'Scheme Header'
+                                                ).SchemeCode) && ('Scheme Order'.'Scheme Order' in AddColumns(
+                                                    colSchemeOrder,
+                                                    "SchemeOrder",
+                                                    'Scheme Order'
+                                                ).SchemeOrder)
+                                            )
+                                        )
+                                    );
+                                    
+                                //________________________________________________________________________________________________________________________
+                                ForAll(
+                                        colSchemeOffers As ThisItemmmm,
+                                        Collect(
+                                            colCartItems,
+                                            {
+                                                productId: ThisItemmmm.'Offer Item Code'.'SKU Master',
+                                                qtyPcs: ThisItemmmm.'Offer Quantity',
+                                                qtyCases: Value(""),
+                                                discount: "0",
+                                                maxQty: 0,
+                                                price: 0,
+                                                discountedPrice: 0,
+                                                emptyJar: Value(""),
+                                                emptyJarValue: 0,
+                                                schemeOrder: true,
+                                                uom: Text(ThisItemmmm.'Offer UOM'),
+                                                schemeOrderValue: ThisItemmmm,
+                                                tax: 0,
+                                                cess: 0
+                                            }
+                                        );
+                                    );
+                                    Clear(colSchemeOffers);
+                                    Clear(colSchemeOrder);
+                                    ,
+                                    Notify(
+                                        "You are entering an invalid quantity. Please enter a quantity which is available in the stock",
+                                        NotificationType.Error,
+                                        2000
+                                    );
+                                    Reset(txtNewOrderPcs_2);
+                                    
+                                );
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Subtitle
+                            Width: =59
+                            X: =483
+                            Y: =20
+                            ZIndex: =6
+
+                        txtNewOrderRecEmpty_2 As text:
+                            AccessibleLabel: ="txtNewOrderRecEmpty"
+                            Align: =Align.Center
+                            BorderColor: |-
+                                =//RGBA(0, 18, 107, 1)
+                                ColorFade( _VarGblAppColors.BisleriBlue, -30%)
+                            Default: |-
+                                =If(
+                                    LookUp(
+                                        'Item Masters',
+                                        'Item Master' = varSku /*LookUp(
+                                            colOfflineVariantMaster,
+                                            'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                        ).'Item Code'.'Item Master'*/
+                                    ).UOM = 'UOM (Item Masters)'.CASE,
+                                    LookUp(
+                                        colCartItems,
+                                        productId = ThisItem.'Item SKU'.'SKU Master'
+                                    ).qtyCases
+                                )
+                            DisplayMode: |-
+                                =/*If(
+                                    LookUp(
+                                        'Item Masters',
+                                        'Item Master' = LookUp(
+                                            'SKU Masters',
+                                            'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                        ).'Item Code'.'Item Master'
+                                    ).UOM = 'UOM (Item Masters)'.Cases,
+                                    DisplayMode.Edit,
+                                    DisplayMode.Disabled
+                                )*/
+                                DisplayMode.Edit
+                            FocusedBorderThickness: =2
+                            Format: =TextFormat.Number
+                            HoverBorderColor: =ColorFade( _VarGblAppColors.BisleriBlue, 30%)
+                            HoverFill: |-
+                                =//RGBA(186, 202, 226, 1)
+                                ColorFade(_VarGblAppColors.BisleriBlue, 100%)
+                            OnChange: |
+                                =Set(
+                                    varSku,
+                                    LookUp(
+                                        'SKU Masters',
+                                        'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                    ).'Item Code'.'Item Master'
+                                );
+                                Set(varHSNN,LookUp(
+                                                        'SKU Masters',
+                                                        'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                    ).'HSN Code'.'HSN Code');
+                                Set(
+                                    varDiscountDate,
+                                    LookUp(
+                                        'Discount Lines',
+                                        'Applicable for'.'Customer group' = varCustomerGroup.'Customer group' && 'Discount Date' >= Today() && Variant.'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                    ).'Discount Date'
+                                );
+                                Set(
+                                    varline,
+                                    Filter(
+                                        'Order Lines' As Item,
+                                        (Item.'Customer no.'.Account = varOrderData.Account) && Item.'Item SKU'.'SKU Master' = ThisItem.'Item SKU'.'SKU Master' && Item.'Created On' >= varDiscountDate && Item.'Created On' <= varDiscountDate
+                                    )
+                                );
+                                If(
+                                    Value(Self.Text) <= ThisItem.Cases,
+                                    If(
+                                        !IsBlank(
+                                            LookUp(
+                                                colCartItems,
+                                                productId = ThisItem.'Item SKU'.'SKU Master'
+                                            )
+                                        ),
+                                        ///////////////////////////////////////////////////_____________________ Update collection
+                                        With(
+                                            {
+                                                DiscountLine: LookUp(
+                                                    'Discount Lines',
+                                                    'Applicable for'.'Customer group' = varCustomerGroup.'Customer group' && 'Discount Date' >= Today() && Variant.'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                ),
+                                                PriceLine: LookUp(
+                                                    'Item Pricing lines',
+                                                    'Item price header'.'Item pricing master' = varPricingMaster.'Item pricing master' && 'Variant code'.'SKU Master' = ThisItem.'Item SKU'.'SKU Master' && UOM = 'UOM (Item Pricing lines)'.CASE
+                                                ),
+                                                OrderLinesSum: Sum(
+                                                    /*Filter(
+                                                        'Order Lines' As Item,
+                                                        (Item.'Customer no.'.Account = varOrderData.Account) && Item.'Item SKU'.'SKU Master' = ThisItem.'Item SKU'.'SKU Master' && Item.'Created On' >= varDiscountDate && Item.'Created On' <= varDiscountDate
+                                                    )*/ varline,
+                                                    'Total Quantity'
+                                                )
+                                            },
+                                            Patch(
+                                                colCartItems,
+                                                LookUp(
+                                                    colCartItems,
+                                                    productId = ThisItem.'Item SKU'.'SKU Master'
+                                                ),
+                                                {
+                                                    qtyCases: Value(Self.Text),
+                                                    casesPrice: PriceLine.'Sales Price' * Value(Self.Text),
+                                                    price: LookUp(
+                                                        colCartItems,
+                                                        productId = ThisItem.'Item SKU'.'SKU Master'
+                                                    ).pcsPrice + PriceLine.'Sales Price' * Value(Self.Text),
+                                                    discount: If(
+                                                        OrderLinesSum >= DiscountLine.'Maximum Quantity',
+                                                        "0",
+                                                        OrderLinesSum < DiscountLine.'Maximum Quantity',
+                                                        If(
+                                                            Value(Self.Text) <= DiscountLine.'Maximum Quantity' - OrderLinesSum,
+                                                            (DiscountLine.'Discount (in %)' * 0.01 * PriceLine.'Sales Price') * Value(Self.Text),
+                                                            Value(Self.Text) > DiscountLine.'Maximum Quantity' - OrderLinesSum,
+                                                            ((DiscountLine.'Discount (in %)' * 0.01 * PriceLine.'Sales Price') * (DiscountLine.'Maximum Quantity' - OrderLinesSum))
+                                                        )
+                                                    ),
+                                                    discountedPrice: (PriceLine.'Sales Price' * Value(Self.Text)) - Value(
+                                                        If(
+                                                            OrderLinesSum >= DiscountLine.'Maximum Quantity',
+                                                            "0",
+                                                            OrderLinesSum < DiscountLine.'Maximum Quantity',
+                                                            If(
+                                                                Value(Self.Text) <= DiscountLine.'Maximum Quantity' - OrderLinesSum,
+                                                                (DiscountLine.'Discount (in %)' * 0.01 * PriceLine.'Sales Price') * Value(Self.Text),
+                                                                (DiscountLine.'Discount (in %)' * 0.01 * PriceLine.'Sales Price') * (DiscountLine.'Maximum Quantity' - OrderLinesSum)
+                                                            )
+                                                        )
+                                                    ),
+                                                    emptyJar: Value(""),
+                                                    emptyJarValue: If(
+                                                        LookUp(
+                                                            'Item Masters',
+                                                            'Item Master' = varSku/*LookUp(
+                                                                'SKU Masters',
+                                                                'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                            ).'Item Code'.'Item Master'*/
+                                                        ).'Product group code' = 'Product group code (Item Masters)'.'2WAY',
+                                                        (Value(Self.Text) - LookUp(
+                                                            colCartItems,
+                                                            productId = ThisItem.'Item SKU'.'SKU Master'
+                                                        ).emptyJar) * 150,
+                                                        0
+                                                    )
+                                                }
+                                            );
+                                        );
+                                        ,
+                                             ///////////////////////////////////////////////////_____________________ Create collection
+                                        With(
+                                            {
+                                                DiscountLine: LookUp(
+                                                    'Discount Lines',
+                                                    'Applicable for'.'Customer group' = varCustomerGroup.'Customer group' && 'Discount Date' >= Today() && Variant.'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                ),
+                                                PriceLine: LookUp(
+                                                    'Item Pricing lines',
+                                                    'Item price header'.'Item pricing master' = varPricingMaster.'Item pricing master' && 'Variant code'.'SKU Master' = ThisItem.'Item SKU'.'SKU Master' && UOM = 'UOM (Item Pricing lines)'.CASE
+                                                ),
+                                                OrderLinesSum: Sum(
+                                                    /*Filter(
+                                                        'Order Lines' As Item,
+                                                        (Item.'Customer no.'.Account = varOrderData.Account) && Item.'Item SKU'.'SKU Master' = ThisItem.'Item SKU'.'SKU Master' && Item.'Created On' >= varDiscountDate && Item.'Created On' <= varDiscountDate
+                                                        //DateValue(Item.'Created On') >= DateValue(
+                                                            LookUp(
+                                                                'Discount Lines',
+                                                                'Applicable for'.'Customer group' = varCustomerGroup.'Customer group' && 'Discount Date' >= Today() && Variant.'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                            ).'Discount Date'
+                                                        ) && (DateValue(Item.'Created On') <= DateValue(
+                                                            LookUp(
+                                                                'Discount Lines',
+                                                                'Applicable for'.'Customer group' = varCustomerGroup.'Customer group' && 'Discount Date' >= Today() && Variant.'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                            ).'Discount Date'
+                                                        ))
+                                                    )*/varline,
+                                                    'Total Quantity'
+                                                ),
+                                                taxStructure: LookUp(
+                                                    'HSN Masters' As ItemHsn,
+                                                    ItemHsn.'HSN Code' = varHSNN /*LookUp(
+                                                        'SKU Masters',
+                                                        'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                    ).'HSN Code'.'HSN Code'*/
+                                                ),
+                                                /*LookUp(
+                                                    colOfflineHSNMasters,
+                                                    'HSN Code' = LookUp(
+                                                        'Item Masters',
+                                                        'Item Master' = LookUp(
+                                                            'SKU Masters',
+                                                            'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                        ).'Item Code'.'Item Master'
+                                                    ).HSNSAC
+                                                )*/
+                                                stockLines: Sort(
+                                                    Filter(
+                                                        Filter(
+                                                            'Stock Transfer Lines',
+                                                            'Transfer Order No'.'Stock Transfer Header' in varGatePassHeader.headerGUID && SKU.'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                        ),
+                                                        'Created On' >= Today()
+                                                    ),
+                                                    'Manufacturing date',
+                                                    SortOrder.Ascending
+                                                )
+                                            },
+                                            Collect(
+                                                colCartItems,
+                                                {
+                                                    productId: ThisItem.'Item SKU'.'SKU Master',
+                                                    qtyCases: Value(Self.Text),
+                                                    qtyPcs: Value(""),
+                                                    discount: If(
+                                                        OrderLinesSum >= DiscountLine.'Maximum Quantity',
+                                                        "0",
+                                                        OrderLinesSum < DiscountLine.'Maximum Quantity',
+                                                        If(
+                                                            Value(Self.Text) <= (DiscountLine.'Maximum Quantity' - OrderLinesSum),
+                                                            (DiscountLine.'Discount (in %)' * 0.01 * PriceLine.'Sales Price') * Value(Self.Text),
+                                                            Value(Self.Text) > (DiscountLine.'Maximum Quantity' - OrderLinesSum),
+                                                            ((DiscountLine.'Discount (in %)' * 0.01 * PriceLine.'Sales Price') * (DiscountLine.'Maximum Quantity' - OrderLinesSum))
+                                                        )
+                                                    ),
+                                                    maxQty: DiscountLine.'Maximum Quantity',
+                                                    casesPrice: PriceLine.'Sales Price' * Value(Self.Text),
+                                                    pcsPrice: 0,
+                                                    price: PriceLine.'Sales Price' * Value(Self.Text),
+                                                    discountedPrice: (PriceLine.'Sales Price' * Value(Self.Text)) - Value(
+                                                        If(
+                                                            OrderLinesSum >= DiscountLine.'Maximum Quantity',
+                                                            "0",
+                                                            OrderLinesSum < DiscountLine.'Maximum Quantity',
+                                                            If(
+                                                                Value(Self.Text) <= DiscountLine.'Maximum Quantity' - OrderLinesSum,
+                                                                (DiscountLine.'Discount (in %)' * 0.01 * PriceLine.'Sales Price') * Value(Self.Text),
+                                                                (DiscountLine.'Discount (in %)' * 0.01 * PriceLine.'Sales Price') * (DiscountLine.'Maximum Quantity' - OrderLinesSum)
+                                                            )
+                                                        )
+                                                    ),
+                                                    emptyJar: Value(""),
+                                                    emptyJarValue: If(
+                                                        LookUp(
+                                                            'Item Masters',
+                                                            'Item Master' = varSku/*LookUp(
+                                                                'SKU Masters',
+                                                                'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                            ).'Item Code'.'Item Master'*/
+                                                        ).'Product group code' = 'Product group code (Item Masters)'.'2WAY',
+                                                        (Value(Self.Text) - LookUp(
+                                                            colCartItems,
+                                                            productId = ThisItem.'Item SKU'.'SKU Master'
+                                                        ).emptyJar) * 150,
+                                                        0
+                                                    ),
+                                                    schemeOrder: false,
+                                                    uom: "Cases",
+                                                    schemeOrderValue: Blank(),
+                                                    tax: taxStructure.CESS + taxStructure.CGST + taxStructure.IGST + taxStructure.'SGST/UGST (zx_sgstugst)',
+                                                    cess: Value(taxStructure.CESS)
+                                                }
+                                            );
+                                        )
+                                    );
+                                    //_____________________________________________________________________________________________SCHEME MODULE
+                                If(
+                                        CountRows(colSchemeApplicability) > 0,
+                                        Collect(
+                                            colSchemeOrder,
+                                            Filter(
+                                                'Scheme Orders',
+                                                ('Scheme Code'.'Scheme Header' in AddColumns(
+                                                    colSchemeHeader,
+                                                    "SchemeCode",
+                                                    'Scheme Header'
+                                                ).SchemeCode) && ('Item Code'.'SKU Master' = ThisItem.'Item SKU'.'SKU Master') && ('Ordered Quantity' <= Value(Self.Text))
+                                            )
+                                        )
+                                    );
+                                    //_________________________________________________________________________________________________________________
+                                ForAll(
+                                        colSchemeOrder As item,
+                                        Collect(
+                                            colSchemeOffers,
+                                            Filter(
+                                                'Scheme Offers',
+                                                ('Scheme Code'.'Scheme Header' in AddColumns(
+                                                    colSchemeHeader,
+                                                    "SchemeCode",
+                                                    'Scheme Header'
+                                                ).SchemeCode) && ('Scheme Order'.'Scheme Order' in AddColumns(
+                                                    colSchemeOrder,
+                                                    "SchemeOrder",
+                                                    'Scheme Order'
+                                                ).SchemeOrder)
+                                            )
+                                        )
+                                    );
+                                    
+                                //________________________________________________________________________________________________________________________
+                                ForAll(
+                                        colSchemeOffers As ThisItemmmm,
+                                        Collect(
+                                            colCartItems,
+                                            {
+                                                productId: ThisItemmmm.'Offer Item Code'.'SKU Master',
+                                                qtyCases: ThisItemmmm.'Offer Quantity',
+                                                qtyPcs: Value(""),
+                                                discount: "0",
+                                                maxQty: 0,
+                                                price: 0,
+                                                discountedPrice: 0,
+                                                emptyJar: Value(""),
+                                                emptyJarValue: 0,
+                                                schemeOrder: true,
+                                                uom: Text(ThisItemmmm.'Offer UOM'),
+                                                schemeOrderValue: ThisItemmmm,
+                                                tax: 0,
+                                                cess: 0
+                                            }
+                                        );
+                                    );
+                                    Clear(colSchemeOffers);
+                                    Clear(colSchemeOrder);
+                                    ,
+                                    Notify(
+                                        "You are entering an invalid quantity. Please enter a quantity which is available in the stock",
+                                        NotificationType.Error,
+                                        2000
+                                    );
+                                    Reset(txtNewOrderRecEmpty_2);
+                                    
+                                );
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Subtitle
+                            Width: =59
+                            X: =399
+                            Y: =20
+                            ZIndex: =7
+
+                        shpNewOrderDataRectangle1_6 As rectangle:
+                            Fill: |-
+                                =//RGBA(56, 96, 178, 1)
+                                _VarGblAppColors.LightText
+                            Height: =galNewOrderProduct_2.TemplateHeight
+                            OnSelect: =Select(Parent)
+                            Width: =2
+                            X: =222
+                            ZIndex: =10
+
+                        shpNewOrderDataRectangle2_2 As rectangle:
+                            Fill: |-
+                                =//RGBA(56, 96, 178, 1)
+                                _VarGblAppColors.LightText
+                            Height: =galNewOrderProduct_2.TemplateHeight
+                            OnSelect: =Select(Parent)
+                            Width: =2
+                            X: =303
+                            ZIndex: =11
+
+                        shpNewOrderDataRectangle3_6 As rectangle:
+                            Fill: |-
+                                =//RGBA(56, 96, 178, 1)
+                                _VarGblAppColors.LightText
+                            Height: =galNewOrderProduct_2.TemplateHeight
+                            OnSelect: =Select(Parent)
+                            Width: =2
+                            X: =385
+                            ZIndex: =12
+
+                        txtNewOrderCasesValue_2 As text:
+                            AccessibleLabel: ="txtNewOrderActualDel"
+                            Align: =Align.Center
+                            BorderColor: |-
+                                =//RGBA(0, 18, 107, 1)
+                                ColorFade( _VarGblAppColors.BisleriBlue, -30%)
+                            Default: |-
+                                =If(
+                                    !IsBlank(
+                                        LookUp(
+                                            colCartItems,
+                                            productId = ThisItem.'Item SKU'.'SKU Master'
+                                        ).emptyJar
+                                    ),
+                                    LookUp(
+                                        colCartItems,
+                                        productId = ThisItem.'Item SKU'.'SKU Master'
+                                    ).emptyJar,
+                                   ""
+                                )
+                            DisplayMode: |-
+                                =/*If(
+                                    LookUp(
+                                        'Item Masters',
+                                        'Item Master' = LookUp(
+                                            'SKU Masters',
+                                            'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                        ).'Item Code'.'Item Master'
+                                    ).'Product group code' = 'Product group code (Item Masters)'.'2WAY',
+                                    DisplayMode.Edit,
+                                    DisplayMode.Disabled
+                                )*/
+                                
+                                If(
+                                    LookUp(
+                                        'Item Masters',
+                                        'Item Master' = varSku /*LookUp(
+                                            colOfflineVariantMaster,
+                                            'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                        ).'Item Code'.'Item Master'*/
+                                    ).'Product group code' = 'Product group code (Item Masters)'.'2WAY',
+                                    DisplayMode.Edit,
+                                    DisplayMode.Disabled
+                                )
+                            FocusedBorderThickness: =2
+                            Format: =TextFormat.Number
+                            HoverBorderColor: =ColorFade( _VarGblAppColors.BisleriBlue, 30%)
+                            HoverFill: |-
+                                =//RGBA(186, 202, 226, 1)
+                                ColorFade(_VarGblAppColors.BisleriBlue, 100%)
+                            OnChange: |
+                                =Set(varSku,LookUp(
+                                            colOfflineVariantMaster,
+                                            'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                        ).'Item Code'.'Item Master');
+                                If(
+                                    !IsBlank(
+                                        LookUp(
+                                            colCartItems,
+                                            productId = ThisItem.'Item SKU'.'SKU Master'
+                                        )
+                                    ),
+                                    Patch(
+                                        colCartItems,
+                                        LookUp(
+                                            colCartItems,
+                                            productId = ThisItem.'Item SKU'.'SKU Master'
+                                        ),
+                                        {
+                                            emptyJar: Value(Self.Text),
+                                            emptyJarValue: (LookUp(
+                                                colCartItems,
+                                                productId = ThisItem.'Item SKU'.'SKU Master'
+                                            ).qtyCases - Value(Self.Text)) * 150
+                                        }
+                                    );
+                                    
+                                );
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Subtitle
+                            Width: =65
+                            X: =558
+                            Y: =20
+                            ZIndex: =13
+
+                        lblNewOrderProductDescription_2 As label:
+                            Align: =Align.Center
+                            FontWeight: =FontWeight.Semibold
+                            Height: =50
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Tiny
+                            Text: =ThisItem.'Item SKU'.'Item Description '
+                            Width: =220
+                            Y: =30
+                            ZIndex: =14
+
+                        shpNewOrderDataRectangle3_7 As rectangle:
+                            Fill: |-
+                                =//RGBA(56, 96, 178, 1)
+                                _VarGblAppColors.LightText
+                            Height: =galNewOrderProduct_2.TemplateHeight
+                            OnSelect: =Select(Parent)
+                            Width: =2
+                            X: =468
+                            ZIndex: =15
+
+                        shpNewOrderDataRectangle3_8 As rectangle:
+                            Fill: |-
+                                =//RGBA(56, 96, 178, 1)
+                                _VarGblAppColors.LightText
+                            Height: =galNewOrderProduct_2.TemplateHeight
+                            OnSelect: =Select(Parent)
+                            Width: =2
+                            X: =550
+                            ZIndex: =16
+
+                        Label1_4 As label:
+                            Align: =Align.Center
+                            Height: =55
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Subtitle
+                            Text: =ThisItem.Cases
+                            Width: =75
+                            X: =224
+                            Y: =12
+                            ZIndex: =17
+
+                        Label1_5 As label:
+                            Align: =Align.Center
+                            Height: =55
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Subtitle
+                            Text: =ThisItem.PCs
+                            Width: =75
+                            X: =303
+                            Y: =12
+                            ZIndex: =18
+
+    btnNewOrderBackground_2 As button:
+        DisabledFill: |-
+            =//RGBA(244, 244, 244, 1)
+            _VarGblAppColors.LightText
+        DisplayMode: =DisplayMode.Disabled
+        Height: =296
+        RadiusBottomLeft: =20
+        RadiusBottomRight: =20
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Size: =24
+        Text: =""
+        Width: =554
+        X: =43
+        Y: =521
+        ZIndex: =2
+
+    lblNewOrderDate_2 As label:
+        FontWeight: =FontWeight.Semibold
+        Height: =30
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: |-
+            ="Order Date :"
+        Width: =184
+        X: =114
+        Y: =560
+        ZIndex: =3
+
+    lblNewOrderQty_3 As label:
+        FontWeight: =FontWeight.Semibold
+        Height: =30
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: |-
+            ="Total Qty :"
+        Width: =184
+        X: =114
+        Y: =598
+        ZIndex: =4
+
+    lblNewOrderOrder_2 As label:
+        FontWeight: =FontWeight.Semibold
+        Height: =30
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: |-
+            ="Order Value :"
+        Width: =208
+        X: =114
+        Y: =636
+        ZIndex: =5
+
+    lblNewOrderEmptyJar_2 As label:
+        FontWeight: =FontWeight.Semibold
+        Height: =30
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: |-
+            ="Empty Jar Value :"
+        Width: =208
+        X: =114
+        Y: =674
+        ZIndex: =6
+
+    lblNewOrderDiscount_2 As label:
+        FontWeight: =FontWeight.Semibold
+        Height: =30
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: |-
+            ="Discount :"
+        Width: =184
+        X: =114
+        Y: =712
+        ZIndex: =7
+
+    lblNewOrderDateValue_2 As label:
+        Color: |-
+            =//RGBA(0, 0, 0, 1)
+            _VarGblAppColors.PrimaryRed
+        FontWeight: =FontWeight.Bold
+        Height: =30
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: =Text(DateValue(Today()), "dd mmm yyyy")
+        X: =353
+        Y: =560
+        ZIndex: =8
+
+    lblNewOrderQtyValue_3 As label:
+        Color: |-
+            =//RGBA(0, 0, 0, 1)
+            _VarGblAppColors.PrimaryRed
+        FontWeight: =FontWeight.Bold
+        Height: =30
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: =Sum(colCartItems, qtyCases)
+        X: =353
+        Y: =598
+        ZIndex: =9
+
+    lblNewOrderOrderValue_2 As label:
+        Color: |-
+            =//RGBA(0, 0, 0, 1)
+            _VarGblAppColors.PrimaryRed
+        FontWeight: =FontWeight.Bold
+        Height: =30
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: |-
+            =Concatenate(
+                "₹",
+                Text(
+                    Sum(
+                        colCartItems,
+                        price
+                    ),
+                    "[$-hi-IN]##,##,##,###",
+                    "hi-IN"
+                )
+            )
+        X: =353
+        Y: =636
+        ZIndex: =10
+
+    lblNewOrderEmptyJarValue_2 As label:
+        Color: |-
+            =//RGBA(0, 0, 0, 1)
+            _VarGblAppColors.PrimaryRed
+        FontWeight: =FontWeight.Bold
+        Height: =30
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: |-
+            =Concatenate(
+                "₹",
+                Text(
+                    Sum(
+                        colCartItems,
+                        emptyJarValue
+                    ),
+                    "[$-hi-IN]##,##,##,###",
+                    "hi-IN"
+                )
+            )
+        X: =353
+        Y: =674
+        ZIndex: =11
+
+    lblNewOrderDiscountValue_2 As label:
+        Color: |-
+            =//RGBA(0, 0, 0, 1)
+            _VarGblAppColors.PrimaryRed
+        FontWeight: =FontWeight.Bold
+        Height: =30
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: |-
+            =Concatenate(
+                "₹",
+                Text(
+                    Sum(
+                        colCartItems,
+                        discount
+                    ),
+                    "[$-hi-IN]##,##,##,###",
+                    "hi-IN"
+                )
+            )
+        X: =353
+        Y: =712
+        ZIndex: =12
+
+    lblNewOrderTotalOrder_2 As label:
+        FontWeight: =FontWeight.Semibold
+        Height: =30
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: |-
+            ="Total Order Value :"
+        Width: =220
+        X: =114
+        Y: =750
+        ZIndex: =13
+
+    lblNewOrderTotalOrderValue_2 As label:
+        Color: |-
+            =//RGBA(0, 0, 0, 1)
+            _VarGblAppColors.PrimaryRed
+        FontWeight: =FontWeight.Bold
+        Height: =30
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: |-
+            =Concatenate(
+                "₹",
+                Text(
+                    Sum(
+                        colCartItems,
+                        discountedPrice
+                    ) + Sum(
+                        colCartItems,
+                        emptyJarValue
+                    ),
+                    "[$-hi-IN]##,##,##,###",
+                    "hi-IN"
+                )
+            )
+        X: =353
+        Y: =750
+        ZIndex: =14
+
+    Button1_2 As button:
+        Fill: =_VarGblAppColors.BisleriBlue
+        HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+        Size: =_VarGblAppFonts.Size.UpperMedium
+        Text: ="Confirm"
+        Visible: =false
+        Width: =150
+        X: =245
+        Y: =844
+        ZIndex: =15
+

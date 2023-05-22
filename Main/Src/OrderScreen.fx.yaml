@@ -1,0 +1,22 @@
+OrderScreen As screen:
+    OnVisible: |-
+        =ClearCollect(
+                colOfflineOrderHeader,
+                Filter(
+                    'Order Headers',
+                    'Order Date' >= Today() && 'Owning User'.'Primary Email' = User().Email
+                )
+            );
+
+    compOrderHeader As Header:
+        HeaderText: ="Orders"
+        ZIndex: =6
+
+    compOrderBottomBar As BottomBar:
+        Y: =1026
+        ZIndex: =7
+
+    "compOrderListView As 'Order List View'":
+        Y: =77
+        ZIndex: =8
+

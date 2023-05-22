@@ -1,0 +1,27 @@
+{
+  "ComponentAllowCustomization": true,
+  "ComponentChangedSinceFileImport": true,
+  "ComponentManifest": {
+    "AllowAccessToGlobals": true,
+    "AllowCustomization": true,
+    "Description": "",
+    "Name": "NewRepalceComp",
+    "TemplateGuid": "d75e85a328db4be0a0d9f16f46c0651f"
+  },
+  "ComponentType": "CanvasComponent",
+  "CustomGroupControlTemplateName": "",
+  "CustomProperties": [],
+  "FirstParty": true,
+  "Id": "http://microsoft.com/appmagic/Component",
+  "IsComponentLocked": false,
+  "IsComponentTemplate": true,
+  "IsCustomGroupControlTemplate": false,
+  "IsPcfControl": false,
+  "IsPremiumPcfControl": false,
+  "IsWidgetTemplate": false,
+  "LastModifiedTimestamp": "638203232800994465",
+  "Name": "d75e85a328db4be0a0d9f16f46c0651f",
+  "OverridableProperties": {},
+  "TemplateOriginalName": "3e9279facdc34347aebf39461b7865fe",
+  "Version": "638061594329874087"
+}

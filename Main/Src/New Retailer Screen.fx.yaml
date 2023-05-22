@@ -1,0 +1,1009 @@
+"'New Retailer Screen' As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+    Fill: =_VarGblAppColors.BackgroundColor
+    OnVisible: |-
+        =//Set(varKYC, "Info");
+        //
+        UpdateContext({nameUpper: Blank()});
+        UpdateContext({contactPersonUpper: Blank()});
+        UpdateContext({AddressUpper: Blank()});
+        UpdateContext({gstUpper: Blank()});
+        UpdateContext({panUpper: Blank()});
+        //Reset(cmbKYCArea_4);
+        Reset(Checkbox1);
+        Reset(cmbKYCArea_3);
+        Reset(txtKYCZone_4);
+        Reset(txtKYCZone_5);
+        Reset(txtKYCZone_3);
+        Reset(txtKYCDistrict_1);
+        Reset(txtKYCDistrict_2);
+        Reset(txtKYCDistrict);
+        Reset(cmbKYCArea_2);
+        Reset(txtKYCAadhaarNo);
+        Reset(txtPincode);
+        //Reset(txtKYCZone_2);
+        //Reset(txtKYCState);
+        //Reset(txtKYCZone);
+        //Reset(txtKYCZone_1);
+        Reset(txtKYCSubState);
+        Reset(txtPincode);
+        Reset(txtKYCPotential);
+
+    canKYC As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =App.Height-180
+        Width: =Parent.Width
+        Y: =90
+        ZIndex: =3
+
+        dataCardKYC As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =2315
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            contKYCInfo As groupContainer.manualLayoutContainer:
+                Height: =2300
+                Width: =Parent.Width
+                ZIndex: =1
+
+                lblKYCFirmName As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="Customer Name"
+                    Width: =560
+                    X: =25
+                    Y: =20
+                    ZIndex: =1
+
+                txtKYCFirmName As text:
+                    AccessibleLabel: ="txtRetailerFirmName"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    Default: =If(IsBlank(OnBoCust), nameUpper, OnBoCust.'Customer Name')
+                    Fill: |-
+                        =If(
+                            Not(IsBlank(Self.Text)),
+                            If(
+                                Len(Self.Text) < 10,
+                                ColorFade(
+                                    Color.Red,
+                                    60%
+                                ),
+                                 Color.White
+                            ),
+                            Color.White
+                        )
+                    FocusedBorderThickness: =2
+                    Height: =45
+                    HintText: ="Enter Customer Name"
+                    HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                    HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                    OnChange: |-
+                        =UpdateContext({nameUpper: Upper(Self.Text)});
+                        If(
+                            Len(Self.Text) < 10,
+                            Notify(
+                                "Please write more than 10 characters",
+                                NotificationType.Warning,
+                                2000
+                            )
+                        )
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Width: =560
+                    X: =25
+                    Y: =65
+                    ZIndex: =3
+
+                lblKYCRetailerName As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="Contact Person Name"
+                    Width: =560
+                    X: =25
+                    Y: =130
+                    ZIndex: =6
+
+                txtKYCRetailerName As text:
+                    AccessibleLabel: ="txtRetailerName"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    Default: =If(IsBlank(OnBoCust), contactPersonUpper, OnBoCust.'Contact Person name')
+                    FocusedBorderThickness: =2
+                    Height: =45
+                    HintText: ="Enter Name"
+                    HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                    HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                    OnChange: |-
+                        =UpdateContext({contactPersonUpper: Upper(Self.Text)});
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Width: =560
+                    X: =25
+                    Y: =175
+                    ZIndex: =7
+
+                lblKYCPotential As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="Contact Person Phone No."
+                    Width: =560
+                    X: =25
+                    Y: =242
+                    ZIndex: =8
+
+                txtKYCPotential As text:
+                    AccessibleLabel: ="txtRetailerPotential"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    Default: =If(IsBlank(OnBoCust),"", OnBoCust.'Mobile No')
+                    Fill: |-
+                        =If(
+                            Not(IsBlank(Self.Text)),
+                            If(
+                                Len(Self.Text) < 10 || Len(Self.Text) > 10,
+                                ColorFade(
+                                    Color.Red,
+                                    60%
+                                ),
+                                 Color.White
+                            ),
+                            Color.White
+                        )
+                    FocusedBorderThickness: =2
+                    Format: =TextFormat.Number
+                    Height: =45
+                    HintText: ="Enter Phone No."
+                    HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                    HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                    OnChange: |-
+                        =If(
+                            Len(Self.Text) < 10 || Len(Self.Text) > 10,
+                            Notify(
+                                "Please enter valid mobile no.",
+                                NotificationType.Warning,
+                                2000
+                            )
+                        )
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Width: =560
+                    X: =25
+                    Y: =287
+                    ZIndex: =9
+
+                lblKYCMobile As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="Billing Address"
+                    Width: =560
+                    X: =25
+                    Y: =354
+                    ZIndex: =10
+
+                txtKYCMobile As text:
+                    AccessibleLabel: ="txtRetailerMobile"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    Default: =If(IsBlank(OnBoCust), AddressUpper, OnBoCust.'Address 1')
+                    Fill: |-
+                        =If(
+                            Not(IsBlank(Self.Text)),
+                            If(
+                                Len(Self.Text) < 30,
+                                ColorFade(
+                                    Color.Red,
+                                    60%
+                                ),
+                                 Color.White
+                            ),
+                            Color.White
+                        )
+                    FocusedBorderThickness: =2
+                    Height: =146
+                    HintText: ="Enter Address"
+                    HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                    HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                    Mode: =TextMode.MultiLine
+                    OnChange: |-
+                        =UpdateContext({AddressUpper: Upper(Self.Text)});
+                        If(
+                            Len(Self.Text) < 30,
+                            Notify(
+                                "Please enter valid Address",
+                                NotificationType.Warning,
+                                5000
+                            )
+                        )
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Width: =560
+                    X: =25
+                    Y: =404
+                    ZIndex: =11
+
+                lblKYCPostCode As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="Pin Code"
+                    Width: =230
+                    X: =25
+                    Y: =580
+                    ZIndex: =22
+
+                txtPincode As text:
+                    AccessibleLabel: ="txtRetailerPostCode"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    Default: |-
+                        =//If(IsBlank(OnBoCust),"", OnBoCust.'Address 1: ZIP/Postal Code')
+                    FocusedBorderThickness: =2
+                    Height: =45
+                    HintText: ="Enter Pin Code"
+                    HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                    HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                    OnChange: =
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Width: =230
+                    X: =25
+                    Y: =625
+                    ZIndex: =23
+
+                lblKYCZone As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="City"
+                    Width: =230
+                    X: =340
+                    Y: =700
+                    ZIndex: =24
+
+                lblKYCState As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="Taluka"
+                    Width: =230
+                    X: =25
+                    Y: =820
+                    ZIndex: =26
+
+                lblKYCSubState As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="State"
+                    Width: =230
+                    X: =340
+                    Y: =580
+                    ZIndex: =28
+
+                txtKYCSubState As text:
+                    AccessibleLabel: ="txtRetailerSubState"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    Default: |+
+                        =LookUp(Pincodes,Name= txtPincode.Text).'Parent State'.'State Name'
+                        
+                    DisplayMode: =DisplayMode.View
+                    FocusedBorderThickness: =2
+                    Height: =45
+                    HintText: ="Enter State"
+                    HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                    HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Width: =230
+                    X: =340
+                    Y: =625
+                    ZIndex: =29
+
+                lblKYCDistrict As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="Customer Channel"
+                    Width: =260
+                    X: =25
+                    Y: =1410
+                    ZIndex: =30
+
+                txtKYCDistrict As text:
+                    AccessibleLabel: ="txtRetailerDistrict"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    Default: =""
+                    DisplayMode: =DisplayMode.View
+                    FocusedBorderThickness: =2
+                    Height: =45
+                    HintText: =""
+                    HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                    HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Width: =260
+                    X: =25
+                    Y: =1455
+                    ZIndex: =31
+
+                lblKYCCity As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="District"
+                    Width: =230
+                    X: =25
+                    Y: =700
+                    ZIndex: =32
+
+                lblKYCArea As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="Area"
+                    Width: =230
+                    X: =340
+                    Y: =820
+                    ZIndex: =33
+
+                lblKYCArea_2 As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="Customer Category"
+                    Width: =560
+                    X: =25
+                    Y: =1290
+                    ZIndex: =42
+
+                cmbKYCArea_2 As combobox:
+                    AccessibleLabel: ="cmbRetailerArea"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    ChevronBackground: =_VarGblAppColors.BisleriBlue
+                    ChevronHoverBackground: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+                    DisplayFields: =["zx_name"]
+                    FocusedBorderThickness: =2
+                    Height: =45
+                    HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                    HoverFill: =Color.White
+                    InputTextPlaceholder: ="Find Category"
+                    Items: ='Customer categories'
+                    PressedFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+                    SearchFields: =["zx_name"]
+                    SearchItems: =Search('Customer categories',cmbKYCArea_2.SearchText,"zx_name")
+                    SelectionColor: =Color.Black
+                    SelectionFill: =Color.White
+                    SelectMultiple: =false
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Width: =560
+                    X: =25
+                    Y: =1335
+                    ZIndex: =43
+
+                lblKYCDistrict_1 As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="Sub-Channel"
+                    Width: =230
+                    X: =325
+                    Y: =1410
+                    ZIndex: =46
+
+                txtKYCDistrict_1 As text:
+                    AccessibleLabel: ="txtRetailerDistrict"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    Default: =""
+                    DisplayMode: =DisplayMode.View
+                    FocusedBorderThickness: =2
+                    Height: =45
+                    HintText: =""
+                    HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                    HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Width: =260
+                    X: =325
+                    Y: =1455
+                    ZIndex: =47
+
+                lblKYCArea_1 As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="SE"
+                    Width: =560
+                    X: =25
+                    Y: =1650
+                    ZIndex: =48
+
+                txtKYCZone_3 As text:
+                    AccessibleLabel: ="txtRetailerZone"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    Default: =""
+                    DisplayMode: =DisplayMode.View
+                    FocusedBorderThickness: =2
+                    Height: =45
+                    HintText: =""
+                    HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                    HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Width: =560
+                    X: =25
+                    Y: =1695
+                    ZIndex: =49
+
+                lblKYCArea_3 As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="SM"
+                    Width: =560
+                    X: =25
+                    Y: =1880
+                    ZIndex: =50
+
+                txtKYCZone_4 As text:
+                    AccessibleLabel: ="txtRetailerZone"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    Default: =""
+                    DisplayMode: =DisplayMode.View
+                    FocusedBorderThickness: =2
+                    Height: =45
+                    HintText: =""
+                    HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                    HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Width: =560
+                    X: =25
+                    Y: =1925
+                    ZIndex: =51
+
+                lblKYCArea_4 As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="ASM"
+                    Width: =560
+                    X: =25
+                    Y: =1765
+                    ZIndex: =52
+
+                txtKYCZone_5 As text:
+                    AccessibleLabel: ="txtRetailerZone"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    Default: =""
+                    DisplayMode: =DisplayMode.View
+                    FocusedBorderThickness: =2
+                    Height: =45
+                    HintText: =""
+                    HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                    HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Width: =560
+                    X: =25
+                    Y: =1810
+                    ZIndex: =53
+
+                lblKYCArea_5 As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="Structure of GST (PIT)"
+                    Width: =560
+                    X: =25
+                    Y: =2000
+                    ZIndex: =54
+
+                cmbKYCArea_3 As combobox:
+                    AccessibleLabel: ="cmbRetailerArea"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    ChevronBackground: =_VarGblAppColors.BisleriBlue
+                    ChevronHoverBackground: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+                    DisplayFields: =["Value"]
+                    DisplayMode: =DisplayMode.View
+                    FocusedBorderThickness: =2
+                    Height: =45
+                    HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                    HoverFill: =Color.White
+                    InputTextPlaceholder: ="Find GST (PIT)"
+                    Items: =["GST (PIT)"]
+                    PressedFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+                    SearchFields: =["Value"]
+                    SearchItems: =Search(["GST (PIT)"],cmbKYCArea_3.SearchText,"Value")
+                    SelectionColor: =Color.Black
+                    SelectionFill: =_VarGblAppColors.BisleriBlueLight
+                    SelectMultiple: =false
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Width: =560
+                    X: =25
+                    Y: =2045
+                    ZIndex: =55
+
+                lblKYCArea_6 As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="Schemes"
+                    Width: =400
+                    X: =79
+                    Y: =2131
+                    ZIndex: =56
+
+                Checkbox1 As checkbox:
+                    CheckboxBackgroundFill: =_VarGblAppColors.LightText
+                    CheckboxBorderColor: =_VarGblAppColors.BisleriBlue
+                    CheckboxSize: =50
+                    CheckmarkFill: =_VarGblAppColors.BisleriBlue
+                    FocusedBorderColor: =_VarGblAppColors.BackgroundColor
+                    Height: =45
+                    HoverBorderColor: =_VarGblAppColors.BackgroundColor
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Text: =""
+                    Width: =50
+                    X: =25
+                    Y: =2129
+                    ZIndex: =57
+
+                lblKYCGSTNo As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="GST No."
+                    Width: =560
+                    X: =25
+                    Y: =938
+                    ZIndex: =60
+
+                txtKYCGSTNo As text:
+                    AccessibleLabel: ="txtRetailerGST"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    Default: =If(IsBlank(OnBoCust), gstUpper, OnBoCust.GSTIN)
+                    Fill: |-
+                        =If(
+                            Not(IsBlank(Self.Text)),
+                            If(
+                                IsMatch(
+                                    Self.Text,
+                                    "\d" & "\d" & "\p{L}" & "\p{L}" & "\p{L}" & "\p{L}" & "\p{L}" & "\d" & "\d" & "\d" & "\d" & "\p{L}" & "{1}[1-9A-Za-z]" & "Z" & "{1}[1-9A-Za-z]"
+                                ),
+                                Color.White,
+                                ColorFade(
+                                    Color.Red,
+                                    60%
+                                )
+                            ),
+                            Color.White
+                        )
+                    FocusedBorderThickness: =2
+                    Height: =45
+                    HintText: ="Enter GST No."
+                    HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                    HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                    OnChange: |-
+                        =UpdateContext({gstUpper: Upper(Self.Text)});
+                        If(
+                            !IsMatch(
+                                Self.Text,
+                                "\d" & "\d" & "\p{L}" & "\p{L}" & "\p{L}" & "\p{L}" & "\p{L}" & "\d" & "\d" & "\d" & "\d" & "\p{L}" & "{1}[1-9A-Za-z]" & "Z" & "{1}[1-9A-Za-z]"
+                            ),
+                            Notify(
+                                "Please enter correct GST",
+                                NotificationType.Error,
+                                2000
+                            )
+                        )
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Width: =560
+                    X: =25
+                    Y: =983
+                    ZIndex: =61
+
+                lblKYCPANNo As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="PAN No."
+                    Width: =560
+                    X: =25
+                    Y: =1053
+                    ZIndex: =62
+
+                txtKYCPANNo As text:
+                    AccessibleLabel: ="txtKYCPANNo"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    Default: =If(IsBlank(OnBoCust), panUpper, OnBoCust.'Pan number')
+                    Fill: |-
+                        =If(
+                            Not(IsBlank(Self.Text)),
+                            If(
+                                IsMatch(
+                                    Self.Text,
+                                    "\p{L}" & "\p{L}"& "\p{L}"& "\p{L}"& "\p{L}"&"\d"&"\d"&"\d"&"\d"& "\p{L}"
+                                ),
+                                Color.White,
+                                ColorFade(Color.Red, 60%)
+                            ),
+                            Color.White
+                        )
+                    FocusedBorderThickness: =2
+                    Height: =45
+                    HintText: ="Enter PAN No."
+                    HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                    HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                    OnChange: |-
+                        =UpdateContext({panUpper: Upper(Self.Text)});
+                        If(
+                            !IsMatch(
+                                Self.Text,
+                                "\p{L}" & "\p{L}" & "\p{L}" & "\p{L}" & "\p{L}" & "\d" & "\d" & "\d" & "\d" & "\p{L}"
+                            ),
+                            Notify(
+                                "Please enter correct PAN",
+                                NotificationType.Error,
+                                2000
+                            )
+                        )
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Width: =560
+                    X: =25
+                    Y: =1098
+                    ZIndex: =63
+
+                lblKYCAadhaarNo As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="FSSAI No."
+                    Width: =560
+                    X: =25
+                    Y: =1173
+                    ZIndex: =64
+
+                txtKYCAadhaarNo As text:
+                    AccessibleLabel: ="txtKYCAadhaarNo"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    Default: =""
+                    FocusedBorderThickness: =2
+                    Format: =TextFormat.Number
+                    Height: =45
+                    HintText: ="Enter FSSA No."
+                    HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                    HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                    OnChange: =If(Len(Self.Text)=14, false, Reset(Self); Notify("Please enter 14 digit FSSAI Number", NotificationType.Information, 2000))
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Width: =560
+                    X: =25
+                    Y: =1218
+                    ZIndex: =65
+
+                lblKYCDistrict_2 As label:
+                    FontWeight: =FontWeight.Bold
+                    Size: =_VarGblAppFonts.Size.Title
+                    Text: ="Territory Code"
+                    Width: =560
+                    X: =25
+                    Y: =1533
+                    ZIndex: =66
+
+                txtKYCDistrict_2 As text:
+                    AccessibleLabel: ="txtRetailerDistrict"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    Default: =""
+                    DisplayMode: =DisplayMode.View
+                    FocusedBorderThickness: =2
+                    Height: =45
+                    HintText: =""
+                    HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                    HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Width: =560
+                    X: =25
+                    Y: =1578
+                    ZIndex: =67
+
+                btnKYCSave As button:
+                    Color: =_VarGblAppColors.LightText
+                    DisplayMode: =If(IsBlank(txtKYCFirmName.Text), DisplayMode.Disabled, DisplayMode.Edit)
+                    Fill: =_VarGblAppColors.BisleriBlue
+                    FocusedBorderThickness: =2
+                    FontWeight: =FontWeight.Bold
+                    HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+                    OnSelect: |
+                        =/*If(
+                            !IsBlank(txtKYCFirmName.Text && txtKYCRetailerName.Text && txtKYCMobile.Text && txtKYCGSTNo.Text && cmbKYCArea_2.Selected.'Customer category' && txtKYCPotential.Text && txtKYCPANNo.Text),
+                            If(
+                                Len(txtKYCFirmName.Text) < 10 && (Len(txtKYCMobile.Text) < 10 || Len(txtKYCMobile.Text) > 10) && Len(txtKYCMobile.Text) < 30 || !IsMatch(
+                                    txtKYCGSTNo.Text,
+                                    "\d" & "\d" & "\p{L}" & "\p{L}" & "\p{L}" & "\p{L}" & "\p{L}" & "\d" & "\d" & "\d" & "\d" & "\p{L}" & "{1}[1-9A-Za-z]" & "Z" & "{1}[1-9A-Za-z]"
+                                ) || !IsMatch(
+                                    txtKYCPANNo.Text,
+                                    "\p{L}" & "\p{L}" & "\p{L}" & "\p{L}" & "\p{L}" & "\d" & "\d" & "\d" & "\d" & "\p{L}"
+                                ),
+                                Notify(
+                                    "Please Fill Valid Data",
+                                    NotificationType.Error,
+                                    2000
+                                ),
+                                Patch(
+                                    Customers_1,
+                                    Defaults(Customers_1),
+                                    {
+                                        'Customer Name': txtKYCFirmName.Text,
+                                        'Contact Person name': txtKYCRetailerName.Text,
+                                        'Mobile No': txtKYCPotential.Text,
+                                        'Address 1: Street 1': txtKYCMobile.Text,
+                                        //Pincode:txtKYCPostCode.Text,   not existed
+                                        GSTIN: txtKYCGSTNo.Text,
+                                        'Customer Category': cmbKYCArea_2.Selected,
+                                        'Mode Of Payment': 'Payment Type (choice)'.CASH,
+                                        'Pan number': txtKYCPANNo.Text,
+                                        'Customer status': 'Customer status (Choice)'.'Requested for On-Boarding',
+                                        Pincode: LookUp(
+                                            Pincodes,
+                                            Name = txtPincode.Text
+                                        ),
+                                        State: LookUp(
+                                            States,
+                                            'State Name' = txtKYCSubState.Text
+                                        ),
+                                        District: LookUp(
+                                            Districts,
+                                            District = cmbDistrict.Selected.District
+                                        ),
+                                        City: LookUp(
+                                            Cities,
+                                            City = GUID(cmbCity.Selected.City)
+                                        ),
+                                        Taluka: LookUp(
+                                            Talukas,
+                                            Taluka = GUID(cmbTaluka.Selected.Taluka)
+                                        ),
+                                        Area: LookUp(
+                                            'Area(Retailer Onboardings',
+                                            'Area(Retailer Onboarding' = GUID(cmbArea.Selected.'Area(Retailer Onboarding')
+                                        ),
+                                        Scheme: Checkbox1.Value,
+                                        FSSAI: txtKYCAadhaarNo.Text,
+                                        Salesperson: LookUp(
+                                            Users,
+                                            'Primary Email' = User().Email
+                                        ),
+                                        'Van No': LookUp(
+                                            Warehouses,
+                                            Warehouse = varUserVanNo.Van.Warehouse
+                                        ),
+                                        'Route No.': LookUp(
+                                            Areas,
+                                            Area = varUserArea.Area.Area
+                                        )
+                                    }
+                                );
+                                Notify(
+                                    "Customer request for onboarding submitted successfully",
+                                    NotificationType.Success,
+                                    2000
+                                );
+                                Navigate('Retailer Onboarding Screen')
+                            ),
+                            Notify(
+                                "Please Fill Mandatory Fields",
+                                NotificationType.Error,
+                                2000
+                            )
+                        );*/
+                        If(
+                            IsBlank(txtKYCFirmName.Text),
+                            Notify(
+                                "Kindly enter Customer Name",
+                                NotificationType.Error,
+                                2000
+                            ),
+                            If(
+                                Len(txtKYCFirmName.Text) < 10 && !IsBlank(txtKYCFirmName.Text),
+                                Notify(
+                                    "Please Fill Valid Name",
+                                    NotificationType.Error,
+                                    2000
+                                ),
+                                If(
+                                    (Len(txtKYCPotential.Text) < 10 || Len(txtKYCPotential.Text) > 10) && !IsBlank(txtKYCPotential.Text),
+                                    Notify(
+                                        "Please Fill Valid Mobile Number",
+                                        NotificationType.Error,
+                                        2000
+                                    ),
+                                    If(
+                                        !IsMatch(
+                                            txtKYCGSTNo.Text,
+                                            "\d" & "\d" & "\p{L}" & "\p{L}" & "\p{L}" & "\p{L}" & "\p{L}" & "\d" & "\d" & "\d" & "\d" & "\p{L}" & "{1}[1-9A-Za-z]" & "Z" & "{1}[1-9A-Za-z]"
+                                        ) And !IsBlank(txtKYCGSTNo.Text),
+                                        Notify(
+                                            "Please Fill Valid GST Number",
+                                            NotificationType.Error,
+                                            2000
+                                        ),
+                                        If(
+                                            !IsMatch(
+                                                txtKYCPANNo.Text,
+                                                "\p{L}" & "\p{L}" & "\p{L}" & "\p{L}" & "\p{L}" & "\d" & "\d" & "\d" & "\d" & "\p{L}"
+                                            ) && !IsBlank(txtKYCPANNo.Text),
+                                            Notify(
+                                                "Please Fill Valid PAN Number",
+                                                NotificationType.Error,
+                                                2000
+                                            ),
+                                            Patch(
+                                                Customers_1,
+                                                Defaults(Customers_1),
+                                                {
+                                                    'Customer Name': txtKYCFirmName.Text,
+                                                    'Contact Person name': txtKYCRetailerName.Text,
+                                                    'Mobile No': txtKYCPotential.Text,
+                                                    'Address 1: Street 1': txtKYCMobile.Text,
+                                                    //Pincode:txtKYCPostCode.Text,   not existed
+                                                    GSTIN: txtKYCGSTNo.Text,
+                                                    'Customer Category': cmbKYCArea_2.Selected,
+                                                    'Mode Of Payment': 'Payment Type (choice)'.CASH,
+                                                    'Pan number': txtKYCPANNo.Text,
+                                                    'Customer status': 'Customer status (Choice)'.'Requested for On-Boarding',
+                                                    Pincode: LookUp(
+                                                        Pincodes,
+                                                        Name = txtPincode.Text
+                                                    ),
+                                                    State: LookUp(
+                                                        States,
+                                                        'State Name' = txtKYCSubState.Text
+                                                    ),
+                                                    District: LookUp(
+                                                        Districts,
+                                                        District = cmbDistrict.Selected.District
+                                                    ),
+                                                    City: LookUp(
+                                                        Cities,
+                                                        City = GUID(cmbCity.Selected.City)
+                                                    ),
+                                                    Taluka: LookUp(
+                                                        Talukas,
+                                                        Taluka = GUID(cmbTaluka.Selected.Taluka)
+                                                    ),
+                                                    Area: LookUp(
+                                                        'Area(Retailer Onboardings',
+                                                        'Area(Retailer Onboarding' = GUID(cmbArea.Selected.'Area(Retailer Onboarding')
+                                                    ),
+                                                    Scheme: Checkbox1.Value,
+                                                    FSSAI: txtKYCAadhaarNo.Text,
+                                                    Salesperson: LookUp(
+                                                        Users,
+                                                        'Primary Email' = User().Email
+                                                    ),
+                                                    'Van No': LookUp(
+                                                        Warehouses,
+                                                        Warehouse = varUserVanNo.Van.Warehouse
+                                                    ),
+                                                    'Route No.': LookUp(
+                                                        Areas,
+                                                        Area = varUserArea.Area.Area
+                                                    ),
+                                                    'Address 1: Latitude':Location.Latitude,
+                                                    'Address 1: Longitude':Location.Longitude
+                                                }
+                                            );
+                                            Notify(
+                                                "Customer request for onboarding submitted successfully",
+                                                NotificationType.Success,
+                                                2000
+                                            );
+                                            Navigate('Retailer Onboarding Screen')
+                                        )
+                                    )
+                                )
+                            )
+                        );
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Text: ="Save"
+                    Visible: =If(IsBlank(OnBoCust), true, false)
+                    Width: =180
+                    X: =230
+                    Y: =2230
+                    ZIndex: =68
+
+                cmbDistrict As combobox:
+                    AccessibleLabel: ="cmbDistrict"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    BorderThickness: =1
+                    ChevronBackground: =RGBA(0, 0, 0, 0)
+                    ChevronFill: =_VarGblAppColors.BisleriBlue
+                    DefaultSelectedItems: =LookUp(Pincodes,Name= txtPincode.Text).'Parent District'
+                    DisplayFields: =["zx_name"]
+                    DisplayMode: =If(CountRows(Filter(Pincodes,Name= txtPincode.Text))>1,DisplayMode.Edit,DisplayMode.View)
+                    Height: =45
+                    InputTextPlaceholder: ="Search District"
+                    Items: |+
+                        =Choices([@Customers_1].zx_District)
+                        
+                    OnChange: =
+                    SearchFields: =["zx_name"]
+                    SearchItems: |-
+                        =Search(Choices([@Customers_1].zx_District)
+                        
+                        ,cmbDistrict.SearchText,"zx_name")
+                    SelectMultiple: =false
+                    Size: =16
+                    Width: =230
+                    X: =25
+                    Y: =756
+                    ZIndex: =69
+
+                cmbCity As combobox:
+                    AccessibleLabel: ="cmbCity"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    BorderThickness: =1
+                    ChevronBackground: =RGBA(0, 0, 0, 0)
+                    ChevronFill: =_VarGblAppColors.BisleriBlue
+                    DefaultSelectedItems: =LookUp(Pincodes,Name= txtPincode.Text).'Parent City'
+                    DisplayFields: =["zx_name"]
+                    DisplayMode: =If(CountRows(Filter(Pincodes,Name= txtPincode.Text))>1,DisplayMode.Edit,DisplayMode.View)
+                    Height: =45
+                    InputTextPlaceholder: ="Search City"
+                    Items: |-
+                        =
+                        Choices([@Customers_1].zx_City)
+                    OnChange: =
+                    SearchFields: =["zx_name"]
+                    SearchItems: |-
+                        =Search(
+                        Choices([@Customers_1].zx_City),cmbCity.SearchText,"zx_name")
+                    SelectMultiple: =false
+                    Size: =16
+                    Width: =230
+                    X: =340
+                    Y: =756
+                    ZIndex: =70
+
+                cmbTaluka As combobox:
+                    AccessibleLabel: ="cmbTaluka"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    BorderThickness: =1
+                    ChevronBackground: =RGBA(0, 0, 0, 0)
+                    ChevronFill: =_VarGblAppColors.BisleriBlue
+                    DefaultSelectedItems: =LookUp(Pincodes,Name= txtPincode.Text).'Parent Taluka'
+                    DisplayFields: =["zx_name"]
+                    DisplayMode: =If(CountRows(Filter(Pincodes,Name= txtPincode.Text))>1,DisplayMode.Edit,DisplayMode.View)
+                    Height: =45
+                    InputTextPlaceholder: ="Search Taluka"
+                    Items: |-
+                        =
+                        Choices([@Customers_1].zx_Taluka)
+                    OnChange: |
+                        =Set(
+                            varAreaid,
+                            LookUp(
+                                Pincodes,
+                                Name = txtPincode.Text
+                            ).'Parent Area'.'Area(Retailer Onboarding'
+                        );
+                        ClearCollect(
+                            colArea,
+                            Filter(
+                                Pincodes,
+                                'Parent Area'.'Area(Retailer Onboarding'=
+                        varAreaid)
+                        );
+                    SearchFields: =["zx_name"]
+                    SearchItems: |-
+                        =Search(
+                        Choices([@Customers_1].zx_Taluka),cmbTaluka.SearchText,"zx_name")
+                    SelectMultiple: =false
+                    Size: =16
+                    Width: =230
+                    X: =25
+                    Y: =865
+                    ZIndex: =71
+
+                cmbArea As combobox:
+                    AccessibleLabel: ="cmbArea"
+                    BorderColor: =_VarGblAppColors.BisleriBlue
+                    BorderThickness: =1
+                    ChevronBackground: =RGBA(0, 0, 0, 0)
+                    ChevronFill: =_VarGblAppColors.BisleriBlue
+                    DefaultSelectedItems: =LookUp(Pincodes,Name= txtPincode.Text).'Parent Area'
+                    DisplayFields: =["zx_name"]
+                    DisplayMode: =If(CountRows(Filter(Pincodes,Name= txtPincode.Text))>1,DisplayMode.Edit,DisplayMode.View)
+                    Height: =45
+                    InputTextPlaceholder: ="Search Area"
+                    Items: =Choices([@Customers_1].zx_Area)
+                    SearchFields: =["zx_name"]
+                    SearchItems: =Search(Choices([@Customers_1].zx_Area),cmbArea.SearchText,"zx_name")
+                    SelectMultiple: =false
+                    Size: =16
+                    Width: =230
+                    X: =340
+                    Y: =865
+                    ZIndex: =72
+
+    compKYCHeader As Header:
+        HeaderText: ="New Customer"
+        ZIndex: =4
+
+    compKYCBottomBar As BottomBar:
+        Y: =1026
+        ZIndex: =7
+

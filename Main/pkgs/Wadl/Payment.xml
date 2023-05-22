@@ -1,0 +1,61 @@
+<application xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:service="https://india-001.azure-apim.net/apim/payment-5f7ae3c468c3353edd-5f69d4af27be7bcb24" xmlns:siena="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11" siena:serviceId="Payment" xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="Payment"></doc>
+  <grammars>
+    <jsonTypes targetNamespace="https://india-001.azure-apim.net/apim/payment-5f7ae3c468c3353edd-5f69d4af27be7bcb24" xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+      <string name="Payment1_responses_default_def_head_def_responseTimestamp_def" />
+      <string name="Payment1_responses_default_def_head_def_version_def" />
+      <string name="Payment1_responses_default_def_head_def_clientId_def" />
+      <string name="Payment1_responses_default_def_head_def_signature_def" />
+      <object name="Payment1_responses_default_def_head_def">
+        <property name="responseTimestamp" type="string" />
+        <property name="version" type="string" />
+        <property name="clientId" type="string" />
+        <property name="signature" type="string" />
+      </object>
+      <string name="Payment1_responses_default_def_body_def_resultInfo_def_resultStatus_def" />
+      <string name="Payment1_responses_default_def_body_def_resultInfo_def_resultCode_def" />
+      <string name="Payment1_responses_default_def_body_def_resultInfo_def_resultMsg_def" />
+      <object name="Payment1_responses_default_def_body_def_resultInfo_def">
+        <property name="resultStatus" type="string" />
+        <property name="resultCode" type="string" />
+        <property name="resultMsg" type="string" />
+      </object>
+      <string name="Payment1_responses_default_def_body_def_qrCodeId_def" />
+      <string name="Payment1_responses_default_def_body_def_qrData_def" />
+      <string name="Payment1_responses_default_def_body_def_image_def" />
+      <object name="Payment1_responses_default_def_body_def">
+        <property name="resultInfo" typeRef="Payment1_responses_default_def_body_def_resultInfo_def" />
+        <property name="qrCodeId" type="string" />
+        <property name="qrData" type="string" />
+        <property name="image" type="string" />
+      </object>
+      <object name="Payment1_responses_default_def">
+        <property name="head" typeRef="Payment1_responses_default_def_head_def" />
+        <property name="body" typeRef="Payment1_responses_default_def_body_def" />
+      </object>
+    </jsonTypes>
+  </grammars>
+  <resources siena:authenticationProviderHref="#PowerAppAuth" base="https://india-001.azure-apim.net/apim/payment-5f7ae3c468c3353edd-5f69d4af27be7bcb24">
+    <resource path="/{connectionId}/api/values">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="Payment1" actionName="Payment1" siena:isDeprecated="false">
+        <request>
+          <param style="query" name="Orderid" type="xs:long" />
+          <param style="query" name="Amount" type="xs:long" />
+          <param style="header" name="Content-Type" type="xs:string" />
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:Payment1_responses_default_def" />
+        </response>
+      </method>
+    </resource>
+  </resources>
+  <authenticationProviders xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <connectionProvider id="PowerAppAuth" siena:connectionProviderId="shared_payment-5f7ae3c468c3353edd-5f69d4af27be7bcb24" />
+  </authenticationProviders>
+  <template xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <variable name="connectionId">
+      <modifyParams style="template" name="connectionId" attribute="fixed" />
+    </variable>
+  </template>
+</application>

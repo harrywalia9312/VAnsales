@@ -1,0 +1,99 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_customercategories",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_customercategory",
+    "MaxGetRowsCount": 2000,
+    "Name": "Customer categories",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_account_CustomerCategory_zx_customercateg": "Customers",
+      "zx_code": "Code",
+      "zx_customercategory_AsyncOperations": "System Jobs",
+      "zx_customercategory_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_customercategory_DuplicateBaseRecord": "Duplicate Records (zx_customercategory_DuplicateBaseRecord)",
+      "zx_customercategory_DuplicateMatchingRecord": "Duplicate Records (zx_customercategory_DuplicateMatchingRecord)",
+      "zx_customercategory_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_customercategory_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_customercategory_ProcessSession": "Process Sessions",
+      "zx_customercategory_SyncErrors": "Sync Errors",
+      "zx_customercategoryid": "Customer category",
+      "zx_name": "Name"
+    },
+    "PreferredName": "Customer categories",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Customer categories (Views)",
+    "Name": "_zx_customercategory_views",
+    "RelatedEntityName": "Customer categories",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "4e5f6a1e-74b0-4c92-afa3-144e88ee33d9": "Active Customer categories",
+      "978d20ff-ae35-43ee-bdf7-293efd6981ec": "Inactive Customer categories",
+      "aac7f1c8-f404-4f60-b935-70a618c07969": "Customer category Associated View",
+      "ab8e0e9a-81ad-453a-8c50-4ed472d08d4a": "Customer category Lookup View",
+      "fbf5741f-8363-4b48-a5e2-5adc47b1af02": "Customer category Advanced Find View"
+    }
+  },
+  {
+    "DisplayName": "Status (Customer categories)",
+    "Name": "zx_customercategory_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Customer categories"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Customer categories",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Customer categories)",
+    "Name": "zx_customercategory_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Customer categories"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Customer categories",
+    "Type": "OptionSetInfo"
+  }
+]

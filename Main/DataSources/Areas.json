@@ -1,0 +1,175 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_areas",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_area",
+    "MaxGetRowsCount": 2000,
+    "Name": "Areas",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr8eb_ParentCity": "Parent City",
+      "cr8eb_ParentDistrict": "Parent District",
+      "cr8eb_ParentState": "Parent State",
+      "cr8eb_ParentTaluka": "Parent Taluka",
+      "cr8eb_type": "Type",
+      "cr8eb_zx_area_ParentCity_zx_area": "Areas (cr8eb_zx_area_ParentCity_zx_area)",
+      "cr8eb_zx_area_ParentDistrict_zx_area": "Areas (cr8eb_zx_area_ParentDistrict_zx_area)",
+      "cr8eb_zx_area_ParentState_zx_area": "Areas (cr8eb_zx_area_ParentState_zx_area)",
+      "cr8eb_zx_area_ParentTaluka_zx_area": "Areas (cr8eb_zx_area_ParentTaluka_zx_area)",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_account_RouteNo_zx_area": "Customers",
+      "zx_area_AsyncOperations": "System Jobs",
+      "zx_area_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_area_DuplicateBaseRecord": "Duplicate Records (zx_area_DuplicateBaseRecord)",
+      "zx_area_DuplicateMatchingRecord": "Duplicate Records (zx_area_DuplicateMatchingRecord)",
+      "zx_area_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_area_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_area_ProcessSession": "Process Sessions",
+      "zx_area_SyncErrors": "Sync Errors",
+      "zx_areaid": "Area",
+      "zx_description": "Description",
+      "zx_level": "Level",
+      "zx_name": "Name (zx_name)",
+      "zx_names": "Name (zx_names)",
+      "zx_ParentArea": "Parent Area",
+      "zx_routecategory": " Route Category ",
+      "zx_SiteBranch": " Site/Branch ",
+      "zx_systemuser_Branch_zx_area": "Users",
+      "zx_zx_area_ParentArea_zx_area": "Areas (zx_zx_area_ParentArea_zx_area)",
+      "zx_zx_beatplanheader_Area_zx_area": "Beat Plan Headers",
+      "zx_zx_beatplanlines_Area_zx_area": "Beat Plan Lines",
+      "zx_zx_checkindemandheader_RouteNo_zx_area": "Check-in Demand Headers",
+      "zx_zx_currentstock_RouteNo_zx_area": "Current Stocks",
+      "zx_zx_invoiceheader_RouteNo_zx_area": "Invoice Headers",
+      "zx_zx_invoicelines_RouteNo_zx_area": "Invoice Lines",
+      "zx_zx_invoiceseries_RouteNo_zx_area": "Invoice Series",
+      "zx_zx_locationvanmapping_Area_zx_area": "Location VAN Mappings",
+      "zx_zx_orderheader_RouteNo_zx_area": "Order Headers",
+      "zx_zx_orderlines_RouteNo_zx_area": "Order Lines",
+      "zx_zx_payments_Route_zx_area": "Payments",
+      "zx_zx_routecheckin_Routeno_zx_area": "Route check Ins",
+      "zx_zx_stockinventory_Route_zx_area": "Stock Inventories",
+      "zx_zx_userareamapping_Area_zx_area": "User Area Mappings",
+      "zx_zx_visits_Route_zx_area": "Visits"
+    },
+    "PreferredName": "Areas",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Areas (Views)",
+    "Name": "_zx_area_views",
+    "RelatedEntityName": "Areas",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "13246767-aadf-4aed-b346-a5d74234a15c": "Inactive Areas",
+      "3400719b-66ae-416d-bf4f-5f4aa3b74d48": "Active Areas",
+      "4f300df3-8a07-4b38-948c-e44baff34f88": "Area Advanced Find View",
+      "a0d2826a-a32e-481a-84bf-b8f5bb21afbf": "Area Lookup View",
+      "c4210fcb-99b6-ed11-b597-002248d5db8a": "Area",
+      "d205ba69-651e-44a9-9969-60212f958d44": "Area Associated View"
+    }
+  },
+  {
+    "DisplayName": "Type of area",
+    "Name": "cr8eb_typeofarea",
+    "OptionSetInfoNameMapping": {
+      "915610000": "State",
+      "915610001": "District",
+      "915610002": "City",
+      "915610003": "Taluka",
+      "915610004": "Area"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "cr8eb_type",
+        "OptionSetReferenceEntityName": "Areas"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "cr8eb_type",
+    "RelatedEntityName": "Areas",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Areas)",
+    "Name": "zx_area_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Areas"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Areas",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Areas)",
+    "Name": "zx_area_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Areas"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Areas",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Route Category\u00A0",
+    "Name": "zx_routecategory",
+    "OptionSetInfoNameMapping": {
+      "425120000": "Retail Route",
+      "425120001": "Key Route",
+      "425120002": "Corporate"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_routecategory",
+        "OptionSetReferenceEntityName": "Areas"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_routecategory",
+    "RelatedEntityName": "Areas",
+    "Type": "OptionSetInfo"
+  }
+]

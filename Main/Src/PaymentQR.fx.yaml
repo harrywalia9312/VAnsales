@@ -1,0 +1,52 @@
+PaymentQR As screen:
+
+    Timer1 As timer:
+        AutoStart: =
+        Duration: =6000
+        Height: =70
+        OnTimerStart: =
+        Repeat: =true
+        Reset: =
+        Text: =
+        Visible: =false
+        Width: =280
+        Y: =84
+        ZIndex: =2
+
+    Gallery2 As gallery.galleryVertical:
+        AccessibleLabel: ="Gallery"
+        Height: =827
+        Items: =payments
+        Layout: =Layout.Vertical
+        TabIndex: =0
+        TemplateSize: =822
+        Y: =308
+        ZIndex: =3
+
+        Image2 As image:
+            Height: =684
+            Image: =
+            ImagePosition: =ImagePosition.Stretch
+            OnSelect: =Select(Parent)
+            Width: =625
+            ZIndex: =1
+
+    Header_4 As Header:
+        HeaderText: ="Payment"
+        ZIndex: =4
+
+    BottomBar_2 As BottomBar:
+        Y: =1026
+        ZIndex: =5
+
+    Timer2 As timer:
+        AutoStart: =true
+        Duration: =120000
+        Height: =70
+        OnTimerEnd: =
+        Visible: =false
+        Width: =280
+        X: =248
+        Y: =187
+        ZIndex: =6
+

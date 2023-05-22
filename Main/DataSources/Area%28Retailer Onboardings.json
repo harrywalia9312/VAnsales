@@ -1,0 +1,99 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_arearetaileronboardings",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_arearetaileronboarding",
+    "MaxGetRowsCount": 2000,
+    "Name": "Area(Retailer Onboardings",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_account_Area_zx_arearetaileronboarding": "Customers",
+      "zx_arearetaileronboarding_AsyncOperations": "System Jobs",
+      "zx_arearetaileronboarding_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_arearetaileronboarding_DuplicateBaseRecord": "Duplicate Records (zx_arearetaileronboarding_DuplicateBaseRecord)",
+      "zx_arearetaileronboarding_DuplicateMatchingRecord": "Duplicate Records (zx_arearetaileronboarding_DuplicateMatchingRecord)",
+      "zx_arearetaileronboarding_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_arearetaileronboarding_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_arearetaileronboarding_ProcessSession": "Process Sessions",
+      "zx_arearetaileronboarding_SyncErrors": "Sync Errors",
+      "zx_arearetaileronboardingid": "Area(Retailer Onboarding",
+      "zx_name": "Name",
+      "zx_zx_pincode_ParentArea_zx_arearetaileronbo": "Pincodes"
+    },
+    "PreferredName": "Area(Retailer Onboardings",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Area(Retailer Onboardings (Views)",
+    "Name": "_zx_arearetaileronboarding_views",
+    "RelatedEntityName": "Area(Retailer Onboardings",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "031d6daa-0c95-4dcc-8441-6e8efb7353fe": "Area(Retailer Onboarding Associated View",
+      "0ed6768e-824e-4f93-9419-f4e150c1a38b": "Area(Retailer Onboarding Advanced Find View",
+      "1c8db845-e620-4c83-9f27-8056736d7c67": "Inactive Area(Retailer Onboardings",
+      "b697c93a-8771-4815-943a-138ee09a7e21": "Area(Retailer Onboarding Lookup View",
+      "c76cc578-592d-4128-bd04-f5afec4513ce": "Active Area(Retailer Onboardings"
+    }
+  },
+  {
+    "DisplayName": "Status (Area(Retailer Onboardings)",
+    "Name": "zx_arearetaileronboarding_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Area(Retailer Onboardings"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Area(Retailer Onboardings",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Area(Retailer Onboardings)",
+    "Name": "zx_arearetaileronboarding_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Area(Retailer Onboardings"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Area(Retailer Onboardings",
+    "Type": "OptionSetInfo"
+  }
+]

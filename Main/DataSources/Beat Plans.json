@@ -1,0 +1,100 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_beatplans",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_beatplan",
+    "MaxGetRowsCount": 2000,
+    "Name": "Beat Plans",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_Beatname": "Beat name",
+      "zx_beatplan_AsyncOperations": "System Jobs",
+      "zx_beatplan_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_beatplan_DuplicateBaseRecord": "Duplicate Records (zx_beatplan_DuplicateBaseRecord)",
+      "zx_beatplan_DuplicateMatchingRecord": "Duplicate Records (zx_beatplan_DuplicateMatchingRecord)",
+      "zx_beatplan_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_beatplan_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_beatplan_ProcessSession": "Process Sessions",
+      "zx_beatplan_SyncErrors": "Sync Errors",
+      "zx_beatplanid": "Beat Plan",
+      "zx_Customer": "Customer",
+      "zx_date": "Date",
+      "zx_name": "Name"
+    },
+    "PreferredName": "Beat Plans",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Beat Plans (Views)",
+    "Name": "_zx_beatplan_views",
+    "RelatedEntityName": "Beat Plans",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "1341873f-4692-4ba5-93ce-8b4d1ffb7f64": "Active Beat Plans",
+      "58c935ae-8fd1-41e6-86fd-54384806527a": "Beat Plan Lookup View",
+      "7285472a-70e8-43c2-a1ed-5de2a698e36f": "Beat Plan Advanced Find View",
+      "a89deafe-84bd-4b8e-b199-ebce27b0839e": "Beat Plan Associated View",
+      "fb57f527-4ebe-4fe4-a115-e684cd22d64d": "Inactive Beat Plans"
+    }
+  },
+  {
+    "DisplayName": "Status (Beat Plans)",
+    "Name": "zx_beatplan_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Beat Plans"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Beat Plans",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Beat Plans)",
+    "Name": "zx_beatplan_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Beat Plans"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Beat Plans",
+    "Type": "OptionSetInfo"
+  }
+]

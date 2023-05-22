@@ -1,0 +1,150 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_itemuoms",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_itemuom",
+    "MaxGetRowsCount": 2000,
+    "Name": "Item UOMS",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_categorycode": "Category code",
+      "zx_code": "Code",
+      "zx_itemcodesite": "ITEMCODE-SITE",
+      "zx_itemuom_AsyncOperations": "System Jobs",
+      "zx_itemuom_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_itemuom_DuplicateBaseRecord": "Duplicate Records (zx_itemuom_DuplicateBaseRecord)",
+      "zx_itemuom_DuplicateMatchingRecord": "Duplicate Records (zx_itemuom_DuplicateMatchingRecord)",
+      "zx_itemuom_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_itemuom_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_itemuom_ProcessSession": "Process Sessions",
+      "zx_itemuom_SyncErrors": "Sync Errors",
+      "zx_itemuomid": "Item UOM",
+      "zx_name": "Name",
+      "zx_packtitle": "Pack Title",
+      "zx_quantityperuom": "Quantity Per UOM",
+      "zx_Site": "Site",
+      "zx_SKU": "SKU",
+      "zx_uom": "UOM"
+    },
+    "PreferredName": "Item UOMS",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Item UOMS (Views)",
+    "Name": "_zx_itemuom_views",
+    "RelatedEntityName": "Item UOMS",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "844d031f-deea-4f73-906d-f8bbb14b43d5": "Item UOM Associated View",
+      "b9f98c50-b3dd-46c2-9c1a-0660bd2c371a": "Item UOM Lookup View",
+      "bb5b9434-2ee1-4299-8eda-19db7f1ab7a3": "Item UOM Advanced Find View",
+      "c9b7ea2b-8de4-4b21-b355-ec8e237c398d": "Inactive Item UOMS",
+      "ed735eec-251e-40fa-8b3f-fb256e924fec": "Active Item UOMS"
+    }
+  },
+  {
+    "DisplayName": "Category code",
+    "Name": "zx_categorycode",
+    "OptionSetInfoNameMapping": {
+      "425120000": "FG",
+      "425120001": "TRD-FG",
+      "425120002": "MKT. ITEM"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_categorycode",
+        "OptionSetReferenceEntityName": "Item UOMS"
+      },
+      "OptionSetReferenceItem1": {
+        "OptionSetReferenceColumnName": "zx_categorycode",
+        "OptionSetReferenceEntityName": "SKU Masters"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_categorycode",
+    "RelatedEntityName": "Item UOMS",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Item UOMS)",
+    "Name": "zx_itemuom_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Item UOMS"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Item UOMS",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Item UOMS)",
+    "Name": "zx_itemuom_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Item UOMS"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Item UOMS",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Code (Item UOMS)",
+    "Name": "zx_itemuom_zx_code",
+    "OptionSetInfoNameMapping": {
+      "425120000": "Case",
+      "425120001": "PCs"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_code",
+        "OptionSetReferenceEntityName": "Item UOMS"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_code",
+    "RelatedEntityName": "Item UOMS",
+    "Type": "OptionSetInfo"
+  }
+]

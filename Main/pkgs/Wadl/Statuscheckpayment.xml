@@ -1,0 +1,81 @@
+<application xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:service="https://india-001.azure-apim.net/apim/statuscheckpayment-5f7ae3c468c3353edd-5f69d4af27be7bcb24" xmlns:siena="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11" siena:serviceId="Statuscheckpayment" xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="Statuscheckpayment"></doc>
+  <grammars>
+    <jsonTypes targetNamespace="https://india-001.azure-apim.net/apim/statuscheckpayment-5f7ae3c468c3353edd-5f69d4af27be7bcb24" xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+      <string name="Checkstatus_responses_default_def_head_def_responseTimestamp_def" />
+      <string name="Checkstatus_responses_default_def_head_def_version_def" />
+      <string name="Checkstatus_responses_default_def_head_def_signature_def" />
+      <object name="Checkstatus_responses_default_def_head_def">
+        <property name="responseTimestamp" type="string" />
+        <property name="version" type="string" />
+        <property name="signature" type="string" />
+      </object>
+      <string name="Checkstatus_responses_default_def_body_def_resultInfo_def_resultStatus_def" />
+      <string name="Checkstatus_responses_default_def_body_def_resultInfo_def_resultCode_def" />
+      <string name="Checkstatus_responses_default_def_body_def_resultInfo_def_resultMsg_def" />
+      <object name="Checkstatus_responses_default_def_body_def_resultInfo_def">
+        <property name="resultStatus" type="string" />
+        <property name="resultCode" type="string" />
+        <property name="resultMsg" type="string" />
+      </object>
+      <string name="Checkstatus_responses_default_def_body_def_txnId_def" />
+      <string name="Checkstatus_responses_default_def_body_def_bankTxnId_def" />
+      <string name="Checkstatus_responses_default_def_body_def_orderId_def" />
+      <string name="Checkstatus_responses_default_def_body_def_txnAmount_def" />
+      <string name="Checkstatus_responses_default_def_body_def_txnType_def" />
+      <string name="Checkstatus_responses_default_def_body_def_gatewayName_def" />
+      <string name="Checkstatus_responses_default_def_body_def_bankName_def" />
+      <string name="Checkstatus_responses_default_def_body_def_mid_def" />
+      <string name="Checkstatus_responses_default_def_body_def_paymentMode_def" />
+      <string name="Checkstatus_responses_default_def_body_def_refundAmt_def" />
+      <string name="Checkstatus_responses_default_def_body_def_txnDate_def" />
+      <string name="Checkstatus_responses_default_def_body_def_merchantUniqueReference_def" />
+      <string name="Checkstatus_responses_default_def_body_def_posId_def" />
+      <string name="Checkstatus_responses_default_def_body_def_udf1_def" />
+      <object name="Checkstatus_responses_default_def_body_def">
+        <property name="resultInfo" typeRef="Checkstatus_responses_default_def_body_def_resultInfo_def" />
+        <property name="txnId" type="string" />
+        <property name="bankTxnId" type="string" />
+        <property name="orderId" type="string" />
+        <property name="txnAmount" type="string" />
+        <property name="txnType" type="string" />
+        <property name="gatewayName" type="string" />
+        <property name="bankName" type="string" />
+        <property name="mid" type="string" />
+        <property name="paymentMode" type="string" />
+        <property name="refundAmt" type="string" />
+        <property name="txnDate" type="string" />
+        <property name="merchantUniqueReference" type="string" />
+        <property name="posId" type="string" />
+        <property name="udf1" type="string" />
+      </object>
+      <object name="Checkstatus_responses_default_def">
+        <property name="head" typeRef="Checkstatus_responses_default_def_head_def" />
+        <property name="body" typeRef="Checkstatus_responses_default_def_body_def" />
+      </object>
+    </jsonTypes>
+  </grammars>
+  <resources siena:authenticationProviderHref="#PowerAppAuth" base="https://india-001.azure-apim.net/apim/statuscheckpayment-5f7ae3c468c3353edd-5f69d4af27be7bcb24">
+    <resource path="/{connectionId}/api/values">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="GET" id="Checkstatus" actionName="Checkstatus" siena:isDeprecated="false">
+        <doc title="payment check" />
+        <request>
+          <param style="query" name="Orderid" type="xs:string" />
+          <param style="header" name="Content-type" type="xs:string" />
+        </request>
+        <response>
+          <representation mediaType="application/json" element="service:Checkstatus_responses_default_def" />
+        </response>
+      </method>
+    </resource>
+  </resources>
+  <authenticationProviders xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <connectionProvider id="PowerAppAuth" siena:connectionProviderId="shared_statuscheckpayment-5f7ae3c468c3353edd-5f69d4af27be7bcb24" />
+  </authenticationProviders>
+  <template xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <variable name="connectionId">
+      <modifyParams style="template" name="connectionId" attribute="fixed" />
+    </variable>
+  </template>
+</application>

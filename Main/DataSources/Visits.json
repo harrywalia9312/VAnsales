@@ -1,0 +1,152 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_visitses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_visits",
+    "MaxGetRowsCount": 2000,
+    "Name": "Visits",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_checkinlatitude": "Check-in Latitude",
+      "zx_checkinlongitude": "Check-in Longitude",
+      "zx_checkintime": "Check-in Time",
+      "zx_checkoutlatitude": "Check-out Latitude",
+      "zx_checkoutlongitude": "Check-out Longitude",
+      "zx_checkouttime": "Check-out Time",
+      "zx_Customer": "Customer",
+      "zx_locationmatched": "Location Matched ",
+      "zx_name": "Visit ID",
+      "zx_Route": "Route",
+      "zx_Salesperson": "Salesperson",
+      "zx_salespersonemployeecode": "Sales Person Employee Code",
+      "zx_visitdate": "Visit Date",
+      "zx_visits_AsyncOperations": "System Jobs",
+      "zx_visits_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_visits_DuplicateBaseRecord": "Duplicate Records (zx_visits_DuplicateBaseRecord)",
+      "zx_visits_DuplicateMatchingRecord": "Duplicate Records (zx_visits_DuplicateMatchingRecord)",
+      "zx_visits_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_visits_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_visits_ProcessSession": "Process Sessions",
+      "zx_visits_SyncErrors": "Sync Errors",
+      "zx_visitsid": "Visits",
+      "zx_visittype": "Visit Type",
+      "zx_zx_orderheader_Vists_zx_visits": "Order Headers"
+    },
+    "PreferredName": "Visits",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Visits (Views)",
+    "Name": "_zx_visits_views",
+    "RelatedEntityName": "Visits",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "32087651-517b-4678-a83e-33d376190a56": "Active Visits",
+      "355f62df-b957-421b-a4df-e3e4d43adc6c": "Visits Advanced Find View",
+      "65d7c820-ccb6-45df-9f8f-8b23564e3b30": "Inactive Visits",
+      "6edb40eb-0ba6-4862-b4fd-064e4434c33d": "Visits Lookup View",
+      "977e4571-bbc4-ed11-b597-002248d5db8a": "My Visits",
+      "99b4cda1-84a1-4a85-bb90-be303739ce53": "Visits Associated View"
+    }
+  },
+  {
+    "DisplayName": "Status (Visits)",
+    "Name": "zx_visits_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Visits"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Visits",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Visits)",
+    "Name": "zx_visits_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Visits"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Visits",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Location Matched  (Visits)",
+    "Name": "zx_visits_zx_locationmatched",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_locationmatched",
+        "OptionSetReferenceEntityName": "Visits"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_locationmatched",
+    "RelatedEntityName": "Visits",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Visit Type",
+    "Name": "zx_visittype",
+    "OptionSetInfoNameMapping": {
+      "425120000": "Planned",
+      "425120001": "Unplanned"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_visittype",
+        "OptionSetReferenceEntityName": "Visits"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_visittype",
+    "RelatedEntityName": "Visits",
+    "Type": "OptionSetInfo"
+  }
+]

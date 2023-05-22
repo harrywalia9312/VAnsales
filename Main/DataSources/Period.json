@@ -1,0 +1,17 @@
+[
+  {
+    "Data": "[{\"Group\":1,\"Name\":\"thousand\"},{\"Group\":2,\"Name\":\"million\"},{\"Group\":3,\"Name\":\"billion\"},{\"Group\":4,\"Name\":\"trillion\"},{\"Group\":5,\"Name\":\"quadrillion\"},{\"Group\":6,\"Name\":\"pentillion\"}]",
+    "IsSampleData": false,
+    "IsWritable": false,
+    "Name": "Period",
+    "OrderedColumnNames": [
+      "Group",
+      "Name"
+    ],
+    "OriginalName": "Period",
+    "OriginalSchema": "*[Group:n, Name:s]",
+    "Schema": "*[Group:n, Name:s]",
+    "Token": "dummyToken",
+    "Type": "StaticDataSourceInfo"
+  }
+]

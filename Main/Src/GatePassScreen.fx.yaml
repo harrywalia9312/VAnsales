@@ -1,0 +1,1107 @@
+GatePassScreen As screen:
+    Fill: =_VarGblAppColors.BackgroundColor
+    OnVisible: |
+        =Set(varShowGatePassFile,false);
+        ClearCollect(
+            varGatePassHeader,
+            AddColumns(
+                Filter(
+                    'Stock Transfer Headers',
+                    'To Location'.Warehouse = StockTransferWarehouse /*&& 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Warehouse to van transfer'*/ && 'Created On' >= Today()
+                ),
+                "headerGUID",
+                'Stock Transfer Header'
+            )
+        );
+        ClearCollect(
+            colOfflineStockLine,
+            Filter(
+                'Stock Transfer Lines',
+                'Transfer Order No'.'Stock Transfer Header' = First(varGatePassHeader).'Stock Transfer Header'
+            )
+        );
+
+    Gallery7_3 As gallery.galleryVertical:
+        AccessibleLabel: ="Gallery7_3"
+        Fill: |-
+            =//RGBA(0, 0, 0, 0)
+            _VarGblAppColors.BackgroundColor
+        FocusedBorderColor: =Color.Transparent
+        FocusedBorderThickness: =0.1
+        Height: =605
+        Items: |-
+            =If(
+                CountRows(varGatePassHeader) > 0,
+                SortByColumns(
+                    Sort(
+                        Filter(
+                            Filter(
+                                //colOfflineStockLine,
+                                'Stock Transfer Lines',
+                                'Transfer Order No'.'Stock Transfer Header' in varGatePassHeader.headerGUID
+                            ),
+                            'Created On' >= Today()
+                        ),
+                        'Created On',
+                        SortOrder.Descending
+                    ),
+                    "zx_transferstatus",
+                    [
+                        'Transfer status (Stock Transfer Lines)'.'Transfer generated',
+                        'Transfer status (Stock Transfer Lines)'.'Transfer accepted',
+                        'Transfer status (Stock Transfer Lines)'.'Transfer rejected'
+                    ]
+                )
+            )
+        Layout: =Layout.Vertical
+        ShowScrollbar: =false
+        TabIndex: =
+        TemplateSize: =120
+        Width: =630
+        X: =5
+        Y: =345
+        ZIndex: =10
+
+        Button6_3 As button:
+            DisabledFill: |-
+                =//RGBA(244, 244, 244, 1)
+                ColorFade( _VarGblAppColors.BisleriBlue, 80%)
+            DisplayMode: =DisplayMode.Disabled
+            Height: =Gallery7_3.TemplateHeight
+            OnSelect: =Select(Parent)
+            Size: =24
+            Text: =""
+            Width: =620
+            ZIndex: =1
+
+        Label9_8 As label:
+            Align: =Align.Center
+            Color: =_VarGblAppColors.BisleriBlue
+            FontWeight: =FontWeight.Semibold
+            Height: =44
+            OnSelect: =Select(Parent)
+            Size: =_VarGblAppFonts.Size.Regular
+            Text: =ThisItem.SKU.'Pack Title'
+            Width: =307
+            X: =30
+            ZIndex: =2
+
+        TextInput2_5 As text:
+            AccessibleLabel: ="TextInput2_5"
+            Align: =Align.Center
+            BorderColor: |-
+                =//RGBA(0, 18, 107, 1)
+                ColorFade( _VarGblAppColors.BisleriBlue, -30%)
+            Default: =ThisItem.Cases
+            DisplayMode: =DisplayMode.View
+            FocusedBorderThickness: =2
+            Format: =TextFormat.Number
+            Height: =41
+            HoverBorderColor: =ColorFade( _VarGblAppColors.BisleriBlue, 30%)
+            HoverFill: |-
+                =//RGBA(186, 202, 226, 1)
+                ColorFade(_VarGblAppColors.BisleriBlue, 100%)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =5
+            Size: =_VarGblAppFonts.Size.Subtitle
+            Width: =77
+            X: =374
+            Y: =39
+            ZIndex: =3
+
+        TextInput2_6 As text:
+            AccessibleLabel: ="TextInput2_6"
+            Align: =Align.Center
+            BorderColor: |-
+                =//RGBA(0, 18, 107, 1)
+                ColorFade( _VarGblAppColors.BisleriBlue, -30%)
+            Default: =ThisItem.PCs
+            DisplayMode: =DisplayMode.View
+            FocusedBorderThickness: =2
+            Format: =TextFormat.Number
+            Height: =41
+            HoverBorderColor: =ColorFade( _VarGblAppColors.BisleriBlue, 30%)
+            HoverFill: |-
+                =//RGBA(186, 202, 226, 1)
+                ColorFade(_VarGblAppColors.BisleriBlue, 100%)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =5
+            Size: =_VarGblAppFonts.Size.Subtitle
+            Width: =77
+            X: =512
+            Y: =39
+            ZIndex: =4
+
+        Label9_9 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Height: =59
+            OnSelect: =Select(Parent)
+            Size: =_VarGblAppFonts.Size.Tiny
+            Text: =ThisItem.SKU.'Item Description '
+            Width: =312
+            X: =35
+            Y: =25
+            ZIndex: =5
+
+        Label9_10 As label:
+            Color: =_VarGblAppColors.BisleriBlue
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Size: =_VarGblAppFonts.Size.Regular
+            Text: |-
+                ="Mfg Date: " & Text(ThisItem.'Manufacturing date', "dd mmm yyyy")
+            Width: =185
+            X: =5
+            Y: =80
+            ZIndex: =6
+
+        Label9_11 As label:
+            Align: =Align.Center
+            Color: =_VarGblAppColors.BisleriBlue
+            FontWeight: =FontWeight.Semibold
+            Height: =31
+            OnSelect: =Select(Parent)
+            Size: =_VarGblAppFonts.Size.Regular
+            Text: |-
+                ="Batch No: " & ThisItem.'Batch no.'
+            Width: =194
+            X: =184
+            Y: =81
+            ZIndex: =7
+
+        Checkbox1_2 As checkbox:
+            BorderColor: =_VarGblAppColors.BisleriBlue
+            CheckboxBorderColor: =_VarGblAppColors.BisleriBlue
+            CheckboxSize: =30
+            CheckmarkFill: =_VarGblAppColors.BisleriBlue
+            Color: =RGBA(0, 0, 0, 0)
+            Default: =ThisItem.'Transfer Lines No' in colSelectedGatePassLines.Result
+            DisplayMode: =If(ThisItem.'Transfer accepted' = 'Transfer accepted (Stock Transfer Lines)'.Yes, DisplayMode.Disabled, DisplayMode.Edit)
+            FocusedBorderColor: =Color.Transparent
+            FocusedBorderThickness: =0.1
+            Height: =59
+            HoverBorderColor: =//ColorFade(Self.BorderColor, 30%)
+            HoverColor: =Self.Color
+            OnCheck: |-
+                =Collect(colSelectedGatePassLines, {Result: ThisItem.'Transfer Lines No'})
+            OnSelect: =Select(Parent)
+            OnUncheck: =Remove(colSelectedGatePassLines, LookUp(colSelectedGatePassLines, Result = ThisItem.'Transfer Lines No'))
+            PressedBorderColor: =//ColorFade(Self.BorderColor, -30%)
+            PressedFill: =//ColorFade(Self.Fill, -30%)
+            Size: =21
+            Text: =
+            Visible: =If(ThisItem.'Transfer accepted' = 'Transfer accepted (Stock Transfer Lines)'.Yes, false, true)
+            Width: =336
+            X: =1
+            Y: =21
+            ZIndex: =8
+
+    BottomBar_22 As BottomBar:
+        Y: =1026
+        ZIndex: =12
+
+    Header_20 As Header:
+        HeaderText: ="Gate Pass"
+        ZIndex: =14
+
+    Group3 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =15
+
+        HtmlText1_151 As htmlViewer:
+            DisplayMode: =DisplayMode.View
+            Height: =162
+            HtmlText: |-
+                ="<div style='border-radius:10px; background-color:#00B3A1; opacity: 1; width:570px; height:140px; '></div>"
+            Width: =586
+            X: =27
+            Y: =109
+            ZIndex: =1
+
+        Label50_6 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =43
+            Size: =_VarGblAppFonts.Size.Subtitle
+            Text: ="Date"
+            VerticalAlign: =VerticalAlign.Top
+            Width: =110
+            X: =50
+            Y: =140
+            ZIndex: =2
+
+        Label49_5 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =43
+            Size: =_VarGblAppFonts.Size.Subtitle
+            Text: =Text(Today(), "dd mmm yyyy")
+            VerticalAlign: =VerticalAlign.Top
+            Width: =160
+            X: =160
+            Y: =140
+            ZIndex: =3
+
+        Label50_7 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =43
+            Size: =_VarGblAppFonts.Size.Subtitle
+            Text: ="Vehicle No."
+            VerticalAlign: =VerticalAlign.Top
+            Width: =110
+            X: =50
+            Y: =190
+            ZIndex: =4
+
+        Label49_6 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =43
+            Size: =_VarGblAppFonts.Size.Subtitle
+            Text: |-
+                =//varUserVanNo.Van.'Vehicle Number/Warehouse Name'
+                varUserVanNo.Van.Name
+            VerticalAlign: =VerticalAlign.Top
+            Width: =160
+            X: =160
+            Y: =190
+            ZIndex: =5
+
+        Label50_8 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =43
+            Size: =_VarGblAppFonts.Size.Subtitle
+            Text: ="Username"
+            VerticalAlign: =VerticalAlign.Top
+            Width: =110
+            X: =323
+            Y: =140
+            ZIndex: =6
+
+        Label49_7 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =48
+            Size: =_VarGblAppFonts.Size.Subtitle
+            Text: |-
+                =varUserArea.Salesperson.'Full Name'
+                //varUserArea.Salesperson.
+            Width: =175
+            X: =423
+            Y: =132
+            ZIndex: =7
+
+        Label50_9 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =43
+            Size: =_VarGblAppFonts.Size.Subtitle
+            Text: ="Route"
+            VerticalAlign: =VerticalAlign.Top
+            Width: =100
+            X: =323
+            Y: =190
+            ZIndex: =8
+
+        Label49_8 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =43
+            Size: =_VarGblAppFonts.Size.Subtitle
+            Text: =varUserArea.Area.'Name (zx_name)'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =140
+            X: =423
+            Y: =190
+            ZIndex: =9
+
+    btnNewOrderHeaderProduct_9 As button:
+        DisabledBorderColor: |-
+            =//RGBA(166, 166, 166, 1)
+            _VarGblAppColors.BisleriBlue
+        DisabledColor: |-
+            =//RGBA(166, 166, 166, 1)
+            _VarGblAppColors.LightText
+        DisabledFill: |-
+            =//RGBA(244, 244, 244, 1)
+            _VarGblAppColors.BisleriBlue
+        DisplayMode: =DisplayMode.Disabled
+        Height: =50
+        OnSelect: =
+        Size: =_VarGblAppFonts.Size.Subtitle
+        Text: ="Product"
+        Width: =340
+        X: =10
+        Y: =290
+        ZIndex: =17
+
+    btnNewOrderHeaderPcs_10 As button:
+        DisabledBorderColor: |-
+            =//RGBA(166, 166, 166, 1)
+            _VarGblAppColors.BisleriBlue
+        DisabledColor: |-
+            =//RGBA(166, 166, 166, 1)
+            _VarGblAppColors.LightText
+        DisabledFill: |-
+            =//RGBA(244, 244, 244, 1)
+            _VarGblAppColors.BisleriBlue
+        DisplayMode: =DisplayMode.Disabled
+        Height: =50
+        OnSelect: =
+        Size: =_VarGblAppFonts.Size.Subtitle
+        Text: ="Gate Pass (Pcs)"
+        Width: =135
+        X: =btnNewOrderHeaderCases_9.X + btnNewOrderHeaderCases_9.Width +5
+        Y: =290
+        ZIndex: =18
+
+    Group5 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =18
+
+        Button12_2 As button:
+            Color: =_VarGblAppColors.LightText
+            Fill: =_VarGblAppColors.BisleriBlue
+            FocusedBorderThickness: =2
+            Height: =49
+            HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+            OnSelect: |
+                =//Launch(PrintBisleriGatePass.Run(Last(varGatePassHeader).headerGUID).bislerigatepass)
+                ClearCollect(
+                    dataliness,
+                    Filter(
+                        'Stock Transfer Lines',
+                        'Transfer Order No'.'Stock Transfer Header' = GUID(Last(varGatePassHeader).headerGUID)
+                    )
+                );
+                Set(
+                    Routecodedata,
+                    First(
+                        Filter(
+                            'Location VAN Mappings',
+                            Van.Warehouse = StockTransferWarehouse
+                        )
+                    ).Area.'Name (zx_name)'
+                );
+                Set(
+                    varpdf,
+                    PDF(
+                        Container8,
+                        {ExpandContainers: true}
+                    )
+                );
+                Set(
+                    varrd,
+                    Patch(
+                        'Stock Transfer Headers',
+                        LookUp(
+                            'Stock Transfer Headers',
+                            'Stock Transfer Header' = GUID(Last(varGatePassHeader).headerGUID)
+                        ),
+                        {
+                            File: {
+                                FileName: "TEst.pdf",
+                                Value: varpdf
+                            }
+                        }
+                    ).'Stock Transfer Header'
+                );
+                
+                Set(varShowGatePassFile, true);
+            PaddingLeft: =25
+            Size: =_VarGblAppFonts.Size.Title
+            Text: ="PRINT"
+            Width: =149
+            X: =197
+            Y: =966
+            ZIndex: =11
+
+        Icon5 As icon.Print:
+            AccessibleLabel: ="Icon5"
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =36
+            Icon: =Icon.Print
+            OnSelect: |
+                =//Launch(PrintBisleriGatePass.Run(Last(varGatePassHeader).headerGUID).bislerigatepass)
+                ClearCollect(
+                    dataliness,
+                    Filter(
+                        'Stock Transfer Lines',
+                        'Transfer Order No'.'Stock Transfer Header' = GUID(Last(varGatePassHeader).headerGUID)
+                    )
+                );
+                Set(
+                    Routecodedata,
+                    First(
+                        Filter(
+                            'Location VAN Mappings',
+                            Van.Warehouse = GUID("69d5acd0-5cb4-ed11-83fe-002248d5da52")
+                        )
+                    ).Area.'Name (zx_name)'
+                );
+                Set(
+                    varpdf,
+                    PDF(
+                        Container8,
+                        {ExpandContainers: true}
+                    )
+                );
+                Set(
+                    varr,
+                    Patch(
+                        'Stock Transfer Headers',
+                       Defaults('Stock Transfer Headers'),
+                        {
+                            
+                            File: {
+                                FileName: "TEst.pdf",
+                                Value: varpdf
+                            }
+                        }
+                    ).'Stock Transfer Header'
+                );
+            PaddingBottom: =7
+            PaddingLeft: =7
+            PaddingRight: =7
+            PaddingTop: =7
+            TabIndex: =0
+            Width: =36
+            X: =207
+            Y: =974
+            ZIndex: =15
+
+    Group6 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =18
+
+        Button12_3 As button:
+            Color: =_VarGblAppColors.LightText
+            DisplayMode: |-
+                =If(
+                    IsBlank(
+                        LookUp(
+                            Filter(
+                                Filter(
+                                    'Stock Transfer Lines',
+                                    'Transfer Order No'.'Stock Transfer Header' in varGatePassHeader.headerGUID
+                                ),
+                                Date >= Today()
+                            ),
+                            'Transfer accepted' = 'Transfer accepted (Stock Transfer Lines)'.No
+                        )
+                    ),
+                    DisplayMode.Disabled,
+                    DisplayMode.Edit
+                )
+            Fill: =_VarGblAppColors.BisleriBlue
+            FocusedBorderThickness: =2
+            Height: =49
+            HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+            OnSelect: |
+                =//Set(_VarSignPopUp, !_VarSignPopUp)
+                If(
+                    CountIf(
+                        Attendances,
+                        User.'Primary Email' = User().Email && Date = Today() && !IsBlank('Check-in Time')
+                    ) = 0,
+                    Notify(
+                        "Kindly Start your day first",
+                        NotificationType.Error,
+                        2000
+                    );
+                    Navigate('Attendance Screen'),
+                    ClearCollect(
+                        colModifiedGatePassLines,
+                        ForAll(
+                            colSelectedGatePassLines As oneLine,
+                            Patch(
+                                'Stock Transfer Lines',
+                                LookUp(
+                                    'Stock Transfer Lines',
+                                    'Transfer Lines No' = oneLine.Result
+                                ),
+                                {
+                                    'Transfer accepted': 'Transfer accepted (Stock Transfer Lines)'.Yes,
+                                    'Transfer status': 'Transfer status (Stock Transfer Lines)'.'Transfer accepted'
+                                }
+                            )
+                        )
+                    );
+                    
+                //Stock substraction from location ____________________________________________________________________________________
+                /*ForAll(
+                    colModifiedGatePassLines As oneLine,
+                    Patch(
+                        'Current Stocks',
+                        LookUp(
+                            'Current Stocks',
+                            'Item SKU'.'SKU Master' = oneLine.SKU.'SKU Master' && 'Van No'.Warehouse = LookUp(
+                                'Stock Transfer Headers',
+                                'Stock Transfer Header' = oneLine.'Transfer Order No'.'Stock Transfer Header'
+                            ).'From Location'.Warehouse
+                        ),
+                        {
+                            Cases: LookUp(
+                                'Current Stocks',
+                                'Item SKU'.'SKU Master' = oneLine.SKU.'SKU Master' && 'Van No'.Warehouse = LookUp(
+                                    'Stock Transfer Headers',
+                                    'Stock Transfer Header' = oneLine.'Transfer Order No'.'Stock Transfer Header'
+                                ).'From Location'.Warehouse
+                            ).Cases - oneLine.Cases,
+                            PCs: LookUp(
+                                'Current Stocks',
+                                'Item SKU'.'SKU Master' = oneLine.SKU.'SKU Master' && 'Van No'.Warehouse = LookUp(
+                                    'Stock Transfer Headers',
+                                    'Stock Transfer Header' = oneLine.'Transfer Order No'.'Stock Transfer Header'
+                                ).'From Location'.Warehouse
+                            ).PCs - oneLine.PCs
+                        }
+                    )
+                );*/
+                // Stock addition to location_______________________________________________________________________
+                
+                    ForAll(
+                        colModifiedGatePassLines As oneLine,
+                        If(
+                            IsBlank(
+                                LookUp(
+                                    'Current Stocks',
+                                    'Item SKU'.'SKU Master' = oneLine.SKU.'SKU Master' && 'Van No'.Warehouse = /*LookUp(
+                                        'Stock Transfer Headers',
+                                        'Stock Transfer Header' = oneLine.'Transfer Order No'.'Stock Transfer Header'
+                                    ).'To Location'.Warehouse*/ StockTransferWarehouse && 'Created Date' >= Today()
+                                )
+                            ),
+                            Patch(
+                                'Current Stocks',
+                                Defaults('Current Stocks'),
+                                {
+                                    Cases: oneLine.Cases,
+                                    PCs: oneLine.PCs,
+                                    'Item SKU': LookUp(
+                                        'SKU Masters',
+                                        'SKU Master' = oneLine.SKU.'SKU Master'
+                                    ),
+                                    /*'Route No': LookUp(Areas, Area = LookUp(
+                                        'Location VAN Mappings',
+                                       Van.Warehouse = LookUp(
+                                            'Stock Transfer Headers',
+                                            'Stock Transfer Header' = oneLine.'Transfer Order No'.'Stock Transfer Header'
+                                        ).'To Location'.Warehouse
+                                    ).Area.Area),*/
+                                    'Van No': LookUp(
+                                        Warehouses,
+                                        Warehouse = /*LookUp(
+                                            'Stock Transfer Headers',
+                                            'Stock Transfer Header' = oneLine.'Transfer Order No'.'Stock Transfer Header'
+                                        ).'To Location'.Warehouse*/ StockTransferWarehouse
+                                    ),
+                                    'Last Updated Date': Now()
+                                }
+                            ),
+                            Patch(
+                                'Current Stocks',
+                                LookUp(
+                                    'Current Stocks',
+                                    'Item SKU'.'SKU Master' = oneLine.SKU.'SKU Master' && 'Van No'.Warehouse = /*LookUp(
+                                        'Stock Transfer Headers',
+                                        'Stock Transfer Header' = oneLine.'Transfer Order No'.'Stock Transfer Header'
+                                    ).'To Location'.Warehouse*/ StockTransferWarehouse && 'Created Date' >= Today()
+                                ),
+                                {
+                                    Cases: LookUp(
+                                        'Current Stocks',
+                                        'Item SKU'.'SKU Master' = oneLine.SKU.'SKU Master' && 'Van No'.Warehouse =/* LookUp(
+                                            'Stock Transfer Headers',
+                                            'Stock Transfer Header' = oneLine.'Transfer Order No'.'Stock Transfer Header'
+                                        ).'To Location'.Warehouse*/ StockTransferWarehouse && 'Created Date' >= Today()
+                                    ).Cases + oneLine.Cases,
+                                    PCs: LookUp(
+                                        'Current Stocks',
+                                        'Item SKU'.'SKU Master' = oneLine.SKU.'SKU Master' && 'Van No'.Warehouse = /*LookUp(
+                                            'Stock Transfer Headers',
+                                            'Stock Transfer Header' = oneLine.'Transfer Order No'.'Stock Transfer Header'
+                                        ).'To Location'.Warehouse*/ StockTransferWarehouse && 'Created Date' >= Today()
+                                    ).PCs + oneLine.PCs,
+                                    'Last Updated Date': Now()
+                                }
+                            )
+                        )
+                    );
+                    Clear(colModifiedGatePassLines);
+                    Clear(colSelectedGatePassLines);
+                    Notify(
+                        "Gate pass confirmation successfully done",
+                        NotificationType.Success,
+                        2000
+                    );
+                    Navigate('Visit Screen')
+                );
+                ClearCollect(
+                    colOfflineCurrentStock,
+                    Filter(
+                        'Current Stocks',
+                        'Created Date' >= Today() && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse
+                    )
+                );
+            PaddingLeft: =20
+            Size: =_VarGblAppFonts.Size.Title
+            Text: ="     CONTINUE"
+            Width: =223
+            X: =381
+            Y: =966
+            ZIndex: =13
+
+        Icon6 As icon.OpenInNewWindow:
+            AccessibleLabel: ="Icon6"
+            Color: =RGBA(255, 255, 255, 1)
+            DisplayMode: |-
+                =If(
+                    IsBlank(
+                        LookUp(
+                            Filter(
+                                Filter(
+                                    'Stock Transfer Lines',
+                                    'Transfer Order No'.'Stock Transfer Header' in varGatePassHeader.headerGUID
+                                ),
+                                Date >= Today()
+                            ),
+                            'Transfer accepted' = 'Transfer accepted (Stock Transfer Lines)'.No
+                        )
+                    ),
+                    DisplayMode.Disabled,
+                    DisplayMode.Edit
+                )
+            Height: =36
+            Icon: =Icon.OpenInNewWindow
+            OnSelect: |-
+                =//Set(_VarSignPopUp, !_VarSignPopUp)
+                If(
+                    CountIf(
+                        Attendances,
+                        User.'Primary Email' = User().Email && Date = Today() && !IsBlank('Check-in Time')
+                    ) = 0,
+                    Notify(
+                        "Kindly Start your day first",
+                        NotificationType.Error,
+                        2000
+                    );
+                    Navigate('Attendance Screen'),
+                    ClearCollect(
+                        colModifiedGatePassLines,
+                        ForAll(
+                            colSelectedGatePassLines As oneLine,
+                            Patch(
+                                'Stock Transfer Lines',
+                                LookUp(
+                                    'Stock Transfer Lines',
+                                    'Transfer Lines No' = oneLine.Result
+                                ),
+                                {
+                                    'Transfer accepted': 'Transfer accepted (Stock Transfer Lines)'.Yes,
+                                    'Transfer status': 'Transfer status (Stock Transfer Lines)'.'Transfer accepted'
+                                }
+                            )
+                        )
+                    );
+                    
+                //Stock substraction from location ____________________________________________________________________________________
+                /*ForAll(
+                    colModifiedGatePassLines As oneLine,
+                    Patch(
+                        'Current Stocks',
+                        LookUp(
+                            'Current Stocks',
+                            'Item SKU'.'SKU Master' = oneLine.SKU.'SKU Master' && 'Van No'.Warehouse = LookUp(
+                                'Stock Transfer Headers',
+                                'Stock Transfer Header' = oneLine.'Transfer Order No'.'Stock Transfer Header'
+                            ).'From Location'.Warehouse
+                        ),
+                        {
+                            Cases: LookUp(
+                                'Current Stocks',
+                                'Item SKU'.'SKU Master' = oneLine.SKU.'SKU Master' && 'Van No'.Warehouse = LookUp(
+                                    'Stock Transfer Headers',
+                                    'Stock Transfer Header' = oneLine.'Transfer Order No'.'Stock Transfer Header'
+                                ).'From Location'.Warehouse
+                            ).Cases - oneLine.Cases,
+                            PCs: LookUp(
+                                'Current Stocks',
+                                'Item SKU'.'SKU Master' = oneLine.SKU.'SKU Master' && 'Van No'.Warehouse = LookUp(
+                                    'Stock Transfer Headers',
+                                    'Stock Transfer Header' = oneLine.'Transfer Order No'.'Stock Transfer Header'
+                                ).'From Location'.Warehouse
+                            ).PCs - oneLine.PCs
+                        }
+                    )
+                );*/
+                // Stock addition to location _______________________________________________________________________________________
+                ForAll(
+                        colModifiedGatePassLines As oneLine,
+                        If(
+                            IsBlank(
+                                LookUp(
+                                    'Current Stocks',
+                                    'Item SKU'.'SKU Master' = oneLine.SKU.'SKU Master' && 'Van No'.Warehouse = /*LookUp(
+                                        'Stock Transfer Headers',
+                                        'Stock Transfer Header' = oneLine.'Transfer Order No'.'Stock Transfer Header'
+                                    ).'To Location'.Warehouse*/ StockTransferWarehouse && 'Created Date' >= Today()
+                                )
+                            ),
+                            Patch(
+                                'Current Stocks',
+                                Defaults('Current Stocks'),
+                                {
+                                    Cases: oneLine.Cases,
+                                    PCs: oneLine.PCs,
+                                    'Item SKU': LookUp(
+                                        'SKU Masters',
+                                        'SKU Master' = oneLine.SKU.'SKU Master'
+                                    ),
+                                    /*'Route No': LookUp(Areas, Area = LookUp(
+                                        'Location VAN Mappings',
+                                       Van.Warehouse = LookUp(
+                                            'Stock Transfer Headers',
+                                            'Stock Transfer Header' = oneLine.'Transfer Order No'.'Stock Transfer Header'
+                                        ).'To Location'.Warehouse
+                                    ).Area.Area),*/
+                                    'Van No': LookUp(
+                                        Warehouses,
+                                        Warehouse = StockTransferWarehouse
+                                    ),
+                                    'Last Updated Date': Now()
+                                }
+                            ),
+                            Patch(
+                                'Current Stocks',
+                                LookUp(
+                                    'Current Stocks',
+                                    'Item SKU'.'SKU Master' = oneLine.SKU.'SKU Master' && 'Van No'.Warehouse = /*LookUp(
+                                        'Stock Transfer Headers',
+                                        'Stock Transfer Header' = oneLine.'Transfer Order No'.'Stock Transfer Header'
+                                    ).'To Location'.Warehouse*/ StockTransferWarehouse && 'Created Date' >= Today()
+                                ),
+                                {
+                                    Cases: LookUp(
+                                        'Current Stocks',
+                                        'Item SKU'.'SKU Master' = oneLine.SKU.'SKU Master' && 'Van No'.Warehouse = /*LookUp(
+                                            'Stock Transfer Headers',
+                                            'Stock Transfer Header' = oneLine.'Transfer Order No'.'Stock Transfer Header'
+                                        ).'To Location'.Warehouse*/ StockTransferWarehouse && 'Created Date' >= Today()
+                                    ).Cases + oneLine.Cases,
+                                    PCs: LookUp(
+                                        'Current Stocks',
+                                        'Item SKU'.'SKU Master' = oneLine.SKU.'SKU Master' && 'Van No'.Warehouse =/* LookUp(
+                                            'Stock Transfer Headers',
+                                            'Stock Transfer Header' = oneLine.'Transfer Order No'.'Stock Transfer Header'
+                                        ).'To Location'.Warehouse*/ StockTransferWarehouse && 'Created Date' >= Today()
+                                    ).PCs + oneLine.PCs,
+                                    'Last Updated Date': Now()
+                                }
+                            )
+                        )
+                    );
+                    Clear(colModifiedGatePassLines);
+                    Clear(colSelectedGatePassLines);
+                    Notify(
+                        "Gate pass confirmation successfully done",
+                        NotificationType.Success,
+                        2000
+                    );
+                    Navigate('Visit Screen')
+                )
+            PaddingBottom: =7
+            PaddingLeft: =6
+            PaddingRight: =7
+            PaddingTop: =7
+            TabIndex: =0
+            Width: =36
+            X: =393
+            Y: =972
+            ZIndex: =16
+
+    btnNewOrderHeaderCases_9 As button:
+        DisabledBorderColor: |-
+            =//RGBA(166, 166, 166, 1)
+            _VarGblAppColors.BisleriBlue
+        DisabledColor: |-
+            =//RGBA(166, 166, 166, 1)
+            _VarGblAppColors.LightText
+        DisabledFill: |-
+            =//RGBA(244, 244, 244, 1)
+            _VarGblAppColors.BisleriBlue
+        DisplayMode: =DisplayMode.Disabled
+        Height: =50
+        OnSelect: =
+        Size: =_VarGblAppFonts.Size.Subtitle
+        Text: ="Gate Pass (Cases)"
+        Width: =135
+        X: =btnNewOrderHeaderProduct_9.X + btnNewOrderHeaderProduct_9.Width +5
+        Y: =290
+        ZIndex: =19
+
+    Checkbox1_3 As checkbox:
+        BorderColor: =Color.Transparent
+        CheckboxBorderColor: =_VarGblAppColors.BisleriBlue
+        CheckboxSize: =30
+        CheckmarkFill: =_VarGblAppColors.BisleriBlue
+        Color: =_VarGblAppColors.BisleriBlueLight
+        Default: |-
+            =If(
+                CountRows(
+                    Filter(
+                        'Stock Transfer Lines',
+                        'Transfer Order No'.'Stock Transfer Header' in varGatePassHeader.headerGUID
+                    )
+                ) = CountRows(colSelectedGatePassLines),
+                true,
+                false
+            )
+        FontWeight: =FontWeight.Semibold
+        Height: =41
+        HoverColor: =Self.Color
+        OnCheck: |-
+            =ClearCollect(
+                colSelectedGatePassLines,
+                ForAll(Distinct(
+                    Filter(
+                        'Stock Transfer Lines',
+                        'Transfer Order No'.'Stock Transfer Header' in varGatePassHeader.headerGUID && 'Transfer status' = 'Transfer status (Stock Transfer Lines)'.'Transfer generated'
+                    ),
+                    'Transfer Lines No'
+                ), {Result: ThisRecord.Value})
+            )
+        OnSelect: =
+        OnUncheck: =Clear(colSelectedGatePassLines)
+        Size: =16
+        Text: =""
+        Visible: |-
+            =If(
+                IsBlank(
+                    LookUp(
+                        Filter(
+                            Filter(
+                                'Stock Transfer Lines',
+                                'Transfer Order No'.'Stock Transfer Header' in varGatePassHeader.headerGUID
+                            ),
+                            Date >= Today()
+                        ),
+                        'Transfer accepted' = 'Transfer accepted (Stock Transfer Lines)'.No
+                    )
+                ),
+                false,
+                true
+            )
+        Width: =308
+        X: =15
+        Y: =294
+        ZIndex: =20
+
+    Icon7_1 As icon.Reload:
+        AccessibleLabel: ="Icon7_1"
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =58
+        Icon: =Icon.Reload
+        OnSelect: |
+            =ClearCollect(
+                varMyVanSTockHeader,
+                AddColumns(
+                    Filter(
+                        'Stock Transfer Headers',
+                        'To Location'.Warehouse = StockTransferWarehouse && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Warehouse to van transfer'
+                    ),
+                    "headerGUID",
+                    'Stock Transfer Header'
+                )
+            );
+            Refresh('Stock Transfer Lines')
+        TabIndex: =0
+        Width: =34
+        X: =496
+        Y: =9
+        ZIndex: =21
+
+    Container8 As groupContainer.manualLayoutContainer:
+        Height: =0
+        Width: =640
+        Y: =1136
+        ZIndex: =22
+
+        HtmlText1 As htmlViewer:
+            Height: =910
+            HtmlText: |+
+                ="<p><center style=""line-height:2px;font-size:27px""><b>Bisleri International Pvt. Ltd.</b></center></p>
+                
+                <p style=""font-size:27px"">Western Express Highway Andheri<E>, Mumbai- 400099 Tel No. +(91)-22-61447000, Fax: +(91)-22-61447145</p>
+                
+                <p></p>
+                <p></p>
+                <p style=""line-height:2px;font-size:27px"">CIN: &#8203;015540MH1984PC12572&#8203;</p>
+                
+                <p style=""line-height:2px;font-size:27px"">GSTIN No: &#8203;27AACCA4355K1ZL&#8203;</p>
+                
+                <p style=""line-height:2px;font-size:27px"">FSSAI Lic No: &#8203;10013022001539&#8203;</p>
+                
+                <p style=""line-height:2px;font-size:27px"">State Code: &#8203;27, MAHARASHTRA &#8203;</p>
+                
+                <p><center style=""font-size:27px""><b>GATE PASS REPORT </b></center></p>
+                
+                <p style=""line-height:2px;font-size:27px"">Route Code:"& Routecodedata &" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date:"&Text(First(dataliness).Date,DateTimeFormat.ShortDate) &"</p>
+                <p></p>
+                <font size=""5"" face=""Courier New"" >
+                <table  width='100%'>" &
+                "<thead><tr><th>Item</th><th>Cases</th><th>Pcs</th></thead>" &
+                "<tbody>" &
+                Concat(dataliness As item, "<tr><td>"  &item.SKU.'SKU Code' &"</td><td>"  &item.Cases& "</td><td>"  &item.PCs& "</td></tr>" & "<tr><td>"  &item.SKU.'Item Description ' &"</td></tr><tr><td>Batch:"  &item.'Batch no.'& "</td><td>Mfg Dt."  & Text(item.'Manufacturing date',DateTimeFormat.ShortDate)& "</td></tr>") &
+                "</tbody></table>""
+                </font>
+                
+                
+                <p style=""font-size:27px""> We hereby declare that statutory details in respect of customer mentioned in this invoice are as per information provided by the customer. The receiver of the invoice should confirm the statutory details mentioned on the Invoice. The customer may revert to the company if any variations are observed in the Invoice details within 7 days from the date of Invoice. No claims and alternation would be entertained thereafter.</p>"
+                
+                
+                
+            Width: =640
+            Y: =40
+            ZIndex: =1
+
+    FormViewer1 As formViewer:
+        DataSource: ='Stock Transfer Headers'
+        Height: =69
+        Item: =LookUp('Stock Transfer Headers','Stock Transfer Header'=GUID(varrd))
+        Visible: =varShowGatePassFile
+        Width: =150
+        X: =10
+        Y: =939
+        ZIndex: =23
+
+        File_DataCard1 As typedDataCard.fileViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="zx_file"
+            Default: |-
+                =If(!IsBlank(ThisItem.File.FileName), Table({DisplayName: ThisItem.File.FileName, Value: ThisItem.File.Value}), Blank())
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'Stock Transfer Headers'],DataSourceInfo.DisplayName,"zx_file")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Width: =150
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey4 As label:
+                AutoHeight: =true
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue4 As attachments:
+                AccessibleLabel: ="DataCardValue4"
+                AddAttachmentText: ="Upload file"
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                DisplayMode: =Parent.DisplayMode
+                Height: =100
+                IsInDataCard: =true
+                Items: =Parent.Default
+                MaxAttachments: =1
+                MaxAttachmentsText: =""
+                NoAttachmentsText: ="There is no file."
+                PaddingBottom: =5
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                PaddingRight: =5
+                PaddingTop: =5
+                Size: =21
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey4.Y + DataCardKey4.Height + 5
+                ZIndex: =2
+
+            ErrorMessage2 As label:
+                AutoHeight: =true
+                Height: =10
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =24
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue4.Y + DataCardValue4.Height
+                ZIndex: =3
+
+            StarVisible2 As label:
+                Align: =Align.Center
+                Height: =DataCardKey4.Height
+                Size: =21
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey4.Y
+                ZIndex: =4
+

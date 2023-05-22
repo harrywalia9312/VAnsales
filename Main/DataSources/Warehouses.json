@@ -1,0 +1,142 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_warehouses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_warehouse",
+    "MaxGetRowsCount": 2000,
+    "Name": "Warehouses",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr8eb_zx_stocktransferlines_FromLocation_zx_war": "Stock Transfer Lines (cr8eb_zx_stocktransferlines_FromLocation_zx_war)",
+      "cr8eb_zx_stocktransferlines_ToLocation_zx_wareh": "Stock Transfer Lines (cr8eb_zx_stocktransferlines_ToLocation_zx_wareh)",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_account_VanNo_zx_warehouse": "Customers",
+      "zx_address": "Address",
+      "zx_name": "Name",
+      "zx_SalesmanCode": "Salesman Code",
+      "zx_salespersonemployeecode": "Sales Person Employee Code",
+      "zx_SiteCode": "Site Code",
+      "zx_vehiclenumberwarehousename": "Vehicle Number/Warehouse Name",
+      "zx_warehouse_AsyncOperations": "System Jobs",
+      "zx_warehouse_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_warehouse_DuplicateBaseRecord": "Duplicate Records (zx_warehouse_DuplicateBaseRecord)",
+      "zx_warehouse_DuplicateMatchingRecord": "Duplicate Records (zx_warehouse_DuplicateMatchingRecord)",
+      "zx_warehouse_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_warehouse_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_warehouse_ProcessSession": "Process Sessions",
+      "zx_warehouse_SyncErrors": "Sync Errors",
+      "zx_warehousearea": "Warehouse Area",
+      "zx_warehouseid": "Warehouse",
+      "zx_warehousetype": "Warehouse Type",
+      "zx_zx_beatplanlines_VanNo_zx_warehouse": "Beat Plan Lines",
+      "zx_zx_checkindemandheader_VanNo_zx_warehouse": "Check-in Demand Headers",
+      "zx_zx_currentstock_VanNo_zx_warehouse": "Current Stocks",
+      "zx_zx_customer_VanNo_zx_warehouse": "Customer (NA)S",
+      "zx_zx_invoiceheader_VanNo_zx_warehouse": "Invoice Headers",
+      "zx_zx_invoicelines_VanNo_zx_warehouse": "Invoice Lines",
+      "zx_zx_locationvanmapping_Van_zx_warehouse": "Location VAN Mappings",
+      "zx_zx_orderheader_VanNo_zx_warehouse": "Order Headers",
+      "zx_zx_orderlines_VanNo_zx_warehouse": "Order Lines",
+      "zx_zx_payments_VanNo_zx_warehouse": "Payments",
+      "zx_zx_routecheckin_Vehicleno_zx_warehouse": "Route check Ins",
+      "zx_zx_stockinventory_VehicleCode_zx_warehous": "Stock Inventories",
+      "zx_zx_stocktransferheader_FromLocation_zx_wa": "Stock Transfer Headers (zx_zx_stocktransferheader_FromLocation_zx_wa)",
+      "zx_zx_stocktransferheader_ToLocation_zx_ware": "Stock Transfer Headers (zx_zx_stocktransferheader_ToLocation_zx_ware)"
+    },
+    "PreferredName": "Warehouses",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Warehouses (Views)",
+    "Name": "_zx_warehouse_views",
+    "RelatedEntityName": "Warehouses",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "19116f2c-1019-4701-9863-b097e09c0635": "Inactive Warehouses",
+      "852d680c-67ef-4df3-9f9c-4174bebfb75d": "Warehouse Associated View",
+      "86b25dfa-93a9-4ea4-b83b-7742332de37a": "Active Warehouses",
+      "a350a3f2-fac9-468f-82fd-eeb125d5c0b3": "Warehouse Lookup View",
+      "e3d4f627-2c22-43fe-93c0-49b27cdfb78f": "Warehouse Advanced Find View",
+      "e6252bb3-9ab6-ed11-b597-002248d5db8a": "Warehouse"
+    }
+  },
+  {
+    "DisplayName": "Status (Warehouses)",
+    "Name": "zx_warehouse_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Warehouses"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Warehouses",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Warehouses)",
+    "Name": "zx_warehouse_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Warehouses"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Warehouses",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Warehouse Type (Warehouses)",
+    "Name": "zx_warehouse_zx_warehousetype",
+    "OptionSetInfoNameMapping": {
+      "425120000": "Warehouse",
+      "425120001": "Vehicle"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_warehousetype",
+        "OptionSetReferenceEntityName": "Warehouses"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_warehousetype",
+    "RelatedEntityName": "Warehouses",
+    "Type": "OptionSetInfo"
+  }
+]

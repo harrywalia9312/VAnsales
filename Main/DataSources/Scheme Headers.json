@@ -1,0 +1,124 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_schemeheaders",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_schemeheader",
+    "MaxGetRowsCount": 2000,
+    "Name": "Scheme Headers",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_enddate": "End Date",
+      "zx_isactive": "IsActive",
+      "zx_name": "Scheme Code",
+      "zx_schemeheader_AsyncOperations": "System Jobs",
+      "zx_schemeheader_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_schemeheader_DuplicateBaseRecord": "Duplicate Records (zx_schemeheader_DuplicateBaseRecord)",
+      "zx_schemeheader_DuplicateMatchingRecord": "Duplicate Records (zx_schemeheader_DuplicateMatchingRecord)",
+      "zx_schemeheader_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_schemeheader_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_schemeheader_ProcessSession": "Process Sessions",
+      "zx_schemeheader_SyncErrors": "Sync Errors",
+      "zx_schemeheaderid": "Scheme Header",
+      "zx_schemename": "Scheme Name",
+      "zx_startdate": "Start Date",
+      "zx_zx_schemeapplicability_SchemeCode_zx_sche": "Scheme Applicabilities",
+      "zx_zx_schemeoffers_SchemeCode_zx_schemeheade": "Scheme Offers",
+      "zx_zx_schemeorder_SchemeCode_zx_schemeheader": "Scheme Orders"
+    },
+    "PreferredName": "Scheme Headers",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Scheme Headers (Views)",
+    "Name": "_zx_schemeheader_views",
+    "RelatedEntityName": "Scheme Headers",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "215ab73d-75b3-4d7e-8f66-3c67712bad72": "Inactive Scheme Headers",
+      "614d2890-6901-44ab-9ffc-0dbd07130ba3": "Scheme Header Associated View",
+      "824f4338-22b8-4a83-977a-83df6c94c74d": "Active Scheme Headers",
+      "95131ba7-25da-456a-9210-1121009ec12d": "Scheme Header Lookup View",
+      "bd7d1bad-e8fb-4fe0-b2d4-23c930367804": "Scheme Header Advanced Find View"
+    }
+  },
+  {
+    "DisplayName": "Status (Scheme Headers)",
+    "Name": "zx_schemeheader_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Scheme Headers"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Scheme Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Scheme Headers)",
+    "Name": "zx_schemeheader_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Scheme Headers"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Scheme Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "IsActive (Scheme Headers)",
+    "Name": "zx_schemeheader_zx_isactive",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_isactive",
+        "OptionSetReferenceEntityName": "Scheme Headers"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_isactive",
+    "RelatedEntityName": "Scheme Headers",
+    "Type": "OptionSetInfo"
+  }
+]

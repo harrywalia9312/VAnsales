@@ -1,0 +1,88 @@
+ListView As CanvasComponent:
+    Fill: =_VarGblAppColors.BackgroundColor
+    Height: =App.Height-175
+    Width: =App.Width
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    galListView As gallery.galleryVertical:
+        AccessibleLabel: ="galListView"
+        Fill: |-
+            =//RGBA(0, 0, 0, 0)
+            _VarGblAppColors.BackgroundColor
+        Height: =Parent.Height-70
+        Items: =CustomGallerySample
+        Layout: =Layout.Vertical
+        ShowScrollbar: =false
+        TabIndex: =0
+        TemplateSize: =235
+        Width: =Parent.Width
+        Y: =70
+        ZIndex: =1
+
+        btnGalListView As button:
+            Fill: |-
+                =//RGBA(56, 96, 178, 1)
+                Color.White
+            FocusedBorderThickness: =2
+            Height: =231
+            HoverBorderColor: =ColorFade(Color.White, -15%)
+            HoverFill: =ColorFade(Color.White, -10%)
+            OnSelect: =Select(Parent)
+            PressedBorderColor: =ColorFade(_VarGblAppColors.LightText, -15%)
+            Size: =24
+            Text: =""
+            Width: =Parent.Width-10
+            ZIndex: =1
+
+    grpListView As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =5
+
+        btnListViewSearch As button:
+            DisabledBorderColor: |-
+                =//RGBA(166, 166, 166, 1)
+                _VarGblAppColors.BisleriBlue
+            DisabledFill: |-
+                =//RGBA(244, 244, 244, 1)
+                _VarGblAppColors.LightText
+            DisplayMode: =DisplayMode.Disabled
+            FocusedBorderThickness: =0.5
+            Height: =44
+            Size: =24
+            Text: =""
+            Width: =444
+            X: =186
+            Y: =16
+            ZIndex: =2
+
+        txtListViewSearch As text:
+            AccessibleLabel: ="txtSearch"
+            BorderThickness: =0
+            Default: =""
+            FocusedBorderThickness: =0.5
+            HintText: ="Search"
+            HoverFill: =_VarGblAppColors.LightText
+            Size: =_VarGblAppFonts.Size.Medium
+            Width: =400
+            X: =228
+            Y: =18
+            ZIndex: =3
+
+        icoListViewSearch As icon.Search:
+            Color: =_VarGblAppColors.BisleriBlue
+            Fill: |-
+                =//RGBA(0, 0, 0, 0)
+                _VarGblAppColors.LightText
+            FocusedBorderThickness: =0
+            Height: =35
+            Icon: =Icon.Search
+            Width: =35
+            X: =193
+            Y: =20
+            ZIndex: =4
+

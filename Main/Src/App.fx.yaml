@@ -1,0 +1,575 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |
+        =Set(
+            _VarGblAppColors,
+            {
+                BackgroundColor: ColorValue("#F2F2F2"),
+                //light gray
+                HeaderBg: ColorValue("#000000"),
+                //black
+                PrimaryText: ColorValue("#000000"),
+                //black
+                SecondaryText: ColorValue("#6F7EA8"),
+                //blue
+                LightText: ColorValue("#FFFFFF"),
+                //white
+                PrimaryRed: ColorValue("#C5242C"),
+                //red
+                PrimaryYellow: ColorValue("#ffc300"),
+                //Yellow
+                PrimaryBg: ColorValue("#4D4D4D"),
+                //dark gray
+                GreenColor: ColorValue("#00A86B"),
+                //green
+                AccentBg: ColorValue("#00ffe5"),
+                BisleriBlue: ColorValue("#00B3A1"),
+                //BisleriBlue
+                BisleriBlueLight: ColorValue("#E6F7F6"),
+                //BisleriBlueLight
+                BisleriBlueMediumLight: ColorValue("#B3E8E3"),
+                //BisleriBlueMediumLight
+                BottomListBg: ColorFade(
+                    ColorValue("#000000"),
+                    80%
+                )
+            }
+        );
+        Set(
+            _VarGblAppFonts,
+            {
+                Heading: "Roboto, Open Sans",
+                Body: "Lato",
+                Size: {
+                    Tiny: 10,
+                    Regular: 12,
+                    Subtitle: 14,
+                    Medium: 16,
+                    UpperMedium: 18,
+                    Title: 20,
+                    Huge: 28
+                }
+            }
+        );
+        ///////////////////////////******SAVE DATA*****////////////////////////////
+        Set(
+            dataforbranch,
+            LookUp(
+                Users,
+                'Primary Email' = User().Email
+            ).'Branch Master'.'Branch Master'
+        );
+        /*Set(
+            Datetodays,
+            Date(
+                Year(Today()),
+                Month(Today()),
+                Day(Today())
+            )
+        );*/
+        ClearCollect(
+            varFilterVariantMaster,
+            AddColumns(
+                Filter(
+                    'Current Stocks',
+                    'Van No'.Warehouse = varUserVanNo.Van.Warehouse && 'Created On' >= Today()
+                ),
+                "HeadGUID",
+                'Item SKU'.'SKU Master'
+            )
+        );
+        /*Concurrent(
+            SaveData(
+                colOfflineTodayDemandsHeader,
+                "colOfflineTodayDemandsHeader"
+            ),
+            SaveData(
+                colOfflineTodayDemandsLines,
+                "colOfflineTodayDemandsLines"
+            ),
+            SaveData(
+                colOfflineUsers,
+                "colOfflineUsers"
+            ),
+            SaveData(
+                colOfflineAreas,
+                "colOfflineAreas"
+            ),
+            SaveData(
+                colOfflineWarehouse,
+                "colOfflineWarehouse"
+            ),
+            SaveData(
+                colOfflineItemMasters,
+                "colOfflineItemMasters"
+            ),
+            SaveData(
+                colOfflineCustomerVisits,
+                "colOfflineCustomerVisits"
+            ),
+            SaveData(
+                colOfflineVariantMaster,
+                "colOfflineVariantMaster"
+            ),
+            SaveData(
+                varOfflinePricingMaster,
+                "varOfflinePricingMaster"
+            ),
+            SaveData(
+                varOfflinePricingLines,
+                "varOfflinePricingLines"
+            ),
+            SaveData(
+                varOfflineDiscountLines,
+                "varOfflineDiscountLines"
+            ),
+            SaveData(
+                colOfflineSchemeHeader,
+                "colOfflineSchemeHeader"
+            ),
+            SaveData(
+                colOfflineSchemeApplicability,
+                "colOfflineSchemeApplicability"
+            ),
+            SaveData(
+                AllCustomerss,
+                "AllCustomerss"
+            ),
+            SaveData(
+                colOfflineHSNMasters,
+                "colOfflineHSNMasters"
+            ),
+            SaveData(
+                colOfflineItemUOM,
+                "colOfflineItemUOM"
+            ),
+            SaveData(
+                colOfflineOrderHeader,
+                "colOfflineOrderHeader"
+            ),
+            SaveData(
+                colOfflineAllOrderLines,
+                "colOfflineAllOrderLines"
+            ),
+            SaveData(
+                colOfflineCurrentStock,
+                "colOfflineCurrentStock"
+            ),
+            SaveData(
+                colOfflineInvoiceSeries,
+                "colOfflineInvoiceSeries"
+            )
+        );*/
+        ///////////////////////////******CLEAR COLLECT OFFLINE*****////////////////////////////
+        Set(
+            varUserArea,
+            LookUp(
+                'User Area Mappings',
+                Salesperson.'Primary Email' = User().Email
+            )
+        );
+        Set(
+            DemandHeadersdata,
+            LookUp(
+                'Check-in Demand Headers',
+                Salesperson.'Primary Email' = User().Email && Date >Today()
+            )
+        );
+        Set(
+            varUserVanNo,
+            LookUp(
+                'Location VAN Mappings',
+                Area.Area = varUserArea.Area.Area
+            )
+        );
+        Set(
+            StockTransferWarehouse,
+            LookUp(
+                Warehouses,
+                Warehouse = varUserVanNo.Van.Warehouse
+            ).Warehouse
+        );
+        Set(
+            UserAreaGUID,
+            LookUp(
+                Areas,
+                Area = varUserArea.Area.Area
+            ).Area
+        );
+        //If(
+           // Connection.Connected,
+        ClearCollect(
+            colOfflineTodayDemandsHeader,
+            Filter(
+                'Check-in Demand Headers',
+                Salesperson.'Primary Email' = User().Email && Date >Today()
+            )
+        );
+        ClearCollect(
+            colOfflineTodayDemandsLines,
+            If(
+                CountRows(colOfflineTodayDemandsHeader) > 0,
+                Filter(
+                    'Check-in Demand Lines',
+                    CheckInDemandHeaderCalculated = DemandHeadersdata.'Demand Header No'
+                )
+            )
+        );
+        Concurrent(
+            ClearCollect(
+                AllCustomerss,
+                Filter(
+                    Customers_1,
+                    (Salesperson.'Primary Email' = User().Email && 'Customer status' = 'Customer status (Choice)'.Customer)
+                )
+            );
+            ,
+            ClearCollect(
+                colOfflineUsers,
+                Filter(
+                    Users,
+                    'Branch Master'.'Branch Master' = dataforbranch
+                )
+            );
+            ,
+            ClearCollect(
+                colOfflineAreas,
+                Filter(
+                    Areas,
+                    ' Site/Branch '.'Branch Master' = dataforbranch
+                )
+            );
+            ,
+            ClearCollect(
+                colOfflineWarehouse,
+                Filter(
+                    Warehouses,
+                    'Site Code'.'Branch Master' = dataforbranch
+                )
+            );
+            ,
+            /*ClearCollect(
+                colOfflineItemMasters,
+                'Item Masters'
+            );
+            ,
+             ClearCollect(
+                    colOfflineCustomers,
+                    Customers_1
+                );   
+                ,  */
+            ClearCollect(
+                colOfflineCustomerVisits,
+                Filter(
+                    Visits,
+                    'Visit Date' = Today() && 'Owning User'.'Primary Email' = User().Email
+                )
+            );
+            ,
+            ClearCollect(
+                colOfflineStockTransferHeader,
+                Filter(
+                    'Stock Transfer Headers',
+                    'Created On' >= Today() && 'From Location'.Warehouse = StockTransferWarehouse && 'To Location'.Warehouse = StockTransferWarehouse
+                )
+            );
+            ,
+            ClearCollect(
+                colOfflinePayments,
+                Filter(
+                    Payments,
+                    Salesperson.'Primary Email' = User().Email && 'Created On' >= Today()
+                )
+            );
+            ClearCollect(
+                colOfflineVariantMaster,
+                Filter(
+                    'SKU Masters',
+                    'SKU Master' in varFilterVariantMaster.HeadGUID
+                )
+            );
+            ,
+            ClearCollect(
+                colOfflineSchemeHeader,
+                Filter(
+                    'Scheme Headers',
+                    'Start Date' <= Today() && 'End Date' >= Today() && IsActive = 'IsActive (Scheme Headers)'.Yes
+                )
+            );
+            ,
+            ClearCollect(
+                colOfflineHSNMasters,
+                'HSN Masters'
+            );
+            /*ClearCollect(
+                colOfflineHSNMasters,
+                Filter(
+                    'HSN Masters',
+                    'HSN Masters (Views)'.'All HSN Master'
+                )
+            );*/
+            ,
+            ClearCollect(
+                colOfflineOrderHeader,
+                Filter(
+                    'Order Headers',
+                    'Order Date' >= Today() && 'Owning User'.'Primary Email' = User().Email
+                )
+            );
+            ,
+            ClearCollect(
+                colOfflineInvoiceSeries,
+                Filter(
+                    'Invoice Series',
+                    'Route No'.Area = UserAreaGUID
+                )
+            )
+        );
+        ///////////////////////////******LOAD DATA*****////////////////////////////
+            /*Concurrent(
+                LoadData(
+                    colOfflineTodayDemandsHeader,
+                    "colOfflineTodayDemandsHeader"
+                );
+                ,
+                LoadData(
+                    colOfflineTodayDemandsLines,
+                    "colOfflineTodayDemandsLines"
+                );
+                ,
+                LoadData(
+                    colOfflineUsers,
+                    "colOfflineUsers"
+                );
+                ,
+                LoadData(
+                    colOfflineAreas,
+                    "colOfflineAreas"
+                );
+                ,
+                LoadData(
+                    colOfflineWarehouse,
+                    "colOfflineWarehouse"
+                );
+                ,
+                LoadData(
+                    colOfflineItemMasters,
+                    "colOfflineItemMasters"
+                );
+                ,
+                LoadData(
+                    colOfflineCustomers,
+                    "colOfflineCustomers"
+                ); 
+                ,  
+                LoadData(
+                    colOfflineCustomerVisits,
+                    "colOfflineCustomerVisits"
+                );
+                ,
+                LoadData(
+                    colOfflineVariantMaster,
+                    "colOfflineVariantMaster"
+                );
+                ,
+                LoadData(
+                    varOfflinePricingMaster,
+                    "varOfflinePricingMaster"
+                );
+                ,
+                LoadData(
+                    varOfflinePricingLines,
+                    "varOfflinePricingLines"
+                );
+                ,
+                LoadData(
+                    varOfflineDiscountLines,
+                    "varOfflineDiscountLines"
+                );
+                ,
+                LoadData(
+                    colOfflineSchemeHeader,
+                    "colOfflineSchemeHeader"
+                );
+                ,
+                LoadData(
+                    colOfflineSchemeApplicability,
+                    "colOfflineSchemeApplicability"
+                );
+                ,
+                LoadData(
+                    AllCustomerss,
+                    "AllCustomerss"
+                );
+                ,
+                LoadData(
+                    colOfflineHSNMasters,
+                    "colOfflineHSNMasters"
+                );
+                ,
+                LoadData(
+                    colOfflineItemUOM,
+                    "colOfflineItemUOM"
+                );
+                ,
+                LoadData(
+                    colOfflineOrderHeader,
+                    "colOfflineOrderHeader"
+                );
+                ,
+                LoadData(
+                    colOfflineAllOrderLines,
+                    "colOfflineAllOrderLines"
+                );
+                ,
+                LoadData(
+                    colOfflineCurrentStock,
+                    "colOfflineCurrentStock"
+                );
+                ,
+                LoadData(
+                    colOfflineInvoiceSeries,
+                    "colOfflineInvoiceSeries"
+                );
+            )
+        );*/
+        ClearCollect(
+            colOfflineTodayAttendance,
+            LookUp(
+                Attendances,
+                User.'Primary Email' = User().Email && 'Created Date' >= Today()
+            )
+        );
+        ClearCollect(
+            varOfflinePricingMaster,
+            Filter(
+                'Item pricing masters',
+                'Branch/Site '.'Branch Master' in AddColumns(
+                    AllCustomerss,
+                    "BranchID",
+                    Branch.'Branch Master'
+                ).BranchID
+            )
+        );
+        ClearCollect(
+            varOfflinePricingLines,
+            Filter(
+                'Item Pricing lines',
+                'Item price header'.'Item pricing master' in AddColumns(
+                    varOfflinePricingMaster,
+                    "headerID",
+                    'Item pricing master'
+                ).headerID
+            )
+        );
+        ClearCollect(
+            varOfflineDiscountLines,
+            Filter(
+                Filter(
+                    'Discount Lines',
+                    'Discount Lines (Views)'. 'Today''s Discount'
+                ),
+                Customer.Account in AddColumns(
+                    AllCustomerss,
+                    "customerId",
+                    Account
+                ).customerId
+            )
+        );
+        ClearCollect(
+            colOfflineSchemeApplicability,
+            Filter(
+                'Scheme Applicabilities',
+                'Scheme Code'.'Scheme Header' in AddColumns(
+                    colOfflineSchemeHeader,
+                    "headerId",
+                    'Scheme Header'
+                ).headerId
+            )
+        );
+        ClearCollect(
+            colOfflineItemUOM,
+            Filter(
+                'Item UOMS',
+                Site.'Branch Master' in AddColumns(
+                    colOfflineUsers,
+                    "siteId",
+                    'Branch Master'.'Branch Master'
+                ).siteId
+            )
+        );
+        ClearCollect(
+            colOfflineTemporaryCreditLimit,
+            Filter(
+                'Temporary Credit Limits',
+                'Customer code'.Account in AddColumns(
+                    AllCustomerss,
+                    "customerId",
+                    Account
+                ).customerId
+            )
+        );
+        ClearCollect(
+            colOfflineAllOrderLines,
+            Filter(
+                'Order Lines',
+                'Order Number'.'Order Id' in AddColumns(
+                    colOfflineOrderHeader,
+                    "orderId",
+                    'Order Id'
+                ).orderId && 'Owning User'.'Primary Email' = User().Email
+            )
+        );
+        ClearCollect(
+            colOfflineCurrentStock,
+            Filter(
+                'Current Stocks',
+                'Created Date' >= Today() && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse
+            )
+        );
+        ClearCollect(
+            colOfflineOrderSequenceNo,
+            First(
+                Sort(
+                    Filter(
+                        'Order Headers',
+                        'Owning User'.'Primary Email' = User().Email
+                    ),
+                    'Order Id',
+                    SortOrder.Descending
+                )
+            ).'Offline Order Number'
+        );
+        Set(
+            StockTransferWarehouse,
+            LookUp(
+                Warehouses,
+                Warehouse = varUserVanNo.Van.Warehouse
+            ).Warehouse
+        );
+        Set(
+            UserAreaGUID,
+            LookUp(
+                Areas,
+                Area = varUserArea.Area.Area
+            ).Area
+        );
+        /*ClearCollect(
+            AllCustomerss,  
+            Filter(
+                Customers_1,
+                (Salesperson.'Primary Email' = User().Email && Customer status' = 'Customer status (Choice)'.Customer)
+            )
+        ); */
+        // Customers related to this users
+    StartScreen: |-
+        =//'Login Screen'
+        'Attendance Screen'
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+

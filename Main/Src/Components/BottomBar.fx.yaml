@@ -1,0 +1,112 @@
+BottomBar As CanvasComponent:
+    Fill: =RGBA(242, 242, 242, 0)
+    Height: =110
+    NavItem: |-
+        =Table(
+            {
+                Title: If(
+                    CountRows(colOfflineTodayAttendance)=0,
+                    "Start",
+                    (CountRows(colOfflineTodayAttendance) = 1 && !IsBlank(First(colOfflineTodayAttendance).'Check-in Time') && IsBlank(First(colOfflineTodayAttendance).'Check-out Time') ),
+                    "End",
+                    (CountRows(colOfflineTodayAttendance) = 1 && !IsBlank(First(colOfflineTodayAttendance).'Check-in Time') && !IsBlank(First(colOfflineTodayAttendance).'Check-out Time')),
+                    "Ended"
+                ),
+                Icon: Icon.CalendarBlank,
+                Screen: 'Attendance Screen',
+                Active: false
+            },
+            {
+                Title: "Visit",
+                Icon: Icon.Waypoint,
+                Screen: 'Visit Screen',
+                Active: false
+            },
+            {
+                Title: "Dashboard",
+                Icon: Icon.Waffle,
+                Screen: 'Home Screen',
+                Active: false
+            },
+            {
+                Title: "Customers",
+                Icon: Icon.People,
+                Screen: 'Customer Screen',
+                Active: false
+            },
+            {
+                Title: "Menu",
+                Icon: Icon.Hamburger,
+                Screen: 'Menu Screen',
+                Active: true
+            }
+        )
+    Width: =App.Width
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    galBottomBar As gallery.galleryHorizontal:
+        AccessibleLabel: ="galBottomBar"
+        BorderColor: =_VarGblAppColors.BisleriBlue
+        FocusedBorderColor: =Color.Transparent
+        FocusedBorderThickness: =0.1
+        Height: =110
+        Items: =BottomBar.NavItem
+        OnSelect: =Navigate(ThisItem.Screen)
+        ShowScrollbar: =false
+        TabIndex: =0
+        TemplateSize: =122
+        ZIndex: =2
+
+        lblGalBottomBar As label:
+            Align: =Align.Center
+            Color: =If(ThisItem.Active, _VarGblAppColors.HeaderBg, _VarGblAppColors.PrimaryBg)
+            FocusedBorderColor: =Color.Transparent
+            FocusedBorderThickness: =0.5
+            FontWeight: |-
+                =//FontWeight.Normal
+                If(ThisItem.Active, FontWeight.Semibold, FontWeight.Normal)
+            Height: =27
+            HoverBorderColor: =Color.Transparent
+            OnSelect: =Navigate(ThisItem.Screen)
+            PressedBorderColor: =Color.Transparent
+            Size: =_VarGblAppFonts.Size.Regular
+            TabIndex: =0
+            Text: =ThisItem.Title
+            Width: =122
+            Y: =68
+            ZIndex: =1
+
+        shpCircleGalBottomBar As circle:
+            Fill: =_VarGblAppColors.BisleriBlue
+            Height: =65
+            OnSelect: =Select(Parent)
+            Visible: |-
+                =If(ThisItem.Active, true, false)
+                //If(ThisItem.Active, true, false)
+            Width: =65
+            X: =28
+            ZIndex: =2
+
+        "icoGalBottomBar As icon.'3DPrinting'":
+            AccessibleLabel: ="icnStart"
+            Color: =If(ThisItem.Active, _VarGblAppColors.LightText, _VarGblAppColors.PrimaryBg)
+            FocusedBorderColor: =Color.Transparent
+            FocusedBorderThickness: =0.1
+            Height: =If(ThisItem.Active, 30, 25)
+            HoverBorderColor: =Color.Transparent
+            Icon: =ThisItem.Icon
+            OnSelect: =Navigate(ThisItem.Screen)
+            PressedBorderColor: =Color.Transparent
+            TabIndex: =0
+            Width: =If(ThisItem.Active, 35, 25)
+            X: |-
+                =If(
+                    ThisItem.Active = true,
+                    43,
+                    47
+                )
+            Y: =If(ThisItem.Active, 17, 35)
+            ZIndex: =3
+

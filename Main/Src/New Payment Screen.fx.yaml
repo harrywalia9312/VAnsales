@@ -1,0 +1,431 @@
+"'New Payment Screen' As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+    Fill: =_VarGblAppColors.LightText
+    OnVisible: |-
+        =Reset(txtPaymentAmountValue);
+        Reset(cmbPaymentCustomer);
+        Reset(txtPaymentAmountValue_8);
+        Reset(ComboBox1);
+
+    canPayment As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =App.Height-175
+        Width: =Parent.Width
+        Y: =80
+        ZIndex: =1
+
+        dataCardPayment As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =900
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            lblPaymentAmountLabel As label:
+                Color: =_VarGblAppColors.PrimaryText
+                FontWeight: =FontWeight.Semibold
+                Size: =_VarGblAppFonts.Size.UpperMedium
+                Text: ="Amount"
+                Width: =230
+                X: =40
+                Y: =436
+                ZIndex: =1
+
+            txtPaymentAmountValue As text:
+                AccessibleLabel: ="txtPaymentAmountValue"
+                BorderColor: =_VarGblAppColors.BisleriBlue
+                Default: =""
+                DisplayMode: |-
+                    =If(
+                        (cmbPaymentCustomer.Selected.'Total Credit limit' - cmbPaymentCustomer.Selected.'Used Credit Limit')> 0,
+                        DisplayMode.Edit,
+                        DisplayMode.Disabled
+                    )
+                FocusedBorderThickness: =2
+                Format: =TextFormat.Number
+                Height: =45
+                HintText: ="Enter Amount"
+                HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                OnChange: |-
+                    =If(
+                        (Self.Text <> "" And Value(Self.Text) <> RoundDown(
+                            Value(Self.Text),
+                            0
+                        ) Or Value(Self.Text) < 1) And !IsBlank(Value(Self.Text)),
+                        Notify(
+                            "Please enter whole number",
+                            NotificationType.Information,
+                            1000
+                        );
+                        Reset(Self),false)
+                Size: =_VarGblAppFonts.Size.UpperMedium
+                Width: =230
+                X: =352
+                Y: =433
+                ZIndex: =2
+
+            lblPaymentRemainingAmountValue As label:
+                Size: =_VarGblAppFonts.Size.Title
+                Text: ="₹" & ((cmbPaymentCustomer.Selected.'Used Credit Limit') - txtPaymentAmountValue.Text)
+                Width: =217
+                X: =352
+                Y: =486
+                ZIndex: =5
+
+            lblPaymentRemainingAmount As label:
+                Color: =_VarGblAppColors.PrimaryText
+                FontWeight: =FontWeight.Semibold
+                Size: =_VarGblAppFonts.Size.UpperMedium
+                Text: ="Due Invoice Amount"
+                Width: =267
+                X: =40
+                Y: =486
+                ZIndex: =6
+
+            lblModeOfPayment As label:
+                FontWeight: =FontWeight.Semibold
+                Size: =_VarGblAppFonts.Size.Title
+                Text: ="Mode of Payment"
+                Width: =560
+                X: =40
+                Y: =258
+                ZIndex: =9
+
+            rdbModeOfPayment As radio:
+                AccessibleLabel: ="rdbModeOfPayment"
+                Default: ="KOTAK"
+                FocusedBorderColor: =Color.Transparent
+                FocusedBorderThickness: =0.5
+                Height: =63
+                Items: |-
+                    =['Payment Type (choice)'.KOTAK]
+                    //["Cheque"]
+                Layout: =Layout.Horizontal
+                RadioSelectionFill: =_VarGblAppColors.BisleriBlue
+                RadioSize: =42
+                Size: =_VarGblAppFonts.Size.UpperMedium
+                Width: =293
+                X: =40
+                Y: =298
+                ZIndex: =10
+
+            lblPaymentDate As label:
+                Color: =_VarGblAppColors.PrimaryText
+                FontWeight: =FontWeight.Semibold
+                Size: =_VarGblAppFonts.Size.UpperMedium
+                Text: ="Date"
+                Width: =230
+                X: =40
+                Y: =388
+                ZIndex: =11
+
+            shpLowerRect As rectangle:
+                DisplayMode: =DisplayMode.Disabled
+                Fill: =_VarGblAppColors.BottomListBg
+                Height: =60
+                Width: =App.Width
+                Y: =102
+                ZIndex: =18
+
+            lblPaymentAmount As label:
+                Color: =_VarGblAppColors.PrimaryText
+                FontWeight: =FontWeight.Bold
+                Height: =60
+                Size: =_VarGblAppFonts.Size.UpperMedium
+                Text: ="Pending Amount (INR)"
+                Width: =307
+                X: =10
+                Y: =177
+                ZIndex: =20
+
+            lblPaymentAmountValue As label:
+                Color: =_VarGblAppColors.BisleriBlue
+                FontWeight: =FontWeight.Bold
+                Height: =60
+                Size: =21
+                Text: ="₹" & (cmbPaymentCustomer.Selected.'Used Credit Limit')
+                Width: =307
+                X: =320
+                Y: =177
+                ZIndex: =22
+
+            lblPaymentDetails As label:
+                Color: =_VarGblAppColors.PrimaryText
+                FontWeight: =FontWeight.Bold
+                Height: =60
+                Size: =_VarGblAppFonts.Size.UpperMedium
+                Text: ="Payment Details"
+                Width: =307
+                X: =10
+                Y: =102
+                ZIndex: =23
+
+            ImgPaymentPaytm As image:
+                AccessibleLabel: ="ImgPaymentPaytm"
+                BorderColor: =_VarGblAppColors.HeaderBg
+                BorderThickness: =2
+                Height: =67
+                Image: ='Paytm Image'
+                OnSelect: |
+                    =Set(orderId,RandBetween(0,9999));
+                    ClearCollect(payments,Payment.Payment1({Orderid:orderId,Amount:"90"}));
+                    /*Set(amt,txtPaymentAmountValue);*/
+                    Navigate(PaymentQR);
+                TabIndex: =0
+                Visible: =If(rdbModeOfPayment.Selected.Value ='Payment Type (choice)'.CASH, true, false)
+                Width: =135
+                X: =362
+                Y: =290
+                ZIndex: =24
+
+            lblPaymentDateValue As label:
+                Color: =_VarGblAppColors.PrimaryText
+                FontWeight: =FontWeight.Bold
+                Size: =_VarGblAppFonts.Size.UpperMedium
+                Text: =Text(DateValue(Today()), "mmm dd, yyyy")
+                Width: =217
+                X: =352
+                Y: =388
+                ZIndex: =25
+
+            cmbPaymentCustomer As combobox:
+                AccessibleLabel: ="cmbPaymentCustomer"
+                BorderColor: =_VarGblAppColors.BisleriBlueMediumLight
+                ChevronBackground: =_VarGblAppColors.BisleriBlue
+                ChevronFill: =Color.White
+                ChevronHoverBackground: =_VarGblAppColors.BisleriBlue
+                ChevronHoverFill: =_VarGblAppColors.BisleriBlue
+                Color: =_VarGblAppColors.BisleriBlue
+                DisplayFields: =["zx_customername"]
+                Height: =53
+                HoverFill: =_VarGblAppColors.BisleriBlueMediumLight
+                InputTextPlaceholder: ="Select Customer"
+                Items: |-
+                    =Filter(
+                        Customers_1,
+                        'Customer status' = 'Customer status (Choice)'.Customer && Salesperson.'Primary Email' = User().Email && 'Mode Of Payment' = 'Payment Type (choice)'.CREDIT
+                    )
+                PressedFill: =_VarGblAppColors.BisleriBlueMediumLight
+                SearchFields: =["zx_customername"]
+                SearchItems: |-
+                    =Search(Filter(
+                        Customers_1,
+                        'Customer status' = 'Customer status (Choice)'.Customer && Salesperson.'Primary Email' = User().Email && 'Mode Of Payment' = 'Payment Type (choice)'.CREDIT
+                    ),cmbPaymentCustomer.SearchText,"zx_customername")
+                SelectionFill: =_VarGblAppColors.BisleriBlue
+                SelectMultiple: =false
+                Size: =18
+                Width: =580
+                X: =30
+                Y: =26
+                ZIndex: =27
+
+            grpPaymentButtons As group:
+                Height: =5
+                Width: =5
+                X: =80
+                Y: =80
+                ZIndex: =27
+
+                btnPaymentCancel As button:
+                    Fill: =_VarGblAppColors.BisleriBlue
+                    FocusedBorderThickness: =2
+                    Height: =50
+                    HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+                    OnSelect: =Navigate('Payment Screen');
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Text: ="Cancel"
+                    Width: =150
+                    X: =355
+                    Y: =770
+                    ZIndex: =16
+
+                btnPaymentConfirm As button:
+                    DisplayMode: |-
+                        =If(
+                            Value(txtPaymentAmountValue.Text) > (cmbPaymentCustomer.Selected.'Total Credit limit' - cmbPaymentCustomer.Selected.'Used Credit Limit') || Value(txtPaymentAmountValue.Text) <= 0,
+                            DisplayMode.Disabled,
+                            DisplayMode.Edit
+                        )
+                    Fill: =_VarGblAppColors.BisleriBlue
+                    FocusedBorderThickness: =2
+                    Height: =50
+                    HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+                    OnSelect: |-
+                        =If(
+                            !IsBlank(txtPaymentAmountValue_8),
+                            Patch(
+                                Payments,
+                                Defaults(Payments),
+                                {
+                                    'Receipt Date': Today(),
+                                    Customer: LookUp(
+                                        Customers_1,
+                                        Account = cmbPaymentCustomer.Selected.Account
+                                    ),
+                                    Salesperson: LookUp(
+                                        Users,
+                                        'Primary Email' = User().Email
+                                    ),
+                                    Amount: Value(txtPaymentAmountValue.Text),
+                                    //'Mode of Payment': rdbModeOfPayment.Selected.Value,
+                                    'Payment Mode':'Payment Mode (Choice)'.KOTAK,
+                                    Route: LookUp(
+                                        Areas,
+                                        Area = varUserArea.Area.Area
+                                    ),
+                                    'Van No': LookUp(
+                                        Warehouses,
+                                        Warehouse = varUserVanNo.Van.Warehouse
+                                    ),
+                                    'Payment Type': 'Payment Type (Payments)'.'Pending Invoice',
+                                    ChequeNo: txtPaymentAmountValue_8.Text,
+                                    ChequeDate: DatePicker3.SelectedDate,
+                                    Bank:ComboBox1.Selected
+                                }
+                            );
+                            
+                        /////////////////////////////////Account Credit Updation
+                        /*Patch(
+                                Customers_1,
+                                LookUp(
+                                    Customers_1,
+                                    Account = cmbPaymentCustomer.Selected.Account
+                                ),
+                                {
+                                    'Used Credit Limit': LookUp(
+                                        Customers_1,
+                                        Account = cmbPaymentCustomer.Selected.Account
+                                    ).'Used Credit Limit' + Value(txtPaymentAmountValue.Text)
+                                }
+                            );*/
+                            Notify(
+                                "Your transaction is recorded successfully.",
+                                NotificationType.Success,
+                                5000
+                            );
+                            Navigate('Payment Screen');
+                            ,
+                            Notify(
+                                "Please enter Cheque Number",
+                                NotificationType.Error,
+                                5000
+                            )
+                        )
+                    Size: =_VarGblAppFonts.Size.UpperMedium
+                    Text: ="Confirm"
+                    Width: =150
+                    X: =177
+                    Y: =770
+                    ZIndex: =26
+
+            lblPaymentAmountLabel_8 As label:
+                Color: =_VarGblAppColors.PrimaryText
+                FontWeight: =FontWeight.Semibold
+                Size: =_VarGblAppFonts.Size.UpperMedium
+                Text: ="Cheque No."
+                Visible: |-
+                    =//If(rdbModeOfPayment.Selected.Value ='Payment Type (choice)'.'425120003', true, false)
+                    true
+                Width: =230
+                X: =40
+                Y: =545
+                ZIndex: =28
+
+            txtPaymentAmountValue_8 As text:
+                AccessibleLabel: ="txtPaymentAmountValue"
+                BorderColor: =_VarGblAppColors.BisleriBlue
+                Default: =""
+                FocusedBorderThickness: =2
+                Format: =TextFormat.Number
+                Height: =45
+                HintText: ="Enter Check No."
+                HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                OnChange: =If(Len(Self.Text)=6, false, Reset(Self); Notify("Please enter 6 digit Cheque Number", NotificationType.Information, 2000))
+                Size: =_VarGblAppFonts.Size.UpperMedium
+                Visible: |-
+                    =//If(rdbModeOfPayment.Selected.Value ='Payment Type (choice)'.'425120003', true, false)
+                    true
+                Width: =230
+                X: =352
+                Y: =542
+                ZIndex: =29
+
+            lblPaymentAmountLabel_9 As label:
+                Color: =_VarGblAppColors.PrimaryText
+                FontWeight: =FontWeight.Semibold
+                Size: =_VarGblAppFonts.Size.UpperMedium
+                Text: ="Cheque Date"
+                Visible: |-
+                    =//If(rdbModeOfPayment.Selected.Value ='Payment Type (choice)'.'425120003', true, false)
+                    true
+                Width: =230
+                X: =40
+                Y: =610
+                ZIndex: =30
+
+            DatePicker3 As datepicker:
+                AccessibleLabel: ="DatePicker3"
+                BorderColor: =_VarGblAppColors.BisleriBlue
+                FocusedBorderThickness: =2
+                Height: =45
+                IconBackground: =_VarGblAppColors.BisleriBlue
+                OnChange: =If(Self.SelectedDate <= Today() && Self.SelectedDate>= Today()-15, false, Reset(Self); Notify("Kindly select only Today's or last 15 date", NotificationType.Information, 5000))
+                Size: =_VarGblAppFonts.Size.UpperMedium
+                StartYear: =2023
+                Visible: |-
+                    =//If(rdbModeOfPayment.Selected.Value ='Payment Type (choice)'.'425120003', true, false)
+                    true
+                Width: =230
+                X: =352
+                Y: =610
+                ZIndex: =31
+
+            lblPaymentAmountLabel_10 As label:
+                Color: =_VarGblAppColors.PrimaryText
+                FontWeight: =FontWeight.Semibold
+                Size: =_VarGblAppFonts.Size.UpperMedium
+                Text: ="Bank Name"
+                Visible: |-
+                    =//If(rdbModeOfPayment.Selected.Value ='Payment Type (choice)'.'425120003', true, false)
+                    true
+                Width: =230
+                X: =40
+                Y: =677
+                ZIndex: =32
+
+            ComboBox1 As combobox:
+                AccessibleLabel: ="ComboBox1"
+                BorderColor: =_VarGblAppColors.BisleriBlue
+                ChevronBackground: =_VarGblAppColors.BisleriBlue
+                ChevronHoverBackground: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+                DisplayFields: =["zx_name"]
+                FocusedBorderColor: =_VarGblAppColors.BisleriBlue
+                FocusedBorderThickness: =2
+                Height: =45
+                Items: ='Bank Masters'
+                PressedFill: =_VarGblAppColors.BisleriBlue
+                SearchFields: =["zx_name"]
+                SearchItems: =Search('Bank Masters',ComboBox1.SearchText,"zx_name")
+                SelectionFill: =ColorFade(_VarGblAppColors.BisleriBlue, 20%)
+                SelectMultiple: =false
+                Size: =_VarGblAppFonts.Size.Subtitle
+                Width: =230
+                X: =352
+                Y: =675
+                ZIndex: =33
+
+    compPaymentHeader As Header:
+        HeaderText: ="Payment"
+        ZIndex: =4
+
+    compPaymentBottomBar As BottomBar:
+        Y: =1026
+        ZIndex: =5
+

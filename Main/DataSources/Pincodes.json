@@ -1,0 +1,103 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_pincodes",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_pincode",
+    "MaxGetRowsCount": 2000,
+    "Name": "Pincodes",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_account_Pincode_zx_pincode": "Customers",
+      "zx_name": "Name",
+      "zx_ParentArea": "Parent Area",
+      "zx_ParentCity": "Parent City",
+      "zx_ParentDistrict": "Parent District",
+      "zx_ParentState": "Parent State",
+      "zx_ParentTaluka": "Parent Taluka",
+      "zx_pincode_AsyncOperations": "System Jobs",
+      "zx_pincode_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_pincode_DuplicateBaseRecord": "Duplicate Records (zx_pincode_DuplicateBaseRecord)",
+      "zx_pincode_DuplicateMatchingRecord": "Duplicate Records (zx_pincode_DuplicateMatchingRecord)",
+      "zx_pincode_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_pincode_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_pincode_ProcessSession": "Process Sessions",
+      "zx_pincode_SyncErrors": "Sync Errors",
+      "zx_pincodeid": "Pincode"
+    },
+    "PreferredName": "Pincodes",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Pincodes (Views)",
+    "Name": "_zx_pincode_views",
+    "RelatedEntityName": "Pincodes",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "03ba399d-d777-4edd-af7f-550c377ab093": "Active Pincodes",
+      "4948e981-a034-40c5-95e8-05e7ecddbc0e": "Pincode Lookup View",
+      "9105a44a-d9fa-41e4-859a-2b14c30ae935": "Pincode Advanced Find View",
+      "a732ebab-60c6-4f90-9142-d6990792a6f5": "Pincode Associated View",
+      "b3478f0a-04ca-466b-874b-c3954555e155": "Inactive Pincodes"
+    }
+  },
+  {
+    "DisplayName": "Status (Pincodes)",
+    "Name": "zx_pincode_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Pincodes"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Pincodes",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Pincodes)",
+    "Name": "zx_pincode_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Pincodes"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Pincodes",
+    "Type": "OptionSetInfo"
+  }
+]

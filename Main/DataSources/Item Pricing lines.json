@@ -1,0 +1,137 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_itempricings",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_itempricing",
+    "MaxGetRowsCount": 2000,
+    "Name": "Item Pricing lines",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "exchangerate": "Exchange Rate",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "transactioncurrencyid": "Currency",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_baseprice": "Base Price",
+      "zx_branch": "Branch",
+      "zx_enddate": "End date",
+      "zx_itemdescription": "Item description",
+      "zx_Itempriceheader": "Item price header",
+      "zx_itempricing_AsyncOperations": "System Jobs",
+      "zx_itempricing_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_itempricing_DuplicateBaseRecord": "Duplicate Records (zx_itempricing_DuplicateBaseRecord)",
+      "zx_itempricing_DuplicateMatchingRecord": "Duplicate Records (zx_itempricing_DuplicateMatchingRecord)",
+      "zx_itempricing_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_itempricing_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_itempricing_ProcessSession": "Process Sessions",
+      "zx_itempricing_SyncErrors": "Sync Errors",
+      "zx_itempricingid": "Item Pricing",
+      "zx_mrp": "MRP",
+      "zx_mrp_base": "MRP (Base)",
+      "zx_name": "Name",
+      "zx_salesprice": "Sales Price",
+      "zx_salesprice_base": "Sales Price (Base)",
+      "zx_sellingpricedlp": "Selling Price-DLP",
+      "zx_sellingpricedlp_base": "Selling Price-DLP (Base)",
+      "zx_Site": " Site\u00A0",
+      "zx_startdate": "Start date",
+      "zx_uom": "UOM",
+      "zx_Variantcode": "Variant code"
+    },
+    "PreferredName": "Item Pricing lines",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Item Pricing lines (Views)",
+    "Name": "_zx_itempricing_views",
+    "RelatedEntityName": "Item Pricing lines",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "1b867a43-fbea-402e-81ad-cda0e75cdd31": "Item Pricing Associated View",
+      "673e1c7e-9d68-41a1-bd19-de471d8b6ab2": "Item Pricing Advanced Find View",
+      "6f1db41f-d64a-4f41-95af-81a07d4b1a88": "Item Pricing Lookup View",
+      "9d732054-7c27-4096-978d-a6940fdb7ba2": "Inactive Item Pricings",
+      "f31016e5-5ccd-4712-ad66-9c8674f4222c": "Active Item Pricings"
+    }
+  },
+  {
+    "DisplayName": "Status (Item Pricing lines)",
+    "Name": "zx_itempricing_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Item Pricing lines"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Item Pricing lines",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Item Pricing lines)",
+    "Name": "zx_itempricing_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Item Pricing lines"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Item Pricing lines",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "UOM (Item Pricing lines)",
+    "Name": "zx_itempricing_zx_uom",
+    "OptionSetInfoNameMapping": {
+      "425120000": "CASE",
+      "425120001": "PCS",
+      "425120002": "NOS",
+      "425120003": "NO",
+      "425120004": "BOX"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_uom",
+        "OptionSetReferenceEntityName": "Item Pricing lines"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_uom",
+    "RelatedEntityName": "Item Pricing lines",
+    "Type": "OptionSetInfo"
+  }
+]

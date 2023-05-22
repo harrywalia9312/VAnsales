@@ -1,0 +1,101 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_locationvanmappings",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_locationvanmapping",
+    "MaxGetRowsCount": 2000,
+    "Name": "Location VAN Mappings",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_Area": "Area",
+      "zx_locationvanmapping_AsyncOperations": "System Jobs",
+      "zx_locationvanmapping_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_locationvanmapping_DuplicateBaseRecord": "Duplicate Records (zx_locationvanmapping_DuplicateBaseRecord)",
+      "zx_locationvanmapping_DuplicateMatchingRecord": "Duplicate Records (zx_locationvanmapping_DuplicateMatchingRecord)",
+      "zx_locationvanmapping_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_locationvanmapping_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_locationvanmapping_ProcessSession": "Process Sessions",
+      "zx_locationvanmapping_SyncErrors": "Sync Errors",
+      "zx_locationvanmappingid": "Location VAN Mapping",
+      "zx_name": "Name",
+      "zx_Van": "Van",
+      "zx_vancalculated": "VANCalculated"
+    },
+    "PreferredName": "Location VAN Mappings",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Location VAN Mappings (Views)",
+    "Name": "_zx_locationvanmapping_views",
+    "RelatedEntityName": "Location VAN Mappings",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "30ba7b75-7ddb-4ba6-97e0-96838b49ca58": "Location VAN Mapping Associated View",
+      "32468904-a0b7-4663-990e-eb199e87a420": "Location VAN Mapping Lookup View",
+      "61130b3b-2c46-40ef-afef-bc4e737730ab": "Location VAN Mapping Advanced Find View",
+      "635d87b5-97b6-ed11-b597-002248d5da52": "Location van mapping",
+      "999bfe4c-ea33-403b-9fb9-c0a11ab87046": "Inactive Location VAN Mappings",
+      "f9c4cdc5-0577-42d0-aeb4-241090938712": "Active Location VAN Mappings"
+    }
+  },
+  {
+    "DisplayName": "Status (Location VAN Mappings)",
+    "Name": "zx_locationvanmapping_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Location VAN Mappings"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Location VAN Mappings",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Location VAN Mappings)",
+    "Name": "zx_locationvanmapping_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Location VAN Mappings"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Location VAN Mappings",
+    "Type": "OptionSetInfo"
+  }
+]

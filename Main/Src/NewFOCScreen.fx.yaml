@@ -1,0 +1,1317 @@
+"NewFOCScreen As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+    Fill: =_VarGblAppColors.LightText
+    OnVisible: |-
+        =Set(
+            varGatePassHeaderAll,
+            AddColumns(
+                Filter(
+                    'Stock Transfer Headers',
+                    'To Location'.Warehouse = StockTransferWarehouse && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Warehouse to van transfer' && 'Created On'>=Today()
+                ),
+                "headerGUID",
+                'Stock Transfer Header'
+            )
+        );
+        Reset(drpFOCReasons);
+
+    contFOCUpperVertical As groupContainer.verticalAutoLayoutContainer:
+        Height: =909
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: |-
+            =//Parent.Width
+            640
+        Y: =150
+        ZIndex: =1
+
+        contFOCUpper As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: =910
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            Width: =Parent.Width
+            ZIndex: =1
+
+            contFOCLowerVertical As groupContainer.verticalAutoLayoutContainer:
+                Height: =940
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMode: =LayoutMode.Auto
+                LayoutOverflowX: =LayoutOverflow.Scroll
+                Width: =640
+                Y: =6
+                ZIndex: =1
+
+                contFOCHeading As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    FillPortions: =0
+                    Height: =60
+                    LayoutMinHeight: =70
+                    LayoutMinWidth: =750
+                    Width: =App.Width
+                    ZIndex: =1
+
+                    btnNewOrderHeaderProduct_12 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Subtitle
+                        Text: ="Product"
+                        Width: =250
+                        X: =5
+                        Y: =5
+                        ZIndex: =1
+
+                    btnNewOrderHeaderCases_12 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Subtitle
+                        Text: ="Stock (Cases)"
+                        Width: =90
+                        X: =btnNewOrderHeaderProduct_12.X + btnNewOrderHeaderProduct_12.Width +5
+                        Y: =5
+                        ZIndex: =2
+
+                    btnNewOrderHeaderCases_26 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Subtitle
+                        Text: ="Stock (PCs)"
+                        Width: =90
+                        X: =btnNewOrderHeaderCases_12.X + btnNewOrderHeaderCases_12.Width +5
+                        Y: =5
+                        ZIndex: =3
+
+                    btnNewOrderHeaderPcs_13 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Subtitle
+                        Text: ="Cases"
+                        Width: =90
+                        X: =btnNewOrderHeaderCases_26.X + btnNewOrderHeaderCases_26.Width +5
+                        Y: =5
+                        ZIndex: =4
+
+                    btnNewOrderHeaderPcs_14 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Subtitle
+                        Text: ="Pcs"
+                        Width: =90
+                        X: =btnNewOrderHeaderPcs_13.X+btnNewOrderHeaderPcs_13.Width+5
+                        Y: =5
+                        ZIndex: =5
+
+                contFOCData As groupContainer.horizontalAutoLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    FillPortions: =0
+                    Height: =620
+                    LayoutMinHeight: =570
+                    LayoutMinWidth: =640
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =App.Width
+                    ZIndex: =2
+
+                    galFOCData As gallery.galleryVertical:
+                        AccessibleLabel: ="galFOCData"
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        Fill: |-
+                            =//RGBA(0, 0, 0, 0)
+                            _VarGblAppColors.LightText
+                        FillPortions: =0
+                        FocusedBorderColor: =Color.Transparent
+                        FocusedBorderThickness: =0.5
+                        Height: =620
+                        Items: |-
+                            =If(
+                                IsBlank(compFOCSearch.SearchText),
+                                Filter(
+                                    'Current Stocks',
+                                    'Created Date' >= Today() && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse
+                                ),
+                                Filter(
+                                    Filter(
+                                        colOfflineCurrentStock,
+                                        'Created Date' >= Today() && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse
+                                    ),
+                                    (compFOCSearch.SearchText in 'Item SKU'.'Pack Title' || compFOCSearch.SearchText in 'Item SKU'.'Item Description ')
+                                )
+                            )
+                        Layout: =Layout.Vertical
+                        LayoutMinHeight: =287
+                        LayoutMinWidth: =1200
+                        ShowScrollbar: =false
+                        TabIndex: =0
+                        TemplateSize: =60
+                        Width: =Parent.Width
+                        ZIndex: =1
+
+                        btnFOCBackground As button:
+                            DisabledBorderColor: =_VarGblAppColors.BisleriBlueMediumLight
+                            DisabledFill: =_VarGblAppColors.BisleriBlueLight
+                            DisplayMode: =DisplayMode.Disabled
+                            Height: =60
+                            OnSelect: =Select(Parent)
+                            Size: =24
+                            Text: =""
+                            Width: =Parent.Width-10
+                            ZIndex: =1
+
+                        lblFOCProductName As label:
+                            Align: =Align.Center
+                            Height: =32
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Tiny
+                            Text: =ThisItem.'Item SKU'.'Item Description '
+                            Width: =250
+                            Y: =23
+                            ZIndex: =2
+
+                        lblFOCPriceValue As label:
+                            Align: =Align.Center
+                            Fill: |-
+                                =RGBA(0, 0, 0, 0)
+                                //_VarGblAppColors.LightText
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Subtitle
+                            Text: =//ThisItem.'Item SKU'.
+                            Width: =80
+                            X: =324
+                            Y: =10
+                            ZIndex: =3
+
+                        txtFOCCasesValue As text:
+                            AccessibleLabel: ="txtFOCCasesValue"
+                            Align: =Align.Center
+                            BorderColor: =_VarGblAppColors.BisleriBlue
+                            Default: =LookUp(colFOCCartItem, productId=ThisItem.'Item SKU'.'SKU Master').Cases
+                            DisplayMode: |-
+                                =/*If(
+                                    LookUp(
+                                        'Item Masters',
+                                        'Item Master' = LookUp(
+                                            'SKU Masters',
+                                            'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                        ).'Item Code'.'Item Master'
+                                    ).UOM = 'UOM (Item Masters)'.Cases,
+                                    DisplayMode.Edit,
+                                    DisplayMode.Disabled
+                                ) */
+                                  DisplayMode.Edit
+                            Fill: =Color.White
+                            FocusedBorderThickness: =2
+                            Format: =TextFormat.Number
+                            HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                            HoverFill: =_VarGblAppColors.BisleriBlueLight
+                            OnChange: |-
+                                =If(
+                                    (Self.Text <> "" And Value(Self.Text) <> RoundDown(
+                                        Value(Self.Text),
+                                        0
+                                    ) Or Value(Self.Text) < 1) And !IsBlank(Value(Self.Text)),
+                                    Notify(
+                                        "Please enter whole number",
+                                        NotificationType.Information,
+                                        1000
+                                    );
+                                    Reset(Self),
+                                     If(
+                                        (Value(Self.Text) = 0 Or IsBlank(Self.Text)) && (LookUp(
+                                            colFOCCartItem,
+                                            productId = ThisItem.'Item SKU'.'SKU Master'
+                                        ).PCs = 0 Or IsBlank(LookUp(
+                                            colFOCCartItem,
+                                            productId = ThisItem.'Item SKU'.'SKU Master'
+                                        ).PCs)),
+                                        Remove(
+                                            colFOCCartItem,
+                                            LookUp(
+                                                colFOCCartItem,
+                                                productId = ThisItem.'Item SKU'.'SKU Master'
+                                            )
+                                        ),
+                                If(
+                                    Value(lblFOCProductName_1.Text) < Value(txtFOCCasesValue.Text),
+                                    Reset(txtFOCCasesValue);
+                                    Notify(
+                                        "Kindly enter the value which is available in Stock",
+                                        NotificationType.Error,
+                                        2000
+                                    ),
+                                    If(
+                                        !IsBlank(txtFOCCasesValue),
+                                        Collect(
+                                            colFOCCartItem,
+                                            {
+                                                productId: ThisItem.'Item SKU'.'SKU Master',
+                                                Cases: Value(Self.Text)
+                                            }
+                                        ),
+                                        false
+                                    )
+                                ))
+                                )
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Subtitle
+                            Width: =60
+                            X: =463
+                            Y: =10
+                            ZIndex: =4
+
+                        txtFOCPcsValue As text:
+                            AccessibleLabel: ="txtFOCPcsValue"
+                            Align: =Align.Center
+                            BorderColor: =_VarGblAppColors.BisleriBlue
+                            Default: =LookUp(colFOCCartItem, productId=ThisItem.'Item SKU'.'SKU Master').PCs
+                            DisplayMode: |-
+                                =/*If(
+                                    LookUp(
+                                        'Item Masters',
+                                        'Item Master' = LookUp(
+                                            'SKU Masters',
+                                            'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                        ).'Item Code'.'Item Master'
+                                    ).UOM = 'UOM (Item Masters)'.PCs,
+                                    DisplayMode.Edit,
+                                    DisplayMode.Disabled
+                                )*/
+                                  DisplayMode.Edit
+                            Fill: =Color.White
+                            FocusedBorderThickness: =2
+                            Format: =TextFormat.Number
+                            HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                            HoverFill: =_VarGblAppColors.BisleriBlueLight
+                            OnChange: |-
+                                =If(
+                                    (Self.Text <> "" And Value(Self.Text) <> RoundDown(
+                                        Value(Self.Text),
+                                        0
+                                    ) Or Value(Self.Text) < 1) And !IsBlank(Value(Self.Text)),
+                                    Notify(
+                                        "Please enter whole number",
+                                        NotificationType.Information,
+                                        1000
+                                    );
+                                    Reset(Self),
+                                    If(
+                                    Value(Self.Text) = 0 && LookUp(
+                                        colCartItems,
+                                        productId = ThisItem.'Item SKU'.'SKU Master'
+                                    ).qtyCases = 0,
+                                    Remove(
+                                        colCartItems,
+                                        LookUp(
+                                            colCartItems,
+                                            productId = ThisItem.'Item SKU'.'SKU Master'
+                                        )
+                                    ),
+                                If(
+                                    ((ThisItem.PCs) + (LookUp(
+                                            'Item UOMS',
+                                            SKU.'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                        ).'Quantity Per UOM' * ThisItem.Cases)) < Value(txtFOCPcsValue.Text),
+                                    Reset(txtFOCPcsValue);
+                                    Notify(
+                                        "Kindly enter the value which is available in Stock",
+                                        NotificationType.Error,
+                                        2000
+                                    ),
+                                    If(
+                                        !IsBlank(txtFOCPcsValue),
+                                        Collect(
+                                            colFOCCartItem,
+                                            {
+                                                productId: ThisItem.'Item SKU'.'SKU Master',
+                                                PCs: Value(Self.Text)
+                                            }
+                                        ),
+                                        false
+                                    )
+                                ))
+                                )
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Subtitle
+                            Width: =60
+                            X: =555
+                            Y: =10
+                            ZIndex: =5
+
+                        shpFOCDataPart3 As rectangle:
+                            Fill: |-
+                                =//RGBA(56, 96, 178, 1)
+                                _VarGblAppColors.LightText
+                            Height: =60
+                            OnSelect: =Select(Parent)
+                            Width: =2
+                            X: =252
+                            ZIndex: =8
+
+                        shpFOCDataPart2 As rectangle:
+                            Fill: |-
+                                =//RGBA(56, 96, 178, 1)
+                                _VarGblAppColors.LightText
+                            Height: =60
+                            OnSelect: =Select(Parent)
+                            Width: =2
+                            X: =347
+                            ZIndex: =9
+
+                        shpFOCDataPart1 As rectangle:
+                            Fill: |-
+                                =//RGBA(56, 96, 178, 1)
+                                _VarGblAppColors.LightText
+                            Height: =60
+                            OnSelect: =Select(Parent)
+                            Width: =2
+                            X: =537
+                            ZIndex: =10
+
+                        shpFOCDataPart1_1 As rectangle:
+                            Fill: |-
+                                =//RGBA(56, 96, 178, 1)
+                                _VarGblAppColors.LightText
+                            Height: =60
+                            OnSelect: =Select(Parent)
+                            Width: =2
+                            X: =442
+                            ZIndex: =11
+
+                        lblFOCProductName_1 As label:
+                            Align: =Align.Center
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Regular
+                            Text: =ThisItem.Cases
+                            Width: =60
+                            X: =270
+                            Y: =10
+                            ZIndex: =12
+
+                        lblFOCProductName_2 As label:
+                            Align: =Align.Center
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Regular
+                            Text: =ThisItem.PCs
+                            Width: =60
+                            X: =365
+                            Y: =10
+                            ZIndex: =13
+
+                        lblFOCProductName_3 As label:
+                            Align: =Align.Center
+                            Color: =_VarGblAppColors.BisleriBlue
+                            FontWeight: =FontWeight.Semibold
+                            Height: =23
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Tiny
+                            Text: =ThisItem.'Item SKU'.'Pack Title'
+                            Width: =250
+                            X: =2
+                            ZIndex: =14
+
+            lblFOCReason As label:
+                Size: =_VarGblAppFonts.Size.Medium
+                Text: |-
+                    ="Reason :"
+                Width: =97
+                X: =69
+                Y: =715
+                ZIndex: =2
+
+            drpFOCReasons As dropdown:
+                AccessibleLabel: ="drpFOCReasons"
+                BorderColor: =_VarGblAppColors.BisleriBlue
+                ChevronBackground: =_VarGblAppColors.BisleriBlue
+                ChevronFill: =_VarGblAppColors.LightText
+                ChevronHoverBackground: =_VarGblAppColors.BisleriBlue
+                ChevronHoverFill: =_VarGblAppColors.LightText
+                Default: ="RTO"
+                FocusedBorderThickness: =2
+                HoverColor: =_VarGblAppColors.HeaderBg
+                HoverFill: =_VarGblAppColors.BisleriBlueLight
+                Items: =Choices([@'Order Headers'].'Reason (zx_reason)')
+                PressedColor: =_VarGblAppColors.LightText
+                PressedFill: =_VarGblAppColors.BisleriBlueMediumLight
+                SelectionColor: =_VarGblAppColors.HeaderBg
+                SelectionFill: =_VarGblAppColors.BisleriBlueLight
+                Size: =_VarGblAppFonts.Size.Medium
+                Width: =400
+                X: =174
+                Y: =715
+                ZIndex: =3
+
+            btnFOCConfirm As button:
+                Color: =_VarGblAppColors.LightText
+                DisplayMode: =If(CountRows(colFOCCartItem)<1, DisplayMode.Disabled, DisplayMode.Edit)
+                Fill: =_VarGblAppColors.BisleriBlue
+                Height: =50
+                HoverColor: =_VarGblAppColors.HeaderBg
+                HoverFill: =_VarGblAppColors.BisleriBlueMediumLight
+                OnSelect: |-
+                    =Set(
+                        VarFOCConfirmation,
+                        true
+                    )
+                Size: =_VarGblAppFonts.Size.Medium
+                Text: ="Confirm"
+                Width: =120
+                X: =260
+                Y: =790
+                ZIndex: =4
+
+    compFOCSearch As SearchComp:
+        SearchHintText: ="Search by product name"
+        X: =27
+        Y: =80
+        ZIndex: =2
+
+    compFOCHeader As Header:
+        HeaderText: ="FOC Orders"
+        ZIndex: =3
+
+    compFOCBottomBar As BottomBar:
+        Y: =1026
+        ZIndex: =4
+
+    shpFOCFinalConfirmation As rectangle:
+        Fill: =RGBA(0, 0, 0, 0.41)
+        Height: =App.Height
+        Visible: =If(VarFOCConfirmation, true, false)
+        Width: =App.Width
+        ZIndex: =5
+
+    contFOCFinalConfirmation As groupContainer.manualLayoutContainer:
+        Fill: =_VarGblAppColors.LightText
+        Height: =257
+        Visible: =If(VarFOCConfirmation, true, false)
+        Width: =517
+        X: =62
+        Y: =387
+        ZIndex: =6
+
+        btnFOCFinalConfirmationYes As button:
+            Fill: =_VarGblAppColors.BisleriBlue
+            HoverColor: =_VarGblAppColors.HeaderBg
+            HoverFill: =_VarGblAppColors.BisleriBlueMediumLight
+            OnSelect: |
+                =/////////////////////////////////////////////////////////_______________STOCK UPDATION FOR CASES
+                ClearCollect(
+                    CurrentQtyCases,
+                    First(colFOCCartItem).Cases
+                );
+                Clear(StockLinesForFIFO);
+                ForAll(
+                    colFOCCartItem As OneProductItem,
+                    Collect(
+                        StockLinesForFIFO,
+                        Sort(
+                            //Filter(
+                            Filter(
+                                'Stock Transfer Lines',
+                                ('Transfer Order No'.'Stock Transfer Header' in varGatePassHeaderAll.headerGUID) && (SKU.'SKU Master' = OneProductItem.productId)
+                                //),
+                                //IsToday('Created On')
+                            ),
+                            'Manufacturing date',
+                            SortOrder.Ascending
+                        )
+                    );
+                    Patch(
+                        CurrentQtyCases,
+                        First(CurrentQtyCases),
+                        {Value: OneProductItem.Cases}
+                    );
+                    ForAll(
+                        StockLinesForFIFO As OneFifoItem,
+                        If(
+                            First(CurrentQtyCases).Value > 0 && OneFifoItem.'Remaining Qty Cases' > 0 && OneFifoItem.SKU.'SKU Master' = OneProductItem.productId,
+                            //Checking First condition if the qty is less then remainining of old_______________________________________________
+                            If(
+                                (First(CurrentQtyCases).Value <= OneFifoItem.'Remaining Qty Cases'),
+                                //////______________CART MANIPULATION
+                                If(
+                                    !IsBlank(
+                                        LookUp(
+                                            colFOCManipulatedCartItems,
+                                            skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                        )
+                                    ),
+                                    Patch(
+                                        colFOCManipulatedCartItems,
+                                        LookUp(
+                                            colFOCManipulatedCartItems,
+                                            skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                        ),
+                                        {
+                                            qtyCases: ((LookUp(
+                                                colFOCManipulatedCartItems,
+                                                skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                            ).qtyCases) + (First(CurrentQtyCases).Value))
+                                        }
+                                    ),
+                                    Collect(
+                                        colFOCManipulatedCartItems,
+                                        {
+                                            cartItem: OneProductItem,
+                                            manDate: OneFifoItem.'Manufacturing date',
+                                            skuId: OneFifoItem.SKU.'SKU Master',
+                                            qtyCases: First(CurrentQtyCases).Value,
+                                            qtyPcs: 0
+                                        }
+                                    );
+                                );
+                                ///////________________UPDATE STOCK IN STOCK TRANSFER LINES
+                Patch(
+                                    'Stock Transfer Lines',
+                                    LookUp(
+                                        'Stock Transfer Lines' As oneStockLine,
+                                        ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date',"dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date',"dd/mm/yyyy")))/*&& IsToday(oneStockLine.'Created On')*/)
+                                    ),
+                                    {
+                                        'Remaining Qty Cases': OneFifoItem.'Remaining Qty Cases' - First(CurrentQtyCases).Value,
+                                        'Invoiced Qty Cases': ((LookUp(
+                                            'Stock Transfer Lines' As oneStockLine,
+                                            ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date',"dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date',"dd/mm/yyyy")))/*&& IsToday(oneStockLine.'Created On')*/)
+                                        ).'Invoiced Qty Cases') + First(CurrentQtyCases).Value)
+                                    }
+                                );
+                                Patch(
+                                    CurrentQtyCases,
+                                    First(CurrentQtyCases),
+                                    {Value: 0}
+                                );
+                                ,
+                                //Checking Second condition if the (qty is greater then remainining cases)
+                                ((First(CurrentQtyCases).Value > OneFifoItem.'Remaining Qty Cases')),
+                                 //////______________CART MANIPULATION
+                                If(
+                                    !IsBlank(
+                                        LookUp(
+                                            colManipulatedCartItems,
+                                            skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                        )
+                                    ),
+                                    Patch(
+                                        colFOCManipulatedCartItems,
+                                        LookUp(
+                                            colFOCManipulatedCartItems,
+                                            skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                        ),
+                                        {
+                                            qtyCases: ((LookUp(
+                                                colFOCManipulatedCartItems,
+                                                skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                            ).qtyCases) + (OneFifoItem.'Remaining Qty Cases'))
+                                        }
+                                    ),
+                                    Collect(
+                                        colFOCManipulatedCartItems,
+                                        {
+                                            cartItem: OneProductItem,
+                                            manDate: OneFifoItem.'Manufacturing date',
+                                            skuId: OneFifoItem.SKU.'SKU Master',
+                                            qtyCases: OneFifoItem.'Remaining Qty Cases',
+                                            qtyPcs: 0
+                                        }
+                                    );
+                                );
+                                ///////________________UPDATE STOCK IN STOCK TRANSFER LINES
+                Patch(
+                                    'Stock Transfer Lines',
+                                    LookUp(
+                                        'Stock Transfer Lines' As oneStockLine,
+                                        ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date',"dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date',"dd/mm/yyyy")))/*&& IsToday(oneStockLine.'Created On')*/)
+                                    ),
+                                    {
+                                        'Remaining Qty Cases': 0,
+                                        'Invoiced Qty Cases': ((LookUp(
+                                            'Stock Transfer Lines' As oneStockLine,
+                                            ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date',"dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date',"dd/mm/yyyy")))/*&& IsToday(oneStockLine.'Created On')*/)
+                                        ).'Invoiced Qty Cases') + OneFifoItem.'Remaining Qty Cases')
+                                    }
+                                );
+                                Patch(
+                                    CurrentQtyCases,
+                                    First(CurrentQtyCases),
+                                    {Value: ((First(CurrentQtyCases).Value - OneFifoItem.'Remaining Qty Cases'))}
+                                );
+                            )
+                        )
+                    )
+                );
+                /////////////////////////////////////////////////////////_______________STOCK UPDATION FOR PCS       ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+                ClearCollect(
+                    CurrentQty,
+                    First(colFOCCartItem).PCs
+                );
+                ClearCollect(
+                    SequenceTestingVariable,
+                    false
+                );
+                ClearCollect(
+                    SequenceNo,
+                    0
+                );
+                Clear(StockLinesForFIFO);
+                ForAll(
+                    colFOCCartItem As OneProductItem,
+                    Collect(
+                        StockLinesForFIFO,
+                        Sort(
+                            Filter(
+                                //Filter(
+                                'Stock Transfer Lines',
+                                ('Transfer Order No'.'Stock Transfer Header' in varGatePassHeaderAll.headerGUID) && (SKU.'SKU Master' = OneProductItem.productId)
+                            ),
+                                //IsToday('Created On')
+                            //),
+                            'Manufacturing date',
+                            SortOrder.Ascending
+                        )
+                    );
+                    Patch(
+                        CurrentQty,
+                        First(CurrentQty),
+                        {Value: OneProductItem.PCs}
+                    );
+                    ForAll(
+                        StockLinesForFIFO As OneFifoItem,
+                        If(
+                            First(CurrentQty).Value > 0 /* && OneFifoItem.'Remaining Qty Pcs' > 0 */&& (OneFifoItem.'Remaining Qty Pcs' > 0 || OneFifoItem.'Remaining Qty Cases' > 0) && OneFifoItem.SKU.'SKU Master' = OneProductItem.productId,
+                            //Checking First condition if the qty is less then remainining of old_______________________________________________
+                            If(
+                                (First(CurrentQty).Value <= OneFifoItem.'Remaining Qty Pcs'),
+                                //////______________CART MANIPULATION
+                                If(
+                                    !IsBlank(
+                                        LookUp(
+                                            colFOCManipulatedCartItems,
+                                            skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                        )
+                                    ),
+                                    Patch(
+                                        colFOCManipulatedCartItems,
+                                        LookUp(
+                                            colFOCManipulatedCartItems,
+                                            skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                        ),
+                                        {
+                                            qtyPcs: ((LookUp(
+                                                colFOCManipulatedCartItems,
+                                                skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                            ).qtyPcs) + (First(CurrentQty).Value))
+                                        }
+                                    ),
+                                    Collect(
+                                        colFOCManipulatedCartItems,
+                                        {
+                                            cartItem: OneProductItem,
+                                            manDate: OneFifoItem.'Manufacturing date',
+                                            skuId: OneFifoItem.SKU.'SKU Master',
+                                            qtyCases: 0,
+                                            qtyPcs: First(CurrentQty).Value
+                                        }
+                                    );
+                                );
+                                ///////________________UPDATE STOCK IN STOCK TRANSFER LINES
+                Patch(
+                                    'Stock Transfer Lines',
+                                    LookUp(
+                                        'Stock Transfer Lines' As oneStockLine,
+                                        ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date',"dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date',"dd/mm/yyyy")))/*&& IsToday(oneStockLine.'Created On')*/)
+                                    ),
+                                    {
+                                        'Remaining Qty Pcs': OneFifoItem.'Remaining Qty Pcs' - First(CurrentQty).Value,
+                                        'Invoiced Qty Pcs.': ((LookUp(
+                                            'Stock Transfer Lines' As oneStockLine,
+                                            ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date',"dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date',"dd/mm/yyyy")))/*&& IsToday(oneStockLine.'Created On')*/)
+                                        ).'Invoiced Qty Pcs.') + First(CurrentQty).Value)
+                                    }
+                                );
+                                Patch(
+                                    CurrentQty,
+                                    First(CurrentQty),
+                                    {Value: 0}
+                                );
+                                ,
+                                //Checking Second condition if the (qty is greater then remainining pcs) && ((Qty-Rem Pcs)< Conversion) ______
+                                ((First(CurrentQty).Value > OneFifoItem.'Remaining Qty Pcs') && ((First(CurrentQty).Value - OneFifoItem.'Remaining Qty Pcs') < (OneFifoItem.'Remaining Qty Cases' * LookUp(
+                                    'Item UOMS',
+                                    SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master'
+                                ).'Quantity Per UOM'))),
+                                 //////______________CART MANIPULATION
+                                If(
+                                    !IsBlank(
+                                        LookUp(
+                                            colFOCManipulatedCartItems,
+                                            skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                        )
+                                    ),
+                                    Patch(
+                                        colFOCManipulatedCartItems,
+                                        LookUp(
+                                            colFOCManipulatedCartItems,
+                                            skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                        ),
+                                        {
+                                            qtyPcs: ((LookUp(
+                                                colFOCManipulatedCartItems,
+                                                skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                            ).qtyPcs) + (First(CurrentQty).Value))
+                                        }
+                                    ),
+                                    Collect(
+                                        colFOCManipulatedCartItems,
+                                        {
+                                            cartItem: OneProductItem,
+                                            manDate: OneFifoItem.'Manufacturing date',
+                                            skuId: OneFifoItem.SKU.'SKU Master',
+                                            qtyCases: 0,
+                                            qtyPcs: First(CurrentQty).Value
+                                        }
+                                    );
+                                );
+                                
+                //Testingggggg__________________________________________________________________________________________________
+                Patch(
+                                    SequenceTestingVariable,
+                                    First(SequenceTestingVariable),
+                                    {Value: true}
+                                );
+                                ForAll(
+                                    Sequence(OneFifoItem.'Remaining Qty Cases') As sequenceNo,
+                                    If(
+                                        First(SequenceTestingVariable).Value,
+                                        If(
+                                            ((sequenceNo.Value * LookUp(
+                                                'Item UOMS',
+                                                SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master'
+                                            ).'Quantity Per UOM') >= (First(CurrentQty).Value - OneFifoItem.'Remaining Qty Pcs')),
+                                            Patch(
+                                                SequenceTestingVariable,
+                                                First(SequenceTestingVariable),
+                                                {Value: false}
+                                            );
+                                            Patch(
+                                                SequenceNo,
+                                                First(SequenceNo),
+                                                {Value: sequenceNo.Value}
+                                            );
+                                        )
+                                    )
+                                );
+                                ///////________________UPDATE STOCK IN STOCK TRANSFER LINES
+                Patch(
+                                    'Stock Transfer Lines',
+                                    LookUp(
+                                        'Stock Transfer Lines' As oneStockLine,
+                                        ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date',"dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date',"dd/mm/yyyy")))/*&& IsToday(oneStockLine.'Created On')*/)
+                                    ),
+                                    {
+                                        'Remaining Qty Pcs': ((First(SequenceNo).Value) * LookUp(
+                                            'Item UOMS',
+                                            SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master'
+                                        ).'Quantity Per UOM') - (First(CurrentQty).Value - OneFifoItem.'Remaining Qty Pcs'),
+                                        'Invoiced Qty Pcs.': ((LookUp(
+                                            'Stock Transfer Lines' As oneStockLine,
+                                            ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date',"dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date',"dd/mm/yyyy")))/*&& IsToday(oneStockLine.'Created On')*/)
+                                        ).'Invoiced Qty Pcs.') + First(CurrentQty).Value),
+                                        'Remaining Qty Cases': ((LookUp(
+                                            'Stock Transfer Lines' As oneStockLine,
+                                            ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date',"dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date',"dd/mm/yyyy")))/*&& IsToday(oneStockLine.'Created On')*/)
+                                        ).'Remaining Qty Cases') - First(SequenceNo).Value)
+                                    }
+                                );
+                                Patch(
+                                    CurrentQty,
+                                    First(CurrentQty),
+                                    {Value: 0}
+                                );
+                                ,
+                                //Checking Third condition if the (qty is greater then remainining pcs) && ((Qty-Rem Pcs)> Conversion) ______
+                                ((First(CurrentQty).Value > OneFifoItem.'Remaining Qty Pcs') && ((First(CurrentQty).Value - OneFifoItem.'Remaining Qty Pcs') > (OneFifoItem.'Remaining Qty Cases' * LookUp(
+                                    'Item UOMS',
+                                    SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master'
+                                ).'Quantity Per UOM'))),
+                                 //////______________CART MANIPULATION
+                                If(
+                                    !IsBlank(
+                                        LookUp(
+                                            colFOCManipulatedCartItems,
+                                            skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                        )
+                                    ),
+                                    Patch(
+                                        colFOCManipulatedCartItems,
+                                        LookUp(
+                                            colFOCManipulatedCartItems,
+                                            skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                        ),
+                                        {
+                                            qtyPcs: (( LookUp(
+                                                colFOCManipulatedCartItems,
+                                                skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                            ).qtyPcs) + ((OneFifoItem.'Remaining Qty Cases' * LookUp(
+                                                'Item UOMS',
+                                                SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master'
+                                            ).'Quantity Per UOM') + (OneFifoItem.'Remaining Qty Pcs')))
+                                        }
+                                    ),
+                                    Collect(
+                                        colFOCManipulatedCartItems,
+                                        {
+                                            cartItem: OneProductItem,
+                                            manDate: OneFifoItem.'Manufacturing date',
+                                            skuId: OneFifoItem.SKU.'SKU Master',
+                                            qtyCases: 0,
+                                            qtyPcs: ((OneFifoItem.'Remaining Qty Cases' * LookUp(
+                                                'Item UOMS',
+                                                SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master'
+                                            ).'Quantity Per UOM') + (OneFifoItem.'Remaining Qty Pcs'))
+                                        }
+                                    );
+                                );
+                                ///////________________UPDATE STOCK IN STOCK TRANSFER LINES
+                Patch(
+                                    'Stock Transfer Lines',
+                                    LookUp(
+                                        'Stock Transfer Lines' As oneStockLine,
+                                        ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date',"dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date',"dd/mm/yyyy")))/*&& IsToday(oneStockLine.'Created On')*/)
+                                    ),
+                                    {
+                                        'Remaining Qty Pcs': 0,
+                                        'Invoiced Qty Pcs.': ((LookUp(
+                                            'Stock Transfer Lines' As oneStockLine,
+                                            ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date',"dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date',"dd/mm/yyyy")))/*&& IsToday(oneStockLine.'Created On')*/)
+                                        ).'Invoiced Qty Pcs.') + ((OneFifoItem.'Remaining Qty Cases' * LookUp(
+                                            'Item UOMS',
+                                            SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master'
+                                        ).'Quantity Per UOM') + (OneFifoItem.'Remaining Qty Pcs'))),
+                                        'Remaining Qty Cases': 0
+                                      /*  'Invoiced Qty Cases': ((LookUp(
+                                            'Stock Transfer Lines' As oneStockLine,
+                                            ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date',"dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date',"dd/mm/yyyy"))) && IsToday(oneStockLine.'Created On'))
+                                        ).'Invoiced Qty Cases') + OneFifoItem.'Remaining Qty Cases') */
+                                    }
+                                );
+                                Patch(
+                                    CurrentQty,
+                                    First(CurrentQty),
+                                    {
+                                        Value: ((First(CurrentQty).Value - OneFifoItem.'Remaining Qty Pcs') - (OneFifoItem.'Remaining Qty Cases' * LookUp(
+                                            'Item UOMS',
+                                            SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master'
+                                        ).'Quantity Per UOM'))
+                                    }
+                                );
+                            )
+                        )
+                    )
+                );
+                /*---Create FOC Order Header----------------*/
+                ClearCollect(
+                    CreateFOCOrder,
+                    Patch(
+                        'Order Headers',
+                        Defaults('Order Headers'),
+                        {
+                            'Order Date': Now(),
+                            'Delivery Date': Today(),
+                            'Order Type': 'Order Type (Choice)'.'FOC Order',
+                            Latitude: Location.Latitude,
+                            Longitude: Location.Longitude,
+                            'Reason (zx_reason)': drpFOCReasons.Selected.Value,
+                            Salesperson: LookUp(
+                                Users,
+                                'Primary Email' = User().Email
+                            ),
+                            'Van No': LookUp(
+                                Warehouses,
+                                Warehouse = varUserVanNo.Van.Warehouse
+                            ),
+                            'Route No': LookUp(
+                                Areas,
+                                Area = varUserArea.Area.Area
+                            ),
+                          /*  Customer: LookUp(
+                                AllCustomerss,
+                                Branch.'Branch Master' = LookUp(
+                                    Users,
+                                    'Primary Email' = User().Email
+                                ).'Branch Master'.'Branch Master'
+                            ),*/
+                            // 'Total Quantity':Value(txtFOCCasesValue.Text) + Value(txtFOCPcsValue.Text)
+                            'Total Quantity': (Sum(
+                                colFOCManipulatedCartItems,
+                                qtyCases
+                            ) + Sum(
+                                colFOCManipulatedCartItems,
+                                qtyPcs
+                            )),
+                            'Net Amount': 0,
+                            'Total Amount': 0,
+                            'Total Tax Amount': 0,
+                            'Total Discount Amount': 0,
+                            'Payment Status': 'Payment Status Choice'.Completed
+                        }
+                    );
+                    
+                );
+                /*---Create FOC Order Line----------------*/
+                If(
+                    !IsBlank(CreateFOCOrder),
+                    Notify(
+                        "Your FOC order is placed successfully",
+                        NotificationType.Success,
+                        2000
+                    );
+                    ClearCollect(
+                        createFOCItemRecord,
+                        ForAll(
+                            colFOCManipulatedCartItems As FOCItem,
+                            Patch(
+                                'Order Lines',
+                                Defaults('Order Lines'),
+                                {
+                                    Cases: FOCItem.qtyCases,
+                                    PCs: FOCItem.qtyPcs,
+                                    'Order Number': First(CreateFOCOrder)/*LookUp(
+                                        'Order Headers',
+                                        'Order Number' = First(CreateFOCOrder).'Order Number'
+                                    )*/,
+                                    Salesperson: LookUp(
+                                        Users,
+                                        'Primary Email' = User().Email
+                                    ),
+                                    'Item Type': 'Item Type (Choice)'.Free,
+                                    'Van No': LookUp(
+                                        Warehouses,
+                                        Warehouse = varUserVanNo.Van.Warehouse
+                                    ),
+                                    'Route No': LookUp(
+                                        Areas,
+                                        Area = varUserArea.Area.Area
+                                    ),
+                                    'Item SKU': LookUp(
+                                        'SKU Masters',
+                                        'SKU Master' = FOCItem.skuId
+                                    ),
+                                    'Customer no.': LookUp(
+                                        AllCustomerss,
+                                        Branch.'Branch Master' = LookUp(
+                                            Users,
+                                            'Primary Email' = User().Email
+                                        ).'Branch Master'.'Branch Master'
+                                    ),
+                                    'Manufacturing Date': DateValue(FOCItem.manDate),
+                                    'Total Quantity': FOCItem.qtyCases + FOCItem.qtyPcs,
+                                    'Empty Jars': 0,
+                                    'Total Discount Amount': 0,
+                                    'Tax Amount': 0,
+                                    'Net Amount': 0,
+                                    'Cases Unit Price': LookUp(
+                                        varOfflinePricingLines,
+                                        'Item price header'.'Item pricing master' = varPricingMaster.'Item pricing master' && 'Variant code'.'SKU Master' = FOCItem.skuId && UOM = 'UOM (Item Pricing lines)'.CASE
+                                    ).'Base Price',
+                                    'Pcs Unit Price': LookUp(
+                                        varOfflinePricingLines,
+                                        'Item price header'.'Item pricing master' = varPricingMaster.'Item pricing master' && 'Variant code'.'SKU Master' = FOCItem.skuId && UOM = 'UOM (Item Pricing lines)'.PCS
+                                    ).'Base Price'
+                                }
+                            );
+                            /*Notify(
+                                "Your FOC order is placed successfully",
+                                NotificationType.Success,
+                                2000
+                            )*/
+                        )
+                    );
+                    
+                );
+                      //////////////////////create invoice 18-03-2023 ///////////////////////////
+                If(
+                    !IsBlank(CreateFOCOrder),
+                    ClearCollect(
+                        CreateInvHeaderFOC,
+                        Patch(
+                            'Invoice Headers',
+                            Defaults('Invoice Headers'),
+                            {
+                                'Invoice Number': Text(
+                                            LookUp(
+                                                'Invoice Series',
+                                                'Route No'.Area = Areavalueid.Area
+                                            ).'Financial Year'
+                                        ) & Left(
+                                    LookUp(
+                                        'Invoice Series',
+                                        'Route No'.Area = UserAreaGUID/*LookUp(
+                                            Areas,
+                                            Area = varUserArea.Area.Area
+                                        ).Area*/
+                                    ).'Sequence No',
+                                    4
+                                ) & Text(
+                                    LookUp(
+                                        'Invoice Series',
+                                        'Route No'.Area = UserAreaGUID/*LookUp(
+                                            Areas,
+                                            Area = varUserArea.Area.Area
+                                        ).Area*/
+                                    ).'Route No'.'Name (zx_name)'
+                                ) & Right(
+                                    LookUp(
+                                        'Invoice Series',
+                                        'Route No'.Area = UserAreaGUID/*LookUp(
+                                            Areas,
+                                            Area = varUserArea.Area.Area
+                                        ).Area*/
+                                    ).'Sequence No' + 1,
+                                    6
+                                ),
+                                Salesperson: LookUp(
+                                    Users,
+                                    'Primary Email' = User().Email
+                                ),
+                                Customer: LookUp(
+                                    AllCustomerss,
+                                    Branch.'Branch Master' = LookUp(
+                                        Users,
+                                        'Primary Email' = User().Email
+                                    ).'Branch Master'.'Branch Master'
+                                ),
+                                'Route No': LookUp(
+                                    Areas,
+                                    Area = varUserArea.Area.Area
+                                ),
+                                'Van No': LookUp(
+                                    Warehouses,
+                                    Warehouse = varUserVanNo.Van.Warehouse
+                                ),
+                                'Invoice Date': Now(),
+                                'Order Type': 'Order Type (Choice)'.'FOC Order',
+                                'Order Number': First(CreateFOCOrder)/*LookUp(
+                                    'Order Headers',
+                                    'Order Number' = First(CreateFOCOrder).'Order Number'
+                                )*/,
+                                'Total Amount': 0,
+                                'Total Tax Amount': 0,
+                                'Total Discount Amount': 0,
+                                'Net Amount': 0,
+                                'Total Qty': (Sum(
+                                    colFOCManipulatedCartItems,
+                                    qtyCases
+                                ) + Sum(
+                                    colFOCManipulatedCartItems,
+                                    qtyPcs
+                                ))
+                                        //'Mode of Payment': OrderData.'Mode Of Payment'
+                            }
+                        )
+                    );
+                    
+                );
+                If(
+                    !IsBlank(CreateInvHeaderFOC),
+                    Patch(
+                        'Invoice Series',
+                        LookUp(
+                            'Invoice Series',
+                            'Route No'.Area = LookUp(
+                                Areas,
+                                Area = varUserArea.Area.Area
+                            ).Area
+                        ),
+                        {
+                            'Sequence No': LookUp(
+                                'Invoice Series',
+                                'Route No'.Area = LookUp(
+                                    Areas,
+                                    Area = varUserArea.Area.Area
+                                ).Area
+                            ).'Sequence No' + 1
+                        }
+                    );
+                    ClearCollect(
+                        CreateInvLineFOC,
+                        ForAll(
+                            colFOCManipulatedCartItems As OrdrItems,
+                            Patch(
+                                'Invoice Lines',
+                                Defaults('Invoice Lines'),
+                                {
+                                    'Invoice Number': First(CreateInvHeaderFOC)/*LookUp(
+                                        'Invoice Headers',
+                                        'Invoice Header' = First(CreateInvHeaderFOC).'Invoice Header'
+                                    )*/,
+                                    'Order Number': First(CreateFOCOrder)/*LookUp(
+                                        'Order Headers',
+                                        'Order Number' = First(CreateFOCOrder).'Order Number'
+                                    )*/,
+                                    'Item Type': 'Item Type (Choice)'.Free,
+                                    'Item SKU': LookUp(
+                                        'SKU Masters',
+                                        'SKU Master' = OrdrItems.skuId
+                                    ),
+                                    'Cases Unit Price': LookUp(
+                                        varOfflinePricingLines,
+                                        'Item price header'.'Item pricing master' = varPricingMaster.'Item pricing master' && 'Variant code'.'SKU Master' = OrdrItems.skuId && UOM = 'UOM (Item Pricing lines)'.CASE
+                                    ).'Base Price',
+                                    'Pcs Unit Price': LookUp(
+                                        varOfflinePricingLines,
+                                        'Item price header'.'Item pricing master' = varPricingMaster.'Item pricing master' && 'Variant code'.'SKU Master' = OrdrItems.skuId && UOM = 'UOM (Item Pricing lines)'.PCS
+                                    ).'Base Price',
+                                    'Total Quantity': OrdrItems.qtyCases + OrdrItems.qtyPcs,
+                                    Cases: OrdrItems.qtyCases,
+                                    PCs: OrdrItems.qtyPcs,
+                                    'Total Discount Amount': 0,
+                                    'Tax Amount': 0,
+                                    Rate: 0,
+                                    Customer: LookUp(
+                                        AllCustomerss,
+                                        Branch.'Branch Master' = LookUp(
+                                            Users,
+                                            'Primary Email' = User().Email
+                                        ).'Branch Master'.'Branch Master'
+                                    ),
+                                    'Route No': LookUp(
+                                        Areas,
+                                        Area = varUserArea.Area.Area
+                                    ),
+                                    Salesperson: LookUp(
+                                        Users,
+                                        'Primary Email' = User().Email
+                                    ),
+                                    'Van No': LookUp(
+                                        Warehouses,
+                                        Warehouse = varUserVanNo.Van.Warehouse
+                                    ),
+                                    'Batch No': LookUp(
+                                        'Stock Transfer Lines',
+                                        SKU.'SKU Master' = OrdrItems.skuId
+                                    ).'Batch no.',
+                                    'Lot No': LookUp(
+                                        'Stock Transfer Lines',
+                                        SKU.'SKU Master' = OrdrItems.skuId
+                                    ).'Lot no.',
+                                    'Manufacturing Date': LookUp(
+                                        'Stock Transfer Lines',
+                                        SKU.'SKU Master' = OrdrItems.skuId
+                                    ).'Manufacturing date',
+                                    'Empty Jar': 0
+                                }
+                            )
+                        )
+                    )
+                );
+                /*---Update Current Stock----------------*/
+                ForAll(
+                    colFOCManipulatedCartItems As CurSt,
+                    Patch(
+                        'Current Stocks',
+                        LookUp(
+                            'Current Stocks',
+                            'Item SKU'.'SKU Master' = CurSt.skuId && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse && 'Created On' >= Today()
+                        ),
+                        {
+                            Cases: Sum(
+                                Filter(
+                                    'Stock Transfer Lines',
+                                    'Transfer Order No'.'Stock Transfer Header' in varGatePassHeaderAll.headerGUID && SKU.'SKU Master' = CurSt.skuId /*&& IsToday('Created On')*/&& 'Transfer accepted' = 'Transfer accepted (Stock Transfer Lines)'.Yes
+                                ),
+                                'Remaining Qty Cases'
+                            ),
+                            PCs: Sum(
+                                Filter(
+                                    'Stock Transfer Lines',
+                                    'Transfer Order No'.'Stock Transfer Header' in varGatePassHeaderAll.headerGUID && SKU.'SKU Master' = CurSt.skuId /*&& IsToday('Created On')*/&& 'Transfer accepted' = 'Transfer accepted (Stock Transfer Lines)'.Yes
+                                ),
+                                'Remaining Qty Pcs'
+                            )
+                        }
+                    )
+                );
+                Set(
+                    VarFOCConfirmation,
+                    false
+                );
+                Clear(colFOCManipulatedCartItems);
+                Navigate(FOCScreen);
+            Size: =_VarGblAppFonts.Size.UpperMedium
+            Text: ="Yes"
+            Width: =120
+            X: =108
+            Y: =152
+            ZIndex: =1
+
+        btnFOCFinalConfirmationNo As button:
+            Fill: =_VarGblAppColors.BisleriBlue
+            HoverColor: =_VarGblAppColors.HeaderBg
+            HoverFill: =_VarGblAppColors.BisleriBlueMediumLight
+            OnSelect: =Set(VarFOCConfirmation, false)
+            Size: =_VarGblAppFonts.Size.UpperMedium
+            Text: ="No"
+            Width: =120
+            X: =287
+            Y: =152
+            ZIndex: =2
+
+        lblFOCFinalConfirmationMessage As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Bold
+            Height: =124
+            Size: =21
+            Text: ="Do you want to Continue ?"
+            Width: =476
+            X: =22
+            Y: =23
+            ZIndex: =3
+

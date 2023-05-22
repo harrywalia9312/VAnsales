@@ -1,0 +1,429 @@
+"'Customer Screen' As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+    Fill: =//_VarGblAppColors.BackgroundColor
+    OnVisible: |-
+        =//Refresh(Customers);
+        //Set(refreshsearch, true);
+        Reset(txtCustomerSearch)
+
+    compCustomerHeader As Header:
+        HeaderText: ="Customers"
+        ZIndex: =2
+
+    galCustomerList As gallery.galleryVertical:
+        AccessibleLabel: ="galCustomerList"
+        BorderColor: =RGBA(109, 109, 109, 1)
+        FocusedBorderColor: =Color.Transparent
+        FocusedBorderThickness: =0.2
+        Height: =901
+        Items: |-
+            =Sort(
+                If(
+                    !IsBlank(txtCustomerSearch.SearchText),
+                    Filter(
+                        Filter(
+                            Customers_1,
+                            'Customer status' = 'Customer status (Choice)'.Customer && Salesperson.'Primary Email' = User().Email
+                        ),
+                        txtCustomerSearch.SearchText in 'Customer Code' || txtCustomerSearch.SearchText in 'Contact Person name' || txtCustomerSearch.SearchText in 'Address 1: Street 1'
+                    ),
+                    Filter(
+                        Customers_1,
+                        'Customer status' = 'Customer status (Choice)'.Customer && Salesperson.'Primary Email' = User().Email
+                    )
+                ),
+                'Created On',
+                SortOrder.Descending
+            )
+        Layout: =Layout.Vertical
+        OnSelect: =
+        ShowScrollbar: =false
+        TabIndex: =
+        TemplateSize: =181
+        Y: =153
+        ZIndex: =3
+
+        htmGalCustomerBackground As htmlViewer:
+            Color: =RGBA(242, 242, 242, 1)
+            Height: =186
+            HtmlText: |-
+                ="<div style='border-radius:15px 15px 15px 15px; background-color:#E6F7F6; width:590px; height:175px'></div>"
+            OnSelect: =Select(Parent)
+            Width: =610
+            X: =12
+            ZIndex: =1
+
+        lblGalCustomerName As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            OnSelect: |-
+                =//Navigate('customer info',ScreenTransition.Fade, {detailsssssss69: ThisItem.Account});
+                //Reset(customerinfo)
+                Navigate('Customer Detail Screen', ScreenTransition.Cover, {CustData:ThisItem})
+            Size: =17
+            TabIndex: =0
+            Text: =ThisItem.'Customer Code'
+            Width: =379
+            X: =36
+            Y: =8
+            ZIndex: =2
+
+        htmGalCustomerArea As htmlViewer:
+            Color: =RGBA(242, 242, 242, 1)
+            Height: =52
+            HtmlText: |-
+                ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:1px solid #00B3A1; width:130px; height:30px'></div>"
+            OnSelect: =Select(Parent)
+            Width: =164
+            X: =56
+            Y: =95
+            ZIndex: =4
+
+        lblGalCustomerArea As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =23
+            OnSelect: =
+            Size: =12
+            Text: ="Sub-Category"
+            Width: =116
+            X: =67
+            Y: =103
+            ZIndex: =5
+
+        htmGalCustomerLastVisitDate As htmlViewer:
+            Color: =RGBA(242, 242, 242, 1)
+            Height: =52
+            HtmlText: |-
+                ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:1px solid #00B3A1; width:150px; height:30px'></div>"
+            OnSelect: =Select(Parent)
+            Width: =164
+            X: =234
+            Y: =96
+            ZIndex: =8
+
+        lblGalCustomerLastVisitDate As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =23
+            OnSelect: =
+            Size: =12
+            Text: ="Last Order Date"
+            Width: =137
+            X: =246
+            Y: =103
+            ZIndex: =9
+
+        lblGalCustomerAreaValue As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =37
+            OnSelect: =
+            Size: =11
+            Text: |-
+                =ThisItem.'Customer Sub category'.Name
+                //"Sector 16, Noida"
+            Width: =213
+            X: =15
+            Y: =130
+            ZIndex: =10
+
+        lblGalCustomerLastVisitDateValue As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnSelect: =
+            Size: =11
+            Text: |-
+                =If(
+                    IsBlank(
+                        Text(
+                            First(
+                                Sort(
+                                    Filter(
+                                        'Order Headers',
+                                        Customer.Account = ThisItem.Account
+                                    ),
+                                    'Order Date',
+                                    SortOrder.Descending
+                                )
+                            ).'Order Date',
+                            "dd mmm yyyy"
+                        )
+                    ),
+                    Text("-"),
+                    Text(
+                        First(
+                            Sort(
+                                Filter(
+                                    'Order Headers',
+                                    Customer.Account = ThisItem.Account
+                                ),
+                                'Order Date',
+                                SortOrder.Descending
+                            )
+                        ).'Order Date',
+                        "dd mmm yyyy"
+                    )
+                )
+            Width: =127
+            X: =255
+            Y: =131
+            ZIndex: =12
+
+        lblGalCustomerAddress As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =35
+            Size: =12
+            Text: |-
+                =ThisItem.'Address 1: Street 1'
+            Width: =482
+            X: =36
+            Y: =62
+            ZIndex: =21
+
+        icoGalCustomerWaypoint As icon.Waypoint:
+            AccessibleLabel: ="icoGalCustomerWaypoint"
+            BorderColor: =RGBA(109, 109, 109, 1)
+            Color: =_VarGblAppColors.PrimaryBg
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(220, 220, 220, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =40
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Icon: =Icon.Waypoint
+            OnSelect: |-
+                =Launch("http://www.google.com/maps/place/" & ThisItem.'Address 1: Latitude' & "," & ThisItem.'Address 1: Longitude')
+            PaddingBottom: =5
+            PaddingLeft: =5
+            PaddingRight: =5
+            PaddingTop: =5
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            TabIndex: =
+            Width: =40
+            X: =506
+            Y: =11
+            ZIndex: =22
+
+        htmGalCustomerLastOrder As htmlViewer:
+            Color: =RGBA(242, 242, 242, 1)
+            Height: =52
+            HtmlText: |-
+                ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:1px solid #00B3A1; width:150px; height:30px'></div>"
+            OnSelect: =Select(Parent)
+            Width: =164
+            X: =426
+            Y: =96
+            ZIndex: =23
+
+        lblGalCustomerLastOrder As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =23
+            OnSelect: =
+            Size: =12
+            Text: ="Last Order Value"
+            Width: =143
+            X: =435
+            Y: =104
+            ZIndex: =24
+
+        lblGalCustomerLastOrderValue As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnSelect: =
+            Size: =11
+            Text: |-
+                ="₹ " & If(
+                    IsBlank(
+                        First(
+                            Sort(
+                                Filter(
+                                    'Order Headers',
+                                    Customer.Account = ThisItem.Account
+                                ),
+                                'Created On',
+                                SortOrder.Descending
+                            )
+                        ).'Net Amount'
+                    ),
+                    "0",
+                    First(
+                        Sort(
+                            Filter(
+                                'Order Headers',
+                                Customer.Account = ThisItem.Account
+                            ),
+                            'Created On',
+                            SortOrder.Descending
+                        )
+                    ).'Net Amount'
+                )
+            Width: =127
+            X: =447
+            Y: =131
+            ZIndex: =25
+
+        icoGalCustomerPhone As icon.Edit:
+            AccessibleLabel: ="icoGalCustomerPhone"
+            BorderColor: =RGBA(109, 109, 109, 1)
+            Color: =_VarGblAppColors.GreenColor
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(220, 220, 220, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =40
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Icon: =Icon.Phone
+            OnSelect: |-
+                =Launch("tel://"&ThisItem.'Mobile No')
+            PaddingBottom: =5
+            PaddingLeft: =5
+            PaddingRight: =5
+            PaddingTop: =5
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            TabIndex: =
+            Width: =40
+            X: =549
+            Y: =11
+            ZIndex: =26
+
+        lblGalCustomerAddress_1 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =22
+            Size: =12
+            Text: |-
+                ="Customer Name :"
+            Width: =145
+            X: =36
+            Y: =45
+            ZIndex: =27
+
+        lblGalCustomerAddress_2 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Bold
+            Height: =22
+            Size: =12
+            Text: =ThisItem.'Customer Name'
+            Width: =380
+            X: =189
+            Y: =45
+            ZIndex: =28
+
+    compCustomerBottomBar As BottomBar:
+        NavItem: |-
+            =Table(
+                {
+                    Title: If(
+                        CountRows(colOfflineTodayAttendance)=0,
+                        "Start",
+                        (CountRows(colOfflineTodayAttendance) = 1 && !IsBlank(First(colOfflineTodayAttendance).'Check-in Time') && IsBlank(First(colOfflineTodayAttendance).'Check-out Time') ),
+                        "End",
+                        (CountRows(colOfflineTodayAttendance) = 1 && !IsBlank(First(colOfflineTodayAttendance).'Check-in Time') && !IsBlank(First(colOfflineTodayAttendance).'Check-out Time')),
+                        "Ended"
+                    ),
+                    Icon: Icon.CalendarBlank,
+                    Screen: 'Attendance Screen',
+                    Active: false
+                },
+                {
+                    Title: "Visit",
+                    Icon: Icon.Waypoint,
+                    Screen: 'Visit Screen',
+                    Active: false
+                },
+                {
+                    Title: "Dashboard",
+                    Icon: Icon.Waffle,
+                    Screen: 'Home Screen',
+                    Active: false
+                },
+                {
+                    Title: "Customers",
+                    Icon: Icon.People,
+                    Screen: 'Customer Screen',
+                    Active: true
+                },
+                {
+                    Title: "Menu",
+                    Icon: Icon.Hamburger,
+                    Screen: 'Menu Screen',
+                    Active: false
+                }
+            )
+        Y: =1026
+        ZIndex: =7
+
+    txtCustomerSearch As SearchComp:
+        SearchHintText: ="Search by Name"
+        X: =27
+        Y: =83
+        ZIndex: =8
+

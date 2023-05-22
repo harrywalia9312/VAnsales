@@ -1,0 +1,762 @@
+{
+  "0b2e8b71-cf2b-4ea4-9c96-3a21300305f8": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "displayName": "Spatial Services",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1613/1.0.1613.3125/microsoftspatialservices/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_microsoftspatialservices",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "SpatialServices_68",
+      "SpatialServices_69",
+      "SpatialServices_70",
+      "SpatialServices_73",
+      "SpatialServices_74",
+      "SpatialServices_76",
+      "SpatialServices_79",
+      "SpatialServices_80",
+      "SpatialServices_82",
+      "SpatialServices_83",
+      "SpatialServices_86",
+      "SpatialServices_87",
+      "SpatialServices_89",
+      "SpatialServices_92",
+      "SpatialServices_94",
+      "SpatialServices_97",
+      "SpatialServices_98",
+      "SpatialServices_104",
+      "SpatialServices_105",
+      "SpatialServices_106",
+      "SpatialServices_108",
+      "SpatialServices_109",
+      "SpatialServices_111",
+      "SpatialServices_114",
+      "SpatialServices_117",
+      "SpatialServices_123",
+      "SpatialServices_126",
+      "SpatialServices_127",
+      "SpatialServices_128",
+      "SpatialServices_129",
+      "SpatialServices_133",
+      "SpatialServices_135",
+      "SpatialServices_138",
+      "SpatialServices_141",
+      "SpatialServices_142",
+      "SpatialServices_143",
+      "SpatialServices_144",
+      "SpatialServices_145",
+      "SpatialServices_146",
+      "SpatialServices_148",
+      "SpatialServices_149",
+      "SpatialServices_151",
+      "SpatialServices_156",
+      "SpatialServices_159",
+      "SpatialServices_160",
+      "SpatialServices_165",
+      "SpatialServices_166"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "0b2e8b71-cf2b-4ea4-9c96-3a21300305f8"
+  },
+  "0b67bc74-4435-472d-bfb1-198c12d94da3": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1615/1.0.1615.3163/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "6582ece0-9624-4fb1-a154-5c7ba187a98e": {
+          "value": "shared_commondataserviceforapps"
+        },
+        "workflowEntityId": {
+          "value": "0d6965ff-08c3-ed11-b597-002248d5da52"
+        },
+        "workflowName": {
+          "value": "46ddbb8e-084f-461b-b127-541cb2c7afc5"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_commondataserviceforapps": {
+          "value": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+        },
+        "workflowEntityId": {
+          "value": "0d6965ff-08c3-ed11-b597-002248d5da52"
+        },
+        "workflowName": {
+          "value": "46ddbb8e-084f-461b-b127-541cb2c7afc5"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "AutorunPush-Payments"
+    ],
+    "dependencies": {
+      "shared_commondataserviceforapps": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+    },
+    "dependents": [],
+    "id": "0b67bc74-4435-472d-bfb1-198c12d94da3"
+  },
+  "0f8dfc71-29f0-466c-bf69-539bb978e844": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Payment",
+      "iconUri": "https://az787822.vo.msecnd.net/defaulticons/api-dedicated.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_payment-5f7ae3c468c3353edd-5f69d4af27be7bcb24",
+      "isCustomApiConnection": true,
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Payment"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "0f8dfc71-29f0-466c-bf69-539bb978e844"
+  },
+  "12a5ab43-b5f4-4e89-bd18-88b79a8982f7": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "IRN-1 Solution",
+      "iconUri": "https://az787822.vo.msecnd.net/defaulticons/api-dedicated.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_irn-2d1-20solution-5f7ae3c468c3353edd-5f1ad5e1bf43efcde8",
+      "isCustomApiConnection": true,
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "IRN"
+    ],
+    "dependencies": {},
+    "dependents": [
+      "72c28b03-e08d-41f0-83ae-87c1f9ebbd88"
+    ],
+    "id": "12a5ab43-b5f4-4e89-bd18-88b79a8982f7"
+  },
+  "1fa5a7ef-f435-42b6-9490-8544ff202d82": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1615/1.0.1615.3163/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "6582ece0-9624-4fb1-a154-5c7ba187a98e": {
+          "value": "shared_commondataserviceforapps_1"
+        },
+        "workflowEntityId": {
+          "value": "e81a4d34-8dd7-ed11-a7c6-002248d5dd06"
+        },
+        "workflowName": {
+          "value": "0ee1070e-1432-9f4c-327b-6f4a905fd4fe"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_commondataserviceforapps": {
+          "value": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+        },
+        "shared_commondataserviceforapps_1": {
+          "value": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+        },
+        "workflowEntityId": {
+          "value": "e81a4d34-8dd7-ed11-a7c6-002248d5dd06"
+        },
+        "workflowName": {
+          "value": "0ee1070e-1432-9f4c-327b-6f4a905fd4fe"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "AutorunPush-Stockinventory-pune"
+    ],
+    "dependencies": {
+      "shared_commondataserviceforapps": "6582ece0-9624-4fb1-a154-5c7ba187a98e",
+      "shared_commondataserviceforapps_1": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+    },
+    "dependents": [],
+    "id": "1fa5a7ef-f435-42b6-9490-8544ff202d82"
+  },
+  "2452d2fa-0956-426f-8dd3-18a0e6f1c685": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1615/1.0.1615.3163/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "6582ece0-9624-4fb1-a154-5c7ba187a98e": {
+          "value": "shared_commondataserviceforapps_1"
+        },
+        "workflowEntityId": {
+          "value": "e4b0db48-67d4-ed11-a7c7-002248d5da52"
+        },
+        "workflowName": {
+          "value": "9e035509-1334-9660-227c-c5d6ccf9d44c"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_commondataserviceforapps": {
+          "value": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+        },
+        "shared_commondataserviceforapps_1": {
+          "value": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+        },
+        "workflowEntityId": {
+          "value": "e4b0db48-67d4-ed11-a7c7-002248d5da52"
+        },
+        "workflowName": {
+          "value": "9e035509-1334-9660-227c-c5d6ccf9d44c"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "AutorunPush-Invoices"
+    ],
+    "dependencies": {
+      "shared_commondataserviceforapps": "6582ece0-9624-4fb1-a154-5c7ba187a98e",
+      "shared_commondataserviceforapps_1": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+    },
+    "dependents": [],
+    "id": "2452d2fa-0956-426f-8dd3-18a0e6f1c685"
+  },
+  "2667ee1f-80f0-4208-920d-52d2b701e153": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "displayName": "Spatial Services",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1613/1.0.1613.3125/microsoftspatialservices/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_microsoftspatialservices",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "SpatialServices_66"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "2667ee1f-80f0-4208-920d-52d2b701e153"
+  },
+  "27446bff-9450-4cd8-be8c-f15f3bcc6e60": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "displayName": "Spatial Services",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1613/1.0.1613.3125/microsoftspatialservices/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_microsoftspatialservices",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "SpatialServices_84"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "27446bff-9450-4cd8-be8c-f15f3bcc6e60"
+  },
+  "2ea819db-0145-4a9a-8157-f53f247417f8": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1615/1.0.1615.3163/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "6582ece0-9624-4fb1-a154-5c7ba187a98e": {
+          "value": "shared_commondataserviceforapps"
+        },
+        "workflowEntityId": {
+          "value": "e6043fea-90d7-ed11-a7c6-002248d5d4e3"
+        },
+        "workflowName": {
+          "value": "a19b2cfb-0170-59e1-8b8d-b442d8d0e3a3"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_commondataserviceforapps": {
+          "value": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+        },
+        "workflowEntityId": {
+          "value": "e6043fea-90d7-ed11-a7c6-002248d5d4e3"
+        },
+        "workflowName": {
+          "value": "a19b2cfb-0170-59e1-8b8d-b442d8d0e3a3"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "AutorunPush-Payments-Pune"
+    ],
+    "dependencies": {
+      "shared_commondataserviceforapps": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+    },
+    "dependents": [],
+    "id": "2ea819db-0145-4a9a-8157-f53f247417f8"
+  },
+  "4469b221-e1db-4d7c-ae7c-ce4dc8cf2efe": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "displayName": "Spatial Services",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1613/1.0.1613.3125/microsoftspatialservices/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_microsoftspatialservices",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "SpatialServices_84"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "4469b221-e1db-4d7c-ae7c-ce4dc8cf2efe"
+  },
+  "458bf082-0b55-41c7-9e01-c842f2587831": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "displayName": "Spatial Services",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1613/1.0.1613.3125/microsoftspatialservices/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_microsoftspatialservices",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "SpatialServices_71"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "458bf082-0b55-41c7-9e01-c842f2587831"
+  },
+  "4ad5d7c7-d90a-4705-97da-454fd5b45c8d": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "displayName": "Spatial Services",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1613/1.0.1613.3125/microsoftspatialservices/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_microsoftspatialservices",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "SpatialServices_70"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "4ad5d7c7-d90a-4705-97da-454fd5b45c8d"
+  },
+  "4cc655b1-87b6-4a25-86ce-1733df30efb3": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "displayName": "Spatial Services",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1613/1.0.1613.3125/microsoftspatialservices/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_microsoftspatialservices",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "SpatialServices_83"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "4cc655b1-87b6-4a25-86ce-1733df30efb3"
+  },
+  "6582ece0-9624-4fb1-a154-5c7ba187a98e": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "bypassConsent": true,
+      "displayName": "Microsoft Dataverse",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1628/1.0.1628.3245/commondataserviceforapps/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_commondataserviceforapps",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [],
+    "dependencies": {},
+    "dependents": [
+      "86d15e1a-11d3-49be-9e5b-593b38cdac5a",
+      "f50aef2b-5624-4f17-896d-2b6843ecf653",
+      "af5d9cd8-bfd4-42ca-9d68-0921e719f90f",
+      "2ea819db-0145-4a9a-8157-f53f247417f8",
+      "d37dd4d3-5133-4400-8387-fa8cc5cd0745",
+      "2452d2fa-0956-426f-8dd3-18a0e6f1c685",
+      "1fa5a7ef-f435-42b6-9490-8544ff202d82",
+      "0b67bc74-4435-472d-bfb1-198c12d94da3"
+    ],
+    "id": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+  },
+  "6d003389-1ba3-44bd-b2c3-ab750db939af": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "displayName": "Spatial Services",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1613/1.0.1613.3125/microsoftspatialservices/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_microsoftspatialservices",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "SpatialServices_83"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "6d003389-1ba3-44bd-b2c3-ab750db939af"
+  },
+  "72c28b03-e08d-41f0-83ae-87c1f9ebbd88": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1615/1.0.1615.3163/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "12a5ab43-b5f4-4e89-bd18-88b79a8982f7": {
+          "value": "shared_irn-2d1-20solution-5f7ae3c468c3353edd-5f1ad5e1bf43efcde8_1"
+        },
+        "c9172f64-282a-4b02-9d71-db374abc86e0": {
+          "value": "shared_commondataserviceforapps_1"
+        },
+        "workflowEntityId": {
+          "value": "9dfdf8e2-51db-ed11-8847-002248d5da52"
+        },
+        "workflowName": {
+          "value": "267ffaf8-0ee9-24b0-cf06-b17af1d88383"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_commondataserviceforapps_1": {
+          "value": "c9172f64-282a-4b02-9d71-db374abc86e0"
+        },
+        "shared_irn-2d1-20solution-5f7ae3c468c3353edd-5f1ad5e1bf43efcde8_1": {
+          "value": "12a5ab43-b5f4-4e89-bd18-88b79a8982f7"
+        },
+        "workflowEntityId": {
+          "value": "9dfdf8e2-51db-ed11-8847-002248d5da52"
+        },
+        "workflowName": {
+          "value": "267ffaf8-0ee9-24b0-cf06-b17af1d88383"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "IRNGeneration"
+    ],
+    "dependencies": {
+      "shared_commondataserviceforapps_1": "c9172f64-282a-4b02-9d71-db374abc86e0",
+      "shared_irn-2d1-20solution-5f7ae3c468c3353edd-5f1ad5e1bf43efcde8_1": "12a5ab43-b5f4-4e89-bd18-88b79a8982f7"
+    },
+    "dependents": [],
+    "id": "72c28b03-e08d-41f0-83ae-87c1f9ebbd88"
+  },
+  "83bb3a2a-e84a-4b3e-bf81-afbdf8133213": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "displayName": "Spatial Services",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1613/1.0.1613.3125/microsoftspatialservices/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_microsoftspatialservices",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "SpatialServices_63",
+      "SpatialServices_66"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "83bb3a2a-e84a-4b3e-bf81-afbdf8133213"
+  },
+  "86d15e1a-11d3-49be-9e5b-593b38cdac5a": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1615/1.0.1615.3163/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "6582ece0-9624-4fb1-a154-5c7ba187a98e": {
+          "value": "shared_commondataserviceforapps_5"
+        },
+        "workflowEntityId": {
+          "value": "fde3ec4d-93d7-ed11-a7c6-002248d5da52"
+        },
+        "workflowName": {
+          "value": "4280eff8-7e34-8707-17b6-f329ad272ffe"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_commondataserviceforapps_5": {
+          "value": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+        },
+        "workflowEntityId": {
+          "value": "fde3ec4d-93d7-ed11-a7c6-002248d5da52"
+        },
+        "workflowName": {
+          "value": "4280eff8-7e34-8707-17b6-f329ad272ffe"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "AutorunPush-CheckinDemand"
+    ],
+    "dependencies": {
+      "shared_commondataserviceforapps_5": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+    },
+    "dependents": [],
+    "id": "86d15e1a-11d3-49be-9e5b-593b38cdac5a"
+  },
+  "af5d9cd8-bfd4-42ca-9d68-0921e719f90f": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1615/1.0.1615.3163/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "6582ece0-9624-4fb1-a154-5c7ba187a98e": {
+          "value": "shared_commondataserviceforapps_1"
+        },
+        "workflowEntityId": {
+          "value": "2698a8fc-8cd7-ed11-a7c6-002248d5dc4f"
+        },
+        "workflowName": {
+          "value": "370d6141-9d58-bac6-e3db-668439bbdfe1"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_commondataserviceforapps": {
+          "value": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+        },
+        "shared_commondataserviceforapps_1": {
+          "value": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+        },
+        "workflowEntityId": {
+          "value": "2698a8fc-8cd7-ed11-a7c6-002248d5dc4f"
+        },
+        "workflowName": {
+          "value": "370d6141-9d58-bac6-e3db-668439bbdfe1"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "AutorunPush-Invoices-Pune"
+    ],
+    "dependencies": {
+      "shared_commondataserviceforapps": "6582ece0-9624-4fb1-a154-5c7ba187a98e",
+      "shared_commondataserviceforapps_1": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+    },
+    "dependents": [],
+    "id": "af5d9cd8-bfd4-42ca-9d68-0921e719f90f"
+  },
+  "c9172f64-282a-4b02-9d71-db374abc86e0": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "bypassConsent": true,
+      "displayName": "Microsoft Dataverse",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1628/1.0.1628.3245/commondataserviceforapps/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_commondataserviceforapps",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [],
+    "dependencies": {},
+    "dependents": [
+      "72c28b03-e08d-41f0-83ae-87c1f9ebbd88"
+    ],
+    "id": "c9172f64-282a-4b02-9d71-db374abc86e0"
+  },
+  "cdd0cfec-d272-4928-abc7-3479f9b77706": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "displayName": "Spatial Services",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1613/1.0.1613.3125/microsoftspatialservices/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_microsoftspatialservices",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "SpatialServices",
+      "SpatialServices_1",
+      "SpatialServices_3",
+      "SpatialServices_4",
+      "SpatialServices_5",
+      "SpatialServices_6",
+      "SpatialServices_9",
+      "SpatialServices_10",
+      "SpatialServices_11",
+      "SpatialServices_12",
+      "SpatialServices_13",
+      "SpatialServices_14",
+      "SpatialServices_17",
+      "SpatialServices_18",
+      "SpatialServices_22",
+      "SpatialServices_23",
+      "SpatialServices_24",
+      "SpatialServices_25",
+      "SpatialServices_26",
+      "SpatialServices_27",
+      "SpatialServices_29",
+      "SpatialServices_30",
+      "SpatialServices_31",
+      "SpatialServices_32",
+      "SpatialServices_36",
+      "SpatialServices_38",
+      "SpatialServices_39",
+      "SpatialServices_41",
+      "SpatialServices_42",
+      "SpatialServices_44",
+      "SpatialServices_47",
+      "SpatialServices_48",
+      "SpatialServices_50",
+      "SpatialServices_51",
+      "SpatialServices_57",
+      "SpatialServices_59",
+      "SpatialServices_62"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "cdd0cfec-d272-4928-abc7-3479f9b77706"
+  },
+  "d37dd4d3-5133-4400-8387-fa8cc5cd0745": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1615/1.0.1615.3163/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "6582ece0-9624-4fb1-a154-5c7ba187a98e": {
+          "value": "shared_commondataserviceforapps_2"
+        },
+        "workflowEntityId": {
+          "value": "262c983e-93d7-ed11-a7c6-002248d5dd06"
+        },
+        "workflowName": {
+          "value": "8ee1d903-f850-ac79-cee5-fd73df02f32c"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_commondataserviceforapps_2": {
+          "value": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+        },
+        "workflowEntityId": {
+          "value": "262c983e-93d7-ed11-a7c6-002248d5dd06"
+        },
+        "workflowName": {
+          "value": "8ee1d903-f850-ac79-cee5-fd73df02f32c"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "AutorunPush-Stockinventory"
+    ],
+    "dependencies": {
+      "shared_commondataserviceforapps_2": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+    },
+    "dependents": [],
+    "id": "d37dd4d3-5133-4400-8387-fa8cc5cd0745"
+  },
+  "ddad03d4-9bde-4e09-b5f2-b67de44e89f1": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "displayName": "Spatial Services",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1613/1.0.1613.3125/microsoftspatialservices/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_microsoftspatialservices",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "SpatialServices_85"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "ddad03d4-9bde-4e09-b5f2-b67de44e89f1"
+  },
+  "dfbf20ae-d93a-4b38-b148-5e8e31f8755d": {
+    "connectionRef": {
+      "apiTier": "Premium",
+      "displayName": "Spatial Services",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1613/1.0.1613.3125/microsoftspatialservices/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_microsoftspatialservices",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "SpatialServices_72"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "dfbf20ae-d93a-4b38-b148-5e8e31f8755d"
+  },
+  "eac358ef-8b2b-44d8-8393-c3e00c4416fc": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Statuscheckpayment",
+      "iconUri": "https://az787822.vo.msecnd.net/defaulticons/api-dedicated.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_statuscheckpayment-5f7ae3c468c3353edd-5f69d4af27be7bcb24",
+      "isCustomApiConnection": true,
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Statuscheckpayment"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "eac358ef-8b2b-44d8-8393-c3e00c4416fc"
+  },
+  "f50aef2b-5624-4f17-896d-2b6843ecf653": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1615/1.0.1615.3163/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "6582ece0-9624-4fb1-a154-5c7ba187a98e": {
+          "value": "shared_commondataserviceforapps_1"
+        },
+        "workflowEntityId": {
+          "value": "4882e90d-8dd7-ed11-a7c6-002248d5db8a"
+        },
+        "workflowName": {
+          "value": "59bcefb3-02a0-3f0e-bb3c-ddffdfbeb8f6"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_commondataserviceforapps": {
+          "value": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+        },
+        "shared_commondataserviceforapps_1": {
+          "value": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+        },
+        "workflowEntityId": {
+          "value": "4882e90d-8dd7-ed11-a7c6-002248d5db8a"
+        },
+        "workflowName": {
+          "value": "59bcefb3-02a0-3f0e-bb3c-ddffdfbeb8f6"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "AutorunPush-CheckinDemand_pune"
+    ],
+    "dependencies": {
+      "shared_commondataserviceforapps": "6582ece0-9624-4fb1-a154-5c7ba187a98e",
+      "shared_commondataserviceforapps_1": "6582ece0-9624-4fb1-a154-5c7ba187a98e"
+    },
+    "dependents": [],
+    "id": "f50aef2b-5624-4f17-896d-2b6843ecf653"
+  }
+}

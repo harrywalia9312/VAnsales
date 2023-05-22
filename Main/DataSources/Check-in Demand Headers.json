@@ -1,0 +1,107 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_checkindemandheaders",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_checkindemandheader",
+    "MaxGetRowsCount": 2000,
+    "Name": "Check-in Demand Headers",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_checkindemandheader_AsyncOperations": "System Jobs",
+      "zx_checkindemandheader_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_checkindemandheader_DuplicateBaseRecord": "Duplicate Records (zx_checkindemandheader_DuplicateBaseRecord)",
+      "zx_checkindemandheader_DuplicateMatchingRecord": "Duplicate Records (zx_checkindemandheader_DuplicateMatchingRecord)",
+      "zx_checkindemandheader_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_checkindemandheader_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_checkindemandheader_ProcessSession": "Process Sessions",
+      "zx_checkindemandheader_SyncErrors": "Sync Errors",
+      "zx_checkindemandheaderid": "Check-in Demand Header",
+      "zx_date": "Date",
+      "zx_name": "Demand Header No",
+      "zx_RouteNo": "Route No.",
+      "zx_routenocalculated": "RouteNoCalculated",
+      "zx_Salesperson": "Salesperson",
+      "zx_salespersonemployeecode": "Sales Person Employee Code",
+      "zx_VanNo": "Van No",
+      "zx_vannocalculated": "VANNoCalculated",
+      "zx_zx_checkindemandlines_CheckinDemandHeader": "Check-in Demand Lines",
+      "zx_zx_stocktransferheader_ReferenceDemand_zx": "Stock Transfer Headers"
+    },
+    "PreferredName": "Check-in Demand Headers",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Check-in Demand Headers (Views)",
+    "Name": "_zx_checkindemandheader_views",
+    "RelatedEntityName": "Check-in Demand Headers",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "34cc4d1f-e124-4f1b-ac1c-8390108fc5c7": "Active Check-in Demand Headers",
+      "392e813a-ab07-4489-9722-8bbb31385cfc": "Check-in Demand Header Lookup View",
+      "acbb88b6-9648-478b-a01b-ddc7e905a594": "Inactive Check-in Demand Headers",
+      "bf175679-3349-4abc-8356-7b5384141413": "Check-in Demand Header Associated View",
+      "e796dfd3-b7c4-ed11-b597-002248d5db8a": "Today's Demand Header",
+      "ecd41963-81f9-4fd6-8265-2ea8907eb94e": "Check-in Demand Header Advanced Find View"
+    }
+  },
+  {
+    "DisplayName": "Status (Check-in Demand Headers)",
+    "Name": "zx_checkindemandheader_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Check-in Demand Headers"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Check-in Demand Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Check-in Demand Headers)",
+    "Name": "zx_checkindemandheader_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Check-in Demand Headers"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Check-in Demand Headers",
+    "Type": "OptionSetInfo"
+  }
+]

@@ -1,0 +1,387 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_invoiceheaders",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_invoiceheader",
+    "MaxGetRowsCount": 2000,
+    "Name": "Invoice Headers",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "exchangerate": "Exchange Rate",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "new_file": "File",
+      "new_push": "Push",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "transactioncurrencyid": "Currency",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_14_percent": "14 Percent",
+      "zx_9_percent": "9 Percent",
+      "zx_branchname": "Branch Name",
+      "zx_cashcustomer": "Cash Customer",
+      "zx_cesspercentage": "CESS Percentage",
+      "zx_cessvalue": "Cess Value",
+      "zx_cessvalue_base": "Cess Value (Base)",
+      "zx_cgst9": "CGST9",
+      "zx_cgst9_base": "CGST9 (Base)",
+      "zx_cgst9_date": "CGST9 (Last Updated On)",
+      "zx_cgst9_state": "CGST9 (State)",
+      "zx_cgstsum60": "CGSTSum6.0",
+      "zx_cgstsum60_base": "CGSTSum6.0 (Base)",
+      "zx_cgstsum60_date": "CGSTSum6.0 (Last Updated On)",
+      "zx_cgstsum60_state": "CGSTSum6.0 (State)",
+      "zx_cgstvalue": "CGST Value",
+      "zx_cgstvalue_base": "CGST Value (Base)",
+      "zx_Customer": "Customer",
+      "zx_exceptionaltax": "Exceptional Tax %",
+      "zx_flag": "Flag",
+      "zx_foccustomer": "FOC Customer",
+      "zx_invoicedate": "Invoice Date",
+      "zx_invoiceheader_AsyncOperations": "System Jobs",
+      "zx_invoiceheader_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_invoiceheader_DuplicateBaseRecord": "Duplicate Records (zx_invoiceheader_DuplicateBaseRecord)",
+      "zx_invoiceheader_DuplicateMatchingRecord": "Duplicate Records (zx_invoiceheader_DuplicateMatchingRecord)",
+      "zx_invoiceheader_FileAttachments": "FileAttachments",
+      "zx_invoiceheader_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_invoiceheader_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_invoiceheader_ProcessSession": "Process Sessions",
+      "zx_invoiceheader_SyncErrors": "Sync Errors",
+      "zx_invoiceheaderid": "Invoice Header",
+      "zx_irnmessage": "IRN Message",
+      "zx_irnnumber": "IRN Number",
+      "zx_irnqrcode": "IRN QRCode",
+      "zx_irnstatus": "IRN Status",
+      "zx_modeofpayment": "Mode of Payment",
+      "zx_name": "Invoice Number",
+      "zx_netamount": "Net Amount",
+      "zx_netamount_base": "Net Amount (Base)",
+      "zx_netamountwithoutejar": "Net Amount (Without E Jar)",
+      "zx_netamountwithoutejar_base": "Net Amount (Without E Jar) (Base)",
+      "zx_OrderNumber": "Order Number",
+      "zx_ordertype": "Order Type",
+      "zx_paymentstatus": "Payment Status",
+      "zx_percent": "6 Percent",
+      "zx_qr": "QR",
+      "zx_qrflag": "QR Flag",
+      "zx_qrid": "zx_QRId",
+      "zx_reason3": "Reason3",
+      "zx_RouteNo": "Route No",
+      "zx_Salesperson": "Salesperson",
+      "zx_salespersonemployeecode": "Sales Person Employee Code",
+      "zx_sgstvalue": "SGST Value",
+      "zx_sgstvalue_base": "SGST Value (Base)",
+      "zx_signedqrcode": "Signed QR Code",
+      "zx_signedqrnullgst": "Local QR ",
+      "zx_synceddate": "Synced Date",
+      "zx_taxablevalue": "Taxable Value",
+      "zx_taxablevalue_base": "Taxable Value (Base)",
+      "zx_test": "Test 123",
+      "zx_totalamount": "Total Amount",
+      "zx_totalamount_base": "Total Amount (Base)",
+      "zx_totaldiscountamount": "Total Discount Amount",
+      "zx_totaldiscountamount_base": "Total Discount Amount (Base)",
+      "zx_totalqty": "Total Qty",
+      "zx_totaltaxamount": "Total Tax Amount",
+      "zx_totaltaxamount_base": "Total Tax Amount (Base)",
+      "zx_VanNo": "Van No",
+      "zx_zx_invoicelines_InvoiceNumber_zx_invoiceh": "Invoice Lines",
+      "zx_zx_payments_Invoice_zx_invoiceheader": "Payments"
+    },
+    "PreferredName": "Invoice Headers",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Invoice Headers (Views)",
+    "Name": "_zx_invoiceheader_views",
+    "RelatedEntityName": "Invoice Headers",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "28ef7020-ff50-4b71-8329-38bf9be6ade6": "Active Invoice Headers",
+      "37ae63a7-56ab-ed11-83ff-002248d5da52": "Today's Invoice",
+      "38882b35-57ab-ed11-83ff-002248d5da52": "Last 7 days Invoices",
+      "79b4c6c6-e263-4749-9370-b1b08dd9e0ba": "Invoice Header Advanced Find View",
+      "8f8f917f-57ab-ed11-83ff-002248d5da52": "This Month's Invoice",
+      "91ea12ce-ba56-45f2-b83b-c878a5136fad": "Invoice Header Lookup View",
+      "93387a11-89b6-ed11-b597-002248d5db8a": "Invoice Header",
+      "d4fe9371-9c33-4722-acf7-d8031e08472a": "Invoice Header Associated View",
+      "d8ff8575-8fb6-ed11-b597-002248d5da52": "All Invoices",
+      "fe8c20fa-e54d-46fd-a810-25997cecb7a8": "Inactive Invoice Headers"
+    }
+  },
+  {
+    "DisplayName": "Push (Invoice Headers)",
+    "Name": "new_zx_invoiceheader_new_push",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "new_push",
+        "OptionSetReferenceEntityName": "Invoice Headers"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "new_push",
+    "RelatedEntityName": "Invoice Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "FOC Reason",
+    "Name": "zx_focreason",
+    "OptionSetInfoNameMapping": {
+      "425120000": "RTO",
+      "425120001": "Replacement",
+      "425120002": "Route Replacement",
+      "425120003": "Returnable",
+      "425120004": "Pop Scheme",
+      "425120005": "Job Work",
+      "425120006": "IDC Transfer",
+      "425120007": "Expired Goods Can/Pet",
+      "425120008": "DTH Scheme",
+      "425120009": "Display Incentive",
+      "425120010": "Display",
+      "425120011": "Deposit",
+      "425120012": "Self consumption",
+      "425120013": "Complimentary",
+      "425120014": "Complaint",
+      "425120015": "Breakage"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_reason3",
+        "OptionSetReferenceEntityName": "Invoice Headers"
+      },
+      "OptionSetReferenceItem1": {
+        "OptionSetReferenceColumnName": "zx_reasoncode",
+        "OptionSetReferenceEntityName": "Invoice Lines"
+      },
+      "OptionSetReferenceItem2": {
+        "OptionSetReferenceColumnName": "zx_reason_t_",
+        "OptionSetReferenceEntityName": "Order Headers"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_reason3",
+    "RelatedEntityName": "Invoice Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Invoice Headers)",
+    "Name": "zx_invoiceheader_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Invoice Headers"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Invoice Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Invoice Headers)",
+    "Name": "zx_invoiceheader_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Invoice Headers"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Invoice Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Cash Customer (Invoice Headers)",
+    "Name": "zx_invoiceheader_zx_cashcustomer",
+    "OptionSetInfoNameMapping": {
+      "0": "False",
+      "1": "True"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_cashcustomer",
+        "OptionSetReferenceEntityName": "Invoice Headers"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_cashcustomer",
+    "RelatedEntityName": "Invoice Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Flag (Invoice Headers)",
+    "Name": "zx_invoiceheader_zx_flag",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_flag",
+        "OptionSetReferenceEntityName": "Invoice Headers"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_flag",
+    "RelatedEntityName": "Invoice Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "QR Flag (Invoice Headers)",
+    "Name": "zx_invoiceheader_zx_qrflag",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_qrflag",
+        "OptionSetReferenceEntityName": "Invoice Headers"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_qrflag",
+    "RelatedEntityName": "Invoice Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Test 123 (Invoice Headers)",
+    "Name": "zx_invoiceheader_zx_test",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_test",
+        "OptionSetReferenceEntityName": "Invoice Headers"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_test",
+    "RelatedEntityName": "Invoice Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "IRN Status",
+    "Name": "zx_irnstatus",
+    "OptionSetInfoNameMapping": {
+      "425120000": "IRN Generated",
+      "425120001": "Pending"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_irnstatus",
+        "OptionSetReferenceEntityName": "Invoice Headers"
+      },
+      "OptionSetReferenceItem1": {
+        "OptionSetReferenceColumnName": "zx_irnstatus",
+        "OptionSetReferenceEntityName": "Order Headers"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_irnstatus",
+    "RelatedEntityName": "Invoice Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Order Type (Choice)",
+    "Name": "zx_ordertype",
+    "OptionSetInfoNameMapping": {
+      "425120000": "Sales Order",
+      "425120001": "Replacement Order",
+      "425120002": "FOC Order",
+      "425120003": "Empty jar Order"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_ordertype",
+        "OptionSetReferenceEntityName": "Invoice Headers"
+      },
+      "OptionSetReferenceItem1": {
+        "OptionSetReferenceColumnName": "zx_ordertype",
+        "OptionSetReferenceEntityName": "Invoice Lines"
+      },
+      "OptionSetReferenceItem2": {
+        "OptionSetReferenceColumnName": "zx_ordertype",
+        "OptionSetReferenceEntityName": "Order Headers"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_ordertype",
+    "RelatedEntityName": "Invoice Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Payment Status Choice",
+    "Name": "zx_paymentstatuschoice",
+    "OptionSetInfoNameMapping": {
+      "425120000": "Pending",
+      "425120001": "Completed"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_paymentstatus",
+        "OptionSetReferenceEntityName": "Invoice Headers"
+      },
+      "OptionSetReferenceItem1": {
+        "OptionSetReferenceColumnName": "zx_paymentstatus",
+        "OptionSetReferenceEntityName": "Order Headers"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_paymentstatus",
+    "RelatedEntityName": "Invoice Headers",
+    "Type": "OptionSetInfo"
+  }
+]

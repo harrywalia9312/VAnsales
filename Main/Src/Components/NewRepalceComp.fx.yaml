@@ -1,0 +1,230 @@
+NewRepalceComp As CanvasComponent:
+    Fill: =_VarGblAppColors.BackgroundColor
+    Height: =900
+    Width: =App.Width
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    Container4_1 As groupContainer.verticalAutoLayoutContainer:
+        Height: =811
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: |-
+            =//Parent.Width
+            640
+        ZIndex: =1
+
+        Container5_1 As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Height: =978
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            Width: =Parent.Width
+            ZIndex: =1
+
+            Container6_1 As groupContainer.verticalAutoLayoutContainer:
+                Height: =739
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMode: =LayoutMode.Auto
+                LayoutOverflowX: =LayoutOverflow.Scroll
+                Width: =640
+                Y: =6
+                ZIndex: =1
+
+                HeadingCont_1 As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.Start
+                    FillPortions: =0
+                    Height: =60
+                    LayoutMinHeight: =70
+                    LayoutMinWidth: =750
+                    Width: =640
+                    ZIndex: =1
+
+                    btnNewOrderHeaderProduct_1 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Subtitle
+                        Text: ="Product"
+                        Width: =260
+                        X: =5
+                        ZIndex: =8
+
+                    btnNewOrderHeaderCases_1 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Subtitle
+                        Text: ="Cases"
+                        Width: =118
+                        X: =btnNewOrderHeaderProduct_1.X + btnNewOrderHeaderProduct_1.Width +5
+                        ZIndex: =9
+
+                    btnNewOrderHeaderPcs_1 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Subtitle
+                        Text: ="Pcs"
+                        Width: =118
+                        X: =btnNewOrderHeaderCases_1.X + btnNewOrderHeaderCases_1.Width +5
+                        ZIndex: =10
+
+                    btnNewOrderHeaderReceivedEmptyJar_1 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Subtitle
+                        Text: ="Received Empty Jar"
+                        Width: =118
+                        X: =btnNewOrderHeaderPcs_1.X + btnNewOrderHeaderPcs_1.Width +5
+                        ZIndex: =11
+
+                DataCont_1 As groupContainer.horizontalAutoLayoutContainer:
+                    Height: =287
+                    LayoutMinHeight: =570
+                    LayoutMinWidth: =640
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =640
+                    ZIndex: =2
+
+                    Gallery7 As gallery.galleryVertical:
+                        AccessibleLabel: ="Gallery7"
+                        Fill: |-
+                            =//RGBA(0, 0, 0, 0)
+                            _VarGblAppColors.BackgroundColor
+                        FillPortions: =0
+                        Items: |-
+                            =Table(
+                                {
+                                    Title: "Bisleri Fonzo",
+                                    QtyCases: "10",
+                                    QtyPcs: "",
+                                    QtyPacks: ""
+                                },
+                                 {
+                                    Title: "Bisleri 20 liter WaterCan",
+                                    QtyCases: "20",
+                                    QtyPcs: "",
+                                     QtyPacks: ""
+                                },
+                                 {
+                                    Title: "Bisleri 500ml Bottle",
+                                    QtyCases: "12",
+                                   QtyPcs: "",
+                                   QtyPacks: ""
+                                },
+                                 {
+                                    Title: "Bisleri Club Soda",
+                                    QtyCases: "15",
+                                    QtyPcs: "",
+                                    QtyPacks: ""
+                                },
+                                 {
+                                    Title: "Bisleri Vedica",
+                                    QtyCases: "17",
+                                    QtyPcs: "",
+                                    QtyPacks: ""
+                                },
+                                 {
+                                    Title: "Bisleri Spyci",
+                                    QtyCases: "10",
+                                    QtyPcs: "",
+                                    QtyPacks: ""
+                                },
+                                 {
+                                    Title: "Bisleri Hand Purifiers",
+                                   QtyCases: "11",
+                                    QtyPcs: "",
+                                    QtyPacks: ""
+                                }
+                            )
+                        Layout: =Layout.Vertical
+                        LayoutMinHeight: =287
+                        LayoutMinWidth: =1300
+                        ShowScrollbar: =false
+                        TabIndex: =0
+                        TemplatePadding: =0
+                        TemplateSize: =60
+                        ZIndex: =1
+
+                        Button6_1 As button:
+                            DisabledFill: |-
+                                =//RGBA(244, 244, 244, 1)
+                                ColorFade( _VarGblAppColors.BisleriBlue, 80%)
+                            DisplayMode: =DisplayMode.Disabled
+                            Height: =60
+                            OnSelect: =Select(Parent)
+                            Size: =24
+                            Text: =""
+                            Width: =Parent.Width-10
+                            X: =5
+                            ZIndex: =1
+
+                        Rectangle4_4 As rectangle:
+                            Fill: |-
+                                =//RGBA(56, 96, 178, 1)
+                                _VarGblAppColors.LightText
+                            Height: =60
+                            OnSelect: =Select(Parent)
+                            Width: =2
+                            X: =266
+                            ZIndex: =9
+
+                        Rectangle4_7 As rectangle:
+                            Fill: |-
+                                =//RGBA(56, 96, 178, 1)
+                                _VarGblAppColors.LightText
+                            Height: =60
+                            OnSelect: =Select(Parent)
+                            Width: =2
+                            X: =390
+                            ZIndex: =10
+
+                        Rectangle4_8 As rectangle:
+                            Fill: |-
+                                =//RGBA(56, 96, 178, 1)
+                                _VarGblAppColors.LightText
+                            Height: =60
+                            OnSelect: =Select(Parent)
+                            Width: =2
+                            X: =512
+                            ZIndex: =11
+

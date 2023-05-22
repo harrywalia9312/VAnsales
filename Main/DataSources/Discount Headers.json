@@ -1,0 +1,121 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_discountheaders",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_discountheader",
+    "MaxGetRowsCount": 2000,
+    "Name": "Discount Headers",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_Branch": "Branch",
+      "zx_discountheader_AsyncOperations": "System Jobs",
+      "zx_discountheader_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_discountheader_DuplicateBaseRecord": "Duplicate Records (zx_discountheader_DuplicateBaseRecord)",
+      "zx_discountheader_DuplicateMatchingRecord": "Duplicate Records (zx_discountheader_DuplicateMatchingRecord)",
+      "zx_discountheader_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_discountheader_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_discountheader_ProcessSession": "Process Sessions",
+      "zx_discountheader_SyncErrors": "Sync Errors",
+      "zx_discountheaderid": "Discount Header",
+      "zx_isactive": "IsActive",
+      "zx_minimumquantity": "Minimum Quantity",
+      "zx_name": "Name",
+      "zx_zx_discountlines_Discountheader_zx_discou": "Discount Lines"
+    },
+    "PreferredName": "Discount Headers",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Discount Headers (Views)",
+    "Name": "_zx_discountheader_views",
+    "RelatedEntityName": "Discount Headers",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "116ed538-268a-4d40-b55e-cc3b248b5c72": "Discount Header Associated View",
+      "12a264fa-0094-4746-805e-dd64e2df4799": "Discount Header Advanced Find View",
+      "45fc86d4-b076-488d-9faa-d699819500ed": "Active Discount Headers",
+      "4836faed-039b-4f80-a021-930e7836b2e5": "Discount Header Lookup View",
+      "f51ca5df-0318-4b5b-8802-8be85c91264d": "Inactive Discount Headers"
+    }
+  },
+  {
+    "DisplayName": "Status (Discount Headers)",
+    "Name": "zx_discountheader_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Discount Headers"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Discount Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Discount Headers)",
+    "Name": "zx_discountheader_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Discount Headers"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Discount Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "IsActive (Discount Headers)",
+    "Name": "zx_discountheader_zx_isactive",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_isactive",
+        "OptionSetReferenceEntityName": "Discount Headers"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_isactive",
+    "RelatedEntityName": "Discount Headers",
+    "Type": "OptionSetInfo"
+  }
+]

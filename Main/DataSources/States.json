@@ -1,0 +1,101 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_states",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_state",
+    "MaxGetRowsCount": 2000,
+    "Name": "States",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_account_State_zx_state": "Customers",
+      "zx_name": "State Name",
+      "zx_state_AsyncOperations": "System Jobs",
+      "zx_state_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_state_DuplicateBaseRecord": "Duplicate Records (zx_state_DuplicateBaseRecord)",
+      "zx_state_DuplicateMatchingRecord": "Duplicate Records (zx_state_DuplicateMatchingRecord)",
+      "zx_state_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_state_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_state_ProcessSession": "Process Sessions",
+      "zx_state_SyncErrors": "Sync Errors",
+      "zx_statecode": "State Code",
+      "zx_stateid": "State",
+      "zx_zx_district_ParentState_zx_state": "Districts",
+      "zx_zx_pincode_ParentState_zx_state": "Pincodes"
+    },
+    "PreferredName": "States",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "States (Views)",
+    "Name": "_zx_state_views",
+    "RelatedEntityName": "States",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "0cd0836b-df68-45d8-a1ba-37b430a35352": "Active States",
+      "5398b2fc-b0a4-4062-a71e-e7501fd31137": "State Associated View",
+      "636f004e-fcc5-4ac5-8f7f-55422d67fb82": "State Advanced Find View",
+      "8170ef44-288f-4489-ab12-e91a6c7e95b6": "Inactive States",
+      "e514e912-79d5-46f7-a299-73465db8cb0e": "State Lookup View"
+    }
+  },
+  {
+    "DisplayName": "Status (States)",
+    "Name": "zx_state_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "States"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "States",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (States)",
+    "Name": "zx_state_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "States"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "States",
+    "Type": "OptionSetInfo"
+  }
+]

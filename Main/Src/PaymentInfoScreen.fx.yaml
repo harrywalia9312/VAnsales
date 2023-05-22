@@ -1,0 +1,164 @@
+"PaymentInfoScreen As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+    Fill: =_VarGblAppColors.LightText
+
+    compPaymentsHeader_1 As Header:
+        HeaderText: ="Payment Info"
+        ZIndex: =6
+
+    compPaymentsBottomBar_1 As BottomBar:
+        Y: =1026
+        ZIndex: =8
+
+    Button22_3 As button:
+        DisabledBorderColor: =ColorFade(Self.Fill, -30%)
+        DisabledFill: =_VarGblAppColors.LightText
+        DisplayMode: =DisplayMode.Disabled
+        Fill: =_VarGblAppColors.LightText
+        Height: =500
+        RadiusBottomLeft: =20
+        RadiusBottomRight: =20
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Size: =24
+        Text: =""
+        Width: =Parent.Width-20
+        X: =10
+        Y: =119
+        ZIndex: =9
+
+    Label16 As label:
+        FontWeight: =FontWeight.Semibold
+        Height: =47
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: ="Payment Id"
+        Width: =217
+        X: =32
+        Y: =157
+        ZIndex: =11
+
+    Label16_1 As label:
+        FontWeight: =FontWeight.Semibold
+        Height: =47
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: ="Payment Amount"
+        Width: =217
+        X: =32
+        Y: =221
+        ZIndex: =12
+
+    Label16_2 As label:
+        FontWeight: =FontWeight.Semibold
+        Height: =47
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: ="Customer"
+        Width: =217
+        X: =32
+        Y: =290
+        ZIndex: =13
+
+    Label16_3 As label:
+        FontWeight: =FontWeight.Semibold
+        Height: =47
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: ="IRN No."
+        Width: =217
+        X: =32
+        Y: =350
+        ZIndex: =14
+
+    Rectangle12_244 As rectangle:
+        BorderColor: =_VarGblAppColors.SecondaryText
+        BorderStyle: =BorderStyle.Dashed
+        BorderThickness: =1
+        DisabledFill: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        FocusedBorderThickness: =4
+        Height: =1
+        HoverFill: =RGBA(255, 200, 61, 1)
+        PressedFill: =RGBA(255, 200, 61, 1)
+        Width: =575
+        X: =32
+        Y: =282
+        ZIndex: =16
+
+    Rectangle12_245 As rectangle:
+        BorderColor: =_VarGblAppColors.SecondaryText
+        BorderStyle: =BorderStyle.Dashed
+        BorderThickness: =1
+        DisabledFill: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        FocusedBorderThickness: =4
+        Height: =1
+        HoverFill: =RGBA(255, 200, 61, 1)
+        PressedFill: =RGBA(255, 200, 61, 1)
+        Width: =575
+        X: =32
+        Y: =344
+        ZIndex: =17
+
+    Rectangle12_246 As rectangle:
+        BorderColor: =_VarGblAppColors.SecondaryText
+        BorderStyle: =BorderStyle.Dashed
+        BorderThickness: =1
+        DisabledFill: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        FocusedBorderThickness: =4
+        Height: =1
+        HoverFill: =RGBA(255, 200, 61, 1)
+        PressedFill: =RGBA(255, 200, 61, 1)
+        Width: =575
+        X: =32
+        Y: =410
+        ZIndex: =18
+
+    Label16_4 As label:
+        Height: =47
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: =PaymData.'Receipt ID'
+        Width: =253
+        X: =305
+        Y: =157
+        ZIndex: =19
+
+    Label16_5 As label:
+        Height: =47
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: =PaymData.Amount
+        Width: =253
+        X: =305
+        Y: =221
+        ZIndex: =20
+
+    Label16_6 As label:
+        Height: =50
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: =PaymData.Customer.'Customer Name'
+        Width: =315
+        X: =305
+        Y: =290
+        ZIndex: =21
+
+    Label16_7 As label:
+        Height: =47
+        Size: =_VarGblAppFonts.Size.Medium
+        Text: =PaymData.Invoice.'IRN Number'
+        Width: =217
+        X: =341
+        Y: =350
+        ZIndex: =22
+
+    Rectangle12_247 As rectangle:
+        BorderColor: =_VarGblAppColors.SecondaryText
+        BorderStyle: =BorderStyle.Dashed
+        BorderThickness: =1
+        DisabledFill: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        FocusedBorderThickness: =4
+        Height: =1
+        HoverFill: =RGBA(255, 200, 61, 1)
+        PressedFill: =RGBA(255, 200, 61, 1)
+        Width: =575
+        X: =32
+        Y: =214
+        ZIndex: =23
+

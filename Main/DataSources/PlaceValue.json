@@ -1,0 +1,18 @@
+[
+  {
+    "Data": "[{\"Column\":100,\"Digit\":1,\"Word\":\"one hundred\"},{\"Column\":100,\"Digit\":2,\"Word\":\"two hundred\"},{\"Column\":100,\"Digit\":3,\"Word\":\"three hundred\"},{\"Column\":100,\"Digit\":4,\"Word\":\"four hundred\"},{\"Column\":100,\"Digit\":5,\"Word\":\"five hundred\"},{\"Column\":100,\"Digit\":6,\"Word\":\"six hundred\"},{\"Column\":100,\"Digit\":7,\"Word\":\"seven hundred\"},{\"Column\":100,\"Digit\":8,\"Word\":\"eight hundred\"},{\"Column\":100,\"Digit\":9,\"Word\":\"nine hundred\"},{\"Column\":10,\"Digit\":10,\"Word\":\"ten\"},{\"Column\":10,\"Digit\":11,\"Word\":\"eleven\"},{\"Column\":10,\"Digit\":12,\"Word\":\"twelve\"},{\"Column\":10,\"Digit\":13,\"Word\":\"thirteen\"},{\"Column\":10,\"Digit\":14,\"Word\":\"fourteen\"},{\"Column\":10,\"Digit\":15,\"Word\":\"fifteen\"},{\"Column\":10,\"Digit\":16,\"Word\":\"sixteen\"},{\"Column\":10,\"Digit\":17,\"Word\":\"seventeen\"},{\"Column\":10,\"Digit\":18,\"Word\":\"eighteen\"},{\"Column\":10,\"Digit\":19,\"Word\":\"nineteen\"},{\"Column\":10,\"Digit\":2,\"Word\":\"twenty\"},{\"Column\":10,\"Digit\":3,\"Word\":\"thirty\"},{\"Column\":10,\"Digit\":4,\"Word\":\"fourty\"},{\"Column\":10,\"Digit\":5,\"Word\":\"fifty\"},{\"Column\":10,\"Digit\":6,\"Word\":\"sixty\"},{\"Column\":10,\"Digit\":7,\"Word\":\"seventy\"},{\"Column\":10,\"Digit\":8,\"Word\":\"eighty\"},{\"Column\":10,\"Digit\":9,\"Word\":\"ninety\"},{\"Column\":1,\"Digit\":1,\"Word\":\"one\"},{\"Column\":1,\"Digit\":2,\"Word\":\"two\"},{\"Column\":1,\"Digit\":3,\"Word\":\"three\"},{\"Column\":1,\"Digit\":4,\"Word\":\"four\"},{\"Column\":1,\"Digit\":5,\"Word\":\"five\"},{\"Column\":1,\"Digit\":6,\"Word\":\"six\"},{\"Column\":1,\"Digit\":7,\"Word\":\"seven\"},{\"Column\":1,\"Digit\":8,\"Word\":\"eight\"},{\"Column\":1,\"Digit\":9,\"Word\":\"nine\"}]",
+    "IsSampleData": false,
+    "IsWritable": false,
+    "Name": "PlaceValue",
+    "OrderedColumnNames": [
+      "Digit",
+      "Word",
+      "Column"
+    ],
+    "OriginalName": "PlaceValue",
+    "OriginalSchema": "*[Column:n, Digit:n, Word:s]",
+    "Schema": "*[Column:n, Digit:n, Word:s]",
+    "Token": "dummyToken",
+    "Type": "StaticDataSourceInfo"
+  }
+]

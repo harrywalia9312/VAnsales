@@ -1,0 +1,469 @@
+"'Menu Component' As CanvasComponent":
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =400
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    btnHomeBackground As button:
+        BorderThickness: =0
+        DisabledFill: |-
+            =//RGBA(244, 244, 244, 1)
+            _VarGblAppColors.BisleriBlueLight
+        DisplayMode: =DisplayMode.Disabled
+        Height: =308
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =24
+        Text: =""
+        Width: =App.Width
+        ZIndex: =1
+
+    htmHomeBackground As htmlViewer:
+        BorderThickness: =1
+        Height: =343
+        HtmlText: |-
+            ="<div style='border-radius:10px; background-color:#00B3A1; width:500px; height:300px; box-shadow:rgba(0, 0, 0, 0.24) 0px 3px 8px;'></div>"
+        PaddingBottom: =0
+        PaddingLeft: =10
+        PaddingRight: =0
+        PaddingTop: =10
+        Width: =514
+        X: =62
+        Y: =62
+        ZIndex: =2
+
+    imgHomeProfile As image:
+        BorderColor: =RGBA(204, 204, 204, 1)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =1
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Height: =85
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Image: =User().Image
+        ImagePosition: =ImagePosition.Fill
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        RadiusBottomLeft: =50
+        RadiusBottomRight: =50
+        RadiusTopLeft: =50
+        RadiusTopRight: =50
+        Width: =85
+        X: =97
+        Y: =95
+        ZIndex: =3
+
+    lblHomeUsername As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        Color: =_VarGblAppColors.LightText
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        FontWeight: =FontWeight.Semibold
+        Height: =81
+        Size: =19
+        Text: =User().FullName
+        Width: =226
+        X: =194
+        Y: =82
+        ZIndex: =4
+
+    lblHomeAttendanceType As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        Color: =_VarGblAppColors.LightText
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Font: =Font.Lato
+        Height: =36
+        Text: ="Attendance Type"
+        X: =103
+        Y: =188
+        ZIndex: =5
+
+    lblHomeTotalHoursWorked As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        Color: =_VarGblAppColors.LightText
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Font: =Font.Lato
+        Height: =36
+        Text: ="Total Hours Worked"
+        Width: =180
+        X: =374
+        Y: =188
+        ZIndex: =6
+
+    lblHomeTotalHoursWorkedValue As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        Color: =_VarGblAppColors.LightText
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Font: =Font.Lato
+        FontWeight: =FontWeight.Bold
+        Height: =36
+        Size: =17
+        Text: |-
+            =/*If(
+                IsBlank(
+                    LookUp(
+                        Attendances,
+                        Date>= Today() && 'Owning User'.User = LookUp(
+                            Users,
+                            'Primary Email' = User().Email
+                        ).User
+                    )
+                ),
+                "No Record",
+                If(
+                    IsBlank(
+                        LookUp(
+                            Attendances,
+                            Date>= Today() && 'Owning User'.User = LookUp(
+                                Users,
+                                'Primary Email' = User().Email
+                            ).User
+                        ).'Check-out Time'
+                    ),
+                    DateDiff(
+                        LookUp(
+                            Attendances,
+                            Date >= Today() && 'Owning User'.User = LookUp(
+                                Users,
+                                'Primary Email' = User().Email
+                            ).User
+                        ).'Check-in Time',
+                        Now(),
+                        TimeUnit.Hours
+                    ),
+                    DateDiff(
+                        LookUp(
+                            Attendances,
+                            Date >= Today() && 'Owning User'.User = LookUp(
+                                Users,
+                                'Primary Email' = User().Email
+                            ).User
+                        ).'Check-in Time',
+                        LookUp(
+                            Attendances,
+                            Date>= Today() && 'Owning User'.User = LookUp(
+                                Users,
+                                'Primary Email' = User().Email
+                            ).User
+                        ).'Check-out Time',
+                        TimeUnit.Hours
+                    )
+                )
+            )*/
+            
+            If(
+                IsBlank(
+                    LookUp(
+                        Attendances,
+                        Date >= Today() && 'Owning User'.'Primary Email'= User().Email
+                    )
+                ),
+                "No Record",
+                If(
+                    IsBlank(
+                        LookUp(
+                            Attendances,
+                            Date >= Today() && 'Owning User'.'Primary Email'= User().Email
+                        ).'Check-out Time'
+                    ),
+                    DateDiff(
+                        LookUp(
+                            Attendances,
+                            Date >= Today() && 'Owning User'.'Primary Email'= User().Email
+                        ).'Check-in Time',
+                        Now(),
+                        TimeUnit.Hours
+                    ),
+                    DateDiff(
+                        LookUp(
+                            Attendances,
+                            Date >= Today() && 'Owning User'.'Primary Email'= User().Email
+                        ).'Check-in Time',
+                        LookUp(
+                            Attendances,
+                            Date >= Today() && 'Owning User'.'Primary Email'= User().Email
+                        ).'Check-out Time',
+                        TimeUnit.Hours
+                    )
+                )
+            )
+        Width: =167
+        X: =374
+        Y: =217
+        ZIndex: =7
+
+    lblHomeDayStartedAt As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        Color: =_VarGblAppColors.LightText
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Font: =Font.Lato
+        Height: =36
+        Text: ="Day Started At"
+        X: =103
+        Y: =272
+        ZIndex: =8
+
+    lblHomeDayStartedAtValue As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        Color: =_VarGblAppColors.LightText
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Font: =Font.Lato
+        FontWeight: =FontWeight.Semibold
+        Height: =36
+        Size: =17
+        Text: |-
+            =/*If(
+                !IsBlank(
+                    LookUp(
+                        Attendances,
+                        Date >= Today() && 'Owning User'.User = LookUp(
+                            Users,
+                            'Primary Email' = User().Email
+                        ).User
+                    ).'Check-in Time'
+                ),
+                Text(
+                    LookUp(
+                        Attendances,
+                        Date  >= Today() && 'Owning User'.User = LookUp(
+                            Users,
+                            'Primary Email' = User().Email
+                        ).User
+                    ).'Check-in Time',
+                    "hh:mm AM/PM"
+                ),
+                "No Record"
+            )*/
+            If(
+                !IsBlank(
+                    LookUp(
+                        Attendances,
+                        Date >= Today() && 'Owning User'.'Primary Email'= User().Email
+                    ).'Check-in Time'
+                ),
+                Text(
+                    LookUp(
+                        Attendances,
+                        Date >= Today() && 'Owning User'.'Primary Email'= User().Email
+                    ).'Check-in Time',
+                    "hh:mm AM/PM"
+                ),
+                "No Record"
+            )
+        Width: =126
+        X: =103
+        Y: =305
+        ZIndex: =9
+
+    lblHomeDayEndedAt As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        Color: =_VarGblAppColors.LightText
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Font: =Font.Lato
+        Height: =36
+        Text: ="Day Ended At"
+        X: =374
+        Y: =272
+        ZIndex: =10
+
+    lblHomeDayEndedAtValue As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        Color: =_VarGblAppColors.LightText
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Font: =Font.Lato
+        FontWeight: =FontWeight.Semibold
+        Height: =32
+        Size: =17
+        Text: |-
+            =/*If(
+                !IsBlank(
+                    LookUp(
+                        Attendances,
+                       Date >= Today() && 'Owning User'.User = LookUp(
+                            Users,
+                            'Primary Email' = User().Email
+                        ).User
+                    ).'Check-out Time'
+                ),
+                Text(
+                    LookUp(
+                        Attendances,
+                         Date >= Today() && 'Owning User'.User = LookUp(
+                            Users,
+                            'Primary Email' = User().Email
+                        ).User
+                    ).'Check-out Time',
+                    "hh:mm AM/PM"
+                ),
+                "-"
+            )*/
+            
+            If(
+                !IsBlank(
+                    LookUp(
+                        Attendances,
+                       Date >= Today() && 'Owning User'.'Primary Email'= User().Email
+                    ).'Check-out Time'
+                ),
+                Text(
+                    LookUp(
+                        Attendances,
+                         Date >= Today() && 'Owning User'.'Primary Email'= User().Email
+                    ).'Check-out Time',
+                    "hh:mm AM/PM"
+                ),
+                "-"
+            )
+        Width: =124
+        X: =374
+        Y: =308
+        ZIndex: =11
+
+    htmHomeTodayDate As htmlViewer:
+        DisplayMode: =DisplayMode.View
+        Height: =51
+        HtmlText: |-
+            ="<div style='border-radius:10px; background-color:#D9D8FF; opacity: 1; width:140px; height:35px; box-shadow:rgba(0, 0, 0, 0.24) 0px 3px 8px;'></div>"
+        Width: =155
+        X: =399
+        Y: =112
+        ZIndex: =12
+
+    lblHomeAttendanceTypeValue As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        Color: =_VarGblAppColors.LightText
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Font: =Font.Lato
+        FontWeight: =FontWeight.Semibold
+        Height: =32
+        Size: =17
+        Text: |-
+            =/*LookUp(
+                Attendances,
+                'Created Date' >= Today() && 'Owning User'.User = LookUp(
+                    Users,
+                    'Primary Email' = User().Email
+                ).User
+            ).'Attendance Type'*/
+            
+            LookUp(
+                Attendances,
+                'Created Date'>= Today() && 'Owning User'.'Primary Email'= User().Email
+            ).'Attendance Type'
+        X: =103
+        Y: =221
+        ZIndex: =13
+
+    lblHomeTodayDate As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        Color: =RGBA(242, 123, 68, 1)
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Font: =Font.Lato
+        FontWeight: =FontWeight.Bold
+        Height: =25
+        Text: =Text(Today(), "dd mmm yyyy")
+        Width: =132
+        X: =408
+        Y: =123
+        ZIndex: =14
+
+    icoBackHome As icon.BackArrow:
+        AccessibleLabel: ="icnBackHome"
+        BorderColor: =RGBA(109, 109, 109, 1)
+        Color: =_VarGblAppColors.BisleriBlue
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(220, 220, 220, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Height: =43
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Icon: =Icon.BackArrow
+        OnSelect: =Back()
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        TabIndex: =0
+        Width: =43
+        X: =22
+        Y: =18
+        ZIndex: =15
+
+    imgProfileHome As image:
+        AccessibleLabel: ="imgProfileHome"
+        BorderColor: =RGBA(204, 204, 204, 1)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =1
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Height: =45
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Image: =User().Image
+        ImagePosition: =ImagePosition.Fill
+        OnSelect: =Navigate('Profile Screen')
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        RadiusBottomLeft: =50
+        RadiusBottomRight: =50
+        RadiusTopLeft: =50
+        RadiusTopRight: =50
+        TabIndex: =0
+        Width: =45
+        X: =570
+        Y: =17
+        ZIndex: =16
+
+    imgBisleri As image:
+        AccessibleLabel: ="imgBisleri"
+        Height: =51
+        Image: |-
+            ="https://startupreporter.in/wp-content/uploads/2020/07/Bislerilogo.png"
+        Width: =103
+        X: =269
+        Y: =10
+        ZIndex: =17
+

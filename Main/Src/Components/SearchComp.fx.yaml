@@ -1,0 +1,63 @@
+SearchComp As CanvasComponent:
+    Fill: =Color.Transparent
+    Height: =70
+    OnReset: =Reset(txtSearchInput);
+    SearchHintText: ="Text"
+    SearchText: =txtSearchInput.Text
+    Width: =585
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    grpSearch As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =5
+
+        btnSearchBackground As button:
+            DisabledBorderColor: |-
+                =//RGBA(166, 166, 166, 1)
+                _VarGblAppColors.BisleriBlue
+            DisabledFill: |-
+                =//RGBA(244, 244, 244, 1)
+                _VarGblAppColors.LightText
+            DisplayMode: =DisplayMode.Disabled
+            FocusedBorderThickness: =0.5
+            Height: =44
+            Size: =24
+            Text: =""
+            Width: =578
+            X: =4
+            Y: =16
+            ZIndex: =2
+
+        txtSearchInput As text:
+            AccessibleLabel: ="txtSearchInput"
+            BorderThickness: =0
+            Default: =""
+            FocusedBorderColor: =Color.White
+            FocusedBorderThickness: =0.5
+            HintText: =SearchComp.SearchHintText
+            HoverBorderColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =_VarGblAppColors.LightText
+            Size: =_VarGblAppFonts.Size.Medium
+            Width: =530
+            X: =44
+            Y: =18
+            ZIndex: =3
+
+        icoSearch As icon.Search:
+            Color: =_VarGblAppColors.BisleriBlue
+            Fill: |-
+                =//RGBA(0, 0, 0, 0)
+                _VarGblAppColors.LightText
+            FocusedBorderThickness: =0.5
+            Height: =30
+            Icon: =Icon.Search
+            Width: =30
+            X: =14
+            Y: =23
+            ZIndex: =4
+

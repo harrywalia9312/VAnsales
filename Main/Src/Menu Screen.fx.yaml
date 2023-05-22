@@ -1,0 +1,320 @@
+"'Menu Screen' As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+    Fill: =_VarGblAppColors.BisleriBlueLight
+
+    galMenuAllMenu As gallery.galleryVertical:
+        AccessibleLabel: ="galMenuAllMenu"
+        FocusedBorderColor: =Color.Transparent
+        FocusedBorderThickness: =0.5
+        Height: =960
+        Items: |-
+            =Table(
+                {
+                    Title:"Gate Pass",
+                    Id:1,
+                    Image:'Visit Image White',
+                    NavScreen:GatePassScreen
+                },
+                 /*  {
+                    Title:"Visit Plan",
+                    Id:2,
+                    Image:'Beat Image White',
+                    NavScreen:'Visit Screen'
+                },
+              {
+                    Title:"Beat Plan",
+                    Id:3,
+                    Image:'Beat Plan Image White',
+                    NavScreen:MyBeatPlanScreen
+                },*/
+                {
+                    Title:"Customer Onboarding",
+                    Id:4,
+                    Image:'Onboarding Image White',
+                    NavScreen:'Retailer Onboarding Screen'
+                },
+                {
+                    Title:"Van Transfer",
+                    Id:5,
+                    Image:'Visit Image White',
+                    NavScreen:'Van Transfer'
+                },
+                {
+                    Title:"Orders",
+                    Id:6,
+                    Image:'Order Image White',
+                    NavScreen: OrderScreen
+                },
+                {
+                    Title:"Replacements",
+                    Id:7,
+                    Image:'Visit Image White',
+                    NavScreen:ReplacementScreen
+                },
+                 {
+                    Title:"Empty Jars",
+                    Id:8,
+                    Image:'Visit Image White',
+                    NavScreen:EmptyJarScreen
+                },
+                {
+                    Title:"Payments",
+                    Id:9,
+                    Image:'Payment Image White',
+                    NavScreen:'Payment Screen'
+                },
+                {
+                    Title:"Stocks",
+                    Id:10,
+                    Image:'Visit Image White',
+                    NavScreen:StockInventoryScreen
+                },
+                {
+                    Title:"Demands",
+                    Id:11,
+                    Image:'Visit Image White',
+                    NavScreen:NewDemandScreen
+                },
+                {
+                    Title:"FOC's",
+                    Id:12,
+                    Image:'Visit Image White',
+                    NavScreen:FOCScreen
+                }
+            )
+        Layout: =Layout.Vertical
+        ShowScrollbar: =false
+        TabIndex: =
+        TemplateSize: =223
+        Width: =639
+        WrapCount: =2
+        Y: =85
+        ZIndex: =6
+
+        btnGalMenuBackground As button:
+            Color: |-
+                =//RGBA(255, 255, 255, 1)
+                _VarGblAppColors.PrimaryBg
+            DisabledFill: =_VarGblAppColors.BisleriBlueMediumLight
+            Fill: =_VarGblAppColors.LightText
+            FocusedBorderThickness: =2
+            FontWeight: =FontWeight.Bold
+            Height: =216
+            HoverColor: |-
+                =//RGBA(255, 255, 255, 1)
+                _VarGblAppColors.PrimaryBg
+            HoverFill: |-
+                =//ColorFade(RGBA(56, 96, 178, 1), -20%)
+                _VarGblAppColors.LightText
+            OnSelect: |
+                =If(
+                    ThisItem.Id = 5,
+                    ClearCollect(
+                        varMyVanSTockHeader,
+                        AddColumns(
+                            Filter(
+                                colOfflineStockTransferHeader,
+                                'To Location'.Warehouse = LookUp(
+                                    colOfflineWarehouse,
+                                    Warehouse = varUserVanNo.Van.Warehouse
+                                ).Warehouse && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer' && IsToday('Created On')
+                            ),
+                            "headerGUID",
+                            'Stock Transfer Header'
+                        )
+                    );
+                    ClearCollect(
+                        varTransferOutSTockHeader,
+                        AddColumns(
+                            Filter(
+                                colOfflineStockTransferHeader,
+                                'To Location'.Warehouse = LookUp(
+                                    colOfflineWarehouse,
+                                    Warehouse = varUserVanNo.Van.Warehouse
+                                ).Warehouse && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer'
+                            ),
+                            "headerGUID",
+                            'Stock Transfer Header'
+                        )
+                    );
+                    Set(
+                        varNewTransferRequest,
+                        false
+                    )
+                );
+                Navigate(ThisItem.NavScreen);
+            PaddingTop: =140
+            PressedBorderColor: =ColorFade(Self.Fill, -15%)
+            PressedColor: |-
+                =//Self.Fill
+                _VarGblAppColors.PrimaryBg
+            PressedFill: |-
+                =//Self.Color
+                _VarGblAppColors.LightText
+            RadiusBottomLeft: =20
+            RadiusBottomRight: =20
+            RadiusTopLeft: =20
+            RadiusTopRight: =20
+            Size: =_VarGblAppFonts.Size.Medium
+            Text: =ThisItem.Title
+            Width: =300
+            X: =7
+            ZIndex: =1
+
+        grpGalMenuIcon As group:
+            Height: =5
+            Width: =5
+            X: =40
+            Y: =40
+            ZIndex: =5
+
+            shpGalMenuCircle As circle:
+                AccessibleLabel: ="grpGalMenuIcon"
+                Fill: =_VarGblAppColors.BisleriBlueMediumLight
+                FocusedBorderColor: =Color.Transparent
+                FocusedBorderThickness: =0.5
+                Height: =120
+                OnSelect: |
+                    =If(
+                        ThisItem.Id = 5,
+                        ClearCollect(
+                            varMyVanSTockHeader,
+                            AddColumns(
+                                Filter(
+                                    colOfflineStockTransferHeader,
+                                    'To Location'.Warehouse = LookUp(
+                                        colOfflineWarehouse,
+                                        Warehouse = varUserVanNo.Van.Warehouse
+                                    ).Warehouse && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer' && IsToday('Created On')
+                                ),
+                                "headerGUID",
+                                'Stock Transfer Header'
+                            )
+                        );
+                        ClearCollect(
+                        varTransferOutSTockHeader,
+                        AddColumns(
+                            Filter(
+                                colOfflineStockTransferHeader,
+                                'To Location'.Warehouse = LookUp(
+                                    colOfflineWarehouse,
+                                    Warehouse = varUserVanNo.Van.Warehouse
+                                ).Warehouse && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer'
+                            ),
+                            "headerGUID",
+                            'Stock Transfer Header'
+                        )
+                    );
+                    Set(varNewTransferRequest, false)
+                    );
+                    Navigate(ThisItem.NavScreen);
+                TabIndex: =
+                Width: =120
+                X: =96
+                Y: =28
+                ZIndex: =2
+
+            shpGalMenuOct As octagon:
+                AccessibleLabel: ="grpGalMenuIcon"
+                BorderColor: =_VarGblAppColors.BisleriBlue
+                BorderThickness: =4
+                Fill: |-
+                    =//RGBA(0,0,0,0)
+                    _VarGblAppColors.BisleriBlue
+                FocusedBorderColor: =Color.Transparent
+                FocusedBorderThickness: =0.5
+                OnSelect: |
+                    =If(
+                        ThisItem.Id = 5,
+                        ClearCollect(
+                            varMyVanSTockHeader,
+                            AddColumns(
+                                Filter(
+                                    colOfflineStockTransferHeader,
+                                    'To Location'.Warehouse = LookUp(
+                                        colOfflineWarehouse,
+                                        Warehouse = varUserVanNo.Van.Warehouse
+                                    ).Warehouse && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer' && IsToday('Created On')
+                                ),
+                                "headerGUID",
+                                'Stock Transfer Header'
+                            )
+                        );
+                        ClearCollect(
+                        varTransferOutSTockHeader,
+                        AddColumns(
+                            Filter(
+                                colOfflineStockTransferHeader,
+                                'To Location'.Warehouse = LookUp(
+                                    colOfflineWarehouse,
+                                    Warehouse = varUserVanNo.Van.Warehouse
+                                ).Warehouse && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer'
+                            ),
+                            "headerGUID",
+                            'Stock Transfer Header'
+                        )
+                    );
+                    Set(varNewTransferRequest, false)
+                    );
+                    Navigate(ThisItem.NavScreen);
+                TabIndex: =0
+                X: =106
+                Y: =38
+                ZIndex: =3
+
+            imgGalIcon As image:
+                AccessibleLabel: ="grpGalMenuIcon"
+                FocusedBorderColor: =Color.Transparent
+                FocusedBorderThickness: =0.5
+                Height: =60
+                HoverFill: =Color.Transparent
+                Image: =ThisItem.Image
+                OnSelect: |
+                    =If(
+                        ThisItem.Id = 5,
+                        ClearCollect(
+                            varMyVanSTockHeader,
+                            AddColumns(
+                                Filter(
+                                    colOfflineStockTransferHeader,
+                                    'To Location'.Warehouse = LookUp(
+                                        colOfflineWarehouse,
+                                        Warehouse = varUserVanNo.Van.Warehouse
+                                    ).Warehouse && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer' && IsToday('Created On')
+                                ),
+                                "headerGUID",
+                                'Stock Transfer Header'
+                            )
+                        );
+                        ClearCollect(
+                        varTransferOutSTockHeader,
+                        AddColumns(
+                            Filter(
+                                colOfflineStockTransferHeader,
+                                'To Location'.Warehouse = LookUp(
+                                    colOfflineWarehouse,
+                                    Warehouse = varUserVanNo.Van.Warehouse
+                                ).Warehouse && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer'
+                            ),
+                            "headerGUID",
+                            'Stock Transfer Header'
+                        )
+                    );
+                    Set(varNewTransferRequest, false)
+                    );
+                    Navigate(ThisItem.NavScreen);
+                PressedBorderColor: =Color.Transparent
+                PressedFill: =Color.Transparent
+                TabIndex: =0
+                Width: =60
+                X: =126
+                Y: =58
+                ZIndex: =4
+
+    compMenuBottomBar As BottomBar:
+        Y: =1026
+        ZIndex: =19
+
+    Header_3 As Header:
+        HeaderText: ="Home"
+        ZIndex: =20
+

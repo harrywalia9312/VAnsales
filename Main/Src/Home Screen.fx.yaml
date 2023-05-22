@@ -1,0 +1,2601 @@
+"'Home Screen' As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+    Fill: |-
+        =//_VarGblAppColors.BackgroundColor
+        Color.White
+    Width: =640
+
+    canHomeScreen As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =969
+        Width: =Parent.Width
+        Y: =80
+        ZIndex: =1
+
+        dataCardHomeScreen As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =965
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            shpHomeSummaryRect As rectangle:
+                Fill: =_VarGblAppColors.LightText
+                Height: =60
+                Width: =App.Width
+                Y: =15
+                ZIndex: =2
+
+            lblHomeSummary As label:
+                FontWeight: =FontWeight.Bold
+                Height: =60
+                Size: =_VarGblAppFonts.Size.Huge
+                Text: ="Summary"
+                Width: =192
+                X: =224
+                Y: =15
+                ZIndex: =3
+
+            galHomeFilter As gallery.galleryHorizontal:
+                AccessibleLabel: ="galHomeFilter"
+                FocusedBorderColor: =Color.Transparent
+                FocusedBorderThickness: =2
+                Height: =60
+                Items: =["ORDERS","REPLACEMENTS","PAYMENTS", "FOC's", "CHECK IN DEMAND", "Stock", "EMPTY JAR"]
+                ShowScrollbar: =false
+                TabIndex: =0
+                TemplateSize: =217
+                Y: =75
+                ZIndex: =4
+
+                btnHomeFilter As button:
+                    Color: =If(ThisItem.IsSelected, _VarGblAppColors.LightText, _VarGblAppColors.HeaderBg)
+                    Fill: =If(ThisItem.IsSelected, _VarGblAppColors.BisleriBlue, _VarGblAppColors.BisleriBlueLight)
+                    FocusedBorderThickness: =2
+                    HoverColor: =_VarGblAppColors.HeaderBg
+                    HoverFill: =_VarGblAppColors.BisleriBlueMediumLight
+                    OnSelect: =Select(Parent)
+                    PressedFill: =_VarGblAppColors.BisleriBlueMediumLight
+                    Size: =_VarGblAppFonts.Size.Medium
+                    Text: =ThisItem.Value
+                    Width: =215
+                    Y: =6
+                    ZIndex: =1
+
+            contHomeOrders As groupContainer.manualLayoutContainer:
+                Height: =915
+                Visible: =If(galHomeFilter.Selected.Value="ORDERS", true, false)
+                Width: =Parent.Width
+                Y: =135
+                ZIndex: =5
+
+                contHomeOrdersUpperVertical As groupContainer.verticalAutoLayoutContainer:
+                    Height: =700
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =App.Width
+                    Y: =93
+                    ZIndex: =1
+
+                    contHomeOrdersUpper As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        FillPortions: =0
+                        Height: =978
+                        LayoutMinHeight: =112
+                        LayoutMinWidth: =250
+                        Width: =Parent.Width
+                        ZIndex: =1
+
+                        contHomeOrdersLowerVertical As groupContainer.verticalAutoLayoutContainer:
+                            Height: =906
+                            LayoutDirection: =LayoutDirection.Vertical
+                            LayoutMode: =LayoutMode.Auto
+                            LayoutOverflowX: =LayoutOverflow.Scroll
+                            Width: =Parent.Width
+                            Y: =6
+                            ZIndex: =1
+
+                            contHomeOrdersHeading As groupContainer.manualLayoutContainer:
+                                AlignInContainer: =AlignInContainer.SetByContainer
+                                FillPortions: =0
+                                Height: =60
+                                LayoutMinHeight: =70
+                                LayoutMinWidth: =750
+                                Width: =App.Width
+                                ZIndex: =1
+
+                                btnNewOrderHeaderProduct_8 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Customer Name"
+                                    Width: =400
+                                    X: =5
+                                    Y: =5
+                                    ZIndex: =1
+
+                                btnNewOrderHeaderPcs_9 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Value"
+                                    Width: =220
+                                    X: =btnNewOrderHeaderProduct_8.X + btnNewOrderHeaderProduct_8.Width +5
+                                    Y: =5
+                                    ZIndex: =3
+
+                            contHomeOrdersData As groupContainer.horizontalAutoLayoutContainer:
+                                AlignInContainer: =AlignInContainer.SetByContainer
+                                FillPortions: =0
+                                Height: =650
+                                LayoutMinHeight: =570
+                                LayoutMinWidth: =640
+                                LayoutMode: =LayoutMode.Auto
+                                Width: =App.Width
+                                ZIndex: =2
+
+                                galHomeOrdersData As gallery.galleryVertical:
+                                    AccessibleLabel: ="galHomeOrdersData"
+                                    AlignInContainer: =AlignInContainer.SetByContainer
+                                    Fill: |-
+                                        =//RGBA(0, 0, 0, 0)
+                                        _VarGblAppColors.LightText
+                                    FillPortions: =0
+                                    Height: =Parent.Height
+                                    Items: |-
+                                        =Sort(
+                                            Filter(
+                                                'Order Headers',
+                                                'Order Date' >= Today() && Salesperson.'Primary Email' = User().Email && 'Order Type' = 'Order Type (Choice)'.'Sales Order'
+                                            ),
+                                            'Created On',
+                                            SortOrder.Descending
+                                        )
+                                    Layout: =Layout.Vertical
+                                    LayoutMinHeight: =413
+                                    LayoutMinWidth: =1200
+                                    ShowScrollbar: =false
+                                    TabIndex: =0
+                                    TemplateSize: =60
+                                    Width: =contHomeOrdersData.Width
+                                    ZIndex: =1
+
+                                    btnHomeOrdersBackground As button:
+                                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                                        DisabledFill: |-
+                                            =//RGBA(244, 244, 244, 1)
+                                            ColorFade( _VarGblAppColors.BisleriBlue, 80%)
+                                        DisplayMode: =DisplayMode.Disabled
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Size: =24
+                                        Text: =""
+                                        Width: =Parent.Width-10
+                                        ZIndex: =1
+
+                                    lblHomeOrdersValue As label:
+                                        Fill: |-
+                                            =RGBA(0, 0, 0, 0)
+                                            //_VarGblAppColors.LightText
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.'Net Amount'
+                                        Width: =120
+                                        X: =495
+                                        Y: =5
+                                        ZIndex: =3
+
+                                    lblHomeOrdersCustomer As label:
+                                        Align: =Align.Center
+                                        Fill: |-
+                                            =RGBA(0, 0, 0, 0)
+                                            //_VarGblAppColors.LightText
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.Customer.'Customer Name'
+                                        Width: =400
+                                        Y: =5
+                                        ZIndex: =4
+
+                                    shpHomeOrdersRect2 As rectangle:
+                                        Fill: |-
+                                            =//RGBA(56, 96, 178, 1)
+                                            _VarGblAppColors.LightText
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Width: =1
+                                        X: =404
+                                        ZIndex: =6
+
+                                    lblHomeOrdersValue_3 As label:
+                                        Align: =Align.Center
+                                        Fill: |-
+                                            =RGBA(0, 0, 0, 0)
+                                            //_VarGblAppColors.LightText
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: ="₹"
+                                        Width: =20
+                                        X: =483
+                                        Y: =5
+                                        ZIndex: =7
+
+                Group1_2 As group:
+                    Height: =5
+                    Width: =5
+                    X: =-14
+                    Y: =-160
+                    ZIndex: =7
+
+                    Button5_5 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =_VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =190
+                        X: =71
+                        Y: =6
+                        ZIndex: =2
+
+                    Button5_4 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =Color.White
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =182
+                        X: =79
+                        Y: =6
+                        ZIndex: =3
+
+                    Label6_4 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.PrimaryText
+                        FontWeight: =FontWeight.Semibold
+                        Height: =41
+                        Size: =_VarGblAppFonts.Size.Medium
+                        Text: ="Total Value"
+                        Width: =168
+                        X: =85
+                        Y: =6
+                        ZIndex: =4
+
+                    Label6_5 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.BisleriBlue
+                        FontWeight: =FontWeight.Bold
+                        Height: =39
+                        Size: =_VarGblAppFonts.Size.Title
+                        Text: =If(Sum(galHomeOrdersData.AllItems, lblHomeOrdersValue)>0, "₹"& Text(Sum(galHomeOrdersData.AllItems, lblHomeOrdersValue)),"-")
+                        Width: =168
+                        X: =85
+                        Y: =42
+                        ZIndex: =5
+
+                Group1_4 As group:
+                    Height: =5
+                    Width: =5
+                    X: =45
+                    Y: =54
+                    ZIndex: =14
+
+                    Button5_10 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =_VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =190
+                        X: =368
+                        Y: =6
+                        ZIndex: =10
+
+                    Button5_9 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =Color.White
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =182
+                        X: =376
+                        Y: =6
+                        ZIndex: =11
+
+                    Label6_8 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.PrimaryText
+                        FontWeight: =FontWeight.Semibold
+                        Height: =41
+                        Size: =_VarGblAppFonts.Size.Medium
+                        Text: ="Customers"
+                        Width: =168
+                        X: =382
+                        Y: =6
+                        ZIndex: =12
+
+                    Label6_9 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.BisleriBlue
+                        FontWeight: =FontWeight.Bold
+                        Height: =39
+                        Size: =_VarGblAppFonts.Size.Title
+                        Text: |-
+                            =CountRows(
+                                ForAll(Distinct(
+                                    galHomeOrdersData.AllItems,
+                                    Customer.Account
+                                ), {Result: ThisRecord.Value})
+                            )
+                        Width: =168
+                        X: =382
+                        Y: =42
+                        ZIndex: =13
+
+            contHomeReplacement As groupContainer.manualLayoutContainer:
+                Height: =800
+                Visible: =If(galHomeFilter.Selected.Value="REPLACEMENTS", true, false)
+                Width: =Parent.Width
+                Y: =135
+                ZIndex: =6
+
+                contHomeReplacementUpperVertical As groupContainer.verticalAutoLayoutContainer:
+                    Height: =Parent.Height-80
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =Parent.Width
+                    Y: =91
+                    ZIndex: =1
+
+                    contHomeReplacementUpper As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        FillPortions: =0
+                        Height: =Parent.Height
+                        LayoutMinHeight: =112
+                        LayoutMinWidth: =250
+                        Width: =Parent.Width
+                        ZIndex: =1
+
+                        contHomeReplacementLowerVertical As groupContainer.verticalAutoLayoutContainer:
+                            Height: =Parent.Height
+                            LayoutDirection: =LayoutDirection.Vertical
+                            LayoutMode: =LayoutMode.Auto
+                            LayoutOverflowX: =LayoutOverflow.Scroll
+                            Width: =Parent.Width
+                            Y: =6
+                            ZIndex: =1
+
+                            contHomeReplacementHeading As groupContainer.manualLayoutContainer:
+                                AlignInContainer: =AlignInContainer.SetByContainer
+                                FillPortions: =0
+                                Height: =60
+                                LayoutMinHeight: =70
+                                LayoutMinWidth: =750
+                                Width: =900
+                                ZIndex: =1
+
+                                btnNewOrderHeaderProduct_7 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Customer"
+                                    Width: =250
+                                    X: =5
+                                    Y: =5
+                                    ZIndex: =1
+
+                                btnNewOrderHeaderCases_7 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Product"
+                                    Width: =305
+                                    X: =btnNewOrderHeaderProduct_7.X+btnNewOrderHeaderProduct_7.Width+5
+                                    Y: =5
+                                    ZIndex: =2
+
+                                btnNewOrderHeaderPcs_7 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Qty"
+                                    Width: =135
+                                    X: =btnNewOrderHeaderCases_7.X+btnNewOrderHeaderCases_7.Width+5
+                                    Y: =5
+                                    ZIndex: =3
+
+                                btnNewOrderHeaderPcs_8 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Reason"
+                                    Width: =185
+                                    X: =btnNewOrderHeaderPcs_7.X+btnNewOrderHeaderPcs_7.Width+5
+                                    Y: =5
+                                    ZIndex: =4
+
+                            contHomeReplacementData As groupContainer.horizontalAutoLayoutContainer:
+                                AlignInContainer: =AlignInContainer.SetByContainer
+                                FillPortions: =0
+                                Height: =Parent.Height-60
+                                LayoutMinHeight: =570
+                                LayoutMinWidth: =850
+                                LayoutMode: =LayoutMode.Auto
+                                Width: =contHomeReplacementHeading.Width
+                                ZIndex: =2
+
+                                galHomeReplacementData As gallery.galleryVertical:
+                                    AccessibleLabel: ="galHomeReplacementData"
+                                    AlignInContainer: =AlignInContainer.SetByContainer
+                                    Fill: |-
+                                        =//RGBA(0, 0, 0, 0)
+                                        _VarGblAppColors.LightText
+                                    FillPortions: =0
+                                    Height: =Parent.Height
+                                    Items: |-
+                                        =Filter(
+                                            'Order Lines',
+                                            'Order Number'.'Order Type' = 'Order Type (Choice)'.'Replacement Order' && 'Order Number'.'Order Date' > Today() && Salesperson.'Primary Email' = User().Email
+                                        )
+                                    Layout: =Layout.Vertical
+                                    LayoutMinHeight: =287
+                                    LayoutMinWidth: =1200
+                                    ShowScrollbar: =false
+                                    TabIndex: =0
+                                    TemplateSize: =60
+                                    Width: =Parent.Width
+                                    ZIndex: =1
+
+                                    btnHomeReplacementBackground As button:
+                                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                                        DisabledFill: |-
+                                            =//RGBA(244, 244, 244, 1)
+                                            ColorFade( _VarGblAppColors.BisleriBlue, 80%)
+                                        DisplayMode: =DisplayMode.Disabled
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Size: =24
+                                        Text: =""
+                                        Width: =Parent.Width-10
+                                        ZIndex: =1
+
+                                    lblHomeReplacementProduct As label:
+                                        Align: =Align.Center
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.'Item SKU'.'Item Description '
+                                        Width: =306
+                                        X: =256
+                                        Y: =5
+                                        ZIndex: =2
+
+                                    lblHomeReplacementQty As label:
+                                        Align: =Align.Center
+                                        Fill: |-
+                                            =RGBA(0, 0, 0, 0)
+                                            //_VarGblAppColors.LightText
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.Cases + ThisItem.PCs
+                                        Width: =100
+                                        X: =580
+                                        Y: =5
+                                        ZIndex: =3
+
+                                    lblHomeReplacementCustomer As label:
+                                        Align: =Align.Center
+                                        Fill: |-
+                                            =RGBA(0, 0, 0, 0)
+                                            //_VarGblAppColors.LightText
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.'Customer no.'.'Customer Name'
+                                        Width: =252
+                                        Y: =5
+                                        ZIndex: =4
+
+                                    lblHomeReplacementReason As label:
+                                        Align: =Align.Center
+                                        Fill: |-
+                                            =RGBA(0, 0, 0, 0)
+                                            //_VarGblAppColors.LightText
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.'Order Number'.'Reason (zx_reason)'
+                                        Width: =200
+                                        X: =700
+                                        Y: =5
+                                        ZIndex: =5
+
+                                    shpHomeReplacementRect3 As rectangle:
+                                        Fill: |-
+                                            =//RGBA(56, 96, 178, 1)
+                                            _VarGblAppColors.LightText
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Width: =1
+                                        X: =252
+                                        ZIndex: =6
+
+                                    shpHomeReplacementRect2 As rectangle:
+                                        Fill: |-
+                                            =//RGBA(56, 96, 178, 1)
+                                            _VarGblAppColors.LightText
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Width: =1
+                                        X: =562
+                                        ZIndex: =7
+
+                                    shpHomeReplacementRect1 As rectangle:
+                                        Fill: |-
+                                            =//RGBA(56, 96, 178, 1)
+                                            _VarGblAppColors.LightText
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Width: =1
+                                        X: =700
+                                        ZIndex: =8
+
+                Group1_7 As group:
+                    Height: =5
+                    Width: =5
+                    X: =21
+                    Y: =34
+                    ZIndex: =16
+
+                    Button5_16 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =_VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =190
+                        X: =225
+                        Y: =8
+                        ZIndex: =12
+
+                    Button5_15 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =Color.White
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =182
+                        X: =233
+                        Y: =8
+                        ZIndex: =13
+
+                    Label6_14 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.PrimaryText
+                        FontWeight: =FontWeight.Semibold
+                        Height: =41
+                        Size: =_VarGblAppFonts.Size.Medium
+                        Text: ="Customers"
+                        Width: =168
+                        X: =239
+                        Y: =8
+                        ZIndex: =14
+
+                    Label6_15 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.BisleriBlue
+                        FontWeight: =FontWeight.Bold
+                        Height: =39
+                        Size: =_VarGblAppFonts.Size.Title
+                        Text: |-
+                            =/*CountRows(
+                                ForAll(Distinct(
+                                    Filter(
+                                        'Order Lines',
+                                        'Order Number'.'Order Type' = 'Order Type (Choice)'.'Replacement Order' && 'Order Number'.'Order Date' = Today() && Salesperson.'Primary Email' = User().Email
+                                    ),
+                                    'Customer no.'.'Customer Name'
+                                ), {Result: ThisRecord.Value})
+                            )*/
+                            
+                            CountRows(
+                                ForAll(Distinct(
+                                    galHomeReplacementData.AllItems,
+                                    'Customer no.'.'Customer Name'
+                                ), {Result: ThisRecord.Value})
+                            )
+                        Width: =168
+                        X: =239
+                        Y: =44
+                        ZIndex: =15
+
+            contHomePayments As groupContainer.manualLayoutContainer:
+                Height: =800
+                Visible: =If(galHomeFilter.Selected.Value="PAYMENTS", true, false)
+                Width: =Parent.Width
+                Y: =135
+                ZIndex: =7
+
+                contHomePaymentsUpperVertical As groupContainer.verticalAutoLayoutContainer:
+                    Height: =705
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =Parent.Width
+                    Y: =95
+                    ZIndex: =1
+
+                    contHomePaymentsUpper As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        FillPortions: =0
+                        Height: =Parent.Height
+                        LayoutMinHeight: =112
+                        LayoutMinWidth: =250
+                        Width: =Parent.Width
+                        ZIndex: =1
+
+                        contHomePaymentsLowerVertical As groupContainer.verticalAutoLayoutContainer:
+                            Height: =Parent.Height
+                            LayoutDirection: =LayoutDirection.Vertical
+                            LayoutMode: =LayoutMode.Auto
+                            LayoutOverflowX: =LayoutOverflow.Scroll
+                            Width: =Parent.Width
+                            Y: =6
+                            ZIndex: =1
+
+                            contHomePaymentsHeading As groupContainer.manualLayoutContainer:
+                                AlignInContainer: =AlignInContainer.SetByContainer
+                                FillPortions: =0
+                                Height: =60
+                                LayoutMinHeight: =70
+                                LayoutMinWidth: =750
+                                Width: =Parent.Width
+                                ZIndex: =1
+
+                                btnNewOrderHeaderProduct_6 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Customer"
+                                    Width: =350
+                                    X: =5
+                                    Y: =5
+                                    ZIndex: =1
+
+                                btnNewOrderHeaderCases_6 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Value"
+                                    Width: =135
+                                    X: =btnNewOrderHeaderProduct_6.X + btnNewOrderHeaderProduct_6.Width +5
+                                    Y: =5
+                                    ZIndex: =2
+
+                                btnNewOrderHeaderPcs_6 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Mode"
+                                    Width: =135
+                                    X: =btnNewOrderHeaderCases_6.X + btnNewOrderHeaderCases_6.Width +5
+                                    Y: =5
+                                    ZIndex: =3
+
+                            contHomePaymentsData As groupContainer.horizontalAutoLayoutContainer:
+                                AlignInContainer: =AlignInContainer.SetByContainer
+                                FillPortions: =0
+                                Height: =Parent.Height-50
+                                LayoutMinHeight: =570
+                                LayoutMinWidth: =640
+                                LayoutMode: =LayoutMode.Auto
+                                Width: =Parent.Width
+                                ZIndex: =2
+
+                                galHomePaymentsData As gallery.galleryVertical:
+                                    AccessibleLabel: ="galHomePaymentsData"
+                                    AlignInContainer: =AlignInContainer.SetByContainer
+                                    Fill: |-
+                                        =//RGBA(0, 0, 0, 0)
+                                        _VarGblAppColors.LightText
+                                    FillPortions: =0
+                                    Height: =Parent.Height
+                                    Items: |-
+                                        =Filter(
+                                            colOfflinePayments,
+                                            'Receipt Date' >= Today(),
+                                            Salesperson.'Primary Email' = User().Email
+                                        )
+                                    Layout: =Layout.Vertical
+                                    LayoutMinHeight: =287
+                                    LayoutMinWidth: =1200
+                                    ShowScrollbar: =false
+                                    TabIndex: =0
+                                    TemplateSize: =60
+                                    Width: =contHomePaymentsData.Width
+                                    ZIndex: =1
+
+                                    HomePaymentsDataBackground As button:
+                                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                                        DisabledFill: |-
+                                            =//RGBA(244, 244, 244, 1)
+                                            ColorFade( _VarGblAppColors.BisleriBlue, 80%)
+                                        DisplayMode: =DisplayMode.Disabled
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Size: =24
+                                        Text: =""
+                                        Width: =Parent.Width-10
+                                        ZIndex: =1
+
+                                    lblHomePaymentsDataCustomer As label:
+                                        Align: =Align.Center
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.Customer.'Customer Name'
+                                        Width: =350
+                                        Y: =5
+                                        ZIndex: =2
+
+                                    lblHomePaymentsDataValue As label:
+                                        Fill: |-
+                                            =RGBA(0, 0, 0, 0)
+                                            //_VarGblAppColors.LightText
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.Amount
+                                        Width: =86
+                                        X: =406
+                                        Y: =5
+                                        ZIndex: =3
+
+                                    lblHomePaymentsDataMode As label:
+                                        Align: =Align.Center
+                                        Fill: |-
+                                            =RGBA(0, 0, 0, 0)
+                                            //_VarGblAppColors.LightText
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.'Payment Mode'
+                                        Width: =100
+                                        X: =510
+                                        Y: =5
+                                        ZIndex: =5
+
+                                    shpHomePaymentsDataRect2 As rectangle:
+                                        Fill: |-
+                                            =//RGBA(56, 96, 178, 1)
+                                            _VarGblAppColors.LightText
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Width: =1
+                                        X: =353
+                                        ZIndex: =6
+
+                                    shpHomePaymentsDataRect1 As rectangle:
+                                        Fill: |-
+                                            =//RGBA(56, 96, 178, 1)
+                                            _VarGblAppColors.LightText
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Width: =1
+                                        X: =492
+                                        ZIndex: =7
+
+                                    lblHomePaymentsDataValue_1 As label:
+                                        Align: =Align.Center
+                                        Fill: |-
+                                            =RGBA(0, 0, 0, 0)
+                                            //_VarGblAppColors.LightText
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: ="₹"
+                                        Width: =18
+                                        X: =388
+                                        Y: =5
+                                        ZIndex: =8
+
+                Group1_8 As group:
+                    Height: =5
+                    Width: =5
+                    X: =21
+                    Y: =34
+                    ZIndex: =7
+
+                    Button5_18 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =_VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =190
+                        X: =18
+                        Y: =13
+                        ZIndex: =2
+
+                    Button5_17 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =Color.White
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =182
+                        X: =26
+                        Y: =13
+                        ZIndex: =3
+
+                    Label6_16 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.PrimaryText
+                        FontWeight: =FontWeight.Semibold
+                        Height: =41
+                        Size: =_VarGblAppFonts.Size.Medium
+                        Text: ="Total Value"
+                        Width: =168
+                        X: =32
+                        Y: =13
+                        ZIndex: =4
+
+                    Label6_17 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.BisleriBlue
+                        FontWeight: =FontWeight.Bold
+                        Height: =39
+                        Size: =_VarGblAppFonts.Size.Title
+                        Text: |-
+                            ="₹" & Text(
+                                Sum(
+                                    galHomePaymentsData.AllItems,
+                                    lblHomePaymentsDataValue
+                                )
+                            )
+                        Width: =168
+                        X: =32
+                        Y: =49
+                        ZIndex: =5
+
+                Group1_9 As group:
+                    Height: =5
+                    Width: =5
+                    X: =21
+                    Y: =34
+                    ZIndex: =11
+
+                    Button5_20 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =_VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =190
+                        X: =218
+                        Y: =13
+                        ZIndex: =6
+
+                    Button5_19 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =Color.White
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =182
+                        X: =226
+                        Y: =13
+                        ZIndex: =8
+
+                    Label6_18 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.PrimaryText
+                        FontWeight: =FontWeight.Semibold
+                        Height: =41
+                        Size: =_VarGblAppFonts.Size.Medium
+                        Text: ="Cash Value"
+                        Width: =168
+                        X: =232
+                        Y: =13
+                        ZIndex: =9
+
+                    Label6_19 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.BisleriBlue
+                        FontWeight: =FontWeight.Bold
+                        Height: =39
+                        Size: =_VarGblAppFonts.Size.Title
+                        Text: |-
+                            ="₹" & Text(
+                                Sum(
+                                    Filter(
+                                        colOfflinePayments,
+                                        'Payment Mode' = 'Payment Mode (Choice)'.CASH && Salesperson.'Primary Email' = User().Email && 'Receipt Date' = Today()
+                                    ),
+                                    Amount
+                                )
+                            )
+                        Width: =168
+                        X: =232
+                        Y: =49
+                        ZIndex: =10
+
+                Group1_10 As group:
+                    Height: =5
+                    Width: =5
+                    X: =21
+                    Y: =34
+                    ZIndex: =16
+
+                    Button5_22 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =_VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =190
+                        X: =419
+                        Y: =13
+                        ZIndex: =12
+
+                    Button5_21 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =Color.White
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =182
+                        X: =427
+                        Y: =13
+                        ZIndex: =13
+
+                    Label6_20 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.PrimaryText
+                        FontWeight: =FontWeight.Semibold
+                        Height: =41
+                        Size: =_VarGblAppFonts.Size.Medium
+                        Text: ="Cheque Value"
+                        Width: =168
+                        X: =433
+                        Y: =13
+                        ZIndex: =14
+
+                    Label6_21 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.BisleriBlue
+                        FontWeight: =FontWeight.Bold
+                        Height: =39
+                        Size: =_VarGblAppFonts.Size.Title
+                        Text: |-
+                            =If(
+                                Sum(
+                                    Filter(
+                                        colOfflinePayments,
+                                        Not('Payment Mode' = 'Payment Mode (Choice)'.CASH) && Salesperson.'Primary Email' = User().Email && 'Receipt Date' = Today()
+                                    ),
+                                    Amount
+                                ) > 0,
+                                "₹" & Text(
+                                    Sum(
+                                        Filter(
+                                            colOfflinePayments,
+                                            Not('Payment Mode' = 'Payment Mode (Choice)'.CASH) && Salesperson.'Primary Email' = User().Email && 'Receipt Date' = Today()
+                                        ),
+                                        Amount
+                                    )
+                                ),
+                                "-"
+                            )
+                        Width: =168
+                        X: =433
+                        Y: =49
+                        ZIndex: =15
+
+            "'contHomeFOC''s' As groupContainer.manualLayoutContainer":
+                Height: =800
+                Visible: =If(galHomeFilter.Selected.Value="FOC's", true, false)
+                Width: =Parent.Width
+                Y: =135
+                ZIndex: =8
+
+                "'contHomeFOC''sUpperVertical' As groupContainer.verticalAutoLayoutContainer":
+                    Height: =Parent.Height-80
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =Parent.Width
+                    Y: =95
+                    ZIndex: =1
+
+                    "'contHomeFOC''sUpper' As groupContainer.manualLayoutContainer":
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        FillPortions: =0
+                        Height: =Parent.Height
+                        LayoutMinHeight: =112
+                        LayoutMinWidth: =250
+                        Width: =Parent.Width
+                        ZIndex: =1
+
+                        "'contHomeFOC''sLowerVertical' As groupContainer.verticalAutoLayoutContainer":
+                            Height: =Parent.Height
+                            LayoutDirection: =LayoutDirection.Vertical
+                            LayoutMode: =LayoutMode.Auto
+                            LayoutOverflowX: =LayoutOverflow.Scroll
+                            Width: =Parent.Width
+                            Y: =6
+                            ZIndex: =1
+
+                            "'contHomeFOC''sHeading' As groupContainer.manualLayoutContainer":
+                                AlignInContainer: =AlignInContainer.SetByContainer
+                                FillPortions: =0
+                                Height: =60
+                                LayoutMinHeight: =70
+                                LayoutMinWidth: =750
+                                Width: =Parent.Width
+                                ZIndex: =1
+
+                                btnNewOrderHeaderProduct_5 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Product"
+                                    Width: =300
+                                    X: =5
+                                    Y: =5
+                                    ZIndex: =1
+
+                                btnNewOrderHeaderCases_5 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Qty"
+                                    Width: =135
+                                    X: =btnNewOrderHeaderProduct_5.X + btnNewOrderHeaderProduct_5.Width +5
+                                    Y: =5
+                                    ZIndex: =2
+
+                                btnNewOrderHeaderPcs_5 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Reason"
+                                    Width: =185
+                                    X: =btnNewOrderHeaderCases_5.X + btnNewOrderHeaderCases_5.Width +5
+                                    Y: =5
+                                    ZIndex: =3
+
+                            "'contHomeFOC''sData' As groupContainer.horizontalAutoLayoutContainer":
+                                AlignInContainer: =AlignInContainer.SetByContainer
+                                FillPortions: =0
+                                Height: =Parent.Height-70
+                                LayoutMinHeight: =570
+                                LayoutMinWidth: =640
+                                LayoutMode: =LayoutMode.Auto
+                                Width: =Parent.Width
+                                ZIndex: =2
+
+                                "'galHomeFOC''sData' As gallery.galleryVertical":
+                                    AccessibleLabel: ="galHomeFOC'sData"
+                                    AlignInContainer: =AlignInContainer.SetByContainer
+                                    Fill: |-
+                                        =//RGBA(0, 0, 0, 0)
+                                        _VarGblAppColors.LightText
+                                    FillPortions: =0
+                                    Height: =Parent.Height
+                                    Items: |-
+                                        =Filter(
+                                            'Order Lines',
+                                            'Order Number'.'Order Date' >= Today() && Salesperson.'Primary Email' = User().Email && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'FOC Order'
+                                        )
+                                    Layout: =Layout.Vertical
+                                    LayoutMinHeight: =287
+                                    LayoutMinWidth: =1200
+                                    ShowScrollbar: =false
+                                    TabIndex: =0
+                                    TemplateSize: =60
+                                    Width: =Parent.Width
+                                    ZIndex: =1
+
+                                    "'btnHomeFOC''sDataBackground' As button":
+                                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                                        DisabledFill: |-
+                                            =//RGBA(244, 244, 244, 1)
+                                            ColorFade( _VarGblAppColors.BisleriBlue, 80%)
+                                        DisplayMode: =DisplayMode.Disabled
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Size: =24
+                                        Text: =""
+                                        Width: =Parent.Width-10
+                                        ZIndex: =1
+
+                                    "'lblHomeFOC''sDataProduct' As label":
+                                        Align: =Align.Center
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.'Item SKU'.'Item Description '
+                                        Width: =300
+                                        Y: =5
+                                        ZIndex: =2
+
+                                    "'lblHomeFOC''sDataQty' As label":
+                                        Align: =Align.Center
+                                        Fill: |-
+                                            =RGBA(0, 0, 0, 0)
+                                            //_VarGblAppColors.LightText
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.Cases + ThisItem.PCs
+                                        Width: =100
+                                        X: =321
+                                        Y: =5
+                                        ZIndex: =3
+
+                                    "'lblHomeFOC''sDataReason' As label":
+                                        Align: =Align.Center
+                                        Fill: |-
+                                            =RGBA(0, 0, 0, 0)
+                                            //_VarGblAppColors.LightText
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.'Order Number'.'Reason (zx_reason)'
+                                        Width: =185
+                                        X: =445
+                                        Y: =5
+                                        ZIndex: =4
+
+                                    "'shpHomeFOC''sRect2' As rectangle":
+                                        Fill: |-
+                                            =//RGBA(56, 96, 178, 1)
+                                            _VarGblAppColors.LightText
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Width: =1
+                                        X: =302
+                                        ZIndex: =6
+
+                                    "'shpHomeFOC''sRect1' As rectangle":
+                                        Fill: |-
+                                            =//RGBA(56, 96, 178, 1)
+                                            _VarGblAppColors.LightText
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Width: =1
+                                        X: =442
+                                        ZIndex: =7
+
+                Group1_11 As group:
+                    Height: =5
+                    Width: =5
+                    X: =22
+                    Y: =27
+                    ZIndex: =7
+
+                    Button5_24 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =_VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =190
+                        X: =71
+                        Y: =6
+                        ZIndex: =2
+
+                    Button5_23 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =Color.White
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =182
+                        X: =79
+                        Y: =6
+                        ZIndex: =3
+
+                    Label6_22 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.PrimaryText
+                        FontWeight: =FontWeight.Semibold
+                        Height: =41
+                        Size: =_VarGblAppFonts.Size.Medium
+                        Text: ="Total Cases"
+                        Width: =168
+                        X: =85
+                        Y: =6
+                        ZIndex: =4
+
+                    Label6_23 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.BisleriBlue
+                        FontWeight: =FontWeight.Bold
+                        Height: =39
+                        Size: =_VarGblAppFonts.Size.Title
+                        Text: |+
+                            =/*If(
+                                Sum(
+                                    Filter(
+                                        'Order Lines',
+                                        'Order Number'.'Order Date' = Today() && Salesperson.'Primary Email' = User().Email && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'FOC Order'
+                                    ),
+                                    Cases
+                                ) > 0,
+                                Text(
+                                    Sum(
+                                        Filter(
+                                            'Order Lines',
+                                            'Order Number'.'Order Date' = Today() && Salesperson.'Primary Email' = User().Email && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'FOC Order'
+                                        ),
+                                        Cases
+                                    )
+                                ),
+                                "-"
+                            )*/
+                            If(
+                                Sum(
+                                    Filter(
+                                        'Order Lines',
+                                'Order Number'.'Order Date' >= Today() && Salesperson.'Primary Email' = User().Email && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'FOC Order'
+                                    ),
+                                    Cases
+                                ) > 0,
+                                Text(
+                                    Sum(
+                                        Filter(
+                                            'Order Lines',
+                                'Order Number'.'Order Date' >= Today() && Salesperson.'Primary Email' = User().Email && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'FOC Order'
+                                        ),
+                                        Cases
+                                    )
+                                ),
+                                "-"
+                            )
+                            
+                        Width: =168
+                        X: =85
+                        Y: =42
+                        ZIndex: =5
+
+                Group1_13 As group:
+                    Height: =5
+                    Width: =5
+                    X: =22
+                    Y: =27
+                    ZIndex: =16
+
+                    Button5_28 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =_VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =190
+                        X: =368
+                        Y: =6
+                        ZIndex: =12
+
+                    Button5_27 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =Color.White
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =182
+                        X: =376
+                        Y: =6
+                        ZIndex: =13
+
+                    Label6_26 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.PrimaryText
+                        FontWeight: =FontWeight.Semibold
+                        Height: =41
+                        Size: =_VarGblAppFonts.Size.Medium
+                        Text: ="Total Pcs"
+                        Width: =168
+                        X: =382
+                        Y: =6
+                        ZIndex: =14
+
+                    Label6_27 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.BisleriBlue
+                        FontWeight: =FontWeight.Bold
+                        Height: =39
+                        Size: =_VarGblAppFonts.Size.Title
+                        Text: |-
+                            =If(
+                                Sum(
+                                    Filter(
+                                'Order Lines',
+                                'Order Number'.'Order Date' >= Today() && Salesperson.'Primary Email' = User().Email && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'FOC Order'
+                            ),
+                                    PCs
+                                ) > 0,
+                                Text(
+                                    (Sum(
+                                        Filter(
+                                'Order Lines',
+                                'Order Number'.'Order Date' >= Today() && Salesperson.'Primary Email' = User().Email && 'Order Number'.'Order Type' = 'Order Type (Choice)'.'FOC Order'
+                            ),
+                                        PCs
+                                    ) )
+                                ),
+                                "-"
+                            )
+                        Width: =168
+                        X: =382
+                        Y: =42
+                        ZIndex: =15
+
+            contHomeCheckInDemand As groupContainer.manualLayoutContainer:
+                Height: =810
+                Visible: =If(galHomeFilter.Selected.Value="CHECK IN DEMAND", true, false)
+                Width: =Parent.Width
+                Y: =135
+                ZIndex: =9
+
+                contHomeCheckInDemandUpperVertical As groupContainer.verticalAutoLayoutContainer:
+                    Height: =Parent.Height-100
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =Parent.Width
+                    Y: =98
+                    ZIndex: =1
+
+                    contHomeCheckInDemandUpper As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        FillPortions: =0
+                        Height: =Parent.Height
+                        LayoutMinHeight: =112
+                        LayoutMinWidth: =250
+                        Width: =Parent.Width
+                        ZIndex: =1
+
+                        contHomeCheckInDemandLowerVertical As groupContainer.verticalAutoLayoutContainer:
+                            Height: =Parent.Height
+                            LayoutDirection: =LayoutDirection.Vertical
+                            LayoutMode: =LayoutMode.Auto
+                            LayoutOverflowX: =LayoutOverflow.Scroll
+                            Width: =Parent.Width
+                            Y: =6
+                            ZIndex: =1
+
+                            contHomeCheckInDemandHeading As groupContainer.manualLayoutContainer:
+                                AlignInContainer: =AlignInContainer.SetByContainer
+                                FillPortions: =0
+                                Height: =60
+                                LayoutMinHeight: =70
+                                LayoutMinWidth: =750
+                                Width: =Parent.Width
+                                ZIndex: =1
+
+                                btnNewOrderHeaderProduct_4 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Product"
+                                    Width: =345
+                                    X: =5
+                                    Y: =5
+                                    ZIndex: =1
+
+                                btnNewOrderHeaderCases_4 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Cases"
+                                    Width: =135
+                                    X: =btnNewOrderHeaderProduct_4.X + btnNewOrderHeaderProduct_4.Width +5
+                                    Y: =5
+                                    ZIndex: =2
+
+                                btnNewOrderHeaderPcs_4 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Pcs"
+                                    Width: =135
+                                    X: =btnNewOrderHeaderCases_4.X + btnNewOrderHeaderCases_4.Width +5
+                                    Y: =5
+                                    ZIndex: =3
+
+                            contHomeCheckInDemandData As groupContainer.horizontalAutoLayoutContainer:
+                                AlignInContainer: =AlignInContainer.SetByContainer
+                                FillPortions: =0
+                                Height: =Parent.Height-60
+                                LayoutMinHeight: =570
+                                LayoutMinWidth: =850
+                                LayoutMode: =LayoutMode.Auto
+                                Width: =Parent.Width
+                                ZIndex: =2
+
+                                galHomeCheckInDemandData As gallery.galleryVertical:
+                                    AccessibleLabel: ="galHomeCheckInDemandData"
+                                    AlignInContainer: =AlignInContainer.SetByContainer
+                                    Fill: |-
+                                        =//RGBA(0, 0, 0, 0)
+                                        _VarGblAppColors.LightText
+                                    FillPortions: =0
+                                    Height: =Parent.Height
+                                    Items: |-
+                                        =/*Filter(
+                                            'Check-in Demand Lines',
+                                            'Check-in Demand Header'.'Check-in Demand Header' = LookUp(
+                                                'Check-in Demand Headers',
+                                                'Van No'.Warehouse = varUserVanNo.Van.Warehouse && Salesperson.'Primary Email' = User().Email && IsToday('Created On')
+                                            ).'Check-in Demand Header'
+                                        )*/
+                                        colOfflineTodayDemandsLines
+                                    Layout: =Layout.Vertical
+                                    LayoutMinHeight: =287
+                                    LayoutMinWidth: =1200
+                                    ShowScrollbar: =false
+                                    TabIndex: =
+                                    TemplateSize: =60
+                                    Width: =Parent.Width
+                                    ZIndex: =1
+
+                                    btnHomeCheckInDemandBackground As button:
+                                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                                        DisabledFill: |-
+                                            =//RGBA(244, 244, 244, 1)
+                                            ColorFade( _VarGblAppColors.BisleriBlue, 80%)
+                                        DisplayMode: =DisplayMode.Disabled
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Size: =24
+                                        Text: =""
+                                        Width: =Parent.Width-10
+                                        ZIndex: =1
+
+                                    lblHomeCheckInDemandProduct As label:
+                                        Align: =Align.Center
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.'SKU Master'.'Item Description '
+                                        Width: =340
+                                        Y: =5
+                                        ZIndex: =2
+
+                                    lblHomeCheckInDemandCases As label:
+                                        Align: =Align.Center
+                                        Fill: |-
+                                            =RGBA(0, 0, 0, 0)
+                                            //_VarGblAppColors.LightText
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.Cases
+                                        Width: =100
+                                        X: =372
+                                        Y: =5
+                                        ZIndex: =3
+
+                                    lblHomeCheckInDemandPcs As label:
+                                        Align: =Align.Center
+                                        Fill: |-
+                                            =RGBA(0, 0, 0, 0)
+                                            //_VarGblAppColors.LightText
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.PCs
+                                        Width: =100
+                                        X: =507
+                                        Y: =5
+                                        ZIndex: =4
+
+                                    shpHomeCheckInDemandRect2 As rectangle:
+                                        Fill: |-
+                                            =//RGBA(56, 96, 178, 1)
+                                            _VarGblAppColors.LightText
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Width: =1
+                                        X: =348
+                                        ZIndex: =6
+
+                                    shpHomeCheckInDemandRect1 As rectangle:
+                                        Fill: |-
+                                            =//RGBA(56, 96, 178, 1)
+                                            _VarGblAppColors.LightText
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Width: =1
+                                        X: =488
+                                        ZIndex: =7
+
+                Group1_14 As group:
+                    Height: =5
+                    Width: =5
+                    X: =22
+                    Y: =27
+                    ZIndex: =7
+
+                    Button5_30 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =_VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =190
+                        X: =71
+                        Y: =11
+                        ZIndex: =2
+
+                    Button5_29 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =Color.White
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =182
+                        X: =79
+                        Y: =11
+                        ZIndex: =3
+
+                    Label6_28 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.PrimaryText
+                        FontWeight: =FontWeight.Semibold
+                        Height: =41
+                        Size: =_VarGblAppFonts.Size.Medium
+                        Text: ="Total Cases"
+                        Width: =168
+                        X: =85
+                        Y: =11
+                        ZIndex: =4
+
+                    Label6_29 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.BisleriBlue
+                        FontWeight: =FontWeight.Bold
+                        Height: =39
+                        Size: =_VarGblAppFonts.Size.Title
+                        Text: |-
+                            =If(
+                                Sum(
+                                    colOfflineTodayDemandsLines,
+                                    Cases
+                                ) > 0,
+                                Text(
+                                    Sum(
+                                        colOfflineTodayDemandsLines,
+                                        Cases
+                                    )
+                                ),
+                                "-"
+                            )
+                        Width: =168
+                        X: =85
+                        Y: =47
+                        ZIndex: =5
+
+                Group1_16 As group:
+                    Height: =5
+                    Width: =5
+                    X: =22
+                    Y: =27
+                    ZIndex: =16
+
+                    Button5_34 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =_VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =190
+                        X: =368
+                        Y: =11
+                        ZIndex: =12
+
+                    Button5_33 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =Color.White
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =182
+                        X: =376
+                        Y: =11
+                        ZIndex: =13
+
+                    Label6_32 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.PrimaryText
+                        FontWeight: =FontWeight.Semibold
+                        Height: =41
+                        Size: =_VarGblAppFonts.Size.Medium
+                        Text: ="Total Pcs"
+                        Width: =168
+                        X: =382
+                        Y: =11
+                        ZIndex: =14
+
+                    Label6_33 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.BisleriBlue
+                        FontWeight: =FontWeight.Bold
+                        Height: =39
+                        Size: =_VarGblAppFonts.Size.Title
+                        Text: |-
+                            =If(
+                                Sum(
+                                    colOfflineTodayDemandsLines,
+                                    PCs
+                                ) > 0,
+                                Text(Sum(
+                                    colOfflineTodayDemandsLines,
+                                    PCs
+                                )),
+                                "-"
+                            )
+                        Width: =168
+                        X: =382
+                        Y: =47
+                        ZIndex: =15
+
+            contHomeStock As groupContainer.manualLayoutContainer:
+                Height: =800
+                Visible: =If(galHomeFilter.Selected.Value="Stock", true, false)
+                Width: =Parent.Width
+                Y: =135
+                ZIndex: =10
+
+                contHomeStockUpperVertical As groupContainer.verticalAutoLayoutContainer:
+                    Height: =Parent.Height-100
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =Parent.Width
+                    Y: =98
+                    ZIndex: =1
+
+                    contHomeStockUpper As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        FillPortions: =0
+                        Height: =Parent.Height
+                        LayoutMinHeight: =112
+                        LayoutMinWidth: =250
+                        Width: =Parent.Width
+                        ZIndex: =1
+
+                        contHomeStockLowerVertical As groupContainer.verticalAutoLayoutContainer:
+                            Height: =Parent.Height
+                            LayoutDirection: =LayoutDirection.Vertical
+                            LayoutMode: =LayoutMode.Auto
+                            LayoutOverflowX: =LayoutOverflow.Scroll
+                            Width: =Parent.Width
+                            Y: =6
+                            ZIndex: =1
+
+                            contHomeStockHeading As groupContainer.manualLayoutContainer:
+                                AlignInContainer: =AlignInContainer.SetByContainer
+                                FillPortions: =0
+                                Height: =60
+                                LayoutMinHeight: =70
+                                LayoutMinWidth: =750
+                                Width: =Parent.Width
+                                ZIndex: =1
+
+                                btnNewOrderHeaderProduct_3 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Product"
+                                    Width: =345
+                                    X: =5
+                                    Y: =5
+                                    ZIndex: =1
+
+                                btnNewOrderHeaderCases_3 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Cases"
+                                    Width: =135
+                                    X: =btnNewOrderHeaderProduct_3.X + btnNewOrderHeaderProduct_3.Width +5
+                                    Y: =5
+                                    ZIndex: =2
+
+                                btnNewOrderHeaderPcs_3 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Pcs"
+                                    Width: =135
+                                    X: =btnNewOrderHeaderCases_3.X + btnNewOrderHeaderCases_3.Width +5
+                                    Y: =5
+                                    ZIndex: =3
+
+                            contHomeStockData As groupContainer.horizontalAutoLayoutContainer:
+                                AlignInContainer: =AlignInContainer.SetByContainer
+                                FillPortions: =0
+                                Height: =Parent.Height-60
+                                LayoutMinHeight: =570
+                                LayoutMinWidth: =850
+                                LayoutMode: =LayoutMode.Auto
+                                Width: =Parent.Width
+                                ZIndex: =2
+
+                                galHomeStockData As gallery.galleryVertical:
+                                    AccessibleLabel: ="galHomeStockData"
+                                    AlignInContainer: =AlignInContainer.SetByContainer
+                                    Fill: |-
+                                        =//RGBA(0, 0, 0, 0)
+                                        _VarGblAppColors.LightText
+                                    FillPortions: =0
+                                    Height: =Parent.Height
+                                    Items: |-
+                                        =Filter(
+                                            'Current Stocks',
+                                            'Created On' >= Today() && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse
+                                        )
+                                    Layout: =Layout.Vertical
+                                    LayoutMinHeight: =287
+                                    LayoutMinWidth: =1200
+                                    ShowScrollbar: =false
+                                    TabIndex: =
+                                    TemplateSize: =60
+                                    Width: =Parent.Width
+                                    ZIndex: =1
+
+                                    btnHomeStockBackground As button:
+                                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                                        DisabledFill: |-
+                                            =//RGBA(244, 244, 244, 1)
+                                            ColorFade( _VarGblAppColors.BisleriBlue, 80%)
+                                        DisplayMode: =DisplayMode.Disabled
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Size: =24
+                                        Text: =""
+                                        Width: =Parent.Width-10
+                                        ZIndex: =1
+
+                                    lblHomeStockProduct As label:
+                                        Align: =Align.Center
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: |-
+                                            =//ThisItem.'Item SKU'.'Pack Title'
+                                            ThisItem.'Item SKU'.'Item Description '
+                                        Width: =340
+                                        Y: =5
+                                        ZIndex: =2
+
+                                    lblHomeStockCases As label:
+                                        Align: =Align.Center
+                                        Fill: |-
+                                            =RGBA(0, 0, 0, 0)
+                                            //_VarGblAppColors.LightText
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.Cases
+                                        Width: =100
+                                        X: =367
+                                        Y: =5
+                                        ZIndex: =3
+
+                                    lblHomeStockPcs As label:
+                                        Align: =Align.Center
+                                        Fill: |-
+                                            =RGBA(0, 0, 0, 0)
+                                            //_VarGblAppColors.LightText
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.PCs
+                                        Width: =100
+                                        X: =509
+                                        Y: =5
+                                        ZIndex: =4
+
+                                    shpHomeStockRect2 As rectangle:
+                                        Fill: |-
+                                            =//RGBA(56, 96, 178, 1)
+                                            _VarGblAppColors.LightText
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Width: =1
+                                        X: =348
+                                        ZIndex: =6
+
+                                    shpHomeStockRect1 As rectangle:
+                                        Fill: |-
+                                            =//RGBA(56, 96, 178, 1)
+                                            _VarGblAppColors.LightText
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Width: =1
+                                        X: =488
+                                        ZIndex: =7
+
+                Group1_17 As group:
+                    Height: =5
+                    Width: =5
+                    X: =22
+                    Y: =27
+                    ZIndex: =7
+
+                    Button5_36 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =_VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =190
+                        X: =71
+                        Y: =11
+                        ZIndex: =2
+
+                    Button5_35 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =Color.White
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =182
+                        X: =79
+                        Y: =11
+                        ZIndex: =3
+
+                    Label6_34 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.PrimaryText
+                        FontWeight: =FontWeight.Semibold
+                        Height: =41
+                        Size: =_VarGblAppFonts.Size.Medium
+                        Text: ="Total Cases"
+                        Width: =168
+                        X: =85
+                        Y: =11
+                        ZIndex: =4
+
+                    Label6_35 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.BisleriBlue
+                        FontWeight: =FontWeight.Bold
+                        Height: =39
+                        Size: =_VarGblAppFonts.Size.Title
+                        Text: |-
+                            =If(
+                                Sum(
+                                    Filter(
+                                        'Current Stocks',
+                                        'Created On' >= Today() && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse
+                                    ),
+                                    Cases
+                                ) > 0,
+                                Text(
+                                    Sum(
+                                        Filter(
+                                            'Current Stocks',
+                                            'Created On' >= Today() && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse
+                                        ),
+                                        Cases
+                                    )
+                                ),
+                                "-"
+                            )
+                        Width: =168
+                        X: =85
+                        Y: =47
+                        ZIndex: =5
+
+                Group1_19 As group:
+                    Height: =5
+                    Width: =5
+                    X: =22
+                    Y: =27
+                    ZIndex: =16
+
+                    Button5_40 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =_VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =190
+                        X: =368
+                        Y: =11
+                        ZIndex: =12
+
+                    Button5_39 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =Color.White
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =182
+                        X: =376
+                        Y: =11
+                        ZIndex: =13
+
+                    Label6_38 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.PrimaryText
+                        FontWeight: =FontWeight.Semibold
+                        Height: =41
+                        Size: =_VarGblAppFonts.Size.Medium
+                        Text: ="Total Pcs"
+                        Width: =168
+                        X: =382
+                        Y: =11
+                        ZIndex: =14
+
+                    Label6_39 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.BisleriBlue
+                        FontWeight: =FontWeight.Bold
+                        Height: =39
+                        Size: =_VarGblAppFonts.Size.Title
+                        Text: |-
+                            =If(
+                                Sum(
+                                    Filter(
+                                        'Current Stocks',
+                                        'Created On' >= Today() && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse
+                                    ),
+                                    PCs
+                                ) > 0,
+                                Text(
+                                    Sum(
+                                        Filter(
+                                            'Current Stocks',
+                                            'Created On' >= Today() && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse
+                                        ),
+                                        PCs
+                                    )
+                                ),
+                                "-"
+                            )
+                        Width: =168
+                        X: =382
+                        Y: =47
+                        ZIndex: =15
+
+            contHomeEmptyJars As groupContainer.manualLayoutContainer:
+                Height: =810
+                Visible: =If(galHomeFilter.Selected.Value="EMPTY JAR", true, false)
+                Width: =Parent.Width
+                Y: =135
+                ZIndex: =11
+
+                contHomeOrdersUpperVertical_2 As groupContainer.verticalAutoLayoutContainer:
+                    Height: =Parent.Height-80
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =Parent.Width
+                    Y: =93
+                    ZIndex: =1
+
+                    contHomeOrdersUpper_2 As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        FillPortions: =0
+                        Height: =Parent.Height
+                        LayoutMinHeight: =112
+                        LayoutMinWidth: =250
+                        Width: =Parent.Width
+                        ZIndex: =1
+
+                        contHomeOrdersLowerVertical_2 As groupContainer.verticalAutoLayoutContainer:
+                            Height: =Parent.Height
+                            LayoutDirection: =LayoutDirection.Vertical
+                            LayoutMode: =LayoutMode.Auto
+                            LayoutOverflowX: =LayoutOverflow.Scroll
+                            Width: =Parent.Width
+                            Y: =6
+                            ZIndex: =1
+
+                            contHomeOrdersHeading_2 As groupContainer.manualLayoutContainer:
+                                AlignInContainer: =AlignInContainer.SetByContainer
+                                FillPortions: =0
+                                Height: =60
+                                LayoutMinHeight: =70
+                                LayoutMinWidth: =750
+                                Width: =805
+                                ZIndex: =1
+
+                                btnNewOrderHeaderProduct_17 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Customer Name"
+                                    Width: =300
+                                    X: =5
+                                    Y: =5
+                                    ZIndex: =1
+
+                                btnNewOrderHeaderCases_14 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Product"
+                                    Width: =350
+                                    X: =btnNewOrderHeaderProduct_17.X + btnNewOrderHeaderProduct_17.Width +5
+                                    Y: =5
+                                    ZIndex: =2
+
+                                btnNewOrderHeaderPcs_20 As button:
+                                    DisabledBorderColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisabledColor: |-
+                                        =//RGBA(166, 166, 166, 1)
+                                        _VarGblAppColors.LightText
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        _VarGblAppColors.BisleriBlue
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =50
+                                    OnSelect: =
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: ="Qty"
+                                    Width: =135
+                                    X: =btnNewOrderHeaderCases_14.X + btnNewOrderHeaderCases_14.Width +5
+                                    Y: =5
+                                    ZIndex: =3
+
+                            contHomeOrdersData_2 As groupContainer.horizontalAutoLayoutContainer:
+                                AlignInContainer: =AlignInContainer.SetByContainer
+                                FillPortions: =0
+                                Height: =Parent.Height-70
+                                LayoutMinHeight: =570
+                                LayoutMinWidth: =640
+                                LayoutMode: =LayoutMode.Auto
+                                Width: =contHomeOrdersHeading_2.Width
+                                ZIndex: =2
+
+                                galHomeOrdersData_2 As gallery.galleryVertical:
+                                    AccessibleLabel: ="galHomeOrdersData"
+                                    AlignInContainer: =AlignInContainer.SetByContainer
+                                    Fill: |-
+                                        =//RGBA(0, 0, 0, 0)
+                                        _VarGblAppColors.LightText
+                                    FillPortions: =0
+                                    Height: =Parent.Height
+                                    Items: |-
+                                        =Filter(
+                                            'Order Lines',
+                                            'Created On' >= Today(),
+                                            Salesperson.'Primary Email' = User().Email,
+                                            'Order Number'.'Order Type' = 'Order Type (Choice)'.'Empty jar Order'
+                                        )
+                                    Layout: =Layout.Vertical
+                                    LayoutMinHeight: =413
+                                    LayoutMinWidth: =1200
+                                    ShowScrollbar: =false
+                                    TabIndex: =0
+                                    TemplateSize: =60
+                                    Width: =Parent.Width
+                                    ZIndex: =1
+
+                                    btnHomeOrdersBackground_2 As button:
+                                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                                        DisabledFill: |-
+                                            =//RGBA(244, 244, 244, 1)
+                                            ColorFade( _VarGblAppColors.BisleriBlue, 80%)
+                                        DisplayMode: =DisplayMode.Disabled
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Size: =24
+                                        Text: =""
+                                        Width: =Parent.Width-10
+                                        ZIndex: =1
+
+                                    lblHomeOrdersProduct_2 As label:
+                                        Align: =Align.Center
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.'Item SKU'.'Item Description '
+                                        Width: =340
+                                        X: =300
+                                        Y: =5
+                                        ZIndex: =2
+
+                                    lblHomeOrdersValue_2 As label:
+                                        Align: =Align.Center
+                                        Fill: |-
+                                            =RGBA(0, 0, 0, 0)
+                                            //_VarGblAppColors.LightText
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.'Total Quantity'
+                                        Width: =100
+                                        X: =680
+                                        Y: =5
+                                        ZIndex: =3
+
+                                    lblHomeOrdersCustomer_2 As label:
+                                        Align: =Align.Center
+                                        Fill: |-
+                                            =RGBA(0, 0, 0, 0)
+                                            //_VarGblAppColors.LightText
+                                        Height: =50
+                                        OnSelect: =Select(Parent)
+                                        Size: =_VarGblAppFonts.Size.Subtitle
+                                        Text: =ThisItem.'Customer no.'.'Customer Name'
+                                        Width: =300
+                                        Y: =5
+                                        ZIndex: =4
+
+                                    shpHomeOrdersRect2_1 As rectangle:
+                                        Fill: |-
+                                            =//RGBA(56, 96, 178, 1)
+                                            _VarGblAppColors.LightText
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Width: =1
+                                        X: =300
+                                        ZIndex: =6
+
+                                    shpHomeOrdersRect1_1 As rectangle:
+                                        Fill: |-
+                                            =//RGBA(56, 96, 178, 1)
+                                            _VarGblAppColors.LightText
+                                        Height: =60
+                                        OnSelect: =Select(Parent)
+                                        Width: =1
+                                        X: =655
+                                        ZIndex: =7
+
+                Group1_20 As group:
+                    Height: =5
+                    Width: =5
+                    X: =-14
+                    Y: =-160
+                    ZIndex: =7
+
+                    Button5_41 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =_VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =190
+                        X: =19
+                        Y: =6
+                        ZIndex: =2
+
+                    Button5_42 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =Color.White
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =182
+                        X: =27
+                        Y: =6
+                        ZIndex: =3
+
+                    Label6_40 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.PrimaryText
+                        FontWeight: =FontWeight.Semibold
+                        Height: =41
+                        Size: =_VarGblAppFonts.Size.Medium
+                        Text: ="Total Value"
+                        Width: =168
+                        X: =33
+                        Y: =6
+                        ZIndex: =4
+
+                    Label6_43 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.BisleriBlue
+                        FontWeight: =FontWeight.Bold
+                        Height: =39
+                        Size: =_VarGblAppFonts.Size.Title
+                        Text: ="₹" & Sum(galHomeOrdersData_2.AllItems, lblHomeOrdersValue_2)*150
+                        Width: =168
+                        X: =33
+                        Y: =42
+                        ZIndex: =5
+
+                Group1_21 As group:
+                    Height: =5
+                    Width: =5
+                    X: =25
+                    Y: =34
+                    ZIndex: =10
+
+                    Button5_43 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =_VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =190
+                        X: =219
+                        Y: =6
+                        ZIndex: =6
+
+                    Button5_44 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =Color.White
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =182
+                        X: =227
+                        Y: =6
+                        ZIndex: =7
+
+                    Label6_41 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.PrimaryText
+                        FontWeight: =FontWeight.Semibold
+                        Height: =41
+                        Size: =_VarGblAppFonts.Size.Medium
+                        Text: ="Total SKU"
+                        Width: =168
+                        X: =233
+                        Y: =6
+                        ZIndex: =8
+
+                    Label6_44 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.BisleriBlue
+                        FontWeight: =FontWeight.Bold
+                        Height: =39
+                        Size: =_VarGblAppFonts.Size.Title
+                        Text: =If(Sum(galHomeOrdersData_2.AllItems, lblHomeOrdersValue_2)>0, Sum(galHomeOrdersData_2.AllItems, lblHomeOrdersValue_2), 0)
+                        Width: =168
+                        X: =233
+                        Y: =42
+                        ZIndex: =9
+
+                Group1_22 As group:
+                    Height: =5
+                    Width: =5
+                    X: =45
+                    Y: =54
+                    ZIndex: =14
+
+                    Button5_45 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =_VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =190
+                        X: =420
+                        Y: =6
+                        ZIndex: =10
+
+                    Button5_46 As button:
+                        DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+                        DisabledFill: =Color.White
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =75
+                        Size: =24
+                        Text: =""
+                        Width: =182
+                        X: =428
+                        Y: =6
+                        ZIndex: =11
+
+                    Label6_42 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.PrimaryText
+                        FontWeight: =FontWeight.Semibold
+                        Height: =41
+                        Size: =_VarGblAppFonts.Size.Medium
+                        Text: ="Customers"
+                        Width: =168
+                        X: =434
+                        Y: =6
+                        ZIndex: =12
+
+                    Label6_45 As label:
+                        Align: =Align.Center
+                        Color: =_VarGblAppColors.BisleriBlue
+                        FontWeight: =FontWeight.Bold
+                        Height: =39
+                        Size: =_VarGblAppFonts.Size.Title
+                        Text: |-
+                            =//CountRows(galHomeOrdersData_2.AllItems)
+                            CountRows(
+                                ForAll(Distinct(
+                                    galHomeOrdersData_2.AllItems,
+                                    'Customer no.'.'Customer Name'
+                                ), {Result: ThisRecord.Value})
+                            )
+                        Width: =168
+                        X: =434
+                        Y: =42
+                        ZIndex: =13
+
+    compHomeBottomBar As BottomBar:
+        NavItem: |-
+            =Table(
+                {
+                    Title: If(
+                        CountRows(colOfflineTodayAttendance)=0,
+                        "Start",
+                        (CountRows(colOfflineTodayAttendance) = 1 && !IsBlank(First(colOfflineTodayAttendance).'Check-in Time') && IsBlank(First(colOfflineTodayAttendance).'Check-out Time') ),
+                        "End",
+                        (CountRows(colOfflineTodayAttendance) = 1 && !IsBlank(First(colOfflineTodayAttendance).'Check-in Time') && !IsBlank(First(colOfflineTodayAttendance).'Check-out Time')),
+                        "Ended"
+                    ),
+                    Icon: Icon.CalendarBlank,
+                    Screen: 'Attendance Screen',
+                    Active: false
+                },
+                {
+                    Title: "Visit",
+                    Icon: Icon.Waypoint,
+                    Screen: 'Visit Screen',
+                    Active: false
+                },
+                {
+                    Title: "Dashboard",
+                    Icon: Icon.Waffle,
+                    Screen: 'Home Screen',
+                    Active: true
+                },
+                {
+                    Title: "Customers",
+                    Icon: Icon.People,
+                    Screen: 'Customer Screen',
+                    Active: false
+                },
+                {
+                    Title: "Menu",
+                    Icon: Icon.Hamburger,
+                    Screen: 'Menu Screen',
+                    Active: false
+                }
+            )
+        Y: =1026
+        ZIndex: =2
+
+    Header_2 As Header:
+        HeaderText: ="Dashboard"
+        ZIndex: =3
+

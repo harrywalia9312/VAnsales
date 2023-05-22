@@ -1,0 +1,556 @@
+"'Order List View' As CanvasComponent":
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =950
+    Width: =App.Width
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    galOrderDateFilter As gallery.galleryHorizontal:
+        AccessibleLabel: ="galOrderDateFilter"
+        BorderColor: =RGBA(109, 109, 109, 1)
+        Height: =64
+        Items: |-
+            =[
+                "Today's Orders",
+                "Last 7 Days",
+                "Last 30 Days"
+            ]
+        OnSelect: =
+        ShowScrollbar: =false
+        TabIndex: =0
+        TemplateSize: =192
+        Transition: =Transition.Pop
+        Width: =594
+        X: =23
+        Y: =3
+        ZIndex: =1
+
+        btnGalOrderDateFilter As button:
+            BorderColor: =RGBA(184, 0, 0, 1)
+            BorderThickness: =0
+            Color: =If(ThisItem.IsSelected, _VarGblAppColors.BisleriBlueLight,_VarGblAppColors.BisleriBlue)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            Fill: =If(ThisItem.IsSelected, _VarGblAppColors.BisleriBlue, _VarGblAppColors.BisleriBlueLight)
+            FocusedBorderColor: =
+            FocusedBorderThickness: =2
+            Font: =Font.Lato
+            Height: =43
+            HoverBorderColor: =RGBA(210, 210, 210, 1)
+            HoverColor: =RGBA(31, 31, 31, 1)
+            HoverFill: =
+            OnSelect: =Select(Parent)
+            PressedBorderColor: =
+            PressedColor: =RGBA(31, 31, 31, 1)
+            PressedFill: =
+            Size: =12
+            Text: =ThisItem.Value
+            Width: =179
+            X: =7
+            Y: =2
+            ZIndex: =1
+
+    galOrderStatusFilter As gallery.galleryHorizontal:
+        AccessibleLabel: ="galOrderStatusFilter"
+        BorderColor: =RGBA(109, 109, 109, 1)
+        Height: =64
+        Items: =Choices('Order Type (Choice)')
+        OnSelect: =
+        ShowScrollbar: =false
+        TabIndex: =0
+        TemplateSize: =150
+        Y: =53
+        ZIndex: =2
+
+        btnGalOrderStatusFilter As button:
+            BorderColor: =RGBA(184, 0, 0, 1)
+            BorderThickness: =0
+            Color: |
+                =If(ThisItem.IsSelected, _VarGblAppColors.BisleriBlueLight,_VarGblAppColors.BisleriBlue)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            Fill: =If(ThisItem.IsSelected, _VarGblAppColors.BisleriBlue, _VarGblAppColors.BisleriBlueLight)
+            FocusedBorderColor: =
+            FocusedBorderThickness: =2
+            Font: =Font.Lato
+            Height: =45
+            HoverBorderColor: =RGBA(210, 210, 210, 1)
+            HoverColor: =RGBA(31, 31, 31, 1)
+            HoverFill: =
+            OnSelect: =Select(Parent)
+            PressedBorderColor: =
+            PressedColor: =RGBA(31, 31, 31, 1)
+            PressedFill: =
+            Size: =12
+            Text: =ThisItem.Value
+            Width: =140
+            X: =5
+            Y: =6
+            ZIndex: =1
+
+    galOrdersList As gallery.galleryVertical:
+        AccessibleLabel: ="galOrdersList"
+        BorderColor: =RGBA(109, 109, 109, 1)
+        Height: =833
+        Items: |-
+            =Sort(
+                        Switch(
+                            galOrderDateFilter.Selected.Value,
+                            "Last 30 Days",
+                            Filter(
+                                Filter(
+                                    Filter(
+                                        'Order Headers',
+                                        Salesperson.'Primary Email' = User().Email && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse
+                                    ),
+                                    'Order Type' = galOrderStatusFilter.Selected.Value
+                                ),
+                                'Order Date' > DateAdd(
+                            Today(),
+                            -30
+                        )
+                            ),
+                            "Last 7 Days",
+                            Filter(
+                                Filter(
+                                    Filter(
+                                      'Order Headers',
+                                       Salesperson.'Primary Email' = User().Email && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse
+                                    ),
+                                    'Order Type' = galOrderStatusFilter.Selected.Value
+                                ),
+                                'Order Date' > DateAdd(
+                            Today(),
+                            -7
+                        )
+                            ),
+                            "Today's Orders",
+                            Filter(
+                                Filter(
+                                    Filter(
+                                        //colOfflineOrderHeader,
+                                        'Order Headers',
+                                       Salesperson.'Primary Email' = User().Email && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse
+                                    ),
+                                    'Order Type' = galOrderStatusFilter.Selected.Value
+                                ),
+                                'Order Date'>= Today()
+                            )
+                        ),
+                        'Created On',
+                        SortOrder.Descending
+                    )
+        Layout: =Layout.Vertical
+        OnSelect: |-
+            =Set(oh,ThisItem);
+            Navigate(OrderInfo)
+        ShowScrollbar: =false
+        TabIndex: =
+        TemplateSize: =268
+        Width: =App.Width
+        Y: =117
+        ZIndex: =3
+
+        htmOrderListBackground As htmlViewer:
+            Color: =RGBA(242, 242, 242, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: |-
+                =//RGBA(242, 245, 245, 0.67)
+                Color.White
+            Height: =287
+            HtmlText: |-
+                ="<div style='border-radius:15px 15px 15px 15px; background-color:#E6F7F6; width:"& App.Width-20 &"; height:250px'></div>"
+            Width: =594
+            X: =10
+            ZIndex: =2
+
+        htmOrderListBillTo As htmlViewer:
+            Color: =RGBA(242, 242, 242, 1)
+            Height: =52
+            HtmlText: |-
+                ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:.0.5px solid #00B3A1; width:300px; height:30px'></div>"
+            OnSelect: =Select(Parent)
+            Width: =310
+            X: =49
+            Y: =74
+            ZIndex: =3
+
+        htmOrderListDate As htmlViewer:
+            Color: =RGBA(242, 242, 242, 1)
+            Height: =52
+            HtmlText: |-
+                ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:0px solid #00B3A1; width:130px; height:30px'></div>"
+            OnSelect: =Select(Parent)
+            Width: =164
+            X: =435
+            Y: =74
+            ZIndex: =7
+
+        "'btnOrdersListOrderNo.' As button":
+            Align: =Align.Left
+            BorderColor: =RGBA(0, 0, 0, 0)
+            Color: =_VarGblAppColors.HeaderBg
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 0)
+            FocusedBorderColor: =ColorFade(Self.Fill, 75%)
+            FocusedBorderThickness: =
+            Font: =Font.Lato
+            Height: =50
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =
+            OnSelect: |-
+                =Set(oh,ThisItem);
+                Navigate(OrderInfo)
+            PressedBorderColor: =
+            PressedColor: =RGBA(255, 191, 0, 1)
+            PressedFill: =
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =18
+            Text: =ThisItem.'Order Id'
+            Width: =229
+            X: =56
+            Y: =21
+            ZIndex: =23
+
+        grpOrderListDetails As group:
+            Height: =5
+            Width: =5
+            X: =40
+            Y: =40
+            ZIndex: =24
+
+            lblOrderListBillTo As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =_VarGblAppColors.SecondaryText
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Font: =Font.Lato
+                FontWeight: =FontWeight.Semibold
+                Height: =34
+                Size: =12
+                TabIndex: =
+                Text: ="Bill To"
+                Width: =300
+                X: =60
+                Y: =77
+                ZIndex: =4
+
+            lblOrderListDate As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =_VarGblAppColors.SecondaryText
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Font: =Font.Lato
+                FontWeight: =FontWeight.Semibold
+                Height: =31
+                Size: =12
+                TabIndex: =0
+                Text: ="Order Date"
+                Width: =116
+                X: =448
+                Y: =77
+                ZIndex: =8
+
+            lblOrderListBillToValue As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =_VarGblAppColors.PrimaryText
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Font: =Font.Lato
+                FontWeight: =FontWeight.Semibold
+                Height: =41
+                Size: =_VarGblAppFonts.Size.Regular
+                TabIndex: =
+                Text: =If(IsBlank(ThisItem.Customer.'Customer Name'), Text("-"), ThisItem.Customer.'Customer Name')
+                Width: =400
+                X: =20
+                Y: =108
+                ZIndex: =9
+
+            lblOrderListDateValue As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =_VarGblAppColors.PrimaryText
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Font: =Font.Lato
+                FontWeight: =FontWeight.Semibold
+                Height: =29
+                Size: =_VarGblAppFonts.Size.Regular
+                TabIndex: =0
+                Text: =Text(ThisItem.'Order Date', "dd mmm yyyy")
+                Width: =127
+                X: =442
+                Y: =111
+                ZIndex: =11
+
+            htmOrderListQty As htmlViewer:
+                Color: =RGBA(242, 242, 242, 1)
+                Height: =52
+                HtmlText: |-
+                    ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:0px solid #00B3A1; width:130px; height:30px'></div>"
+                Width: =164
+                X: =49
+                Y: =149
+                ZIndex: =16
+
+            lblOrderListQty As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =_VarGblAppColors.SecondaryText
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Font: =Font.Lato
+                FontWeight: =FontWeight.Semibold
+                Height: =23
+                Size: =12
+                TabIndex: =0
+                Text: ="Quantity"
+                Width: =116
+                X: =60
+                Y: =156
+                ZIndex: =17
+
+            htmOrderListTotalAmount As htmlViewer:
+                Color: =RGBA(242, 242, 242, 1)
+                Height: =51
+                HtmlText: |-
+                    ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:0px solid #00B3A1; width:130px; height:30px'></div>"
+                Width: =164
+                X: =435
+                Y: =149
+                ZIndex: =18
+
+            lblOrderListTotalAmount As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =_VarGblAppColors.SecondaryText
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Font: =Font.Lato
+                FontWeight: =FontWeight.Semibold
+                Height: =24
+                Size: =12
+                TabIndex: =0
+                Text: ="Total Amount"
+                Width: =116
+                X: =451
+                Y: =156
+                ZIndex: =19
+
+            lblOrderListQtyValue As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =_VarGblAppColors.PrimaryText
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Font: =Font.Lato
+                FontWeight: =FontWeight.Semibold
+                Height: =32
+                Size: =_VarGblAppFonts.Size.Regular
+                TabIndex: =0
+                Text: =ThisItem.'Total Quantity'
+                Width: =118
+                X: =60
+                Y: =188
+                ZIndex: =21
+
+            lblOrderListTotalAmountValue As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =_VarGblAppColors.PrimaryText
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Font: =Font.Lato
+                FontWeight: =FontWeight.Semibold
+                Height: =32
+                Size: =_VarGblAppFonts.Size.Regular
+                TabIndex: =0
+                Text: ="₹" &  If(ThisItem.'Net Amount'>0, ThisItem.'Net Amount', 0)
+                Width: =118
+                X: =451
+                Y: =188
+                ZIndex: =22
+
+        btnGalOrderStatus As button:
+            BorderColor: =RGBA(227, 100, 41, 1)
+            BorderThickness: =1
+            Color: =RGBA(227, 100, 41, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =_VarGblAppColors.BisleriBlueLight
+            DisabledFill: =_VarGblAppColors.BisleriBlue
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =RGBA(0, 0, 0, 0)
+            FocusedBorderColor: =ColorFade(Self.Fill, 75%)
+            Font: =Font.Lato
+            Height: =29
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =ColorFade(RGBA(56, 96, 178, 0), -20%)
+            PaddingTop: =3
+            PressedBorderColor: =ColorFade(RGBA(255, 200, 61, 1), 50%)
+            PressedColor: =RGBA(31, 31, 31, 1)
+            PressedFill: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+            RadiusBottomLeft: =9
+            RadiusBottomRight: =9
+            RadiusTopLeft: =9
+            RadiusTopRight: =9
+            Size: =_VarGblAppFonts.Size.Tiny
+            Text: |-
+                =//galOrderStatusFilter.Selected.Value
+                If(!IsBlank(LookUp('Invoice Headers', 'Order Number'.'Order Number'=ThisItem.'Order Number').'IRN Number'),"IRN",!IsBlank(LookUp('Invoice Headers', 'Order Number'.'Order Number'=ThisItem.'Order Number').'Local QR '), "QR Code")
+            Width: =130
+            X: =445
+            Y: =21
+            ZIndex: =45
+
+        htmOrderListQty_2 As htmlViewer:
+            Color: =RGBA(242, 242, 242, 1)
+            Height: =52
+            HtmlText: |-
+                ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:0px solid #00B3A1; width:130px; height:30px'></div>"
+            Width: =164
+            X: =245
+            Y: =149
+            ZIndex: =49
+
+        lblOrderListQty_2 As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.SecondaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Semibold
+            Height: =23
+            Size: =12
+            TabIndex: =0
+            Text: ="Route"
+            Width: =116
+            X: =254
+            Y: =156
+            ZIndex: =50
+
+        lblOrderListQtyValue_2 As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            Size: =_VarGblAppFonts.Size.Regular
+            TabIndex: =0
+            Text: |-
+                =//ThisItem.'Van No'.'Vehicle Number/Warehouse Name'
+                ThisItem.'Route No'.'Name (zx_name)'
+            Width: =118
+            X: =254
+            Y: =188
+            ZIndex: =51
+
+        btnGalOrderStatus_3 As button:
+            BorderColor: =RGBA(227, 100, 41, 1)
+            BorderThickness: =1
+            Color: =_VarGblAppColors.BisleriBlueLight
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =_VarGblAppColors.BisleriBlueLight
+            DisabledFill: =_VarGblAppColors.BisleriBlue
+            Fill: =_VarGblAppColors.BisleriBlue
+            FocusedBorderColor: =ColorFade(Self.Fill, 75%)
+            Font: =Font.Lato
+            Height: =29
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =ColorFade(RGBA(56, 96, 178, 0), -20%)
+            OnSelect: |-
+                =If(
+                    Self.Text = Text('Payment Status Choice'.Pending) && ThisItem.'Created On' >= Today(),
+                    /*Navigate(
+                        'Pending Payment Screen',
+                        ScreenTransition.Cover
+                    );*/
+                Set(
+                        InvData,
+                        LookUp(
+                            'Invoice Headers',
+                            'Order Number'.'Order Number' = ThisItem.'Order Number'
+                        )
+                    );
+                  Set(
+                        InvData1,
+                        LookUp(
+                            'Invoice Headers',
+                            'Order Number'.'Order Number' = ThisItem.'Order Number'
+                        ).'Invoice Header'
+                    );
+                    Set(DelOrdrline, ThisItem.'Order Number');
+                If(!IsBlank(InvData1),
+                RemoveIf('Invoice Lines', 'Invoice Number'.'Invoice Header'=InvData1 /*&& 'Invoice Type'='Invoice Type (Choice)'.Child*/);
+                /*RemoveIf('Order Lines', 'Order Number'.'Order Number'=ThisItem.'Order Number')*/);
+                
+                Refresh('Invoice Headers');
+                Set(
+                        InvData,
+                        LookUp(
+                            'Invoice Headers',
+                            'Order Number'.'Order Number' = ThisItem.'Order Number'
+                        )
+                    );
+                    Navigate(
+                        VisitExecution,
+                        ScreenTransition.Cover
+                    );
+                    Set(
+                        paymentData,
+                        ThisItem
+                    );
+                    
+                    Set(
+                        varSelectedVisitActiveTab,
+                        1
+                    );
+                    
+                )
+            PaddingTop: =3
+            PressedBorderColor: =ColorFade(RGBA(255, 200, 61, 1), 50%)
+            PressedColor: =RGBA(31, 31, 31, 1)
+            PressedFill: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+            RadiusBottomLeft: =9
+            RadiusBottomRight: =9
+            RadiusTopLeft: =9
+            RadiusTopRight: =9
+            Size: =_VarGblAppFonts.Size.Tiny
+            Text: =ThisItem.'Payment Status'
+            Visible: =If(galOrderStatusFilter.Selected.Value = 'Order Type (Choice)'.'Sales Order', true , false)
+            Width: =130
+            X: =295
+            Y: =21
+            ZIndex: =52
+

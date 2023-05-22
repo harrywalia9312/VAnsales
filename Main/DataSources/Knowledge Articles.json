@@ -1,0 +1,496 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "knowledgearticles",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "knowledgearticle",
+    "MaxGetRowsCount": 2000,
+    "Name": "Knowledge Articles",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "{Attachments}": "Attachments",
+      "articlepublicnumber": "Article Public Number",
+      "content": "Content",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "description": "Description",
+      "exchangerate": "ExchangeRate",
+      "expirationdate": "Expiration Date",
+      "expirationstateid": "Expiration State Id",
+      "expirationstatusid": "Expired Status",
+      "expiredreviewoptions": "Expired Review Options",
+      "importsequencenumber": "Import Sequence Number",
+      "incident_knowledgearticles": "Knowledge Article Incidents",
+      "isinternal": "Internal",
+      "islatestversion": "Is Latest Version",
+      "isprimary": "Primary Article",
+      "isrootarticle": "Root Article",
+      "keywords": "Keywords",
+      "KnowledgeArticle_ActivityPointers": "Activities",
+      "knowledgearticle_Annotations": "Notes",
+      "KnowledgeArticle_Appointments": "Appointments",
+      "knowledgearticle_AsyncOperations": "System Jobs",
+      "knowledgearticle_BulkDeleteFailures": "Bulk Delete Failures",
+      "knowledgearticle_BulkOperations": "Quick Campaigns",
+      "knowledgearticle_CampaignResponses": "Campaign Responses",
+      "knowledgearticle_category": "Categories",
+      "knowledgearticle_chats": "Teams chats",
+      "knowledgearticle_connections1": "Connections (knowledgearticle_connections1)",
+      "knowledgearticle_connections2": "Connections (knowledgearticle_connections2)",
+      "knowledgearticle_DuplicateBaseRecord": "Duplicate Records (knowledgearticle_DuplicateBaseRecord)",
+      "knowledgearticle_DuplicateMatchingRecord": "Duplicate Records (knowledgearticle_DuplicateMatchingRecord)",
+      "KnowledgeArticle_Emails": "Email Messages",
+      "knowledgearticle_expiredprocess": "Expired Process",
+      "KnowledgeArticle_Faxes": "Faxes",
+      "KnowledgeArticle_Feedback": "Feedback (KnowledgeArticle_Feedback)",
+      "knowledgearticle_FileAttachments": "FileAttachments",
+      "knowledgearticle_IncidentResolutions": "Case Resolutions",
+      "KnowledgeArticle_Letters": "Letters",
+      "knowledgearticle_msdyn_ocliveworkitems": "Conversations",
+      "knowledgearticle_msdyn_ocsessions": "Sessions",
+      "knowledgearticle_msfp_alerts": "Customer Voice alert",
+      "knowledgearticle_msfp_surveyinvites": "Customer Voice survey invites",
+      "knowledgearticle_msfp_surveyresponses": "Customer Voice survey responses",
+      "knowledgearticle_newprocess": "New Process",
+      "knowledgearticle_OpportunityCloses": "Opportunity Close Activities",
+      "knowledgearticle_OrderCloses": "Order Close Activities",
+      "knowledgearticle_parentarticle_contentid": "Knowledge Articles (knowledgearticle_parentarticle_contentid)",
+      "KnowledgeArticle_Phonecalls": "Phone Calls",
+      "knowledgearticle_PostFollows": "Follows",
+      "knowledgearticle_PostRegardings": "Post Regarding",
+      "knowledgearticle_Posts": "Posts",
+      "knowledgearticle_previousarticle_contentid": "Knowledge Articles (knowledgearticle_previousarticle_contentid)",
+      "knowledgearticle_PrincipalObjectAttributeAccess": "Field Sharing",
+      "knowledgearticle_ProcessSession": "Process Sessions",
+      "knowledgearticle_QueueItems": "Queue Items",
+      "knowledgearticle_QuoteCloses": "Quote Close Activities",
+      "KnowledgeArticle_RecurringAppointmentMasters": "Recurring Appointments",
+      "knowledgearticle_rootarticle_id": "Knowledge Articles (knowledgearticle_rootarticle_id)",
+      "KnowledgeArticle_ServiceAppointments": "Service Activities",
+      "knowledgearticle_SharePointDocumentLocations": "Document Locations",
+      "KnowledgeArticle_SocialActivities": "Social Activities",
+      "KnowledgeArticle_SyncErrors": "Sync Errors",
+      "KnowledgeArticle_Tasks": "Tasks",
+      "knowledgearticle_Teams": "Teams",
+      "knowledgearticle_translationprocess": "Translation Process",
+      "knowledgearticle_views": "Knowledge Article Views (knowledgearticle_views)",
+      "knowledgearticleid": "Knowledge Article",
+      "knowledgearticleviews": "Knowledge Article Views (knowledgearticleviews)",
+      "knowledgearticleviews_date": "Knowledge Article View(Last Updated Time)",
+      "knowledgearticleviews_state": "Knowledge Article View(State)",
+      "languagelocaleid": "Language",
+      "majorversionnumber": "Major Version Number",
+      "minorversionnumber": "Minor Version Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "msdyn_contentstore": "File storage content reference",
+      "msdyn_externalreferenceid": "External Reference Id",
+      "msdyn_ingestedarticleurl": "Ingested Article URL",
+      "msdyn_integratedsearchproviderid": "Integrated Search Dataprovider Id ",
+      "msdyn_iscontentsyncedtostore": "Is content synced to file storage",
+      "msdyn_isingestedarticle": "Is Ingested Article",
+      "msdyn_keywordsdescsuggestioncontrol": "Keywords and Description Suggestion control",
+      "msdyn_knowledgearticle_feedback_context": "Feedback (msdyn_knowledgearticle_feedback_context)",
+      "msdyn_knowledgearticle_msdyn_kbenrichment_kbid": "KB Enrichments",
+      "msdyn_knowledgearticle_msdyn_knowledgearticlesuggestion_suggestedentity": "Knowledge Article Suggestions",
+      "msdyn_knowledgearticle_msdyn_suggestioninteraction_msdyn_suggestedentity": "Suggestion Interactions",
+      "msdyn_knowledgearticleimage_parentknowledgearticleid": "Knowledge Article Images",
+      "msdyn_msdyn_kbattachment_knowledgearticle": "Knowledge Article Attachments",
+      "msdyn_retrycountformigrationtocontentstore": "File storage migration retry count",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "ParentArticleContentId": "Parent Article Content Id",
+      "PreviousArticleContentId": "Previous Article Content ID",
+      "primaryauthorid": "Primary Author Id",
+      "processid": "Process Id",
+      "publishon": "Publish On",
+      "publishstatusid": "Published Status",
+      "rating": "Rating",
+      "rating_count": "Rating(Count)",
+      "rating_date": "Rating(Last Updated Time)",
+      "rating_state": "Rating(State)",
+      "rating_sum": "Rating(sum)",
+      "readyforreview": "Ready For Review",
+      "review": "Review",
+      "RootArticleId": "Root Article Id",
+      "scheduledstatusid": "Scheduled Status",
+      "setcategoryassociations": "Set Category Associations",
+      "setproductassociations": "Set Product Associations",
+      "stageid": "Stage Id",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "subjectid": "Subject",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "title": "Title",
+      "transactioncurrencyid": "Currency",
+      "traversedpath": "(Deprecated) Traversed Path",
+      "updatecontent": "Update Content",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "VersionNumber"
+    },
+    "PreferredName": "Knowledge Articles",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Knowledge Articles (Views)",
+    "Name": "_knowledgearticle_views",
+    "RelatedEntityName": "Knowledge Articles",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "0095c4df-ba50-4df7-b1ea-b31909f1fa57": "Draft Articles Needs Review",
+      "0121be9c-70f2-4750-8258-beee9e97ef80": "Knowledge Article Lookup View",
+      "05a1808b-8311-495e-b338-f3a9f415639f": "Scheduled  Articles",
+      "0e907f1c-d81f-4af8-b084-d830bb9299ef": "My Expired Articles",
+      "14a1c51e-ce8a-47a2-8088-e004fa7ca953": "All Articles",
+      "167b0772-f30b-4d52-bb62-c5de8f46077e": "Active Articles",
+      "2c828827-0b0f-4cdc-a2aa-d267517b7479": "Expired Articles Needs Review",
+      "34852847-b1ef-4183-b1ea-936eb11d504c": "Related Versions",
+      "35483e6c-5f0a-43de-9a08-1031cc4e85c1": "Draft Articles",
+      "35ae2f6e-fd0b-4bc5-bdfa-004c3b147aa1": "Archived Articles",
+      "3bf4b6f0-e0bb-4f08-b72e-1b0191bdf9e5": "Knowledge Articles I Follow",
+      "3d09e1c2-9488-4163-ae21-fc383c0119a5": "Highest Rated Articles",
+      "419195ba-955f-42ae-a222-74a7001029cc": "Proposed Articles",
+      "4e641fc6-92ee-4ff0-ac03-62f5d11cfbca": "Knowledge Article Advanced Find View",
+      "60c66357-6927-44ab-9fa6-18d7ce219937": "Articles Expiring This Month",
+      "60e271d2-38d0-434b-bc40-501cf357ff17": "Knowledge Article Associated View",
+      "6274af9a-c35c-4329-85fb-61c3dcac689e": "Approved Articles",
+      "6641ce3b-2f5a-45d8-bd0f-dcacce9be08a": "Knowledge Articles Being Followed",
+      "74ad0068-53ae-47a1-b98c-a7132fc9f91e": "My Active Articles",
+      "82eb6e85-5243-4cc8-b49b-7f71cca87f83": "My Articles Expiring This Month",
+      "89aebddd-5c6c-40e5-a758-01fa6e20c164": "Most Popular Articles",
+      "90ca108e-a83a-4065-ba7b-98ec54b57400": "Published Articles",
+      "9b65bd8e-09ac-4874-af7e-c51747079367": "My Published Articles",
+      "a4686222-f85a-4ffe-b514-d6057477009a": "External Articles",
+      "ae82a232-1529-4bde-9972-93ce21a095c6": "Related Translations",
+      "d2bbd702-12f3-4c87-ae17-bc9e9a079e59": "All Versions for Active Articles",
+      "e2991c12-25d7-4bf0-a4da-dc561a94613c": "Internal Articles",
+      "f21843bf-0cee-4b09-896d-3af4fb1cbadb": "All Published Translations",
+      "fa587199-03b6-4815-bd5d-32279485cbb8": "Discarded Articles"
+    }
+  },
+  {
+    "DisplayName": "Expired Review Options (Knowledge Articles)",
+    "Name": "knowledgearticle_expiredreviewoptions",
+    "OptionSetInfoNameMapping": {
+      "0": "Needs Updating",
+      "1": "Republish",
+      "2": "Archive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "expiredreviewoptions",
+        "OptionSetReferenceEntityName": "Knowledge Articles"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "expiredreviewoptions",
+    "RelatedEntityName": "Knowledge Articles",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Is Internal",
+    "Name": "knowledgearticle_isinternal",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "isinternal",
+        "OptionSetReferenceEntityName": "Knowledge Articles"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "isinternal",
+    "RelatedEntityName": "Knowledge Articles",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Latest Version",
+    "Name": "knowledgearticle_islatestversion",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "islatestversion",
+        "OptionSetReferenceEntityName": "Knowledge Articles"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "islatestversion",
+    "RelatedEntityName": "Knowledge Articles",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Primary Article (Knowledge Articles)",
+    "Name": "knowledgearticle_isprimary",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "isprimary",
+        "OptionSetReferenceEntityName": "Knowledge Articles"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "isprimary",
+    "RelatedEntityName": "Knowledge Articles",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Root Article (Knowledge Articles)",
+    "Name": "knowledgearticle_isrootarticle",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "isrootarticle",
+        "OptionSetReferenceEntityName": "Knowledge Articles"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "isrootarticle",
+    "RelatedEntityName": "Knowledge Articles",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Ready For Review (Knowledge Articles)",
+    "Name": "knowledgearticle_readyforreview",
+    "OptionSetInfoNameMapping": {
+      "0": "Mark Complete",
+      "1": "Completed"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "readyforreview",
+        "OptionSetReferenceEntityName": "Knowledge Articles"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "readyforreview",
+    "RelatedEntityName": "Knowledge Articles",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Review (Knowledge Articles)",
+    "Name": "knowledgearticle_review",
+    "OptionSetInfoNameMapping": {
+      "0": "Approved",
+      "1": "Rejected"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "review",
+        "OptionSetReferenceEntityName": "Knowledge Articles"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "review",
+    "RelatedEntityName": "Knowledge Articles",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Set Category Associations (Knowledge Articles)",
+    "Name": "knowledgearticle_setcategoryassociations",
+    "OptionSetInfoNameMapping": {
+      "0": "Mark as Complete",
+      "1": "Completed"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "setcategoryassociations",
+        "OptionSetReferenceEntityName": "Knowledge Articles"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "setcategoryassociations",
+    "RelatedEntityName": "Knowledge Articles",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Set Product Associations (Knowledge Articles)",
+    "Name": "knowledgearticle_setproductassociations",
+    "OptionSetInfoNameMapping": {
+      "0": "Mark As Complete",
+      "1": "Completed"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "setproductassociations",
+        "OptionSetReferenceEntityName": "Knowledge Articles"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "setproductassociations",
+    "RelatedEntityName": "Knowledge Articles",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Knowledge Articles)",
+    "Name": "knowledgearticle_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Draft",
+      "1": "Approved",
+      "2": "Scheduled",
+      "3": "Published",
+      "4": "Expired",
+      "5": "Archived",
+      "6": "Discarded"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Knowledge Articles"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Knowledge Articles",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Knowledge Articles)",
+    "Name": "knowledgearticle_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Proposed",
+      "10": "Expired",
+      "11": "Rejected (11)",
+      "12": "Archived",
+      "13": "Discarded",
+      "14": "Rejected (14)",
+      "2": "Draft",
+      "3": "Needs review (3)",
+      "4": "In review",
+      "5": "Approved",
+      "6": "Scheduled",
+      "7": "Published",
+      "8": "Needs review (8)",
+      "9": "Updating"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Knowledge Articles"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Knowledge Articles",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Update Content (Knowledge Articles)",
+    "Name": "knowledgearticle_updatecontent",
+    "OptionSetInfoNameMapping": {
+      "0": "Mark When Completed",
+      "1": "Content Updated"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "updatecontent",
+        "OptionSetReferenceEntityName": "Knowledge Articles"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "updatecontent",
+    "RelatedEntityName": "Knowledge Articles",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Is content synced to file storage (Knowledge Articles)",
+    "Name": "msdyn_knowledgearticle_msdyn_iscontentsyncedtostore",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "msdyn_iscontentsyncedtostore",
+        "OptionSetReferenceEntityName": "Knowledge Articles"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "msdyn_iscontentsyncedtostore",
+    "RelatedEntityName": "Knowledge Articles",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Is Ingested Article (Knowledge Articles)",
+    "Name": "msdyn_knowledgearticle_msdyn_isingestedarticle",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "msdyn_isingestedarticle",
+        "OptionSetReferenceEntityName": "Knowledge Articles"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "msdyn_isingestedarticle",
+    "RelatedEntityName": "Knowledge Articles",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Keywords and Description Suggestion control (Knowledge Articles)",
+    "Name": "msdyn_knowledgearticle_msdyn_keywordsdescsuggestioncontrol",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "msdyn_keywordsdescsuggestioncontrol",
+        "OptionSetReferenceEntityName": "Knowledge Articles"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "msdyn_keywordsdescsuggestioncontrol",
+    "RelatedEntityName": "Knowledge Articles",
+    "Type": "OptionSetInfo"
+  }
+]

@@ -1,0 +1,287 @@
+"'Profile Screen' As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+    Fill: =_VarGblAppColors.BackgroundColor
+    OnVisible: =Set(_varEditProfile, false)
+
+    canProfile As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =App.Height-175
+        Width: =Parent.Width
+        Y: =80
+        ZIndex: =3
+
+        dataCardProfile As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =1258
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            imgProfileImage As image:
+                Height: =150
+                Image: =User().Image
+                RadiusBottomLeft: =100
+                RadiusBottomRight: =100
+                RadiusTopLeft: =100
+                RadiusTopRight: =100
+                Width: =150
+                X: =238
+                Y: =31
+                ZIndex: =1
+
+            lblProfileEmail As label:
+                FontWeight: =FontWeight.Semibold
+                Size: =_VarGblAppFonts.Size.Title
+                Text: ="Email"
+                Width: =560
+                X: =25
+                Y: =215
+                ZIndex: =2
+
+            txtProfileEmail As text:
+                AccessibleLabel: ="txtProfileEmail"
+                Default: =User().Email
+                DisplayMode: =DisplayMode.View
+                Height: =50
+                HintText: ="Email"
+                Size: =_VarGblAppFonts.Size.Title
+                Width: =560
+                X: =25
+                Y: =260
+                ZIndex: =3
+
+            lblProfileName As label:
+                FontWeight: =FontWeight.Semibold
+                Size: =_VarGblAppFonts.Size.Title
+                Text: ="Username"
+                Width: =560
+                X: =25
+                Y: =335
+                ZIndex: =4
+
+            txtProfileName As text:
+                AccessibleLabel: ="txtProfileName"
+                Default: =User().FullName
+                DisplayMode: =DisplayMode.View
+                Height: =50
+                HintText: ="Email"
+                Size: =_VarGblAppFonts.Size.Title
+                Width: =560
+                X: =25
+                Y: =380
+                ZIndex: =5
+
+            lblProfileMobile As label:
+                FontWeight: =FontWeight.Semibold
+                Size: =_VarGblAppFonts.Size.Title
+                Text: ="Mobile"
+                Width: =560
+                X: =25
+                Y: =455
+                ZIndex: =6
+
+            txtProfileMobile As text:
+                AccessibleLabel: ="txtProfileMobile"
+                BorderColor: =_VarGblAppColors.BisleriBlue
+                BorderThickness: =3
+                Default: =LookUp(Users, 'Primary Email' = User().Email).'Mobile Phone'
+                DisplayMode: =If(_varEditProfile=true,DisplayMode.Edit, DisplayMode.View)
+                Height: =50
+                HintText: ="Mobile"
+                HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                Size: =_VarGblAppFonts.Size.Title
+                Width: =560
+                X: =25
+                Y: =500
+                ZIndex: =7
+
+            lblProfileVanNo As label:
+                FontWeight: =FontWeight.Semibold
+                Size: =_VarGblAppFonts.Size.Title
+                Text: ="Van No."
+                Width: =560
+                X: =25
+                Y: =575
+                ZIndex: =8
+
+            txtProfileVanNo As text:
+                AccessibleLabel: ="txtProfileVanNo"
+                Default: =""
+                DisplayMode: =DisplayMode.View
+                Height: =50
+                HintText: ="Van No."
+                Size: =_VarGblAppFonts.Size.Title
+                Width: =560
+                X: =25
+                Y: =620
+                ZIndex: =9
+
+            lblProfileAddress As label:
+                FontWeight: =FontWeight.Semibold
+                Size: =_VarGblAppFonts.Size.Title
+                Text: ="Address"
+                Width: =560
+                X: =25
+                Y: =695
+                ZIndex: =10
+
+            txtProfileAddress As text:
+                AccessibleLabel: ="txtProfileAddress"
+                BorderColor: =_VarGblAppColors.BisleriBlue
+                BorderThickness: =3
+                Default: =LookUp(Users, 'Primary Email' = User().Email).Address
+                DisplayMode: =If(_varEditProfile=true,DisplayMode.Edit, DisplayMode.View)
+                Height: =50
+                HintText: ="Address"
+                HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                Size: =_VarGblAppFonts.Size.Title
+                Width: =560
+                X: =25
+                Y: =740
+                ZIndex: =11
+
+            lblProfileState As label:
+                FontWeight: =FontWeight.Semibold
+                Size: =_VarGblAppFonts.Size.Title
+                Text: ="State"
+                Width: =560
+                X: =25
+                Y: =815
+                ZIndex: =12
+
+            txtProfileState As text:
+                AccessibleLabel: ="txtProfileState"
+                BorderColor: =_VarGblAppColors.BisleriBlue
+                BorderThickness: =3
+                Default: =LookUp(Users, 'Primary Email' = User().Email).'State/Province'
+                DisplayMode: =If(_varEditProfile=true,DisplayMode.Edit, DisplayMode.View)
+                Height: =50
+                HintText: ="State"
+                HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                Size: =_VarGblAppFonts.Size.Title
+                Width: =560
+                X: =25
+                Y: =860
+                ZIndex: =13
+
+            lblProfilePincode As label:
+                FontWeight: =FontWeight.Semibold
+                Size: =_VarGblAppFonts.Size.Title
+                Text: ="Pincode"
+                Width: =560
+                X: =25
+                Y: =935
+                ZIndex: =14
+
+            txtProfilePincode As text:
+                AccessibleLabel: ="txtProfilePincode"
+                BorderColor: =_VarGblAppColors.BisleriBlue
+                BorderThickness: =3
+                Default: =LookUp(Users, 'Primary Email' = User().Email).'ZIP/Postal Code'
+                DisplayMode: =If(_varEditProfile=true,DisplayMode.Edit, DisplayMode.View)
+                Height: =50
+                HintText: ="Pincode"
+                HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, 80%)
+                Size: =_VarGblAppFonts.Size.Title
+                Width: =560
+                X: =25
+                Y: =980
+                ZIndex: =15
+
+            lblProfileDesignation As label:
+                FontWeight: =FontWeight.Semibold
+                Size: =_VarGblAppFonts.Size.Title
+                Text: ="Designation"
+                Width: =560
+                X: =25
+                Y: =1057
+                ZIndex: =19
+
+            txtProfileDesignation As text:
+                AccessibleLabel: ="txtProfileDesignation"
+                Default: =
+                DisplayMode: =DisplayMode.View
+                Height: =50
+                HintText: ="Designation"
+                Size: =_VarGblAppFonts.Size.Title
+                Width: =560
+                X: =25
+                Y: =1102
+                ZIndex: =20
+
+            btnProfileSave As button:
+                Color: =_VarGblAppColors.LightText
+                Fill: |-
+                    =//RGBA(56, 96, 178, 1)
+                    _VarGblAppColors.BisleriBlue
+                HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+                OnSelect: =Set(_varEditProfile, false)
+                Size: =_VarGblAppFonts.Size.Medium
+                Text: ="Save"
+                Visible: =If(_varEditProfile, true, false)
+                Width: =120
+                X: =422
+                Y: =1188
+                ZIndex: =21
+
+    compProfileHeader As Header:
+        HeaderText: ="Profile"
+        ZIndex: =4
+
+    btnProfileEdit As button:
+        BorderColor: =_VarGblAppColors.BisleriBlue
+        Color: |-
+            =//RGBA(255, 255, 255, 1)
+            _VarGblAppColors.BisleriBlue
+        Fill: |-
+            =//RGBA(56, 96, 178, 1)
+            _VarGblAppColors.LightText
+        Height: =30
+        HoverColor: |-
+            =//RGBA(255, 255, 255, 1)
+            _VarGblAppColors.BisleriBlue
+        HoverFill: |-
+            =//ColorFade(RGBA(56, 96, 178, 1), -20%)
+            _VarGblAppColors.LightText
+        OnSelect: =Set(_varEditProfile, true)
+        PressedColor: |-
+            =//Self.Fill
+            _VarGblAppColors.BisleriBlue
+        PressedFill: =_VarGblAppColors.LightText
+        Size: =_VarGblAppFonts.Size.Regular
+        Text: ="Edit"
+        Visible: |-
+            =//If(_varEditProfile, false, true)
+            false
+        Width: =100
+        X: =428
+        Y: =25
+        ZIndex: =6
+
+    icoProfileEdit As icon.Edit:
+        AccessibleLabel: ="icnProfileEdit"
+        Color: |-
+            =//RGBA(0, 18, 107, 1)
+            _VarGblAppColors.BisleriBlue
+        Height: =15
+        Icon: =Icon.Edit
+        OnSelect: =Set(_varEditProfile, true)
+        TabIndex: =0
+        Visible: =If(_varEditProfile, false, true)
+        Width: =15
+        X: =500
+        Y: =33
+        ZIndex: =7
+
+    compProfileBottomBar As BottomBar:
+        Y: =1026
+        ZIndex: =8
+

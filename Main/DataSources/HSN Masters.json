@@ -1,0 +1,106 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_hsnmasterses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_hsnmasters",
+    "MaxGetRowsCount": 2000,
+    "Name": "HSN Masters",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_cess": "CESS",
+      "zx_cgst": "CGST",
+      "zx_hsnmasters_AsyncOperations": "System Jobs",
+      "zx_hsnmasters_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_hsnmasters_DuplicateBaseRecord": "Duplicate Records (zx_hsnmasters_DuplicateBaseRecord)",
+      "zx_hsnmasters_DuplicateMatchingRecord": "Duplicate Records (zx_hsnmasters_DuplicateMatchingRecord)",
+      "zx_hsnmasters_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_hsnmasters_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_hsnmasters_ProcessSession": "Process Sessions",
+      "zx_hsnmasters_SyncErrors": "Sync Errors",
+      "zx_hsnmastersid": "HSN Masters",
+      "zx_igst": "IGST",
+      "zx_name": "HSN Code",
+      "zx_sgstugst": "SGST/UGST (zx_sgstugst)",
+      "zx_sgstugst_t_": "SGST/UGST (zx_sgstugst_t_)",
+      "zx_taxpercentage": "Tax Percentage",
+      "zx_zx_itemmaster_HSNCode_zx_hsnmasters": "Item Masters",
+      "zx_zx_skumaster_HSNCode_zx_hsnmasters": "Variant Masters"
+    },
+    "PreferredName": "HSN Masters",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "HSN Masters (Views)",
+    "Name": "_zx_hsnmasters_views",
+    "RelatedEntityName": "HSN Masters",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "001d2555-a66d-4264-8971-8a38507998bd": "HSN Masters Advanced Find View",
+      "1555163a-c3c4-ed11-b597-002248d5da52": "All HSN Master",
+      "17c14574-a1be-4fce-bc04-484f128f850c": "Active HSN Masters",
+      "329d64d0-e4e1-4fc3-b3d3-35aa8586657c": "HSN Masters Lookup View",
+      "620552bf-b5d5-441a-bb8f-b4b2e6b23000": "Inactive HSN Masters",
+      "c390c4e8-48e7-4c67-86d8-a872f3e606ba": "HSN Masters Associated View"
+    }
+  },
+  {
+    "DisplayName": "Status (HSN Masters)",
+    "Name": "zx_hsnmasters_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "HSN Masters"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "HSN Masters",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (HSN Masters)",
+    "Name": "zx_hsnmasters_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "HSN Masters"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "HSN Masters",
+    "Type": "OptionSetInfo"
+  }
+]

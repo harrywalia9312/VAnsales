@@ -1,0 +1,278 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_invoicelineses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_invoicelines",
+    "MaxGetRowsCount": 2000,
+    "Name": "Invoice Lines",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr8eb_ItemSKU": "Item SKU",
+      "cr8eb_manufacturingdate": "Manufacturing Date",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "exchangerate": "Exchange Rate",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "new_push": "Push",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "transactioncurrencyid": "Currency",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_baseamount": "Base Amount",
+      "zx_baseamount_base": "Base Amount (Base)",
+      "zx_baseprice": "Cases Unit Price",
+      "zx_baseprice_base": "Base Price (Base)",
+      "zx_batchno": "Batch No",
+      "zx_branch": "Branch",
+      "zx_cases": "Cases",
+      "zx_cashcustomer": "Cash Customer",
+      "zx_cess": "CESS",
+      "zx_cessvalue": "Cess Value",
+      "zx_cessvalue_base": "Cess Value (Base)",
+      "zx_cgst": "CGST",
+      "zx_cgstvalue": "CGST Value",
+      "zx_cgstvalue_base": "CGST Value (Base)",
+      "zx_Customer": "Customer",
+      "zx_emptyjar": "Empty Jar",
+      "zx_exceptionaltax": "Exceptional Tax %",
+      "zx_igst": "IGST",
+      "zx_invoicelines_AsyncOperations": "System Jobs",
+      "zx_invoicelines_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_invoicelines_DuplicateBaseRecord": "Duplicate Records (zx_invoicelines_DuplicateBaseRecord)",
+      "zx_invoicelines_DuplicateMatchingRecord": "Duplicate Records (zx_invoicelines_DuplicateMatchingRecord)",
+      "zx_invoicelines_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_invoicelines_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_invoicelines_ProcessSession": "Process Sessions",
+      "zx_invoicelines_SyncErrors": "Sync Errors",
+      "zx_InvoiceLines_zx_InvoiceLines_zx_Invoic": "Invoice Lines (zx_InvoiceLines_zx_InvoiceLines_zx_Invoic)",
+      "zx_invoicelinesid": "Invoice Lines (zx_invoicelinesid)",
+      "zx_InvoiceNumber": "Invoice Number",
+      "zx_invoicetype": "Invoice Type",
+      "zx_itemdescription": "Item Description",
+      "zx_itemhsncode": "Item HSN Code",
+      "zx_itemtype": "Item Type",
+      "zx_lotno": "Lot No",
+      "zx_name": "Invoice Line No",
+      "zx_netamount": "Net Amount",
+      "zx_netamount_base": "Net Amount (Base)",
+      "zx_netamountwithoutejar": "Net Amount (Without E Jar)",
+      "zx_netamountwithoutejar_base": "Net Amount (Without E Jar) (Base)",
+      "zx_OrderNumber": "Order Number",
+      "zx_ordertype": "Order Type",
+      "zx_ParentInvoiceLine": "Parent Invoice Line",
+      "zx_pcs": "PCs",
+      "zx_pcsunitprice": "Pcs Unit Price",
+      "zx_pcsunitprice_base": " Pcs Unit Price (Base)",
+      "zx_priceusedlevel1": "PriceUsedLevel1",
+      "zx_priceusedlevel1_base": "PriceUsedLevel1 (Base)",
+      "zx_priceusedlevel2": "PriceUsedLevel2",
+      "zx_priceusedlevel2_base": "PriceUsedLevel2 (Base)",
+      "zx_rate": "Rate",
+      "zx_rate_base": "Rate (Base)",
+      "zx_reasoncode": "Reason Code",
+      "zx_RouteNo": "Route No",
+      "zx_Salesperson": "Salesperson",
+      "zx_salespersonemployeecode": "Sales Person Employee Code",
+      "zx_SchemeOfferItem": "Scheme Offer Item",
+      "zx_SchemeOrderItem": "Scheme Order Item",
+      "zx_SchemeParentItemCode": "Scheme Parent Item Code",
+      "zx_sgstugst": "SGST/UGST",
+      "zx_sgstvalue": "SGST Value",
+      "zx_sgstvalue_base": "SGST Value (Base)",
+      "zx_skuuom": "SKU UOM",
+      "zx_taxablevalue": "Taxable Value",
+      "zx_taxablevalue_base": "Taxable Value (Base)",
+      "zx_taxamount": "Tax Amount",
+      "zx_taxamount_base": "Tax Amount (Base)",
+      "zx_totalamount": "Total Amount ",
+      "zx_totalamount_base": "Total Amount  (Base)",
+      "zx_totaldiscountamount": "Total Discount Amount",
+      "zx_totaldiscountamount_base": "Total Discount Amount (Base)",
+      "zx_totalquantity": "Total Quantity",
+      "zx_totalquantity_base": "Total Quantity (Base)",
+      "zx_uom": "UOM",
+      "zx_uomcodename": "UOM code Name",
+      "zx_VanNo": "Van No",
+      "zx_zx_invoicelines_ParentInvoiceLine_zx_invo": "Invoice Lines (zx_zx_invoicelines_ParentInvoiceLine_zx_invo)"
+    },
+    "PreferredName": "Invoice Lines",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Invoice Lines (Views)",
+    "Name": "_zx_invoicelines_views",
+    "RelatedEntityName": "Invoice Lines",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "04260f1c-dade-444b-b558-b02f1d4c5cce": "Invoice Lines Advanced Find View",
+      "0d77a638-5aab-ed11-83ff-002248d5db8a": "This Month",
+      "417022fa-dec7-44ed-aaea-2d649b21c150": "Invoice Lines Lookup View",
+      "5f1534e5-89b6-ed11-b597-002248d5db8a": "Invoice Line",
+      "6da12689-c9f7-4148-97c1-47e737bedcc8": "Inactive Invoice Lines",
+      "8c1c9d74-5be5-449b-a243-d982ea1ec688": "Active Invoice Lines",
+      "addb4125-58ab-ed11-83ff-002248d5da52": "This week",
+      "c03d4cde-57ab-ed11-83ff-002248d5da52": "Today",
+      "f6578b94-ef04-4d63-887b-87876812ef9c": "Invoice Lines Associated View"
+    }
+  },
+  {
+    "DisplayName": "Push (Invoice Lines)",
+    "Name": "new_zx_invoicelines_new_push",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "new_push",
+        "OptionSetReferenceEntityName": "Invoice Lines"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "new_push",
+    "RelatedEntityName": "Invoice Lines",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Invoice Lines)",
+    "Name": "zx_invoicelines_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Invoice Lines"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Invoice Lines",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Invoice Lines)",
+    "Name": "zx_invoicelines_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Invoice Lines"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Invoice Lines",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Cash Customer (Invoice Lines)",
+    "Name": "zx_invoicelines_zx_cashcustomer",
+    "OptionSetInfoNameMapping": {
+      "0": "False",
+      "1": "True"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_cashcustomer",
+        "OptionSetReferenceEntityName": "Invoice Lines"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_cashcustomer",
+    "RelatedEntityName": "Invoice Lines",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Invoice Type (Choice)",
+    "Name": "zx_invoicetypechoice",
+    "OptionSetInfoNameMapping": {
+      "425120000": "Parent",
+      "425120001": "Child"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_invoicetype",
+        "OptionSetReferenceEntityName": "Invoice Lines"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_invoicetype",
+    "RelatedEntityName": "Invoice Lines",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Item Type (Choice)",
+    "Name": "zx_itemtype",
+    "OptionSetInfoNameMapping": {
+      "425120000": "Free",
+      "425120001": "Paid"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_itemtype",
+        "OptionSetReferenceEntityName": "Invoice Lines"
+      },
+      "OptionSetReferenceItem1": {
+        "OptionSetReferenceColumnName": "zx_itemtype",
+        "OptionSetReferenceEntityName": "Order Lines"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_itemtype",
+    "RelatedEntityName": "Invoice Lines",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "uom1",
+    "Name": "zx_uom1",
+    "OptionSetInfoNameMapping": {
+      "425120000": "CASE",
+      "425120001": "PCS",
+      "425120002": "NOS",
+      "425120003": "NO"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_uom",
+        "OptionSetReferenceEntityName": "Invoice Lines"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_uom",
+    "RelatedEntityName": "Invoice Lines",
+    "Type": "OptionSetInfo"
+  }
+]

@@ -1,0 +1,283 @@
+"MyBeatPlanScreen As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+    Fill: =_VarGblAppColors.LightText
+
+    compBaseHeader_8 As Header:
+        HeaderText: ="My Beat Plan"
+        ZIndex: =2
+
+    galVisitDateFilter_2 As gallery.galleryHorizontal:
+        AccessibleLabel: ="galVisitDateFilter"
+        BorderColor: =RGBA(109, 109, 109, 1)
+        Height: =73
+        Items: |-
+            =[
+                DateValue(VarPlanDate),
+                DateValue(VarPlanDate) + 1,
+                DateValue(VarPlanDate) + 2,
+                DateValue(VarPlanDate) + 3,
+                DateValue(VarPlanDate) + 4,
+                DateValue(VarPlanDate) + 5
+            ]
+        OnSelect: =//Set(VarPlanVisitDate, ThisItem.Value)
+        ShowScrollbar: =false
+        TabIndex: =0
+        TemplateSize: =88
+        Width: =558
+        X: =41
+        Y: =80
+        ZIndex: =3
+
+        btnGalVisitDateFilter_2 As button:
+            BorderColor: =RGBA(53, 166, 57, 1)
+            BorderThickness: =0
+            Color: =If(ThisItem.IsSelected, _VarGblAppColors.BisleriBlueLight, _VarGblAppColors.BisleriBlue)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            Fill: =If(ThisItem.IsSelected, _VarGblAppColors.BisleriBlue, _VarGblAppColors.BisleriBlueMediumLight)
+            FocusedBorderColor: =
+            FocusedBorderThickness: =2
+            Height: =60
+            HoverBorderColor: =RGBA(53, 166, 57, 1)
+            HoverFill: =
+            OnSelect: =
+            PressedBorderColor: =
+            PressedColor: =RGBA(31, 31, 31, 1)
+            PressedFill: =
+            RadiusBottomLeft: =50
+            RadiusBottomRight: =50
+            RadiusTopLeft: =50
+            RadiusTopRight: =50
+            Size: =13
+            Text: =Text(DateValue(ThisItem.Value), "mmm dd ")
+            Width: =60
+            X: =14
+            Y: =3
+            ZIndex: =1
+
+    icoVisitPerviousDate_2 As icon.BackArrow:
+        AccessibleLabel: ="icoVisitPerviousDate"
+        BorderColor: =RGBA(109, 109, 109, 1)
+        Color: =_VarGblAppColors.BisleriBlue
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(220, 220, 220, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        DisplayMode: =If(VarPlanVisitDate>Today(),DisplayMode.Edit,DisplayMode.Disabled)
+        FocusedBorderThickness: =4
+        Height: =25
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Icon: =Icon.ChevronLeft
+        OnSelect: =Set(VarPlanVisitDate, DateValue(VarPlanVisitDate) - 7)
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        TabIndex: =0
+        Width: =29
+        X: =12
+        Y: =104
+        ZIndex: =4
+
+    icoVisitNextDate_2 As icon.ChevronRight:
+        AccessibleLabel: ="icoVisitNextDate"
+        BorderColor: =RGBA(109, 109, 109, 1)
+        Color: =_VarGblAppColors.BisleriBlue
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(220, 220, 220, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Height: =25
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Icon: =Icon.ChevronRight
+        OnSelect: =Set(VarPlanVisitDate, DateValue(VarPlanVisitDate) + 7)
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        TabIndex: =0
+        Width: =29
+        X: =599
+        Y: =104
+        ZIndex: =5
+
+    galCustomerList_3 As gallery.galleryVertical:
+        AccessibleLabel: ="galCustomerList"
+        BorderColor: =RGBA(109, 109, 109, 1)
+        Height: =883
+        Items: |-
+            =//'Beat Plans'
+            Filter('Beat Plans', Date=galVisitDateFilter_2.Selected.Value)
+        Layout: =Layout.Vertical
+        OnSelect: =
+        TabIndex: =
+        TemplateSize: =142
+        Y: =165
+        ZIndex: =6
+
+        htmGalCustomerBackground_3 As htmlViewer:
+            Color: =RGBA(242, 242, 242, 1)
+            Height: =136
+            HtmlText: |-
+                ="<div style='border-radius:15px 15px 15px 15px; background-color:#E6F7F6; width:590px; height:125px'></div>"
+            OnSelect: =Select(Parent)
+            Width: =610
+            X: =15
+            ZIndex: =1
+
+        lblGalCustomerName_3 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            OnSelect: |-
+                =//Navigate('customer info',ScreenTransition.Fade, {detailsssssss69: ThisItem.Account});
+                //Reset(customerinfo)
+                Navigate('Customer Detail Screen', ScreenTransition.Cover, {CustData:ThisItem})
+            Size: =17
+            TabIndex: =0
+            Text: =ThisItem.Name
+            Width: =379
+            X: =36
+            Y: =8
+            ZIndex: =2
+
+        icoGalCustomerWaypoint_3 As icon.Waypoint:
+            AccessibleLabel: ="icoGalCustomerWaypoint"
+            BorderColor: =RGBA(109, 109, 109, 1)
+            Color: =_VarGblAppColors.PrimaryBg
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(220, 220, 220, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =40
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Icon: =Icon.Waypoint
+            OnSelect: |-
+                =Launch("http://www.google.com/maps/place/" & ThisItem.'Beat name'.'Beat name')
+            PaddingBottom: =5
+            PaddingLeft: =5
+            PaddingRight: =5
+            PaddingTop: =5
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            TabIndex: =
+            Width: =40
+            X: =540
+            Y: =51
+            ZIndex: =22
+
+        lblGalCustomerAddress_10 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =22
+            Size: =12
+            Text: |-
+                ="Beat Name :"
+            Width: =140
+            X: =36
+            Y: =58
+            ZIndex: =27
+
+        lblGalCustomerAddress_11 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Bold
+            Height: =22
+            Size: =12
+            Text: =ThisItem.'Beat name'.'Beat name'
+            Width: =250
+            X: =176
+            Y: =58
+            ZIndex: =28
+
+        lblGalCustomerAddress_12 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =22
+            Size: =12
+            Text: |-
+                ="Planned Date :"
+            Width: =140
+            X: =36
+            Y: =91
+            ZIndex: =29
+
+        lblGalCustomerAddress_13 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Bold
+            Height: =22
+            Size: =12
+            Text: =Text(DateValue(ThisItem.Date), "dd mmm yyyy"&",")
+            Width: =110
+            X: =176
+            Y: =91
+            ZIndex: =30
+
+        lblGalCustomerAddress_14 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Bold
+            Height: =22
+            Size: =12
+            Text: |-
+                =Switch(
+                       Weekday(ThisItem.Date),
+                       1, "SUN",
+                       2, "MON",
+                       3, "TUE",
+                       4, "WED",
+                       5, "THU",
+                       6, "FRI",
+                       7, "SAT"
+                )
+            Width: =100
+            X: =276
+            Y: =91
+            ZIndex: =31
+
+    compBaseBottomBar_8 As BottomBar:
+        Y: =1026
+        ZIndex: =7
+
+    Button8 As button:
+        Color: =_VarGblAppColors.BisleriBlue
+        Fill: =_VarGblAppColors.LightText
+        FocusedBorderThickness: =2
+        HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+        OnSelect: =Navigate(BeatScreen)
+        Size: =_VarGblAppFonts.Size.Subtitle
+        Text: ="New"
+        Width: =120
+        X: =400
+        Y: =20
+        ZIndex: =8
+

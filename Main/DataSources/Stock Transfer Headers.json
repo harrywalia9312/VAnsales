@@ -1,0 +1,176 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_stocktransferheaders",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_stocktransferheader",
+    "MaxGetRowsCount": 2000,
+    "Name": "Stock Transfer Headers",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "new_orderids": "Orderids",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_date": "Date",
+      "zx_existing": "Existing",
+      "zx_file": "File",
+      "zx_FromLocation": "From Location",
+      "zx_fromwarehousecalculated": "FromWarehouseCalculated",
+      "zx_name": "Transfer Order No",
+      "zx_ReferenceDemand": "Reference Demand",
+      "zx_stocktransferheader_AsyncOperations": "System Jobs",
+      "zx_stocktransferheader_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_stocktransferheader_DuplicateBaseRecord": "Duplicate Records (zx_stocktransferheader_DuplicateBaseRecord)",
+      "zx_stocktransferheader_DuplicateMatchingRecord": "Duplicate Records (zx_stocktransferheader_DuplicateMatchingRecord)",
+      "zx_stocktransferheader_FileAttachments": "FileAttachments",
+      "zx_stocktransferheader_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_stocktransferheader_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_stocktransferheader_ProcessSession": "Process Sessions",
+      "zx_stocktransferheader_SyncErrors": "Sync Errors",
+      "zx_stocktransferheaderid": "Stock Transfer Header",
+      "zx_stocktransfertype": "Stock transfer type",
+      "zx_ToLocation": "To Location",
+      "zx_tolocationcalculated": "ToLocationCalculated",
+      "zx_transferaccepted": "Transfer accepted",
+      "zx_vancode": "Van Code",
+      "zx_zx_stocktransferlines_TransferOrderNo_zx_": "Stock Transfer Lines"
+    },
+    "PreferredName": "Stock Transfer Headers",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Stock Transfer Headers (Views)",
+    "Name": "_zx_stocktransferheader_views",
+    "RelatedEntityName": "Stock Transfer Headers",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "10b25342-b3e8-4320-94b2-31320f2e96b7": "Inactive Stock Transfer Headers",
+      "18c31e88-83b6-ed11-b597-002248d5db8a": "Last 7 Days Gatepass",
+      "19431f66-7f54-46a7-8530-7161a1e3775c": "Stock Transfer Header Associated View",
+      "35e38e57-5c44-4941-b858-bc08791fe97f": "Stock Transfer Header Lookup View",
+      "3925fd4d-83b6-ed11-b597-002248d5da52": "Yesterdays's Gatepass",
+      "6b7814b8-1612-4ff0-a957-f8692e292349": "Stock Transfer Header Advanced Find View",
+      "8eb2517d-1a0b-43bd-90ab-9df69fcbf283": "Active Stock Transfer Headers",
+      "9fd214ad-82b6-ed11-b597-002248d5db8a": "Today's Gatepass",
+      "b7bee7e3-83b6-ed11-b597-002248d5db8a": "All Gate pass",
+      "d1c5f2be-83b6-ed11-b597-002248d5da52": "This Month's Gatepass"
+    }
+  },
+  {
+    "DisplayName": "Status (Stock Transfer Headers)",
+    "Name": "zx_stocktransferheader_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Stock Transfer Headers"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Stock Transfer Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Stock Transfer Headers)",
+    "Name": "zx_stocktransferheader_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Stock Transfer Headers"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Stock Transfer Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Existing (Stock Transfer Headers)",
+    "Name": "zx_stocktransferheader_zx_existing",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_existing",
+        "OptionSetReferenceEntityName": "Stock Transfer Headers"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_existing",
+    "RelatedEntityName": "Stock Transfer Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Stock transfer type (Stock Transfer Headers)",
+    "Name": "zx_stocktransferheader_zx_stocktransfertype",
+    "OptionSetInfoNameMapping": {
+      "425120000": "Van to van transfer",
+      "425120001": "Warehouse to van transfer"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_stocktransfertype",
+        "OptionSetReferenceEntityName": "Stock Transfer Headers"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_stocktransfertype",
+    "RelatedEntityName": "Stock Transfer Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Transfer accepted (Stock Transfer Headers)",
+    "Name": "zx_stocktransferheader_zx_transferaccepted",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_transferaccepted",
+        "OptionSetReferenceEntityName": "Stock Transfer Headers"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_transferaccepted",
+    "RelatedEntityName": "Stock Transfer Headers",
+    "Type": "OptionSetInfo"
+  }
+]

@@ -1,0 +1,525 @@
+"'Attendance Screen' As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+    Fill: =_VarGblAppColors.LightText
+    OnVisible: |-
+        =ClearCollect(
+            colOfflineTodayDemandsHeader,
+            Filter(
+                'Check-in Demand Headers',
+                Salesperson.'Primary Email' = User().Email && Date >Today()
+            )
+        );
+        Set(
+            DemandHeadersdata,
+            LookUp(
+                'Check-in Demand Headers',
+                Salesperson.'Primary Email' = User().Email && Date >Today()
+            )
+        );
+        ClearCollect(
+            colOfflineTodayDemandsLines,
+            If(
+                CountRows(colOfflineTodayDemandsHeader) > 0,
+                Filter(
+                    'Check-in Demand Lines',
+                    CheckInDemandHeaderCalculated = DemandHeadersdata.'Demand Header No'
+                )
+            )
+        );
+
+    btnAttendanceStart As button:
+        Color: =_VarGblAppColors.LightText
+        DisplayMode: =If(varAttendance=1,DisplayMode.Disabled, DisplayMode.Edit)
+        Fill: =_VarGblAppColors.BisleriBlue
+        Height: =70
+        HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+        OnSelect: |
+            =If(
+                IsBlank(
+                    LookUp(
+                        Attendances,
+                        User.'Primary Email' = User().Email && Date = Today()
+                    )
+                ),
+                Patch(
+                    Attendances,
+                    Defaults(Attendances),
+                    {
+                        User: LookUp(
+                            Users,
+                            'Primary Email' = User().Email
+                        ),
+                        Name: User().FullName & "_" & Text(
+                            DateValue(Today()),
+                            "ddmmyyyy"
+                        ),
+                        Date: Today(),
+                        'Check-in Time': Now(),
+                        'Check-in Latitude': Location.Latitude,
+                        'Check-in Longitude': Location.Longitude,
+                        'Attendance Type': 'Attendance Type (Choice)'.Present
+                    }
+                );
+                Notify(
+                //"You have marked Present for Today",
+                    "Your Day has Started",
+                    NotificationType.Success,
+                    5000
+                );
+                Set(
+                    varDayEnd,
+                    false
+                );
+                ClearCollect(
+                    colOfflineTodayAttendance,
+                    LookUp(
+                        Attendances,
+                        User.'Primary Email' = User().Email && Date = Today()
+                    )
+                );
+                Navigate(GatePassScreen);
+                ,
+                If(
+                    IsBlank(
+                        LookUp(
+                            Attendances,
+                            User.'Primary Email' = User().Email && !IsBlank('Check-out Time') && Date = Today()
+                        )
+                    ),
+                    Notify(
+                        "Your Day has already been Started",
+                        NotificationType.Error,
+                        5000
+                    );
+                    Set(
+                        varDayEnd,
+                        false
+                    );
+                    ClearCollect(
+                        colOfflineTodayAttendance,
+                        LookUp(
+                            Attendances,
+                            User.'Primary Email' = User().Email && Date = Today()
+                        )
+                    );
+                    Navigate(GatePassScreen),
+                    If(
+                        CountIf(
+                            Attendances,
+                            User.'Primary Email' = User().Email && Date = Today() && !IsBlank('Check-out Time')
+                        ) > 0,
+                        Notify(
+                            "Your day has Ended, you can not start day again",
+                            NotificationType.Error,
+                            5000
+                        );
+                        Set(
+                            varDayEnd,
+                            true
+                        );
+                        ,
+                        Notify(
+                            "You have marked Present for Today",
+                            NotificationType.Error,
+                            5000
+                        )
+                    )
+                )
+            );
+        Size: =24
+        Text: ="START"
+        Width: =280
+        X: =180
+        Y: =398
+        ZIndex: =1
+
+    btnAttendanceEnd As button:
+        Color: =_VarGblAppColors.LightText
+        DisplayMode: |-
+            =//If(varAttendance=0,DisplayMode.Disabled, DisplayMode.Edit)
+            DisplayMode.Disabled
+        Fill: =_VarGblAppColors.BisleriBlue
+        Height: =70
+        HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+        OnSelect: |
+            =Set(
+                varAttendance,
+                0
+            );
+            Set(
+                varDayEnd,
+                true
+            );
+            Navigate(SettlementScreen);
+        Size: =24
+        Text: ="END"
+        Width: =280
+        X: =180
+        Y: =487
+        ZIndex: =2
+
+    compAttendanceProfileInfo As AttendanceHeaderComp:
+        ZIndex: =3
+
+    Container3 As groupContainer.manualLayoutContainer:
+        Fill: =Color.White
+        Height: =671
+        Visible: =If(CountRows(colOfflineTodayAttendance)>0 && varDayEnd=false, true, false)
+        Width: =App.Width
+        Y: =385
+        ZIndex: =4
+
+        contAttendanceUpperVertical As groupContainer.verticalAutoLayoutContainer:
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMode: =LayoutMode.Auto
+            Visible: |-
+                =//If(varAttendance=1, true, false)
+                Parent.Visible
+            Width: =Parent.Width
+            Y: =70
+            ZIndex: =1
+
+            contAttendanceUpper As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                FillPortions: =0
+                Height: =978
+                LayoutMinHeight: =112
+                LayoutMinWidth: =250
+                Width: =Parent.Width
+                ZIndex: =1
+
+                contAttendanceLowerVertical As groupContainer.verticalAutoLayoutContainer:
+                    ContentLanguage: =If(CountRows(colOfflineTodayAttendance)=0 && varDayEnd=false, false, true)
+                    Height: =912
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMode: =LayoutMode.Auto
+                    LayoutOverflowX: =LayoutOverflow.Scroll
+                    Width: =640
+                    ZIndex: =1
+
+                    contAttendanceHeading As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        FillPortions: =0
+                        Height: =60
+                        LayoutMinHeight: =70
+                        LayoutMinWidth: =750
+                        Width: =640
+                        ZIndex: =1
+
+                        btnNewOrderHeaderProduct_2 As button:
+                            DisabledBorderColor: |-
+                                =//RGBA(166, 166, 166, 1)
+                                _VarGblAppColors.BisleriBlue
+                            DisabledColor: |-
+                                =//RGBA(166, 166, 166, 1)
+                                _VarGblAppColors.LightText
+                            DisabledFill: |-
+                                =//RGBA(244, 244, 244, 1)
+                                _VarGblAppColors.BisleriBlue
+                            DisplayMode: =DisplayMode.Disabled
+                            Height: =50
+                            OnSelect: =
+                            Size: =_VarGblAppFonts.Size.Subtitle
+                            Text: ="Product"
+                            Width: =350
+                            X: =5
+                            Y: =5
+                            ZIndex: =8
+
+                        btnNewOrderHeaderCases_2 As button:
+                            DisabledBorderColor: |-
+                                =//RGBA(166, 166, 166, 1)
+                                _VarGblAppColors.BisleriBlue
+                            DisabledColor: |-
+                                =//RGBA(166, 166, 166, 1)
+                                _VarGblAppColors.LightText
+                            DisabledFill: |-
+                                =//RGBA(244, 244, 244, 1)
+                                _VarGblAppColors.BisleriBlue
+                            DisplayMode: =DisplayMode.Disabled
+                            Height: =50
+                            OnSelect: =
+                            Size: =_VarGblAppFonts.Size.Subtitle
+                            Text: ="Cases"
+                            Width: =135
+                            X: =btnNewOrderHeaderProduct_2.X + btnNewOrderHeaderProduct_2.Width +5
+                            Y: =5
+                            ZIndex: =9
+
+                        btnNewOrderHeaderPcs_2 As button:
+                            DisabledBorderColor: |-
+                                =//RGBA(166, 166, 166, 1)
+                                _VarGblAppColors.BisleriBlue
+                            DisabledColor: |-
+                                =//RGBA(166, 166, 166, 1)
+                                _VarGblAppColors.LightText
+                            DisabledFill: |-
+                                =//RGBA(244, 244, 244, 1)
+                                _VarGblAppColors.BisleriBlue
+                            DisplayMode: =DisplayMode.Disabled
+                            Height: =50
+                            OnSelect: =
+                            Size: =_VarGblAppFonts.Size.Subtitle
+                            Text: ="Pcs"
+                            Width: =135
+                            X: =btnNewOrderHeaderCases_2.X + btnNewOrderHeaderCases_2.Width +5
+                            Y: =5
+                            ZIndex: =10
+
+                    contAttendanceData As groupContainer.horizontalAutoLayoutContainer:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        FillPortions: =0
+                        Height: =450
+                        LayoutMinHeight: =570
+                        LayoutMinWidth: =640
+                        LayoutMode: =LayoutMode.Auto
+                        Width: =App.Width
+                        ZIndex: =2
+
+                        galAttendanceData As gallery.galleryVertical:
+                            AccessibleLabel: ="galAttendanceData"
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            Fill: |-
+                                =//RGBA(0, 0, 0, 0)
+                                _VarGblAppColors.LightText
+                            FillPortions: =0
+                            FocusedBorderColor: =Color.Transparent
+                            FocusedBorderThickness: =0.5
+                            Height: =Parent.Height
+                            Items: |-
+                                =/*Filter(
+                                    'Check-in Demand Lines',
+                                    Date = Today() + 1 
+                                    //&& 'Check-in Demand Header'.Salesperson.'Primary Email' = User().Email
+                                )
+                                */
+                                colOfflineTodayDemandsLines
+                            Layout: =Layout.Vertical
+                            LayoutMinHeight: =287
+                            LayoutMinWidth: =1200
+                            ShowScrollbar: =false
+                            TabIndex: =0
+                            TemplateSize: =80
+                            Width: =contAttendanceData.Width
+                            ZIndex: =1
+
+                            btnAttendanceDataBackground As button:
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    ColorFade( _VarGblAppColors.BisleriBlue, 80%)
+                                DisplayMode: =DisplayMode.Disabled
+                                Height: =galAttendanceData.TemplateHeight
+                                OnSelect: =Select(Parent)
+                                Size: =24
+                                Text: =""
+                                Width: =Parent.Width-10
+                                ZIndex: =1
+
+                            lblAttendanceProductId As label:
+                                Align: =Align.Center
+                                Color: =_VarGblAppColors.BisleriBlue
+                                FontWeight: =FontWeight.Semibold
+                                Height: =39
+                                OnSelect: =Select(Parent)
+                                Size: =_VarGblAppFonts.Size.Regular
+                                Text: |-
+                                    =//ThisItem.Product.Name
+                                    ThisItem.'SKU Master'.'Pack Title'
+                                Width: =350
+                                Y: =2
+                                ZIndex: =2
+
+                            shpAttendanceRect2 As rectangle:
+                                Fill: |-
+                                    =//RGBA(56, 96, 178, 1)
+                                    _VarGblAppColors.LightText
+                                Height: =galAttendanceData.TemplateHeight
+                                OnSelect: =Select(Parent)
+                                Width: =1
+                                X: =354
+                                ZIndex: =6
+
+                            shpAttendanceRect1 As rectangle:
+                                Fill: |-
+                                    =//RGBA(56, 96, 178, 1)
+                                    _VarGblAppColors.LightText
+                                Height: =galAttendanceData.TemplateHeight
+                                OnSelect: =Select(Parent)
+                                Width: =1
+                                X: =492
+                                ZIndex: =7
+
+                            txtAttendanceCases As text:
+                                AccessibleLabel: ="txtAttendanceCases"
+                                Align: =Align.Center
+                                BorderColor: =_VarGblAppColors.BisleriBlue
+                                Default: =ThisItem.Cases
+                                DisplayMode: =DisplayMode.View
+                                FocusedBorderThickness: =2
+                                Format: =TextFormat.Number
+                                Height: =50
+                                HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                                HoverFill: =_VarGblAppColors.BisleriBlueLight
+                                OnSelect: =Select(Parent)
+                                Size: =_VarGblAppFonts.Size.Medium
+                                Width: =100
+                                X: =377
+                                Y: =15
+                                ZIndex: =8
+
+                            txtAttendancePcs As text:
+                                AccessibleLabel: ="txtAttendancePcs"
+                                Align: =Align.Center
+                                BorderColor: =_VarGblAppColors.BisleriBlue
+                                Default: =ThisItem.PCs
+                                DisplayMode: =DisplayMode.View
+                                FocusedBorderThickness: =2
+                                Format: =TextFormat.Number
+                                Height: =50
+                                HoverBorderColor: =_VarGblAppColors.BisleriBlue
+                                HoverFill: =_VarGblAppColors.BisleriBlueLight
+                                OnSelect: =Select(Parent)
+                                Size: =_VarGblAppFonts.Size.Medium
+                                Width: =100
+                                X: =517
+                                Y: =15
+                                ZIndex: =9
+
+                            lblAttendanceProductDescription As label:
+                                Align: =Align.Center
+                                OnSelect: =Select(Parent)
+                                Size: =_VarGblAppFonts.Size.Tiny
+                                Text: |-
+                                    =//ThisItem.Product.Description
+                                    //ThisItem.'SKU Master'.'Name (zx_names)'
+                                    ThisItem.'SKU Master'.'Item Description '
+                                Width: =350
+                                Y: =39
+                                ZIndex: =10
+
+        Label9 As label:
+            Align: =Align.Center
+            Color: =ColorFade( _VarGblAppColors.BisleriBlue, -30%)
+            FontWeight: =FontWeight.Bold
+            Height: =70
+            Size: =_VarGblAppFonts.Size.Title
+            Text: ="Check in Demand"
+            Width: =Parent.Width
+            ZIndex: =2
+
+        Group12 As group:
+            Height: =5
+            Width: =5
+            X: =40
+            Y: =40
+            ZIndex: =5
+
+            Button7 As button:
+                Fill: =_VarGblAppColors.BisleriBlue
+                HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+                OnSelect: |-
+                    =//Set(varEditCheckInDemand, true)
+                    Navigate(NewDemandScreen);
+                Size: =_VarGblAppFonts.Size.Medium
+                Text: ="Edit"
+                Width: =120
+                X: =312
+                Y: =589
+                ZIndex: =3
+
+            Button7_1 As button:
+                DisplayMode: |-
+                    =//DisplayMode.Edit
+                    If(IsBlank(txtAttendanceCases.Text) && IsBlank(txtAttendancePcs.Text), DisplayMode.Disabled, DisplayMode.Edit)
+                Fill: =_VarGblAppColors.BisleriBlue
+                HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+                OnSelect: |
+                    =Set(
+                        varStockInventoryPatch,
+                        AddColumns(
+                            Filter(
+                                'Stock Transfer Headers',
+                                'To Location'.Warehouse = StockTransferWarehouse && 'Created On' >= Today()
+                            ),
+                            "headerInventoryGUID",
+                            'Stock Transfer Header'
+                        )
+                    );
+                    Set(
+                        varFromLocationStock,
+                        AddColumns(
+                            Filter(
+                                'Stock Transfer Headers',
+                                'From Location'.Warehouse = StockTransferWarehouse && 'Created On' >= Today() && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer'
+                            ),
+                            "headerInventoryGUID",
+                            'Stock Transfer Header'
+                        )
+                    );
+                    Set(
+                        varToLocationStock,
+                        AddColumns(
+                            Filter(
+                                'Stock Transfer Headers',
+                                'To Location'.Warehouse = StockTransferWarehouse && 'Created On'>=Today() && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer'
+                            ),
+                            "headerInventoryGUID",
+                            'Stock Transfer Header'
+                        )
+                    );
+                    Set(
+                        varAttendance,
+                        0
+                    );
+                    Navigate(SettlementScreen);
+                Size: =_VarGblAppFonts.Size.Medium
+                Text: ="Confirm"
+                Width: =120
+                X: =467
+                Y: =589
+                ZIndex: =4
+
+    compAttendanceBottomBar As BottomBar:
+        NavItem: |-
+            =Table(
+                {
+                    Title: If(
+                        CountRows(colOfflineTodayAttendance)=0,
+                        "Start",
+                        (CountRows(colOfflineTodayAttendance) = 1 && !IsBlank(First(colOfflineTodayAttendance).'Check-in Time') && IsBlank(First(colOfflineTodayAttendance).'Check-out Time') ),
+                        "End",
+                        (CountRows(colOfflineTodayAttendance) = 1 && !IsBlank(First(colOfflineTodayAttendance).'Check-in Time') && !IsBlank(First(colOfflineTodayAttendance).'Check-out Time')),
+                        "Ended"
+                    ),
+                    Icon: Icon.CalendarBlank,
+                    Screen: 'Attendance Screen',
+                    Active: true
+                },
+                {
+                    Title: "Visit",
+                    Icon: Icon.Waypoint,
+                    Screen: 'Visit Screen',
+                    Active: false
+                },
+                {
+                    Title: "Dashboard",
+                    Icon: Icon.Waffle,
+                    Screen: 'Home Screen',
+                    Active: false
+                },
+                {
+                    Title: "Customers",
+                    Icon: Icon.People,
+                    Screen: 'Customer Screen',
+                    Active: false
+                },
+                {
+                    Title: "Menu",
+                    Icon: Icon.Hamburger,
+                    Screen: 'Menu Screen',
+                    Active: false
+                }
+            )
+        Y: =1026
+        ZIndex: =5
+

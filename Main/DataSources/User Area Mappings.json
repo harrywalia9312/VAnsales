@@ -1,0 +1,103 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_userareamappings",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_userareamapping",
+    "MaxGetRowsCount": 2000,
+    "Name": "User Area Mappings",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_Area": "Area",
+      "zx_areacalculated": "AreaCalculated",
+      "zx_name": "Name",
+      "zx_routesalesperson": "Route salesperson",
+      "zx_Salesperson": "Salesperson",
+      "zx_salespersonemployeecode": "Sales Person Employee Code",
+      "zx_userareamapping_AsyncOperations": "System Jobs",
+      "zx_userareamapping_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_userareamapping_DuplicateBaseRecord": "Duplicate Records (zx_userareamapping_DuplicateBaseRecord)",
+      "zx_userareamapping_DuplicateMatchingRecord": "Duplicate Records (zx_userareamapping_DuplicateMatchingRecord)",
+      "zx_userareamapping_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_userareamapping_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_userareamapping_ProcessSession": "Process Sessions",
+      "zx_userareamapping_SyncErrors": "Sync Errors",
+      "zx_userareamappingid": "User Area Mapping"
+    },
+    "PreferredName": "User Area Mappings",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "User Area Mappings (Views)",
+    "Name": "_zx_userareamapping_views",
+    "RelatedEntityName": "User Area Mappings",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "4a5ac9d5-ec31-4ce3-91b6-432a758a3236": "Inactive User Area Mappings",
+      "7164f3b0-9104-42dd-9044-94954857e19d": "User Area Mapping Advanced Find View",
+      "a8aea64c-97b6-ed11-b597-002248d5db8a": "User area mapping",
+      "e99af907-b458-4fcd-aefa-29a4d831b60c": "User Area Mapping Associated View",
+      "ead9b6b0-02c4-4efd-978f-df5ddfe37452": "User Area Mapping Lookup View",
+      "fbdbe295-2a5b-4902-8a37-7c875f81570f": "Active User Area Mappings"
+    }
+  },
+  {
+    "DisplayName": "Status (User Area Mappings)",
+    "Name": "zx_userareamapping_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "User Area Mappings"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "User Area Mappings",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (User Area Mappings)",
+    "Name": "zx_userareamapping_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "User Area Mappings"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "User Area Mappings",
+    "Type": "OptionSetInfo"
+  }
+]

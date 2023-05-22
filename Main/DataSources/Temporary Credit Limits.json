@@ -1,0 +1,108 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_temporarycreditlimits",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_temporarycreditlimit",
+    "MaxGetRowsCount": 2000,
+    "Name": "Temporary Credit Limits",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr8eb_availablelimit": "Available Limit",
+      "cr8eb_availablelimit_base": "Available Limit (Base)",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "exchangerate": "Exchange Rate",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "transactioncurrencyid": "Currency",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_blockedlimit": "BlockedLimit",
+      "zx_blockedlimit_base": "BlockedLimit (Base)",
+      "zx_creditlimitamount": "CreditLimitAmount ",
+      "zx_creditlimitamount_base": "CreditLimitAmount  (Base)",
+      "zx_Customercode": "Customer code",
+      "zx_fromdate": "FromDate",
+      "zx_name": "Name",
+      "zx_temporarycreditlimit_AsyncOperations": "System Jobs",
+      "zx_temporarycreditlimit_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_temporarycreditlimit_DuplicateBaseRecord": "Duplicate Records (zx_temporarycreditlimit_DuplicateBaseRecord)",
+      "zx_temporarycreditlimit_DuplicateMatchingRecord": "Duplicate Records (zx_temporarycreditlimit_DuplicateMatchingRecord)",
+      "zx_temporarycreditlimit_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_temporarycreditlimit_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_temporarycreditlimit_ProcessSession": "Process Sessions",
+      "zx_temporarycreditlimit_SyncErrors": "Sync Errors",
+      "zx_temporarycreditlimitid": "Temporary Credit Limit",
+      "zx_todate": "ToDate"
+    },
+    "PreferredName": "Temporary Credit Limits",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Temporary Credit Limits (Views)",
+    "Name": "_zx_temporarycreditlimit_views",
+    "RelatedEntityName": "Temporary Credit Limits",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "055b94af-e121-4580-bdcc-294a4738768a": "Temporary Credit Limit Advanced Find View",
+      "7cce24b8-17fe-473a-9a20-57ed799a6f08": "Active Temporary Credit Limits",
+      "896a9e1b-8c93-4ccf-8e1f-56f032a2ab85": "Inactive Temporary Credit Limits",
+      "d8c1d8d7-2b80-4b2e-9718-74debeed9165": "Temporary Credit Limit Lookup View",
+      "f3e35202-ba0c-4d77-9d19-0a59b3d03c5d": "Temporary Credit Limit Associated View"
+    }
+  },
+  {
+    "DisplayName": "Status (Temporary Credit Limits)",
+    "Name": "zx_temporarycreditlimit_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Temporary Credit Limits"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Temporary Credit Limits",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Temporary Credit Limits)",
+    "Name": "zx_temporarycreditlimit_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Temporary Credit Limits"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Temporary Credit Limits",
+    "Type": "OptionSetInfo"
+  }
+]

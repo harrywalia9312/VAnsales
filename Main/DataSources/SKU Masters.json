@@ -1,0 +1,199 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_skumasters",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_skumaster",
+    "MaxGetRowsCount": 2000,
+    "Name": "SKU Masters",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr8eb_zx_invoicelines_ItemSKU_zx_skumaster": "Invoice Lines (cr8eb_zx_invoicelines_ItemSKU_zx_skumaster)",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_batchno": "Batch no.",
+      "zx_categorycode": "Category code",
+      "zx_configurationcode": "Configuration Code",
+      "zx_exceptionaltax": "Exceptional Tax %",
+      "zx_exceptionaltaxcase": "Exceptional Tax Case",
+      "zx_gstpercentage": "GST Percentage",
+      "zx_hsncgstvalue": "Hsn CGST Value",
+      "zx_HSNCode": "HSN Code",
+      "zx_item": "Item",
+      "zx_itemclass": "Item Class\u00A0",
+      "zx_ItemCode": "Item Code",
+      "zx_itemcode_configurationcode": "Item code_ConfigurationCode ",
+      "zx_itemdescription": "Item Description\u00A0",
+      "zx_itemhsncodename": "Item HSN Code Name",
+      "zx_jarapplicable": "Jar Applicable",
+      "zx_lotno": "Lot no. NA",
+      "zx_lotnumber": "Lot number",
+      "zx_manufacturingdate": "Manufacturing date",
+      "zx_name": "SKU Code",
+      "zx_names": "Name (zx_names)",
+      "zx_namess": "Name (zx_namess)",
+      "zx_packtitle": "Pack Title",
+      "zx_productgroupcode": "Product group code",
+      "zx_Site": "Site",
+      "zx_skumaster_AsyncOperations": "System Jobs",
+      "zx_skumaster_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_skumaster_DuplicateBaseRecord": "Duplicate Records (zx_skumaster_DuplicateBaseRecord)",
+      "zx_skumaster_DuplicateMatchingRecord": "Duplicate Records (zx_skumaster_DuplicateMatchingRecord)",
+      "zx_skumaster_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_skumaster_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_skumaster_ProcessSession": "Process Sessions",
+      "zx_skumaster_SyncErrors": "Sync Errors",
+      "zx_skumasterid": "SKU Master",
+      "zx_SubBrand": "Sub Brand\u00A0",
+      "zx_uom": "UOM\u00A0",
+      "zx_zx_checkindemandlines_SKUMaster_zx_skumas": "Check-in Demand Lines",
+      "zx_zx_currentstock_ItemSKU_zx_skumaster": "Current Stocks",
+      "zx_zx_discountlines_Variant_zx_skumaster": "Discount Lines",
+      "zx_zx_invoicelines_SchemeParentItemCode_zx_s": "Invoice Lines (zx_zx_invoicelines_SchemeParentItemCode_zx_s)",
+      "zx_zx_itempricing_Variantcode_zx_skumaster": "Item Pricing lines",
+      "zx_zx_itemuom_SKU_zx_skumaster": "Item UOMS",
+      "zx_zx_orderlines_ItemSKU_zx_skumaster": "Order Lines (zx_zx_orderlines_ItemSKU_zx_skumaster)",
+      "zx_zx_orderlines_SchemeParentItemCode_zx_sku": "Order Lines (zx_zx_orderlines_SchemeParentItemCode_zx_sku)",
+      "zx_zx_schemeoffers_OfferItemCode_zx_skumaste": "Scheme Offers",
+      "zx_zx_schemeorder_ItemCode_zx_skumaster": "Scheme Orders (zx_zx_schemeorder_ItemCode_zx_skumaster)",
+      "zx_zx_schemeorder_SkuCode_zx_skumaster": "Scheme Orders (zx_zx_schemeorder_SkuCode_zx_skumaster)",
+      "zx_zx_stockinventory_ItemCode_zx_skumaster": "Stock Inventories",
+      "zx_zx_stocktransferlines_SKU_zx_skumaster": "Stock Transfer Lines"
+    },
+    "PreferredName": "SKU Masters",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "SKU Masters (Views)",
+    "Name": "_zx_skumaster_views",
+    "RelatedEntityName": "SKU Masters",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "5c8063e5-a913-41e6-af51-306409232ad7": "SKU Master Lookup View",
+      "5c80e65d-bcc4-ed11-b597-002248d5db8a": "All Variant Master",
+      "63a29d65-0832-49ba-950b-7f8d4de6375c": "SKU Master Advanced Find View",
+      "93c04bf2-7e40-4697-bfb1-49e53c529723": "Inactive SKU Masters",
+      "a70d6b72-53fb-464b-8c8a-5fce3335b5ef": "SKU Master Associated View",
+      "ccece93e-94ea-44c9-becf-c551358198c7": "Active SKU Masters"
+    }
+  },
+  {
+    "DisplayName": "Product group code (Choice)",
+    "Name": "zx_productgroupcode",
+    "OptionSetInfoNameMapping": {
+      "425120000": "1WAY",
+      "425120001": "2WAY",
+      "425120002": "MKT ITEM",
+      "425120003": "0"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_productgroupcode",
+        "OptionSetReferenceEntityName": "SKU Masters"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_productgroupcode",
+    "RelatedEntityName": "SKU Masters",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (SKU Masters)",
+    "Name": "zx_skumaster_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "SKU Masters"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "SKU Masters",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (SKU Masters)",
+    "Name": "zx_skumaster_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "SKU Masters"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "SKU Masters",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Exceptional Tax Case (SKU Masters)",
+    "Name": "zx_skumaster_zx_exceptionaltaxcase",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_exceptionaltaxcase",
+        "OptionSetReferenceEntityName": "SKU Masters"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_exceptionaltaxcase",
+    "RelatedEntityName": "SKU Masters",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Jar Applicable (SKU Masters)",
+    "Name": "zx_skumaster_zx_jarapplicable",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_jarapplicable",
+        "OptionSetReferenceEntityName": "SKU Masters"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_jarapplicable",
+    "RelatedEntityName": "SKU Masters",
+    "Type": "OptionSetInfo"
+  }
+]

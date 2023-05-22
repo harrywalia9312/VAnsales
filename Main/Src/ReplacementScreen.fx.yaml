@@ -1,0 +1,648 @@
+ReplacementScreen As screen:
+
+    galReplacementData As gallery.galleryVertical:
+        AccessibleLabel: ="galReplacementData"
+        BorderColor: =RGBA(109, 109, 109, 1)
+        FocusedBorderColor: =Color.Transparent
+        FocusedBorderThickness: =0.5
+        Height: =786
+        Items: |-
+            =//Filter('Order Headers', 'Order Type' = 'Order Type (Choice)'.'Replacement Order' && Salesperson.'Primary Email' = User().Email)
+            Sort(
+                Switch(
+                    galReplacementFilter.Selected.Value,
+                    "Last 30 Days",
+                    Filter(
+                        Filter(
+                            'Order Headers',
+                            'Order Type' = 'Order Type (Choice)'.'Replacement Order' && Salesperson.'Primary Email' = User().Email
+                        ),
+                        'Created On' > DateAdd(
+                            Today(),
+                            -30
+                        )
+                    ),
+                    "Last 7 Days",
+                    Filter(
+                        Filter(
+                            'Order Headers',
+                            'Order Type' = 'Order Type (Choice)'.'Replacement Order' && Salesperson.'Primary Email' = User().Email
+                        ),
+                        'Created On' > DateAdd(
+                            Today(),
+                            -7
+                        )
+                    ),
+                    "Today's Replacements",
+                    Filter(
+                        Filter(
+                            'Order Headers',
+                            'Order Type' = 'Order Type (Choice)'.'Replacement Order' && Salesperson.'Primary Email' = User().Email
+                        ),
+                        'Order Date' >= Today()
+                    )
+                ),
+                'Created On',
+                SortOrder.Descending
+            )
+        Layout: =Layout.Vertical
+        OnSelect: =
+        TabIndex: =
+        TemplateSize: =182
+        Y: =262
+        ZIndex: =2
+
+        htmReplacementBackground As htmlViewer:
+            Color: =RGBA(242, 242, 242, 1)
+            Height: =185
+            HtmlText: |-
+                ="<div style='border-radius:15px 15px 15px 15px; background-color:#E6F7F6; width:590px; height:170px'></div>"
+            OnSelect: =Select(Parent)
+            Width: =610
+            X: =15
+            ZIndex: =1
+
+        lblReplacementName As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: = _VarGblAppFonts.Heading
+            FontWeight: =FontWeight.Semibold
+            Height: =53
+            Size: =17
+            TabIndex: =
+            Text: =ThisItem.Customer.'Customer Name'
+            Width: =457
+            X: =86
+            Y: =11
+            ZIndex: =2
+
+        lblReplacementAddressValue As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: = _VarGblAppFonts.Body
+            FontWeight: =FontWeight.Semibold
+            Height: =36
+            Size: =12
+            Text: |-
+                =ThisItem.Customer.'Address 1: Street 1'
+            Width: =450
+            X: =93
+            Y: =60
+            ZIndex: =21
+
+        icoReplacementPhone As icon.Edit:
+            AccessibleLabel: ="icoReplacementPhone"
+            BorderColor: =RGBA(109, 109, 109, 1)
+            Color: =_VarGblAppColors.GreenColor
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(220, 220, 220, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =40
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Icon: =Icon.Phone
+            PaddingBottom: =5
+            PaddingLeft: =5
+            PaddingRight: =5
+            PaddingTop: =5
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            TabIndex: =0
+            Width: =40
+            X: =559
+            Y: =31
+            ZIndex: =26
+
+        grpReplacementFirstName As group:
+            Height: =5
+            Width: =5
+            X: =24
+            Y: =30
+            ZIndex: =29
+
+            shpReplacementFirstNameCircle As circle:
+                BorderColor: =RGBA(109, 109, 109, 1)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                DisabledFill: =RGBA(255, 200, 61, 1)
+                Fill: =RGBA(256*Rand(), 256*Rand(), 256*Rand(), 0.3)
+                Height: =50
+                HoverFill: =RGBA(256*Rand(), 256*Rand(), 256*Rand(), 1)
+                OnSelect: =Select(Parent)
+                PressedFill: =RGBA(255, 200, 61, 1)
+                Width: =50
+                X: =30
+                Y: =30
+                ZIndex: =27
+
+            lblReplacementFirstName As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =RGBA(255, 255, 255, 1)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Font: =Font.'Segoe UI'
+                FontWeight: =FontWeight.Semibold
+                Height: =29
+                OnSelect: =Select(Parent)
+                Size: =20
+                Text: =Left(ThisItem.Customer.'Customer Name',1)
+                Width: =39
+                X: =35
+                Y: =40
+                ZIndex: =28
+
+        lblReplacementProductNameValue As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: = _VarGblAppFonts.Heading
+            FontWeight: =FontWeight.Semibold
+            Height: =31
+            Size: =12
+            Text: =ThisItem.'Order Id'
+            Width: =155
+            X: =152
+            Y: =96
+            ZIndex: =30
+
+        lblReplacementQty As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: = _VarGblAppFonts.Body
+            Height: =24
+            OnSelect: =Select(Parent)
+            Size: =14
+            Text: |-
+                ="Quantity: "
+            Width: =98
+            X: =56
+            Y: =134
+            ZIndex: =31
+
+        lblReplacementUOM As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: = _VarGblAppFonts.Body
+            Height: =24
+            OnSelect: =Select(Parent)
+            Size: =14
+            Text: |-
+                ="Sub Category: "
+            Width: =132
+            X: =280
+            Y: =135
+            ZIndex: =32
+
+        lblReplacementQtyValue As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: = _VarGblAppFonts.Body
+            FontWeight: =FontWeight.Semibold
+            Height: =24
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: =ThisItem.'Total Quantity'
+            Width: =98
+            X: =152
+            Y: =134
+            ZIndex: =33
+
+        lblReplacementUOMValue As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: = _VarGblAppFonts.Body
+            FontWeight: =FontWeight.Semibold
+            Height: =26
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: =LookUp(Customers_1, Account = ThisItem.Customer.Account).'Customer Sub category'.Description
+            Width: =189
+            X: =410
+            Y: =133
+            ZIndex: =34
+
+        lblReplacementProductName As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: = _VarGblAppFonts.Body
+            Height: =31
+            OnSelect: =Select(Parent)
+            Size: =14
+            Text: |-
+                ="Order No: "
+            Width: =141
+            X: =56
+            Y: =96
+            ZIndex: =37
+
+        lblReplacementUOM_1 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: = _VarGblAppFonts.Body
+            Height: =31
+            OnSelect: =Select(Parent)
+            Size: =14
+            Text: |-
+                ="Route: "
+            Width: =105
+            X: =280
+            Y: =96
+            ZIndex: =38
+
+        lblReplacementUOMValue_1 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: = _VarGblAppFonts.Body
+            FontWeight: =FontWeight.Semibold
+            Height: =33
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: =ThisItem.'Route No'.'Name (zx_name)'
+            Width: =190
+            X: =410
+            Y: =96
+            ZIndex: =39
+
+    compReplacementHeader As Header:
+        HeaderText: ="Replacement"
+        ZIndex: =3
+
+    btnReplacementNew As button:
+        Color: =_VarGblAppColors.BisleriBlue
+        Fill: =RGBA(255, 255, 255, 1)
+        FocusedBorderThickness: =2
+        Height: =35
+        HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+        OnSelect: |-
+            =Navigate(NewReplacement);
+            Clear(colReasons);
+            Clear(colReasonsVisits);
+            Reset(cmbNewReplacementSelectCustomer);
+            Set(varVisitReturnOrMenuReturn, true);
+        Size: =_VarGblAppFonts.Size.Title
+        Text: ="New"
+        Width: =119
+        X: =420
+        Y: =22
+        ZIndex: =4
+
+    galReplacementFilter As gallery.galleryHorizontal:
+        AccessibleLabel: ="galReplacementFilter"
+        BorderColor: =RGBA(109, 109, 109, 1)
+        Height: =64
+        Items: |-
+            =[
+                "Today's Replacements",
+                "Last 7 Days",
+                "Last 30 Days"
+            ]
+        OnSelect: =
+        ShowScrollbar: =false
+        TabIndex: =0
+        TemplateSize: =196
+        Transition: =Transition.Pop
+        Width: =606
+        X: =17
+        Y: =90
+        ZIndex: =5
+
+        btnReplacementGalFilter As button:
+            BorderColor: =RGBA(184, 0, 0, 1)
+            BorderThickness: =0
+            Color: =If(ThisItem.IsSelected, _VarGblAppColors.BisleriBlueLight,_VarGblAppColors.BisleriBlue)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            Fill: =If(ThisItem.IsSelected, _VarGblAppColors.BisleriBlue, _VarGblAppColors.BisleriBlueLight)
+            FocusedBorderColor: =Color.Transparent
+            FocusedBorderThickness: =2
+            Font: =Font.Lato
+            Height: =43
+            HoverBorderColor: =RGBA(210, 210, 210, 1)
+            HoverColor: =RGBA(31, 31, 31, 1)
+            HoverFill: =
+            OnSelect: =Select(Parent)
+            PressedBorderColor: =
+            PressedColor: =RGBA(31, 31, 31, 1)
+            PressedFill: =
+            Size: =12
+            Text: =ThisItem.Value
+            Width: =183
+            X: =7
+            Y: =2
+            ZIndex: =1
+
+    compReplacementBottomBar As BottomBar:
+        Y: =1026
+        ZIndex: =6
+
+    Group1_25 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =16
+
+        Button5_51 As button:
+            DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+            DisabledFill: =_VarGblAppColors.BisleriBlue
+            DisplayMode: =DisplayMode.Disabled
+            Height: =90
+            Size: =24
+            Text: =""
+            Width: =242
+            X: =344
+            Y: =161
+            ZIndex: =11
+
+        Button5_50 As button:
+            DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+            DisabledFill: =Color.White
+            DisplayMode: =DisplayMode.Disabled
+            Height: =90
+            Size: =24
+            Text: =""
+            Width: =232
+            X: =354
+            Y: =161
+            ZIndex: =13
+
+        Label6_50 As label:
+            Align: =Align.Center
+            Color: =_VarGblAppColors.PrimaryText
+            FontWeight: =FontWeight.Semibold
+            Height: =41
+            Size: =_VarGblAppFonts.Size.UpperMedium
+            Text: ="Total Customer"
+            Width: =214
+            X: =362
+            Y: =161
+            ZIndex: =14
+
+        Label6_51 As label:
+            Align: =Align.Center
+            Color: =_VarGblAppColors.BisleriBlue
+            FontWeight: =FontWeight.Bold
+            Height: =39
+            Size: =_VarGblAppFonts.Size.Title
+            Text: |-
+                =CountRows(
+                    ForAll(
+                        Distinct(
+                            Switch(
+                                galReplacementFilter.Selected.Value,
+                                "Last 30 Days",
+                                Filter(
+                                    Filter(
+                                        'Order Headers',
+                                        'Order Type' = 'Order Type (Choice)'.'Replacement Order' && Salesperson.'Primary Email' = User().Email
+                                    ),
+                                    'Created On' > DateAdd(
+                                        Today(),
+                                        -30
+                                    )
+                                ),
+                                "Last 7 Days",
+                                Filter(
+                                    Filter(
+                                        'Order Headers',
+                                        'Order Type' = 'Order Type (Choice)'.'Replacement Order' && Salesperson.'Primary Email' = User().Email
+                                    ),
+                                    'Created On' > DateAdd(
+                                        Today(),
+                                        -7
+                                    )
+                                ),
+                                "Today's Replacements",
+                                Filter(
+                                    Filter(
+                                        'Order Headers',
+                                        'Order Type' = 'Order Type (Choice)'.'Replacement Order' && Salesperson.'Primary Email' = User().Email
+                                    ),
+                                    'Created On' >= Today()
+                                )
+                            ),
+                            Customer.Account
+                        ),
+                        {Result: ThisRecord.Value}
+                    )
+                )
+            Width: =214
+            X: =363
+            Y: =208
+            ZIndex: =15
+
+    Group2 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =20
+
+        Button5_49 As button:
+            DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+            DisabledFill: =_VarGblAppColors.BisleriBlue
+            DisplayMode: =DisplayMode.Disabled
+            Height: =90
+            Size: =24
+            Text: =""
+            Width: =242
+            X: =54
+            Y: =161
+            ZIndex: =7
+
+        Button5_8 As button:
+            DisabledBorderColor: =_VarGblAppColors.BisleriBlue
+            DisabledFill: =Color.White
+            DisplayMode: =DisplayMode.Disabled
+            Height: =90
+            Size: =24
+            Text: =""
+            Width: =232
+            X: =64
+            Y: =161
+            ZIndex: =8
+
+        Label6_48 As label:
+            Align: =Align.Center
+            Color: =_VarGblAppColors.PrimaryText
+            FontWeight: =FontWeight.Semibold
+            Height: =41
+            Size: =_VarGblAppFonts.Size.UpperMedium
+            Text: ="Total Qty"
+            Width: =214
+            X: =72
+            Y: =161
+            ZIndex: =9
+
+        Label6_49 As label:
+            Align: =Align.Center
+            Color: =_VarGblAppColors.BisleriBlue
+            FontWeight: =FontWeight.Bold
+            Height: =39
+            Size: =_VarGblAppFonts.Size.Title
+            Text: |-
+                =Sum(
+                    Switch(
+                        galReplacementFilter.Selected.Value,
+                        "Last 30 Days",
+                        Filter(
+                            Filter(
+                                'Order Lines',
+                                'Order Number'.'Order Type' = 'Order Type (Choice)'.'Replacement Order' && Salesperson.'Primary Email' = User().Email
+                            ),
+                            'Created On' > DateAdd(
+                                Today(),
+                                -30
+                            )
+                        ),
+                        "Last 7 Days",
+                        Filter(
+                            Filter(
+                                'Order Lines',
+                                'Order Number'.'Order Type' = 'Order Type (Choice)'.'Replacement Order' && Salesperson.'Primary Email' = User().Email
+                            ),
+                            'Created On' > DateAdd(
+                                Today(),
+                                -7
+                            )
+                        ),
+                        "Today's Replacements",
+                        Filter(
+                            Filter(
+                                'Order Lines',
+                                'Order Number'.'Order Type' = 'Order Type (Choice)'.'Replacement Order' && Salesperson.'Primary Email' = User().Email
+                            ),
+                            'Created On' >= Today()
+                        )
+                    ),
+                    Cases
+                )
+                //Sum(galReplacementData.AllItems, lblReplacementQtyValue)
+            Width: =90
+            X: =72
+            Y: =212
+            ZIndex: =10
+
+        Label6_58 As label:
+            Align: =Align.Center
+            Color: =_VarGblAppColors.BisleriBlue
+            FontWeight: =FontWeight.Bold
+            Height: =39
+            Size: =_VarGblAppFonts.Size.Title
+            Text: |-
+                =Sum(
+                    Switch(
+                        galReplacementFilter.Selected.Value,
+                        "Last 30 Days",
+                        Filter(
+                            Filter(
+                                'Order Lines',
+                                'Order Number'.'Order Type' = 'Order Type (Choice)'.'Replacement Order' && Salesperson.'Primary Email' = User().Email
+                            ),
+                            'Created On' > DateAdd(
+                                Today(),
+                                -30
+                            )
+                        ),
+                        "Last 7 Days",
+                        Filter(
+                            Filter(
+                                'Order Lines',
+                                'Order Number'.'Order Type' = 'Order Type (Choice)'.'Replacement Order' && Salesperson.'Primary Email' = User().Email
+                            ),
+                            'Created On' > DateAdd(
+                                Today(),
+                                -7
+                            )
+                        ),
+                        "Today's Replacements",
+                        Filter(
+                            Filter(
+                                'Order Lines',
+                                'Order Number'.'Order Type' = 'Order Type (Choice)'.'Replacement Order' && Salesperson.'Primary Email' = User().Email
+                            ),
+                            'Created On' >= Today()
+                        )
+                    ),
+                    PCs
+                )
+            Width: =90
+            X: =200
+            Y: =212
+            ZIndex: =16
+
+        Label6_59 As label:
+            Align: =Align.Center
+            Color: =_VarGblAppColors.PrimaryText
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            Size: =_VarGblAppFonts.Size.Medium
+            Text: ="Cases"
+            Width: =90
+            X: =72
+            Y: =190
+            ZIndex: =17
+
+        Label6_60 As label:
+            Align: =Align.Center
+            Color: =_VarGblAppColors.PrimaryText
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            Size: =_VarGblAppFonts.Size.Medium
+            Text: ="Pcs"
+            Width: =90
+            X: =200
+            Y: =190
+            ZIndex: =18
+
+        Rectangle1 As rectangle:
+            BorderColor: =_VarGblAppColors.BisleriBlue
+            BorderStyle: =BorderStyle.Dotted
+            BorderThickness: =0.5
+            Height: =45
+            Width: =0.5
+            X: =180
+            Y: =200
+            ZIndex: =19
+

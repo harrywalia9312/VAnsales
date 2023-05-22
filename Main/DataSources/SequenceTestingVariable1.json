@@ -1,0 +1,9 @@
+[
+  {
+    "IsComponentScoped": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "Name": "SequenceTestingVariable1",
+    "Type": "CollectionDataSourceInfo"
+  }
+]

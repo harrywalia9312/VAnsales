@@ -1,0 +1,8 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_irn-2d1-20solution-5f7ae3c468c3353edd-5f1ad5e1bf43efcde8",
+    "Name": "IRN",
+    "ServiceKind": "ConnectedWadl",
+    "Type": "ServiceInfo"
+  }
+]

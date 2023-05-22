@@ -1,0 +1,99 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_talukas",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_taluka",
+    "MaxGetRowsCount": 2000,
+    "Name": "Talukas",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_account_Taluka_zx_taluka": "Customers",
+      "zx_name": "Name",
+      "zx_taluka_AsyncOperations": "System Jobs",
+      "zx_taluka_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_taluka_DuplicateBaseRecord": "Duplicate Records (zx_taluka_DuplicateBaseRecord)",
+      "zx_taluka_DuplicateMatchingRecord": "Duplicate Records (zx_taluka_DuplicateMatchingRecord)",
+      "zx_taluka_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_taluka_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_taluka_ProcessSession": "Process Sessions",
+      "zx_taluka_SyncErrors": "Sync Errors",
+      "zx_talukaid": "Taluka",
+      "zx_zx_pincode_ParentTaluka_zx_taluka": "Pincodes"
+    },
+    "PreferredName": "Talukas",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Talukas (Views)",
+    "Name": "_zx_taluka_views",
+    "RelatedEntityName": "Talukas",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "02db92b1-5a42-4fce-9abe-8f99b5c69d3a": "Active Talukas",
+      "09d4eb57-576e-4065-b532-ae3a2bf6a11e": "Taluka Lookup View",
+      "1592ef6c-06eb-437c-b08a-d47e103fe763": "Taluka Advanced Find View",
+      "50f224b8-c477-4aae-8d62-34b8dd3f4a71": "Inactive Talukas",
+      "f5fabe92-598f-4a50-9f60-7ff60ac6c17e": "Taluka Associated View"
+    }
+  },
+  {
+    "DisplayName": "Status (Talukas)",
+    "Name": "zx_taluka_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Talukas"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Talukas",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Talukas)",
+    "Name": "zx_taluka_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Talukas"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Talukas",
+    "Type": "OptionSetInfo"
+  }
+]

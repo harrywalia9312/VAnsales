@@ -1,0 +1,189 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_stocktransferlineses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_stocktransferlines",
+    "MaxGetRowsCount": 2000,
+    "Name": "Stock Transfer Lines",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr8eb_FromLocation": "From Location",
+      "cr8eb_ToLocation": "To Location",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_actualcases": "Actual Cases",
+      "zx_actualpcs": "Actual PCs",
+      "zx_batchno": "Batch no.",
+      "zx_cases": "Cases",
+      "zx_date": "Date",
+      "zx_gatepass": "Gatepass",
+      "zx_invoicedqtycases": "Invoiced Qty Cases",
+      "zx_invoicedqtypcs": "Invoiced Qty Pcs.",
+      "zx_lotno": "Lot no.",
+      "zx_manufacturingdate": "Manufacturing date",
+      "zx_name": "Transfer Lines No",
+      "zx_oldcases": "Old Cases",
+      "zx_oldpcs": "Old PCs",
+      "zx_pcs": "PCs",
+      "zx_remainingqtycases": "Remaining Qty Cases",
+      "zx_remainingqtypcs": "Remaining Qty Pcs",
+      "zx_SKU": "SKU",
+      "zx_stockheadercalculated": "StockHeaderCalculated",
+      "zx_stocktransferlines_AsyncOperations": "System Jobs",
+      "zx_stocktransferlines_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_stocktransferlines_DuplicateBaseRecord": "Duplicate Records (zx_stocktransferlines_DuplicateBaseRecord)",
+      "zx_stocktransferlines_DuplicateMatchingRecord": "Duplicate Records (zx_stocktransferlines_DuplicateMatchingRecord)",
+      "zx_stocktransferlines_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_stocktransferlines_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_stocktransferlines_ProcessSession": "Process Sessions",
+      "zx_stocktransferlines_SyncErrors": "Sync Errors",
+      "zx_stocktransferlinesid": "Stock Transfer Lines",
+      "zx_tolocationcalculated": "ToLocationCalculated",
+      "zx_tosalesperson": "ToSalesperson",
+      "zx_transferaccepted": "Transfer accepted",
+      "zx_TransferOrderNo": "Transfer Order No",
+      "zx_transferstatus": "Transfer status",
+      "zx_vantransferincasesstock": "VAnTransfer IN Cases Stock",
+      "zx_vantransferinpcsstock": "VanTransfer In PCs Stock",
+      "zx_vantransferoutcasesstock": "VanTransfer Out Cases Stock ",
+      "zx_vantransferoutpcsstock": "VanTransfer Out PCs Stock"
+    },
+    "PreferredName": "Stock Transfer Lines",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Stock Transfer Lines (Views)",
+    "Name": "_zx_stocktransferlines_views",
+    "RelatedEntityName": "Stock Transfer Lines",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "45f5f6c7-0a1b-42e8-a072-4b4da16869cf": "Stock Transfer Lines Associated View",
+      "690c8f23-86e7-456f-a9f6-63e6288d41b5": "Stock Transfer Lines Advanced Find View",
+      "7090ac55-84b6-ed11-b597-002248d5db8a": "Stock Transfer Lines",
+      "abb76fcd-8177-4219-a9de-7775bef8519e": "Active Stock Transfer Lines",
+      "b27db606-48b3-ed11-83fe-002248d5db8a": "Van Transfer",
+      "b5e4da07-8bc4-ed11-b597-002248d5da52": "Test",
+      "b88137f3-ea4d-4a19-a99c-9fa19b5b2a54": "Inactive Stock Transfer Lines",
+      "cc49f39c-598b-4a90-80c9-ff2d0a830e9e": "Stock Transfer Lines Lookup View"
+    }
+  },
+  {
+    "DisplayName": "Status (Stock Transfer Lines)",
+    "Name": "zx_stocktransferlines_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Stock Transfer Lines"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Stock Transfer Lines",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Stock Transfer Lines)",
+    "Name": "zx_stocktransferlines_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Stock Transfer Lines"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Stock Transfer Lines",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Gatepass (Stock Transfer Lines)",
+    "Name": "zx_stocktransferlines_zx_gatepass",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_gatepass",
+        "OptionSetReferenceEntityName": "Stock Transfer Lines"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_gatepass",
+    "RelatedEntityName": "Stock Transfer Lines",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Transfer accepted (Stock Transfer Lines)",
+    "Name": "zx_stocktransferlines_zx_transferaccepted",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_transferaccepted",
+        "OptionSetReferenceEntityName": "Stock Transfer Lines"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_transferaccepted",
+    "RelatedEntityName": "Stock Transfer Lines",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Transfer status (Stock Transfer Lines)",
+    "Name": "zx_stocktransferlines_zx_transferstatus",
+    "OptionSetInfoNameMapping": {
+      "425120000": "Transfer accepted",
+      "425120001": "Transfer generated",
+      "425120002": "Transfer rejected"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_transferstatus",
+        "OptionSetReferenceEntityName": "Stock Transfer Lines"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_transferstatus",
+    "RelatedEntityName": "Stock Transfer Lines",
+    "Type": "OptionSetInfo"
+  }
+]

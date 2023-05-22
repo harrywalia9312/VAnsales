@@ -1,0 +1,125 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_schemeapplicabilities",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_schemeapplicability",
+    "MaxGetRowsCount": 2000,
+    "Name": "Scheme Applicabilities",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_accounttype": "Account Type",
+      "zx_CustomerCode": "Customer Code",
+      "zx_Manager": "Manager",
+      "zx_name": "Scheme Applicability ID",
+      "zx_schemeapplicability_AsyncOperations": "System Jobs",
+      "zx_schemeapplicability_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_schemeapplicability_DuplicateBaseRecord": "Duplicate Records (zx_schemeapplicability_DuplicateBaseRecord)",
+      "zx_schemeapplicability_DuplicateMatchingRecord": "Duplicate Records (zx_schemeapplicability_DuplicateMatchingRecord)",
+      "zx_schemeapplicability_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_schemeapplicability_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_schemeapplicability_ProcessSession": "Process Sessions",
+      "zx_schemeapplicability_SyncErrors": "Sync Errors",
+      "zx_schemeapplicabilityid": "Scheme Applicability",
+      "zx_SchemeCode": "Scheme Code",
+      "zx_SiteBranch": "Site/Branch",
+      "zx_UserCode": "User Code"
+    },
+    "PreferredName": "Scheme Applicabilities",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Scheme Applicabilities (Views)",
+    "Name": "_zx_schemeapplicability_views",
+    "RelatedEntityName": "Scheme Applicabilities",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "00f888de-e41b-443a-8c20-4247a30ac97e": "Scheme Applicability Lookup View",
+      "4ca4da3c-5d72-42ad-b630-362250cad8cc": "Scheme Applicability Associated View",
+      "aa113d4d-b7eb-4583-bccc-7c258869ce92": "Inactive Scheme Applicabilities",
+      "d8c1189e-0b2d-4e11-9950-a61f6c86c7b2": "Scheme Applicability Advanced Find View",
+      "d9ad765b-98b6-ed11-b597-002248d5da52": "Scheme Applicability",
+      "dc6263ed-30e5-4c52-ba13-e40baf4f6a8d": "Active Scheme Applicabilities"
+    }
+  },
+  {
+    "DisplayName": "Account Type Choice",
+    "Name": "zx_accounttype",
+    "OptionSetInfoNameMapping": {
+      "425120000": "All",
+      "425120001": "Customer",
+      "425120002": "Manager"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_accounttype",
+        "OptionSetReferenceEntityName": "Scheme Applicabilities"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_accounttype",
+    "RelatedEntityName": "Scheme Applicabilities",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Scheme Applicabilities)",
+    "Name": "zx_schemeapplicability_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Scheme Applicabilities"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Scheme Applicabilities",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Scheme Applicabilities)",
+    "Name": "zx_schemeapplicability_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Scheme Applicabilities"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Scheme Applicabilities",
+    "Type": "OptionSetInfo"
+  }
+]

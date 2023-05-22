@@ -1,0 +1,867 @@
+NewDemandScreen As screen:
+    OnVisible: |-
+        =Clear(checkinDemandProduct);
+        Reset(dteCheckInDemand);
+        Set(
+            varTodayDemand,
+            LookUp(
+                'Check-in Demand Headers',
+                Salesperson.'Primary Email' = User().Email && 'Created On' >= Today()
+            ).'Check-in Demand Header'
+        );
+
+    compDemandHeader As Header:
+        HeaderText: ="Demand"
+
+    contDemandUpperVertical As groupContainer.verticalAutoLayoutContainer:
+        Height: =750
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        LayoutOverflowX: =LayoutOverflow.Scroll
+        Width: =App.Width
+        Y: =220
+        ZIndex: =2
+
+        contDemandHeading As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: =60
+            LayoutMinHeight: =70
+            LayoutMinWidth: =750
+            Width: =Parent.Width
+            ZIndex: =1
+
+            btnNewOrderHeaderProduct_13 As button:
+                DisabledBorderColor: |-
+                    =//RGBA(166, 166, 166, 1)
+                    _VarGblAppColors.BisleriBlue
+                DisabledColor: |-
+                    =//RGBA(166, 166, 166, 1)
+                    _VarGblAppColors.LightText
+                DisabledFill: |-
+                    =//RGBA(244, 244, 244, 1)
+                    _VarGblAppColors.BisleriBlue
+                DisplayMode: =DisplayMode.Disabled
+                Height: =50
+                OnSelect: =
+                Size: =_VarGblAppFonts.Size.Subtitle
+                Text: ="Product"
+                Width: =350
+                X: =5
+                Y: =5
+                ZIndex: =1
+
+            btnNewOrderHeaderCases_13 As button:
+                DisabledBorderColor: |-
+                    =//RGBA(166, 166, 166, 1)
+                    _VarGblAppColors.BisleriBlue
+                DisabledColor: |-
+                    =//RGBA(166, 166, 166, 1)
+                    _VarGblAppColors.LightText
+                DisabledFill: |-
+                    =//RGBA(244, 244, 244, 1)
+                    _VarGblAppColors.BisleriBlue
+                DisplayMode: =DisplayMode.Disabled
+                Height: =50
+                OnSelect: =
+                Size: =_VarGblAppFonts.Size.Subtitle
+                Text: ="Qty (Cases)"
+                Width: =135
+                X: =btnNewOrderHeaderProduct_13.X + btnNewOrderHeaderProduct_13.Width +5
+                Y: =5
+                ZIndex: =2
+
+            btnNewOrderHeaderPcs_15 As button:
+                DisabledBorderColor: |-
+                    =//RGBA(166, 166, 166, 1)
+                    _VarGblAppColors.BisleriBlue
+                DisabledColor: |-
+                    =//RGBA(166, 166, 166, 1)
+                    _VarGblAppColors.LightText
+                DisabledFill: |-
+                    =//RGBA(244, 244, 244, 1)
+                    _VarGblAppColors.BisleriBlue
+                DisplayMode: =DisplayMode.Disabled
+                Height: =50
+                OnSelect: =
+                Size: =_VarGblAppFonts.Size.Subtitle
+                Text: ="Qty (Pcs)"
+                Width: =135
+                X: =btnNewOrderHeaderCases_13.X + btnNewOrderHeaderCases_13.Width +5
+                Y: =5
+                ZIndex: =3
+
+        contDemandData As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: =Parent.Height-60
+            LayoutMinHeight: =570
+            LayoutMinWidth: =640
+            LayoutMode: =LayoutMode.Auto
+            Width: =Parent.Width
+            ZIndex: =2
+
+            galDemandData As gallery.galleryVertical:
+                AccessibleLabel: ="galDemandData"
+                AlignInContainer: =AlignInContainer.SetByContainer
+                Fill: |-
+                    =//RGBA(0, 0, 0, 0)
+                    Color.Transparent
+                FillPortions: =0
+                FocusedBorderColor: =Color.Transparent
+                FocusedBorderThickness: =0.2
+                Height: =Parent.Height
+                Items: |-
+                    =//colOfflineItemMasters
+                    If(
+                        !IsBlank(compDemandSearch.SearchText),
+                        Filter(
+                            //colOfflineVariantMaster,
+                            'SKU Masters',
+                            compDemandSearch.SearchText in 'Pack Title' || compDemandSearch.SearchText in 'Item Description '
+                        ),
+                        //colOfflineVariantMaster
+                        'SKU Masters'
+                    )
+                Layout: =Layout.Vertical
+                LayoutMinHeight: =250
+                LayoutMinWidth: =1200
+                ShowScrollbar: =false
+                TabIndex: =0
+                TemplateSize: =80
+                Width: =contDemandData.Width
+                ZIndex: =1
+
+                btnDemandDataBackground As button:
+                    DisabledFill: |-
+                        =//RGBA(244, 244, 244, 1)
+                        ColorFade( _VarGblAppColors.BisleriBlue, 80%)
+                    DisplayMode: =DisplayMode.Disabled
+                    Height: =galDemandData.TemplateHeight
+                    OnSelect: =Select(Parent)
+                    PaddingRight: =0
+                    Size: =24
+                    Text: =""
+                    Width: =Parent.Width - 10
+                    ZIndex: =1
+
+                txtDemandDataQtyCases As text:
+                    AccessibleLabel: ="txtDemandDataQtyCases"
+                    Align: =Align.Center
+                    BorderColor: |-
+                        =//RGBA(0, 18, 107, 1)
+                        ColorFade( _VarGblAppColors.BisleriBlue, -30%)
+                    Default: |-
+                        =LookUp(
+                            colOfflineTodayDemandsLines,
+                            'SKU Master'.'SKU Master' = ThisItem.'SKU Master' && 'Check-in Demand Header'.'Check-in Demand Header' = First(colOfflineTodayDemandsHeader).'Check-in Demand Header'
+                        ).Cases
+                    DisplayMode: |-
+                        =//If(ThisItem.'Item Code'.UOM = 'UOM (Item Masters)'.CASE, DisplayMode.Edit, DisplayMode.Disabled)
+                        If(IsBlank(LookUp(EitherCasesOrPcs, Varient=ThisItem.'SKU Master' && UOM="Pcs")), DisplayMode.Edit, DisplayMode.Disabled)
+                    FocusedBorderThickness: =2
+                    Format: =TextFormat.Number
+                    HoverBorderColor: =ColorFade( _VarGblAppColors.BisleriBlue, 30%)
+                    HoverFill: |-
+                        =//RGBA(186, 202, 226, 1)
+                        ColorFade(_VarGblAppColors.BisleriBlue, 100%)
+                    OnChange: |-
+                        =If(
+                            Self.Text <> "" And Value(Self.Text) <> RoundDown(
+                                Value(Self.Text),
+                                0
+                            ) Or Value(Self.Text) < 1,
+                            Notify(
+                                "Please enter whole number",
+                                NotificationType.Information,
+                                1000
+                            );
+                            Reset(Self);
+                            Remove(
+                                EitherCasesOrPcs,
+                                LookUp(
+                                    EitherCasesOrPcs,
+                                    Varient = ThisItem.'SKU Master'
+                                )
+                            );
+                            Remove(
+                                checkinDemandProduct,
+                                LookUp(
+                                    checkinDemandProduct,
+                                    productId = ThisItem.'SKU Master'
+                                )
+                            );
+                            ,
+                            If(
+                                !IsBlank(
+                                    LookUp(
+                                        checkinDemandProduct,
+                                        productId = ThisItem.'SKU Master'
+                                    )
+                                ),
+                                Patch(
+                                    checkinDemandProduct,
+                                    LookUp(
+                                        checkinDemandProduct,
+                                        productId = ThisItem.'SKU Master'
+                                    ),
+                                    {qtyCases: Value(Self.Text)}
+                                );
+                                Collect(
+                                    EitherCasesOrPcs,
+                                    {
+                                        Varient: ThisItem.'SKU Master',
+                                        UOM: "Case"
+                                    }
+                                );
+                                ,
+                                Collect(
+                                    checkinDemandProduct,
+                                    {
+                                        productId: ThisItem.'SKU Master',
+                                        qtyCases: Value(Self.Text),
+                                        qtyPcs: LookUp(
+                                            colOfflineTodayDemandsLines,
+                                            'SKU Master'.'SKU Master' = ThisItem.'SKU Master' && 'Check-in Demand Header'.'Check-in Demand Header' = First(colOfflineTodayDemandsHeader).'Check-in Demand Header'
+                                        ).PCs,
+                                        productCode: ThisItem.'SKU Code'
+                                    }
+                                );
+                                Collect(
+                                    EitherCasesOrPcs,
+                                    {
+                                        Varient: ThisItem.'SKU Master',
+                                        UOM: "Case"
+                                    }
+                                );
+                            );
+                            
+                        )
+                    OnSelect: =Select(Parent)
+                    Size: =_VarGblAppFonts.Size.Subtitle
+                    Width: =100
+                    X: =379
+                    Y: =20
+                    ZIndex: =6
+
+                txtDemandDataQtyPcs As text:
+                    AccessibleLabel: ="txtDemandDataQtyPcs"
+                    Align: =Align.Center
+                    BorderColor: |-
+                        =//RGBA(0, 18, 107, 1)
+                        ColorFade( _VarGblAppColors.BisleriBlue, -30%)
+                    Default: |-
+                        =LookUp(
+                            colOfflineTodayDemandsLines,
+                            'SKU Master'.'SKU Master' = ThisItem.'SKU Master' && 'Check-in Demand Header'.'Check-in Demand Header' = First(colOfflineTodayDemandsHeader).'Check-in Demand Header'
+                        ).PCs
+                    DisplayMode: |-
+                        =//If(ThisItem.'Item Code'.UOM = 'UOM (Item Masters)'.PCS, DisplayMode.Edit, DisplayMode.Disabled)
+                        If(IsBlank(LookUp(EitherCasesOrPcs, Varient=ThisItem.'SKU Master' && UOM="Case")), DisplayMode.Edit, DisplayMode.Disabled)
+                    FocusedBorderThickness: =2
+                    Format: =TextFormat.Number
+                    HoverBorderColor: =ColorFade( _VarGblAppColors.BisleriBlue, 30%)
+                    HoverFill: |-
+                        =//RGBA(186, 202, 226, 1)
+                        ColorFade(_VarGblAppColors.BisleriBlue, 100%)
+                    OnChange: |-
+                        =If(
+                            Self.Text <> "" And Value(Self.Text) <> RoundDown(
+                                Value(Self.Text),
+                                0
+                            ) Or Value(Self.Text) < 1,
+                            Notify(
+                                "Please enter whole number",
+                                NotificationType.Information,
+                                1000
+                            );
+                            Reset(Self);
+                            Remove(
+                                EitherCasesOrPcs,
+                                LookUp(
+                                    EitherCasesOrPcs,
+                                    Varient = ThisItem.'SKU Master'
+                                )
+                            );
+                            Remove(
+                                checkinDemandProduct,
+                                LookUp(
+                                    checkinDemandProduct,
+                                    productId = ThisItem.'SKU Master'
+                                )
+                            );
+                            ,
+                            If(
+                                !IsBlank(
+                                    LookUp(
+                                        checkinDemandProduct,
+                                        productId = ThisItem.'SKU Master'
+                                    )
+                                ),
+                                Patch(
+                                    checkinDemandProduct,
+                                    LookUp(
+                                        checkinDemandProduct,
+                                        productId = ThisItem.'SKU Master'
+                                    ),
+                                    {qtyPcs: Value(Self.Text)}
+                                );
+                                Collect(
+                                    EitherCasesOrPcs,
+                                    {
+                                        Varient: ThisItem.'SKU Master',
+                                        UOM: "Pcs"
+                                    }
+                                );
+                                ,
+                                Collect(
+                                    checkinDemandProduct,
+                                    {
+                                        productId: ThisItem.'SKU Master',
+                                        qtyPcs: Value(Self.Text),
+                                        qtyCases: LookUp(
+                                            colOfflineTodayDemandsLines,
+                                            'SKU Master'.'SKU Master' = ThisItem.'SKU Master' && 'Check-in Demand Header'.'Check-in Demand Header' = First(colOfflineTodayDemandsHeader).'Check-in Demand Header'
+                                        ).Cases,
+                                        productCode: ThisItem.'SKU Code'
+                                    }
+                                );
+                                Collect(
+                                    EitherCasesOrPcs,
+                                    {
+                                        Varient: ThisItem.'SKU Master',
+                                        UOM: "Pcs"
+                                    }
+                                );
+                            );
+                            
+                        )
+                    OnSelect: =Select(Parent)
+                    Size: =_VarGblAppFonts.Size.Subtitle
+                    Width: =txtDemandDataQtyCases.Width
+                    X: =508
+                    Y: =20
+                    ZIndex: =7
+
+                shpDemandDataRect2 As rectangle:
+                    Fill: |-
+                        =//RGBA(56, 96, 178, 1)
+                        _VarGblAppColors.LightText
+                    Height: =galDemandData.TemplateHeight
+                    OnSelect: =Select(Parent)
+                    Width: =2
+                    X: =350
+                    ZIndex: =10
+
+                shpDemandDataRect1 As rectangle:
+                    Fill: |-
+                        =//RGBA(56, 96, 178, 1)
+                        _VarGblAppColors.LightText
+                    Height: =galDemandData.TemplateHeight
+                    OnSelect: =Select(Parent)
+                    Width: =2
+                    X: =492
+                    ZIndex: =11
+
+                lblDemandDataProductDescription As label:
+                    Align: =Align.Center
+                    Color: =_VarGblAppColors.BisleriBlue
+                    FontWeight: =FontWeight.Bold
+                    Height: =38
+                    OnSelect: =Select(Parent)
+                    Size: =_VarGblAppFonts.Size.Tiny
+                    Text: =ThisItem.'Pack Title'
+                    Width: =350
+                    Y: =6
+                    ZIndex: =12
+
+                lblDemandDataProductDescription_1 As label:
+                    Align: =Align.Center
+                    Color: =_VarGblAppColors.HeaderBg
+                    FontWeight: =FontWeight.Semibold
+                    Height: =38
+                    OnSelect: =Select(Parent)
+                    Size: =_VarGblAppFonts.Size.Tiny
+                    Text: =ThisItem.'Item Description '
+                    Width: =350
+                    Y: =36
+                    ZIndex: =13
+
+    btnDemandConfirm As button:
+        DisplayMode: =If(CountRows(checkinDemandProduct)=0, DisplayMode.Disabled, DisplayMode.Edit)
+        Fill: |-
+            =//RGBA(56, 96, 178, 1)
+            _VarGblAppColors.BisleriBlue
+        Height: =42
+        HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+        OnSelect: |-
+            =If(
+                CountIf(
+                    Attendances,
+                    User.'Primary Email' = User().Email && Date = Today() && !IsBlank('Check-in Time')
+                ) = 0,
+                Notify(
+                    "Kindly Start your day first",
+                    NotificationType.Error,
+                    2000
+                );
+                //Navigate(SettlementScreen),
+                Navigate('Attendance Screen'),
+                If(
+                    dteCheckInDemand.SelectedDate > Today(),
+                    If(
+                        CountRows(colOfflineTodayDemandsHeader) = 0,
+                        If(
+                            Connection.Connected,
+                            ClearCollect(
+                                colOfflineTodayDemandsHeader,
+                                Patch(
+                                    'Check-in Demand Headers',
+                                    Defaults('Check-in Demand Headers'),
+                                    {
+                                        Salesperson: LookUp(
+                                            Users,
+                                            'Primary Email' = User().Email
+                                        ),
+                                        Date: dteCheckInDemand.SelectedDate,
+                                        'Route No.': LookUp(
+                                            Areas,
+                                            Area = varUserArea.Area.Area
+                                        ),
+                                        'Van No': LookUp(
+                                            Warehouses,
+                                            Warehouse = varUserVanNo.Van.Warehouse
+                                        )
+                                    }
+                                )
+                            );
+                            ,
+                            Patch(
+                                colOfflineTodayDemandsHeader,
+                                Defaults(colOfflineTodayDemandsHeader),
+                                {
+                                    Salesperson: LookUp(
+                                        colOfflineUsers,
+                                        'Primary Email' = User().Email
+                                    ),
+                                    Date: dteCheckInDemand.SelectedDate,
+                                    'Route No.': LookUp(
+                                        colOfflineAreas,
+                                        Area = varUserArea.Area.Area
+                                    ),
+                                    'Van No': LookUp(
+                                        colOfflineWarehouse,
+                                        Warehouse = varUserVanNo.Van.Warehouse
+                                    )
+                                }
+                            );
+                            ClearCollect(
+                                colOfflineDemandHeaderTBD,
+                                {
+                                    Salesperson: LookUp(
+                                        colOfflineUsers,
+                                        'Primary Email' = User().Email
+                                    ),
+                                    Date: dteCheckInDemand.SelectedDate,
+                                    'Route No.': LookUp(
+                                        colOfflineAreas,
+                                        Area = varUserArea.Area.Area
+                                    ),
+                                    'Van No': LookUp(
+                                        colOfflineWarehouse,
+                                        Warehouse = varUserVanNo.Van.Warehouse
+                                    )
+                                }
+                            );
+                            SaveData(
+                                colOfflineDemandHeaderTBD,
+                                "colOfflineDemandHeaderTBD"
+                            );
+                        )
+                    );
+                    
+            //_______________________________________________________________________________________________________________________ Lines
+            If(
+                        CountRows(colOfflineTodayDemandsHeader) = 1,
+                        If(
+                            Connection.Connected,
+                            ForAll(
+                                checkinDemandProduct As OneProduct,
+                                If(
+                                    IsBlank(
+                                        LookUp(
+                                            colOfflineTodayDemandsLines,
+                                            'SKU Master'.'SKU Master' = OneProduct.productId && 'Check-in Demand Header'.'Check-in Demand Header' = First(colOfflineTodayDemandsHeader).'Check-in Demand Header'
+                                        )
+                                    ),
+                                    Patch(
+                                        'Check-in Demand Lines',
+                                        Defaults('Check-in Demand Lines'),
+                                        {
+                                            Cases: OneProduct.qtyCases,
+                                            PCs: OneProduct.qtyPcs,
+                                            Date: dteCheckInDemand.SelectedDate,
+                                            'Check-in Demand Header': First(colOfflineTodayDemandsHeader)/*LookUp(
+                                                'Check-in Demand Headers',
+                                                'Check-in Demand Header' = First(colOfflineTodayDemandsHeader).'Check-in Demand Header'
+                                            )*/,
+                                            'SKU Master': LookUp(
+                                                'SKU Masters',
+                                                'SKU Master' = OneProduct.productId
+                                            )
+                                        }
+                                    );
+                                    Notify(
+                                        "Check In Demand Added successfully",
+                                        NotificationType.Success,
+                                        2000
+                                    );
+                                  //Navigate(SettlementScreen);
+                                  Navigate('Attendance Screen');
+                                    ,
+                                    Patch(
+                                        'Check-in Demand Lines',
+                                        LookUp(
+                                            colOfflineTodayDemandsLines,
+                                            'SKU Master'.'SKU Master' = OneProduct.productId && 'Check-in Demand Header'.'Check-in Demand Header' = First(colOfflineTodayDemandsHeader).'Check-in Demand Header'
+                                        ),
+                                        {
+                                            Cases: OneProduct.qtyCases,
+                                            PCs: OneProduct.qtyPcs,
+                                            Date: dteCheckInDemand.SelectedDate,
+                                            'Check-in Demand Header': First(colOfflineTodayDemandsHeader)/*LookUp(
+                                                'Check-in Demand Headers',
+                                                'Check-in Demand Header' = First(colOfflineTodayDemandsHeader).'Check-in Demand Header'
+                                            )*/,
+                                            'SKU Master': LookUp(
+                                                'SKU Masters',
+                                                'SKU Master' = OneProduct.productId
+                                            )
+                                        }
+                                    );
+                                    Notify(
+                                        "Check In Demand Updated successfully",
+                                        NotificationType.Success,
+                                        2000
+                                    );
+                               //Navigate(SettlementScreen);
+                               Navigate('Attendance Screen');
+                                )
+                            ),
+                //_______________________________________________________________________________________________OFFLINE
+                            ForAll(
+                                checkinDemandProduct As OneProduct,
+                                If(
+                                    IsBlank(
+                                        LookUp(
+                                            colOfflineTodayDemandsLines,
+                                            'SKU Master'.'SKU Master' = OneProduct.productId && 'Check-in Demand Header'.'Check-in Demand Header' = First(colOfflineTodayDemandsHeader).'Check-in Demand Header'
+                                        )
+                                    ),
+                                    Patch(
+                                        colOfflineTodayDemandsLines,
+                                        Defaults(colOfflineTodayDemandsLines),
+                                        {
+                                            Cases: OneProduct.qtyCases,
+                                            PCs: OneProduct.qtyPcs,
+                                            Date: dteCheckInDemand.SelectedDate,
+                                            'Check-in Demand Header': LookUp(
+                                                colOfflineTodayDemandsHeader,
+                                                'Check-in Demand Header' = First(colOfflineTodayDemandsHeader).'Check-in Demand Header'
+                                            ),
+                                            'SKU Master': LookUp(
+                                                //colOfflineVariantMaster,
+                                                'SKU Masters',
+                                                'SKU Master' = OneProduct.productId
+                                            )
+                                        }
+                                    );
+                                    Collect(
+                                        colOfflineDemandLinesTB,
+                                        {
+                                            Cases: OneProduct.qtyCases,
+                                            PCs: OneProduct.qtyPcs,
+                                            Date: dteCheckInDemand.SelectedDate,
+                                            Product: LookUp(
+                                                //colOfflineVariantMaster,
+                                                'SKU Masters',
+                                                'SKU Master' = OneProduct.productId
+                                            ).'SKU Master'
+                                    /*'SKU Master': LookUp(
+                                        colOfflineVariantMaster,
+                                        'SKU Master' = OneProduct.productId
+                                    ).'SKU Master'*/
+                                        }
+                                    );
+                                    SaveData(
+                                        colOfflineDemandLinesTB,
+                                        "colOfflineDemandLinesTBS"
+                                    );
+                                    Notify(
+                                        "Check In Demand added offline successfully",
+                                        NotificationType.Success,
+                                        2000
+                                    );
+                            //Navigate(SettlementScreen);
+                            Navigate('Attendance Screen');
+                                    ,
+                                    Patch(
+                                        colOfflineTodayDemandsLines,
+                                        LookUp(
+                                            colOfflineTodayDemandsLines,
+                                            'SKU Master'.'SKU Master' = OneProduct.productId && 'Check-in Demand Header'.'Check-in Demand Header' = First(colOfflineTodayDemandsHeader).'Check-in Demand Header'
+                                        ),
+                                        {
+                                            Cases: OneProduct.qtyCases,
+                                            PCs: OneProduct.qtyPcs
+                                        }
+                                    );
+                                    If(
+                                        IsBlank(
+                                            LookUp(
+                                                colOfflineDemandLinesTB,
+                                                Product = OneProduct.productId
+                                            )
+                                        ),
+                                        Patch(
+                                            colOfflineDemandLinesTB,
+                                            Defaults(colOfflineDemandLinesTB),
+                                            {
+                                                Cases: OneProduct.qtyCases,
+                                                PCs: OneProduct.qtyPcs,
+                                                Date: dteCheckInDemand.SelectedDate,
+                                                Product: LookUp(
+                                                    //colOfflineVariantMaster,
+                                                    'SKU Masters',
+                                                    'SKU Master' = OneProduct.productId
+                                                ).'SKU Master'
+                                            }
+                                        ),
+                                        Patch(
+                                            colOfflineDemandLinesTB,
+                                            LookUp(
+                                                colOfflineDemandLinesTB,
+                                                Product = OneProduct.productId
+                                            ),
+                                            {
+                                                Cases: OneProduct.qtyCases,
+                                                PCs: OneProduct.qtyPcs,
+                                                Date: dteCheckInDemand.SelectedDate,
+                                                Product: LookUp(
+                                                    //colOfflineVariantMaster,
+                                                    'SKU Masters',
+                                                    'SKU Master' = OneProduct.productId
+                                                ).'SKU Master'
+                                        /*'SKU Master':LookUp(colOfflineVariantMaster, 'SKU Master'=OneProduct.productId).'SKU Master'*/
+                                            }
+                                        );
+                                    );
+                                    SaveData(
+                                        colOfflineDemandLinesTB,
+                                        "colOfflineDemandLinesTBS"
+                                    );
+                                    Notify(
+                                        "Check In Demand updated offline successfully",
+                                        NotificationType.Success,
+                                        2000
+                                    );
+                                   //Navigate(SettlementScreen);
+                                   Navigate('Attendance Screen');
+                                )
+                            )
+                        )
+                    );
+                    Clear(checkinDemandProduct);
+                    If(
+                        Connection.Connected,
+                        Concurrent(
+                            ClearCollect(
+                                colOfflineTodayDemandsHeader,
+                                Filter(
+                                    'Check-in Demand Headers',
+                                    Salesperson.'Primary Email' = User().Email && 'Created On' >= Today()
+                                )
+                            );
+                            ,
+                            ClearCollect(
+                                colOfflineTodayDemandsLines,
+                                Filter(
+                                    'Check-in Demand Lines',
+                                    'Check-in Demand Header'.'Check-in Demand Header' = varTodayDemand/*LookUp(
+                                        'Check-in Demand Headers',
+                                        Salesperson.'Primary Email' = User().Email && 'Created On'>=Today()
+                                    ).'Check-in Demand Header'*/
+                                )
+                            );
+                        )
+                    ),
+                    Notify(
+                        "Kindly enter future date",
+                        NotificationType.Error,
+                        2000
+                    )
+                );
+                
+            )
+        Size: =_VarGblAppFonts.Size.UpperMedium
+        Text: ="CONFIRM"
+        Width: =204
+        X: =218
+        Y: =978
+        ZIndex: =3
+
+    compDemandSearch As SearchComp:
+        SearchHintText: ="Search By Product Name"
+        X: =27
+        Y: =80
+        ZIndex: =5
+
+    compDemandBottomBar As BottomBar:
+        Y: =1026
+        ZIndex: =6
+
+    Icon4 As icon.Sync:
+        AccessibleLabel: ="Icon4"
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =40
+        Icon: =Icon.Sync
+        OnSelect: |-
+            =Set(
+                VarFirstTodayDemandsHeader,
+                First(colOfflineTodayDemandsHeader).'Check-in Demand Header'
+            );
+            If(
+                CountRows(colOfflineTodayDemandsHeader) = 0,
+                Clear(colOfflineDemandHeaderTBD);
+                LoadData(
+                    colOfflineDemandHeaderTBD,
+                    "colOfflineDemandHeaderTBD",
+                    true
+                );
+                ClearCollect(
+                    colOfflineTodayDemandsHeader,
+                    Patch(
+                        'Check-in Demand Headers',
+                        Defaults('Check-in Demand Headers'),
+                        {
+                            Salesperson: LookUp(
+                                Users,
+                                'Primary Email' = User().Email/*First(colOfflineDemandHeaderTBD).Salesperson.'Primary Email'*/
+                            ),
+                            Date: dteCheckInDemand.SelectedDate,
+                            'Route No.': LookUp(
+                                Areas,
+                                Area = varUserArea.Area.Area
+                            )/*LookUp(
+                                Areas,
+                                Area = First(colOfflineDemandHeaderTBD).'Route No.'.Area
+                            )*/,
+                            'Van No': LookUp(
+                                Warehouses,
+                                Warehouse = varUserVanNo.Van.Warehouse
+                            )/*LookUp(
+                                Warehouses,
+                                Warehouse = First(colOfflineDemandHeaderTBD).'Van No'.Warehouse
+                            )*/
+                        }
+                    )
+                );
+                ClearData("colOfflineDemandHeaderTBD");
+                
+            );
+            Clear(colOfflineDemandLinesTB);
+            LoadData(
+                colOfflineDemandLinesTB,
+                "colOfflineDemandLinesTBS",
+                true
+            );
+            ForAll(
+                colOfflineDemandLinesTB As OneProduct,
+                If(
+                    IsBlank(
+                        LookUp(
+                            'Check-in Demand Lines',
+                            'Check-in Demand Header'.'Check-in Demand Header' = VarFirstTodayDemandsHeader /*First(colOfflineTodayDemandsHeader).'Check-in Demand Header'*/&& Product.'Item Master' = OneProduct.Product
+                        )
+                    ),
+                    Patch(
+                        'Check-in Demand Lines',
+                        Defaults('Check-in Demand Lines'),
+                        {
+                            Cases: OneProduct.Cases,
+                            PCs: OneProduct.PCs,
+                            Date: dteCheckInDemand.SelectedDate,
+                            'Check-in Demand Header': First(colOfflineTodayDemandsHeader)/*LookUp(
+                                'Check-in Demand Headers',
+                                'Check-in Demand Header' = First(colOfflineTodayDemandsHeader).'Check-in Demand Header'
+                            )*/,
+                            Product: LookUp(
+                                'Item Masters',
+                                'Item Master' = OneProduct.Product
+                            )
+                        }
+                    ),
+                    Patch(
+                        'Check-in Demand Lines',
+                        LookUp(
+                            'Check-in Demand Lines',
+                            Product.'Item Master' = OneProduct.Product && 'Check-in Demand Header'.'Check-in Demand Header' = VarFirstTodayDemandsHeader/*First(colOfflineTodayDemandsHeader).'Check-in Demand Header'*/
+                        ),
+                        {
+                            Cases: OneProduct.Cases,
+                            PCs: OneProduct.PCs
+                        }
+                    )
+                )
+            );
+            ClearData("colOfflineDemandLinesTBS");
+            Notify(
+                "Data synced successfully",
+                NotificationType.Success,
+                2000
+            );
+            If(
+                Connection.Connected,
+                Concurrent(
+                    ClearCollect(
+                        colOfflineTodayDemandsHeader,
+                        Filter(
+                            'Check-in Demand Headers',
+                            Salesperson.'Primary Email' = User().Email && 'Created On' >= Today()
+                        )
+                    );
+                    ,
+                    ClearCollect(
+                        colOfflineTodayDemandsLines,
+                        Filter(
+                            'Check-in Demand Lines',
+                            'Check-in Demand Header'.'Check-in Demand Header' = VarFirstTodayDemandsHeader/*LookUp(
+                                'Check-in Demand Headers',
+                                Salesperson.'Primary Email' = User().Email && 'Created On'>=Today()
+                            ).'Check-in Demand Header'*/
+                        )
+                    );
+                )
+            )
+        TabIndex: =0
+        Width: =50
+        X: =484
+        Y: =20
+        ZIndex: =7
+
+    dteCheckInDemand As datepicker:
+        AccessibleLabel: ="dteCheckInDemand"
+        BorderColor: =_VarGblAppColors.BisleriBlue
+        DefaultDate: =Today()+1
+        FocusedBorderThickness: =2
+        IconBackground: |-
+            =//RGBA(56, 96, 178, 1)
+            _VarGblAppColors.BisleriBlue
+        OnChange: =If(dteCheckInDemand.SelectedDate<=Today(),Notify("Please enter future date", NotificationType.Error,2000); Reset(dteCheckInDemand), false)
+        Size: =_VarGblAppFonts.Size.UpperMedium
+        StartYear: =2023
+        Width: =400
+        X: =120
+        Y: =165
+        ZIndex: =8
+

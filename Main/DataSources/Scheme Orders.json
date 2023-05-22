@@ -1,0 +1,109 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_schemeorders",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_schemeorder",
+    "MaxGetRowsCount": 2000,
+    "Name": "Scheme Orders",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_ItemCode": "Item Code",
+      "zx_name": "Scheme Order ID",
+      "zx_orderedquantity": "Ordered Quantity",
+      "zx_ordereduom": "Ordered UOM",
+      "zx_SchemeCode": "Scheme Code",
+      "zx_schemeorder_AsyncOperations": "System Jobs",
+      "zx_schemeorder_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_schemeorder_DuplicateBaseRecord": "Duplicate Records (zx_schemeorder_DuplicateBaseRecord)",
+      "zx_schemeorder_DuplicateMatchingRecord": "Duplicate Records (zx_schemeorder_DuplicateMatchingRecord)",
+      "zx_schemeorder_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_schemeorder_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_schemeorder_ProcessSession": "Process Sessions",
+      "zx_schemeorder_SyncErrors": "Sync Errors",
+      "zx_schemeordercode": "Schemeordercode",
+      "zx_schemeorderid": "Scheme Order",
+      "zx_schemeorderidcode": "Scheme order  id-code",
+      "zx_SkuCode": "Sku Code",
+      "zx_zx_invoicelines_SchemeOrderItem_zx_scheme": "Invoice Lines",
+      "zx_zx_orderlines_ReferenceScheme_zx_schemeor": "Order Lines (zx_zx_orderlines_ReferenceScheme_zx_schemeor)",
+      "zx_zx_orderlines_SchemeOrderItem_zx_schemeor": "Order Lines (zx_zx_orderlines_SchemeOrderItem_zx_schemeor)",
+      "zx_zx_schemeoffers_SchemeOrder_zx_schemeorde": "Scheme Offers"
+    },
+    "PreferredName": "Scheme Orders",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Scheme Orders (Views)",
+    "Name": "_zx_schemeorder_views",
+    "RelatedEntityName": "Scheme Orders",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "3922aa55-d56e-4dc4-9ffd-99f17f97a1c7": "Active Scheme Orders",
+      "6eae2db3-98b6-ed11-b597-002248d5da52": "Scheme Order items",
+      "7f51bc8e-ebc9-4b54-bad3-c02aa7fe64a8": "Scheme Order Associated View",
+      "86c15dc5-a2a9-49af-bf07-af37ba5250ec": "Scheme Order Advanced Find View",
+      "e8d7fc7a-819d-4cca-9606-067dc70f44fe": "Scheme Order Lookup View",
+      "fd641e2c-a881-4c5d-b382-f6d0fb9f719b": "Inactive Scheme Orders"
+    }
+  },
+  {
+    "DisplayName": "Status (Scheme Orders)",
+    "Name": "zx_schemeorder_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Scheme Orders"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Scheme Orders",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Scheme Orders)",
+    "Name": "zx_schemeorder_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Scheme Orders"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Scheme Orders",
+    "Type": "OptionSetInfo"
+  }
+]

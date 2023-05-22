@@ -1,0 +1,10 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_logicflows",
+    "FlowNameId": "d28471ab-66dc-424e-b441-7dbb8d935061",
+    "Name": "AutorunPush-Invoices",
+    "ServiceKind": "ConnectedWadl",
+    "Type": "ServiceInfo",
+    "WorkflowEntityId": "e4b0db48-67d4-ed11-a7c7-002248d5da52"
+  }
+]

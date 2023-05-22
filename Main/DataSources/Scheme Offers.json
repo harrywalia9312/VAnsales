@@ -1,0 +1,105 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_schemeofferses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_schemeoffers",
+    "MaxGetRowsCount": 2000,
+    "Name": "Scheme Offers",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_name": "Scheme Offer ID",
+      "zx_OfferItemCode": "Offer Item Code",
+      "zx_offerquantity": "Offer Quantity",
+      "zx_offeruom": "Offer UOM",
+      "zx_SchemeCode": "Scheme Code",
+      "zx_schemeoffers_AsyncOperations": "System Jobs",
+      "zx_schemeoffers_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_schemeoffers_DuplicateBaseRecord": "Duplicate Records (zx_schemeoffers_DuplicateBaseRecord)",
+      "zx_schemeoffers_DuplicateMatchingRecord": "Duplicate Records (zx_schemeoffers_DuplicateMatchingRecord)",
+      "zx_schemeoffers_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_schemeoffers_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_schemeoffers_ProcessSession": "Process Sessions",
+      "zx_schemeoffers_SyncErrors": "Sync Errors",
+      "zx_schemeoffersid": "Scheme Offers",
+      "zx_SchemeOrder": "Scheme Order",
+      "zx_zx_invoicelines_SchemeOfferItem_zx_scheme": "Invoice Lines",
+      "zx_zx_orderlines_SchemeOfferItem_zx_schemeof": "Order Lines"
+    },
+    "PreferredName": "Scheme Offers",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Scheme Offers (Views)",
+    "Name": "_zx_schemeoffers_views",
+    "RelatedEntityName": "Scheme Offers",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "0453275c-3533-4364-b96d-f9edbff0f629": "Scheme Offers Lookup View",
+      "5462840e-99b6-ed11-b597-002248d5da52": "Scheme offer item",
+      "c7033c22-37c6-484c-9fcf-3915fd28f3c2": "Scheme Offers Associated View",
+      "dcf5734b-14ab-4666-83e7-382a71245e12": "Active Scheme Offers",
+      "ec7c5bbf-8d09-4977-9e2b-fc331ad34786": "Inactive Scheme Offers",
+      "fdd8f18b-6a5a-4dd2-9510-033eea16c677": "Scheme Offers Advanced Find View"
+    }
+  },
+  {
+    "DisplayName": "Status (Scheme Offers)",
+    "Name": "zx_schemeoffers_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Scheme Offers"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Scheme Offers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Scheme Offers)",
+    "Name": "zx_schemeoffers_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Scheme Offers"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Scheme Offers",
+    "Type": "OptionSetInfo"
+  }
+]

@@ -1,0 +1,174 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_orderlineses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_orderlines",
+    "MaxGetRowsCount": 2000,
+    "Name": "Order Lines",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr8eb_emptyjars": "Empty Jars",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "exchangerate": "Exchange Rate",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "transactioncurrencyid": "Currency",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_baseprice": "Cases Unit Price",
+      "zx_baseprice_base": "Base Price (Base)",
+      "zx_batchno": "Batch No",
+      "zx_cases": "Cases",
+      "zx_Customerno": "Customer no.",
+      "zx_CustomerNumber": "Customer Number (NA)",
+      "zx_freequantity": "Free Quantity ",
+      "zx_freequantity_base": "Free Quantity  (Base)",
+      "zx_itemdescription": "Item Description",
+      "zx_ItemSKU": "Item SKU",
+      "zx_itemtype": "Item Type",
+      "zx_lotno": "Lot No",
+      "zx_manufacturingdate": "Manufacturing Date",
+      "zx_name": "Order Line No",
+      "zx_orderlines_AsyncOperations": "System Jobs",
+      "zx_orderlines_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_orderlines_DuplicateBaseRecord": "Duplicate Records (zx_orderlines_DuplicateBaseRecord)",
+      "zx_orderlines_DuplicateMatchingRecord": "Duplicate Records (zx_orderlines_DuplicateMatchingRecord)",
+      "zx_orderlines_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_orderlines_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_orderlines_ProcessSession": "Process Sessions",
+      "zx_orderlines_SyncErrors": "Sync Errors",
+      "zx_orderlinesid": "Order Lines (zx_orderlinesid)",
+      "zx_OrderNumber": "Order Number",
+      "zx_pcs": "PCs",
+      "zx_pcsunitprice": "Pcs Unit Price",
+      "zx_pcsunitprice_base": "Pcs Unit Price (Base)",
+      "zx_priceusedlevel1": "PriceUsedLevel1",
+      "zx_priceusedlevel1_base": "PriceUsedLevel1 (Base)",
+      "zx_priceusedlevel2": "PriceUsedLevel2",
+      "zx_priceusedlevel2_base": "PriceUsedLevel2 (Base)",
+      "zx_rate": "Net Amount",
+      "zx_rate_base": "Rate (Base)",
+      "zx_reason": "Reason",
+      "zx_ReferenceLine": "Reference Line",
+      "zx_ReferenceScheme": "Reference Scheme ",
+      "zx_RouteNo": "Route No",
+      "zx_Salesperson": "Salesperson",
+      "zx_salespersonemployeecode": "Sales Person Employee Code",
+      "zx_schemeoffercalculated": "SchemeOfferCalculated",
+      "zx_SchemeOfferItem": "Scheme Offer Item",
+      "zx_schemeordercalculated": "SchemeOrderCalculated",
+      "zx_SchemeOrderItem": "Scheme Order Item",
+      "zx_SchemeParentItemCode": "Scheme Parent Item Code",
+      "zx_taxamount": "Tax Amount",
+      "zx_taxamount_base": "Tax Amount (Base)",
+      "zx_totalamount": "Not req 2",
+      "zx_totalamount_1": "Total Amount",
+      "zx_totalamount_1_base": "Total Amount (Base) (zx_totalamount_1_base)",
+      "zx_totalamount_t_": "Not rq1",
+      "zx_totalamount_t__base": "Total Amount (Base) (zx_totalamount_t__base)",
+      "zx_totaldiscountamount": "Total Discount Amount",
+      "zx_totaldiscountamount_base": "Total Discount Amount (Base)",
+      "zx_totalquantity": "Total Quantity",
+      "zx_totalquantity_base": "Total Quantity (Base)",
+      "zx_VanNo": "Van No",
+      "zx_zx_orderlines_ReferenceLine_zx_orderlines": "Order Lines (zx_zx_orderlines_ReferenceLine_zx_orderlines)"
+    },
+    "PreferredName": "Order Lines",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Order Lines (Views)",
+    "Name": "_zx_orderlines_views",
+    "RelatedEntityName": "Order Lines",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "027a8533-23dc-44cd-9c44-9707ba18ec99": "Active Order Lines",
+      "2e0109f3-87b6-ed11-b597-002248d5da52": "Order Line",
+      "61688719-44b3-ed11-83fe-002248d5da52": "Sales Order",
+      "671fd442-4b0f-4dc9-a9f3-ecb7d9bcf043": "Order Lines Advanced Find View",
+      "71d9fe24-c8d7-4813-9583-c4ea725ed508": "Order Lines Lookup View",
+      "8709eb60-3fb3-ed11-83fe-002248d5db8a": "FOC Order",
+      "88c14f22-2aac-4d9f-959a-315190a94676": "Order Lines Associated View",
+      "be9738c8-cc4f-4e72-9ca7-a4bb95cf3b09": "Inactive Order Lines",
+      "dc6b88e1-5bab-ed11-83ff-002248d5db8a": "This Week",
+      "e6b36d16-5cab-ed11-83ff-002248d5db8a": "This month",
+      "eb836da4-5bab-ed11-83ff-002248d5da52": "Today"
+    }
+  },
+  {
+    "DisplayName": "Status (Order Lines)",
+    "Name": "zx_orderlines_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Order Lines"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Order Lines",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Order Lines)",
+    "Name": "zx_orderlines_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Order Lines"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Order Lines",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Reason (Order Lines)",
+    "Name": "zx_orderlines_zx_reason",
+    "OptionSetInfoNameMapping": {
+      "425120000": "Breakage",
+      "425120001": "Complaint",
+      "425120002": "Complimentary"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_reason",
+        "OptionSetReferenceEntityName": "Order Lines"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_reason",
+    "RelatedEntityName": "Order Lines",
+    "Type": "OptionSetInfo"
+  }
+]

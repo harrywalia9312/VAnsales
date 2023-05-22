@@ -1,0 +1,147 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_stockinventories",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_stockinventory",
+    "MaxGetRowsCount": 2000,
+    "Name": "Stock Inventories",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr8eb_warehousecalculated": "WarehouseCalculated",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "new_push": "Push",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_batchno": "Batch No",
+      "zx_checkindate": "Check-in Date",
+      "zx_Customer": "Customer",
+      "zx_employeecode": "Employee Code",
+      "zx_emptiesreturned": "Empties Returned",
+      "zx_filledcases": "Filled Cases",
+      "zx_filledunits": "Filled Units",
+      "zx_foccases": "FOC Cases",
+      "zx_focunits": "FOC Units",
+      "zx_ItemCode": "Item Code",
+      "zx_itemdescription": "Item Description",
+      "zx_loadedcases": "Loaded Cases",
+      "zx_loadedunits": "Loaded Units",
+      "zx_lotno": "Lot No",
+      "zx_mfgdate": "Mfg Date",
+      "zx_name": "Stock Inventory Id",
+      "zx_pushedon": "Pushed On",
+      "zx_replacementcases": "Replacement Cases",
+      "zx_replacementunits": "Replacement Units",
+      "zx_returncases": "Return Cases",
+      "zx_returnunits": "Return Units",
+      "zx_Route": "Route",
+      "zx_soldcases": "Sold Cases",
+      "zx_soldunits": "Sold Units",
+      "zx_stockinventory_AsyncOperations": "System Jobs",
+      "zx_stockinventory_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_stockinventory_DuplicateBaseRecord": "Duplicate Records (zx_stockinventory_DuplicateBaseRecord)",
+      "zx_stockinventory_DuplicateMatchingRecord": "Duplicate Records (zx_stockinventory_DuplicateMatchingRecord)",
+      "zx_stockinventory_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_stockinventory_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_stockinventory_ProcessSession": "Process Sessions",
+      "zx_stockinventory_SyncErrors": "Sync Errors",
+      "zx_stockinventoryid": "Stock Inventory",
+      "zx_transferincases": "Transfer in Cases",
+      "zx_transferinunits": "Transfer in Units",
+      "zx_transferoutcases": "Transfer out Cases",
+      "zx_transferoutunits": "Transfer out Units",
+      "zx_VehicleCode": "Vehicle Code"
+    },
+    "PreferredName": "Stock Inventories",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Stock Inventories (Views)",
+    "Name": "_zx_stockinventory_views",
+    "RelatedEntityName": "Stock Inventories",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "17d48218-51fb-4f48-9d4a-42a82a607329": "Active Stock Inventories",
+      "2310d208-8451-46e9-ae9e-20a22ffa475c": "Stock Inventory Lookup View",
+      "2bf25dfa-7f93-41d4-9840-170222c5e744": "Stock Inventory Associated View",
+      "8cad0cd6-ddee-4450-9a45-e00dcca92929": "Inactive Stock Inventories",
+      "c9b972b2-7520-48a7-ad69-343bebccad36": "Stock Inventory Advanced Find View"
+    }
+  },
+  {
+    "DisplayName": "Push (Stock Inventories)",
+    "Name": "new_zx_stockinventory_new_push",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "new_push",
+        "OptionSetReferenceEntityName": "Stock Inventories"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "new_push",
+    "RelatedEntityName": "Stock Inventories",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Stock Inventories)",
+    "Name": "zx_stockinventory_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Stock Inventories"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Stock Inventories",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Stock Inventories)",
+    "Name": "zx_stockinventory_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Stock Inventories"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Stock Inventories",
+    "Type": "OptionSetInfo"
+  }
+]

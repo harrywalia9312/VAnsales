@@ -1,0 +1,10 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_logicflows",
+    "FlowNameId": "1657c385-6906-434d-ae43-5ac0b1dd8208",
+    "Name": "AutorunPush-Payments",
+    "ServiceKind": "ConnectedWadl",
+    "Type": "ServiceInfo",
+    "WorkflowEntityId": "0d6965ff-08c3-ed11-b597-002248d5da52"
+  }
+]

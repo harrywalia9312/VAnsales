@@ -1,0 +1,10 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_logicflows",
+    "FlowNameId": "d1e6cf7a-49b3-4d20-b3d0-0201a044b48c",
+    "Name": "AutorunPush-CheckinDemand_pune",
+    "ServiceKind": "ConnectedWadl",
+    "Type": "ServiceInfo",
+    "WorkflowEntityId": "4882e90d-8dd7-ed11-a7c6-002248d5db8a"
+  }
+]

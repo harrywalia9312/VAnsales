@@ -1,0 +1,2590 @@
+"'Van Transfer' As screen":
+    OnVisible: |
+        =Clear(transferOutProductLines);
+        //Clear(cmbVanTransferOutSelectVehicle.SelectedItems);
+        ClearCollect(
+            varMyVanSTockHeader,
+            AddColumns(
+                Filter(
+                    'Stock Transfer Headers',
+                    'To Location'.Warehouse = StockTransferWarehouse && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer' && 'Created On' >= Today()
+                ),
+                "headerGUID",
+                'Stock Transfer Header'
+            )
+        );
+        ClearCollect(
+            varTransferOutSTockHeader,
+            AddColumns(
+                Filter(
+                    'Stock Transfer Headers',
+                    'From Location'.Warehouse = StockTransferWarehouse && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer' && 'Created On' >= Today()
+                ),
+                "headerGUID",
+                'Stock Transfer Header'
+            )
+        );
+        Set(
+            varNewTransferRequest,
+            false
+        );
+        ClearCollect(
+            varGatePassHeader,
+            AddColumns(
+                Filter(
+                    'Stock Transfer Headers',
+                    'To Location'.Warehouse =StockTransferWarehouse /*&& 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Warehouse to van transfer'*/ && 'Created On'>= Today()
+                ),
+                "headerGUID",
+                'Stock Transfer Header'
+            )
+        );
+
+    Header_1 As Header:
+        HeaderText: ="Van Tranfer"
+
+    Gallery13_3 As gallery.galleryHorizontal:
+        AccessibleLabel: ="Gallery13_3"
+        BorderColor: =RGBA(109, 109, 109, 1)
+        FocusedBorderColor: =Color.Transparent
+        FocusedBorderThickness: =2
+        Height: =64
+        Items: |-
+            =Table(
+                {
+                    Title: "Transfer IN",
+                    id: 1
+                },
+                {
+                    Title: "Transfer OUT",
+                    id: 2
+                }
+            )
+        OnSelect: |-
+            =If(
+                ThisItem.id = 2,
+                Set(
+                    varUserArea,
+                    LookUp(
+                        'User Area Mappings',
+                        Salesperson.'Primary Email' = User().Email
+                    )
+                );
+                Set(
+                    varUserVanNo,
+                    LookUp(
+                        'Location VAN Mappings',
+                        Area.Area = varUserArea.Area.Area
+                    )
+                );
+                
+            )
+        TabIndex: =0
+        TemplateSize: =312
+        Y: =90
+        ZIndex: =2
+
+        Button31_13 As button:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            Color: =If(ThisItem.IsSelected,_VarGblAppColors.BisleriBlueLight, _VarGblAppColors.BisleriBlue)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            Fill: =If(ThisItem.IsSelected, _VarGblAppColors.BisleriBlue, _VarGblAppColors.BisleriBlueLight)
+            FocusedBorderColor: =ColorFade(Self.Fill, 75%)
+            Height: =54
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(31, 31, 31, 1)
+            HoverFill: =ColorFade(Self.Color, 10%)
+            OnSelect: =
+            PressedBorderColor: =ColorFade(RGBA(255, 200, 61, 1), 50%)
+            PressedColor: =RGBA(31, 31, 31, 1)
+            PressedFill: =ColorFade(Self.Color, 30%)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =22
+            Text: =ThisItem.Title
+            Width: =305
+            X: =4
+            ZIndex: =1
+
+    galVanTransferInData As gallery.galleryVertical:
+        AccessibleLabel: ="galVanTransferInData"
+        BorderColor: =RGBA(109, 109, 109, 1)
+        FocusedBorderColor: =Color.Transparent
+        FocusedBorderThickness: =0.1
+        Height: =824
+        Items: |-
+            =If(CountRows(varMyVanSTockHeader)>0,
+            
+            
+            SortByColumns(
+                Sort(
+                    Filter(
+                        'Stock Transfer Lines',
+                        'Transfer Order No'.'Stock Transfer Header' in varMyVanSTockHeader.headerGUID 
+                    ),
+                    'Created On',
+                    SortOrder.Descending
+                ),
+                "zx_transferstatus",
+                [
+                    'Transfer status (Stock Transfer Lines)'.'Transfer generated',
+                    'Transfer status (Stock Transfer Lines)'.'Transfer accepted',
+                    'Transfer status (Stock Transfer Lines)'.'Transfer rejected'
+                ]
+            ))
+        Layout: =Layout.Vertical
+        NavigationStep: =0
+        OnSelect: =
+        ShowScrollbar: =false
+        TabIndex: =0
+        TemplateSize: =146
+        Visible: |
+            =Gallery13_3.Selected.Title = "Transfer IN"
+        Y: =210
+        ZIndex: =3
+
+        htmlblVanTransferInBackground As htmlViewer:
+            Color: =RGBA(242, 242, 242, 1)
+            Height: =152
+            HtmlText: |-
+                ="<div style='border-radius:15px 15px 15px 15px; background-color:#E6F7F6; width:620px; height:140px'></div>"
+            OnSelect: =Select(Parent)
+            Width: =630
+            ZIndex: =1
+
+        lblVanTransferInVehicle As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Vehicle"
+            Width: =72
+            X: =45
+            Y: =70
+            ZIndex: =2
+
+        lblVanTransferInVehicleValue As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Bold
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: |-
+                =LookUp(
+                    'Stock Transfer Headers',
+                    'Stock Transfer Header' = ThisItem.'Transfer Order No'.'Stock Transfer Header'
+                ).'From Location'.Name
+            Width: =170
+            X: =119
+            Y: =70
+            ZIndex: =3
+
+        lblVanTransferInQuantity As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Cases"
+            Width: =99
+            X: =45
+            Y: =105
+            ZIndex: =4
+
+        lblVanTransferInQuantityValue As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Bold
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: =ThisItem.Cases
+            Width: =170
+            X: =119
+            Y: =107
+            ZIndex: =5
+
+        lblVanTransferInSalesperson As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =23
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Salesman"
+            Width: =93
+            X: =311
+            Y: =70
+            ZIndex: =6
+
+        lblVanTransferInUOM As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =23
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Pcs."
+            Width: =93
+            X: =311
+            Y: =107
+            ZIndex: =7
+
+        lblVanTransferInUOMValue As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Bold
+            Height: =23
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: =ThisItem.PCs
+            Width: =171
+            X: =406
+            Y: =107
+            ZIndex: =8
+
+        lblVanTransferInSalespersonValue As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Bold
+            Height: =23
+            OnSelect: =
+            Size: =12
+            Text: |-
+                =/*LookUp(
+                    'User Area Mappings',
+                    Area.Area = LookUp(
+                        'Location VAN Mappings',
+                        Van.Warehouse = LookUp(
+                            'Stock Transfer Headers',
+                            'Stock Transfer Header' = ThisItem.'Transfer Order No'.'Stock Transfer Header'
+                        ).'From Location'.Warehouse
+                    ).Area.Area
+                ).Salesperson.'Full Name'*/
+                
+                /*LookUp(
+                    'User Area Mappings',
+                    Area.Area = 
+                   LookUp(
+                        'Location VAN Mappings',
+                        Van.Warehouse = 
+                        LookUp(
+                            'Stock Transfer Headers',
+                            'Stock Transfer Header' = ThisItem.'Transfer Order No'.'Stock Transfer Header'
+                        ).'From Location'.Warehouse
+                    ).Area.Area
+                ).Salesperson.'Full Name'*/
+                //ThisItem.ToSalesperson
+                LookUp(Warehouses,Name=lblVanTransferInVehicleValue.Text).'Salesman Code'.'Full Name'
+            Width: =171
+            X: =407
+            Y: =70
+            ZIndex: =9
+
+        htmGalCustomerLastOrder_1 As htmlViewer:
+            Color: =RGBA(242, 242, 242, 1)
+            Height: =52
+            HtmlText: |-
+                ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:1px solid #00B3A1; width:180px; height:30px'></div>"
+            OnSelect: =Select(Parent)
+            Width: =195
+            X: =422
+            Y: =9
+            ZIndex: =10
+
+        lblGalCustomerLastOrder_1 As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =23
+            OnSelect: =
+            Size: =11
+            Text: =ThisItem.'Transfer status'
+            Width: =170
+            X: =431
+            Y: =17
+            ZIndex: =11
+
+        Label14 As label:
+            Color: =_VarGblAppColors.BisleriBlue
+            FontWeight: =FontWeight.Bold
+            Height: =52
+            OnSelect: =Select(Parent)
+            Size: =15
+            Text: =ThisItem.SKU.'Item Description '
+            Width: =377
+            X: =45
+            Y: =9
+            ZIndex: =12
+
+        chkVanTransferInGal As checkbox:
+            BorderColor: =Color.Transparent
+            CheckboxBorderColor: =_VarGblAppColors.BisleriBlue
+            CheckboxSize: =30
+            CheckmarkFill: =_VarGblAppColors.BisleriBlue
+            Color: =RGBA(0, 0, 0, 0)
+            Default: =ThisItem.'Transfer Lines No' in colSelectedTransferLines.Result
+            DisplayMode: =If(ThisItem.'Transfer accepted' = 'Transfer accepted (Stock Transfer Lines)'.Yes || ThisItem.'Transfer status'='Transfer status (Stock Transfer Lines)'.'Transfer rejected', DisplayMode.Disabled, DisplayMode.Edit)
+            FocusedBorderColor: =Color.Transparent
+            FocusedBorderThickness: =0.1
+            FontWeight: =FontWeight.Semibold
+            Height: =34
+            HoverBorderColor: =Color.Transparent
+            HoverColor: =Self.Color
+            HoverFill: =Color.Transparent
+            OnCheck: |-
+                =Collect(colSelectedTransferLines, {Result: ThisItem.'Transfer Lines No'})
+            OnSelect: =Select(Parent)
+            OnUncheck: =Remove(colSelectedTransferLines, LookUp(colSelectedTransferLines, Result = ThisItem.'Transfer Lines No'))
+            PressedBorderColor: =Color.Transparent
+            PressedFill: =Color.Transparent
+            Size: =21
+            Text: =""
+            Visible: =If(ThisItem.'Transfer accepted' = 'Transfer accepted (Stock Transfer Lines)'.Yes || ThisItem.'Transfer status'='Transfer status (Stock Transfer Lines)'.'Transfer rejected' , false, true)
+            Width: =391
+            X: =16
+            Y: =18
+            ZIndex: =13
+
+    BottomBar_3 As BottomBar:
+        Y: =1026
+        ZIndex: =4
+
+    btnVanTransferConfirm As button:
+        Color: =_VarGblAppColors.BisleriBlueLight
+        Fill: =_VarGblAppColors.BisleriBlue
+        Height: =35
+        HoverFill: =Self.Color
+        OnSelect: |-
+            =ForAll(
+                colSelectedTransferLines As Itemm,
+                Collect(
+                    colModifiedTransferLines,
+                    LookUp(
+                        'Stock Transfer Lines',
+                        'Transfer Lines No' = Itemm.Result
+                    )
+                )
+            );
+            
+            ForAll(
+                colModifiedTransferLines As Itemm,
+                Collect(
+                    colModifiedTransferLinesHeaders,
+                    LookUp(
+                        'Stock Transfer Headers',
+                        'To Location'.Warehouse = LookUp(
+                            'Stock Transfer Headers',
+                            'Stock Transfer Header' = Itemm.'Transfer Order No'.'Stock Transfer Header'
+                        ).'From Location'.Warehouse && 'Created On' >= Today()
+                    )
+                )
+            );
+            ForAll(
+                colModifiedTransferLines As CurSt,
+                Patch(
+                    'Stock Transfer Lines',
+                    LookUp(
+                        'Stock Transfer Lines',
+                        ('Transfer Order No'.'Stock Transfer Header' in AddColumns(
+                            colModifiedTransferLinesHeaders,
+                            "headerGUID",
+                            'Stock Transfer Header'
+                        ).headerGUID) && (SKU.'SKU Master' = CurSt.SKU.'SKU Master') && (DateValue(Text('Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(CurSt.'Manufacturing date', "dd/mm/yyyy")))
+                    ),
+                    {
+                        'Remaining Qty Cases': LookUp(
+                            'Stock Transfer Lines',
+                            ('Transfer Order No'.'Stock Transfer Header' in AddColumns(
+                                colModifiedTransferLinesHeaders,
+                                "headerGUID",
+                                'Stock Transfer Header'
+                            ).headerGUID) && (SKU.'SKU Master' = CurSt.SKU.'SKU Master') && (DateValue(Text('Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(CurSt.'Manufacturing date', "dd/mm/yyyy")))
+                        ).'Remaining Qty Cases' + CurSt.Cases,
+                        'Remaining Qty Pcs': LookUp(
+                            'Stock Transfer Lines',
+                            ('Transfer Order No'.'Stock Transfer Header' in AddColumns(
+                                colModifiedTransferLinesHeaders,
+                                "headerGUID",
+                                'Stock Transfer Header'
+                            ).headerGUID) && (SKU.'SKU Master' = CurSt.SKU.'SKU Master') && (DateValue(Text('Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(CurSt.'Manufacturing date', "dd/mm/yyyy")))
+                        ).'Remaining Qty Pcs' + CurSt.PCs,
+                        'Invoiced Qty Cases': LookUp(
+                            'Stock Transfer Lines',
+                            ('Transfer Order No'.'Stock Transfer Header' in AddColumns(
+                                colModifiedTransferLinesHeaders,
+                                "headerGUID",
+                                'Stock Transfer Header'
+                            ).headerGUID) && (SKU.'SKU Master' = CurSt.SKU.'SKU Master') && (DateValue(Text('Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(CurSt.'Manufacturing date', "dd/mm/yyyy")))
+                        ).'Invoiced Qty Cases' - CurSt.Cases,
+                        'Invoiced Qty Pcs.': LookUp(
+                            'Stock Transfer Lines',
+                            ('Transfer Order No'.'Stock Transfer Header' in AddColumns(
+                                colModifiedTransferLinesHeaders,
+                                "headerGUID",
+                                'Stock Transfer Header'
+                            ).headerGUID) && (SKU.'SKU Master' = CurSt.SKU.'SKU Master') && (DateValue(Text('Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(CurSt.'Manufacturing date', "dd/mm/yyyy")))
+                        ).'Invoiced Qty Pcs.' - CurSt.PCs,
+                        'VanTransfer Out Cases Stock ': LookUp(
+                            'Stock Transfer Lines',
+                            ('Transfer Order No'.'Stock Transfer Header' in AddColumns(
+                                colModifiedTransferLinesHeaders,
+                                "headerGUID",
+                                'Stock Transfer Header'
+                            ).headerGUID) && (SKU.'SKU Master' = CurSt.SKU.'SKU Master') && (DateValue(Text('Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(CurSt.'Manufacturing date', "dd/mm/yyyy")))
+                        ).'VanTransfer Out Cases Stock ' - CurSt.Cases,
+                        'VanTransfer Out PCs Stock': LookUp(
+                            'Stock Transfer Lines',
+                            ('Transfer Order No'.'Stock Transfer Header' in AddColumns(
+                                colModifiedTransferLinesHeaders,
+                                "headerGUID",
+                                'Stock Transfer Header'
+                            ).headerGUID) && (SKU.'SKU Master' = CurSt.SKU.'SKU Master') && (DateValue(Text('Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(CurSt.'Manufacturing date', "dd/mm/yyyy")))
+                        ).'VanTransfer Out PCs Stock' - CurSt.PCs
+                    }
+                )
+            );
+            /////////////////////////////////////_________________________________CURRENT STOCK____________________________________
+            ForAll(
+                colModifiedTransferLines As Itemm,
+                Patch(
+                    'Current Stocks',
+                    LookUp(
+                        'Current Stocks',
+                        'Item SKU'.'SKU Master' = Itemm.SKU.'SKU Master' && 'Van No'.Warehouse = LookUp(
+                            'Stock Transfer Headers',
+                            'Stock Transfer Header' = Itemm.'Transfer Order No'.'Stock Transfer Header'
+                        ).'From Location'.Warehouse && 'Created On'>=Today()
+                    ),
+                    {
+                        Cases: Sum(
+                            Filter(
+                                'Stock Transfer Lines',
+                                'Transfer Order No'.'Stock Transfer Header' in AddColumns(
+                                    colModifiedTransferLinesHeaders,
+                                    "headerGUID",
+                                    'Stock Transfer Header'
+                                ).headerGUID && SKU.'SKU Master' = Itemm.SKU.'SKU Master' && 'Created On'>=Today()
+                            ),
+                            'Remaining Qty Cases'
+                        ),
+                        PCs: Sum(
+                            Filter(
+                                'Stock Transfer Lines',
+                                'Transfer Order No'.'Stock Transfer Header' in AddColumns(
+                                    colModifiedTransferLinesHeaders,
+                                    "headerGUID",
+                                    'Stock Transfer Header'
+                                ).headerGUID && SKU.'SKU Master' = Itemm.SKU.'SKU Master'&& 'Created On'>=Today()
+                            ),
+                            'Remaining Qty Pcs'
+                        )
+                    }
+                )
+            );
+            /*ForAll(
+                colModifiedTransferLines As Itemm,
+                Collect(
+                    colModifiedTransferLinesHeaders,
+                    LookUp(
+                        'Stock Transfer Headers',
+                        'To Location'.Warehouse = LookUp(
+                            'Stock Transfer Headers',
+                            'Stock Transfer Header' = Itemm.'Transfer Order No'.'Stock Transfer Header'
+                        ).'From Location'.Warehouse && IsToday('Created On')
+                    )
+                )
+            );*/
+            If(
+                CountRows(colSelectedTransferLines) = 0,
+                Notify(
+                    "Please select transfer line to reject",
+                    NotificationType.Error,
+                    2000
+                ),
+                ForAll(
+                    colSelectedTransferLines As oneLine,
+                    Patch(
+                        'Stock Transfer Lines',
+                        LookUp(
+                            'Stock Transfer Lines',
+                            'Transfer Lines No' = oneLine.Result
+                        ),
+                        {
+                            'Transfer accepted': 'Transfer accepted (Stock Transfer Lines)'.No,
+                            'Transfer status': 'Transfer status (Stock Transfer Lines)'.'Transfer rejected'
+                        }
+                    )
+                );
+                Notify(
+                    "Transfer has been rejected.",
+                    NotificationType.Success,
+                    2000
+                );
+                
+            );
+            Clear(colModifiedTransferLinesHeaders);
+            Clear(colModifiedTransferLines)
+        RadiusBottomLeft: =5
+        RadiusBottomRight: =5
+        RadiusTopLeft: =5
+        RadiusTopRight: =5
+        Size: =16
+        Text: ="CANCEL"
+        Visible: =Gallery13_3.Selected.Title = "Transfer IN"
+        Width: =167
+        X: =432
+        Y: =162
+        ZIndex: =5
+
+    btnVanTransferSelectAll As button:
+        Fill: =_VarGblAppColors.BisleriBlue
+        Height: =35
+        HoverFill: =Self.Color
+        OnSelect: =
+        PaddingLeft: =25
+        RadiusBottomLeft: =5
+        RadiusBottomRight: =5
+        RadiusTopLeft: =5
+        RadiusTopRight: =5
+        Size: =18
+        Text: =""
+        Visible: |-
+            =//Gallery13_3.Selected.Title = "Transfer IN" && CountRows( galVanTransferInData.AllItems)>0
+            Gallery13_3.Selected.Title = "Transfer IN" && CountRows(
+                Filter(
+                  //  Filter(
+                        'Stock Transfer Lines',
+                        'Transfer Order No'.'Stock Transfer Header' in varMyVanSTockHeader.headerGUID && 'Transfer status'='Transfer status (Stock Transfer Lines)'.'Transfer generated'
+                   && //),
+                    'Created On'>=Today()
+                )
+            ) > 0 && CountRows(varMyVanSTockHeader)>0
+        Width: =178
+        X: =24
+        Y: =162
+        ZIndex: =6
+
+    chkVanTransferSelectAll As checkbox:
+        BorderColor: =_VarGblAppColors.BisleriBlue
+        CheckboxBorderColor: =_VarGblAppColors.BisleriBlue
+        CheckboxSize: =30
+        CheckmarkFill: =_VarGblAppColors.BisleriBlue
+        Color: =_VarGblAppColors.BisleriBlueLight
+        Default: |-
+            =If(
+                (CountRows(colSelectedTransferLines) = 0),
+                false,
+                If(
+                    CountRows(
+                        Filter(
+                            'Stock Transfer Lines',
+                            'Transfer Order No'.'Stock Transfer Header' in varMyVanSTockHeader.headerGUID
+                        )
+                    ) = CountRows(colSelectedTransferLines),
+                    true,
+                    false
+                )
+            )
+        FontWeight: =FontWeight.Semibold
+        Height: =34
+        HoverColor: =Self.Color
+        OnCheck: |-
+            =ClearCollect(
+                colSelectedTransferLines,
+                ForAll(Distinct(
+                    Filter(
+                        'Stock Transfer Lines',
+                        'Transfer Order No'.'Stock Transfer Header' in varMyVanSTockHeader.headerGUID && 'Transfer status' = 'Transfer status (Stock Transfer Lines)'.'Transfer generated'
+                    ),
+                    'Transfer Lines No'
+                ), {Result: ThisRecord.Value})
+            )
+        OnSelect: =
+        OnUncheck: =Clear(colSelectedTransferLines)
+        Size: =16
+        Text: ="SELECT ALL"
+        Visible: |-
+            =//Gallery13_3.Selected.Title = "Transfer IN" && CountRows( galVanTransferInData.AllItems)>0
+            Gallery13_3.Selected.Title = "Transfer IN" && CountRows(
+                Filter(
+                    Filter(
+                        'Stock Transfer Lines',
+                        'Transfer Order No'.'Stock Transfer Header' in varMyVanSTockHeader.headerGUID && 'Transfer status'='Transfer status (Stock Transfer Lines)'.'Transfer generated'
+                    ),
+                    'Created On'>= Today()
+                )
+            ) > 0 && CountRows(varMyVanSTockHeader)>0
+        Width: =178
+        X: =25
+        Y: =162
+        ZIndex: =7
+
+    btnVanTransferConfirm_1 As button:
+        Color: =_VarGblAppColors.BisleriBlueLight
+        Fill: =_VarGblAppColors.BisleriBlue
+        Height: =35
+        HoverFill: =Self.Color
+        OnSelect: |-
+            =ForAll(
+                colSelectedTransferLines As Itemm,
+                Collect(
+                    colModifiedTransferLines,
+                    LookUp(
+                        'Stock Transfer Lines',
+                        'Transfer Lines No' = Itemm.Result
+                    )
+                )
+            );
+            //////////////////____________________Headers of Transfer out Party_____________________________________________________________
+            /*ForAll(
+                colModifiedTransferLines As Itemm,
+                Collect(
+                    colModifiedTransferLinesHeaders,
+                    LookUp(
+                        'Stock Transfer Headers',
+                        'To Location'.Warehouse = LookUp(
+                            'Stock Transfer Headers',
+                            'Stock Transfer Header' = Itemm.'Transfer Order No'.'Stock Transfer Header'
+                        ).'From Location'.Warehouse && IsToday('Created On')
+                    )
+                )
+            ); 
+            If(
+                CountRows(colSelectedTransferLines) = 0,
+                Notify(
+                    "Please select transfer line to approve",
+                    NotificationType.Error,
+                    2000
+                ),
+                ClearCollect(
+                    colModifiedTransferLinesNew,
+                    ForAll(
+                        colSelectedTransferLines As oneLine,
+                        Patch(
+                            'Stock Transfer Lines',
+                            LookUp(
+                                'Stock Transfer Lines',
+                                'Transfer Lines No' = oneLine.Result
+                            ),
+                            {
+                                'Transfer accepted': 'Transfer accepted (Stock Transfer Lines)'.Yes,
+                                'Transfer status': 'Transfer status (Stock Transfer Lines)'.'Transfer accepted'
+                            }
+                        )
+                    )
+                );
+                
+            ); */
+            //______________________________________________________________________________________________________________
+            If(
+                CountRows(colSelectedTransferLines) = 0,
+                Notify(
+                    "Please select transfer line to approve",
+                    NotificationType.Error,
+                    2000
+                ),
+                ClearCollect(
+                    colModifiedTransferLinesNew,
+                    ForAll(
+                        colSelectedTransferLines As oneLine,
+                        Patch(
+                            'Stock Transfer Lines',
+                            LookUp(
+                                'Stock Transfer Lines',
+                                'Transfer Lines No' = oneLine.Result
+                            ),
+                            {
+                                'Transfer accepted': 'Transfer accepted (Stock Transfer Lines)'.Yes,
+                                'Transfer status': 'Transfer status (Stock Transfer Lines)'.'Transfer accepted'
+                            }
+                        )
+                    )
+                );
+                ForAll(
+                    colModifiedTransferLinesNew As CurSt,
+                    If(
+                        IsBlank(
+                            LookUp(
+                                'Stock Transfer Lines',
+                                ('Transfer Order No'.'Stock Transfer Header' in varGatePassHeader.headerGUID) && (SKU.'SKU Master' = CurSt.SKU.'SKU Master') && (DateValue(
+                                    Text(
+                                        'Manufacturing date',
+                                        "dd/mm/yyyy"
+                                    )
+                                ) = DateValue(
+                                    Text(
+                                        CurSt.'Manufacturing date',
+                                        "dd/mm/yyyy"
+                                    )
+                                )) && 'Created On' >= Today()
+                            )
+                        ),
+                        Patch(
+                            'Stock Transfer Lines',
+                            Defaults('Stock Transfer Lines'),
+                            {
+                                Cases: CurSt.Cases,
+                                PCs: CurSt.PCs,
+                                Date: Today(),
+                                'Transfer Order No': LookUp(
+                                    'Stock Transfer Headers',
+                                    'Stock Transfer Header' = First(varGatePassHeader).'Stock Transfer Header'
+                                ),
+                                SKU: LookUp(
+                                    'SKU Masters',
+                                    'SKU Master' = CurSt.SKU.'SKU Master'
+                                ),
+                                'Remaining Qty Cases': CurSt.Cases,
+                                'Remaining Qty Pcs': CurSt.PCs,
+                                'Manufacturing date': CurSt.'Manufacturing date',
+                                'VAnTransfer IN Cases Stock': CurSt.Cases,
+                                'VanTransfer In PCs Stock': CurSt.PCs
+                            }
+                        ),
+                        Patch(
+                            'Stock Transfer Lines',
+                            LookUp(
+                                'Stock Transfer Lines',
+                                ('Transfer Order No'.'Stock Transfer Header' in varGatePassHeader.headerGUID) && (SKU.'SKU Master' = CurSt.SKU.'SKU Master') && (DateValue(
+                                    Text(
+                                        'Manufacturing date',
+                                        "dd/mm/yyyy"
+                                    )
+                                ) = DateValue(
+                                    Text(
+                                        CurSt.'Manufacturing date',
+                                        "dd/mm/yyyy"
+                                    )
+                                )) && 'Created On' >= Today()
+                            ),
+                            {
+                                Date: Today(),
+                                'Remaining Qty Cases': /*LookUp(
+                                    'Stock Transfer Lines',
+                                    ('Transfer Order No'.'Stock Transfer Header' in varGatePassHeader.headerGUID) && (SKU.'SKU Master' = CurSt.SKU.'SKU Master') && (DateValue(
+                                        Text(
+                                            'Manufacturing date',
+                                            "dd/mm/yyyy"
+                                        )
+                                    ) = DateValue(
+                                        Text(
+                                            CurSt.'Manufacturing date',
+                                            "dd/mm/yyyy"
+                                        )
+                                    ))
+                                ).'Remaining Qty Cases' +*/ CurSt.Cases,
+                                'Remaining Qty Pcs': /*LookUp(
+                                    'Stock Transfer Lines',
+                                    ('Transfer Order No'.'Stock Transfer Header' in varGatePassHeader.headerGUID) && (SKU.'SKU Master' = CurSt.SKU.'SKU Master') && (DateValue(
+                                        Text(
+                                            'Manufacturing date',
+                                            "dd/mm/yyyy"
+                                        )
+                                    ) = DateValue(
+                                        Text(
+                                            CurSt.'Manufacturing date',
+                                            "dd/mm/yyyy"
+                                        )
+                                    ))
+                                ).'Remaining Qty Pcs' +*/ CurSt.PCs,
+                                'VAnTransfer IN Cases Stock': CurSt.Cases,
+                                'VanTransfer In PCs Stock': CurSt.PCs
+                            }
+                        )
+                    )
+                );
+                
+            // Stock addition to location _______________________________________________________________________________________
+            ForAll(
+                    colModifiedTransferLinesNew As CurSt,
+                    If(
+                        IsBlank(
+                            LookUp(
+                                'Current Stocks',
+                                'Item SKU'.'SKU Master' = CurSt.SKU.'SKU Master' && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse && 'Created Date' >= Today()
+                            )
+                        ),
+                        Patch(
+                            'Current Stocks',
+                            Defaults('Current Stocks'),
+                            {
+                                Cases: Sum(
+                                    Filter(
+                                        'Stock Transfer Lines',
+                                        'Transfer Order No'.'Stock Transfer Header' in varGatePassHeader.headerGUID && SKU.'SKU Master' = CurSt.SKU.'SKU Master' && 'Created On' >= Today() && 'Transfer accepted' = 'Transfer accepted (Stock Transfer Lines)'.Yes
+                                    ),
+                                    'Remaining Qty Cases'
+                                ),
+                                PCs: Sum(
+                                    Filter(
+                                        'Stock Transfer Lines',
+                                        'Transfer Order No'.'Stock Transfer Header' in varGatePassHeader.headerGUID && SKU.'SKU Master' = CurSt.SKU.'SKU Master' && 'Created On' >= Today() && 'Transfer accepted' = 'Transfer accepted (Stock Transfer Lines)'.Yes
+                                    ),
+                                    'Remaining Qty Pcs'
+                                ),
+                                'Item SKU': LookUp(
+                                    'SKU Masters',
+                                    'SKU Master' = CurSt.SKU.'SKU Master'
+                                ),
+                                /*'Route No': LookUp(Areas, Area = LookUp(
+                                    'Location VAN Mappings',
+                                   Van.Warehouse = LookUp(
+                                        'Stock Transfer Headers',
+                                        'Stock Transfer Header' = oneLine.'Transfer Order No'.'Stock Transfer Header'
+                                    ).'To Location'.Warehouse
+                                ).Area.Area),*/
+                                'Van No': LookUp(
+                                    Warehouses,
+                                    Warehouse = varUserVanNo.Van.Warehouse
+                                ),
+                                'Last Updated Date': Now()
+                            }
+                        ),
+                        Patch(
+                            'Current Stocks',
+                            LookUp(
+                                'Current Stocks',
+                                'Item SKU'.'SKU Master' = CurSt.SKU.'SKU Master' && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse && 'Created Date' >= Today()
+                            ),
+                            {
+                                Cases: Sum(
+                                    Filter(
+                                        'Stock Transfer Lines',
+                                        'Transfer Order No'.'Stock Transfer Header' in varGatePassHeader.headerGUID && SKU.'SKU Master' = CurSt.SKU.'SKU Master' && 'Created On' >= Today() && 'Transfer accepted' = 'Transfer accepted (Stock Transfer Lines)'.Yes
+                                    ),
+                                    'Remaining Qty Cases'
+                                ),
+                                PCs: Sum(
+                                    Filter(
+                                        'Stock Transfer Lines',
+                                        'Transfer Order No'.'Stock Transfer Header' in varGatePassHeader.headerGUID && SKU.'SKU Master' = CurSt.SKU.'SKU Master' && 'Created On' >= Today() && 'Transfer accepted' = 'Transfer accepted (Stock Transfer Lines)'.Yes
+                                    ),
+                                    'Remaining Qty Pcs'
+                                )
+                            }
+                        )
+                    )
+                );
+                Clear(colModifiedTransferLines);
+                Clear(colSelectedTransferLines);
+                Clear(colModifiedTransferLinesNew);
+                Notify(
+                    "Transfer done successfully",
+                    NotificationType.Success,
+                    2000
+                );
+                
+            )
+        RadiusBottomLeft: =5
+        RadiusBottomRight: =5
+        RadiusTopLeft: =5
+        RadiusTopRight: =5
+        Size: =16
+        Text: ="APPROVE"
+        Visible: =Gallery13_3.Selected.Title = "Transfer IN"
+        Width: =167
+        X: =253
+        Y: =161
+        ZIndex: =8
+
+    Icon7 As icon.Reload:
+        AccessibleLabel: ="Icon7"
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =36
+        Icon: =Icon.Reload
+        OnSelect: |-
+            =ClearCollect(
+                varMyVanSTockHeader,
+                AddColumns(
+                    Filter(
+                        'Stock Transfer Headers',
+                        'To Location'.Warehouse = StockTransferWarehouse && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer' && 'Created On'>= Today()
+                    ),
+                    "headerGUID",
+                    'Stock Transfer Header'
+                )
+            );
+            ClearCollect(
+                varTransferOutSTockHeader,
+                AddColumns(
+                    Filter(
+                        'Stock Transfer Headers',
+                        'From Location'.Warehouse = StockTransferWarehouse && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer' && 'Created On'>= Today()
+                    ),
+                    "headerGUID",
+                    'Stock Transfer Header'
+                )
+            );
+            Refresh('Current Stocks');
+            Reset(cmbVanTransferOutSelectVehicle);
+            Reset(ComboBox4);
+            Set(
+                varHarkamalAudi,
+                Blank()
+            );
+            Set(
+                varVaishaliMercedes,
+                Blank()
+            );
+            ClearCollect(
+                varGatePassHeader,
+                AddColumns(
+                    Filter(
+                        'Stock Transfer Headers',
+                        
+                        'To Location'.Warehouse = StockTransferWarehouse /*&& 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Warehouse to van transfer'*/ && 'Created On'>= Today()
+                    ),
+                    "headerGUID",
+                    'Stock Transfer Header'
+                )
+            );
+        TabIndex: =0
+        Width: =38
+        X: =496
+        Y: =22
+        ZIndex: =9
+
+    btnOnboardingNew_1 As button:
+        Color: =_VarGblAppColors.BisleriBlue
+        Fill: =Color.White
+        FocusedBorderThickness: =2
+        HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+        OnSelect: |-
+            =Set(
+                varNewTransferRequest,
+                true
+            );
+            Reset(cmbVanTransferOutSelectVehicle);
+            Reset(ComboBox4);
+            Set(
+                varHarkamalAudi,
+                Blank()
+            );
+            Set(
+                varVaishaliMercedes,
+                Blank()
+            );
+            /*ClearCollect(
+                varGatePassHeader,
+                AddColumns(
+                    Filter(
+                        'Stock Transfer Headers',
+                        'To Location'.Warehouse = StockTransferWarehouse && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Warehouse to van transfer' && 'Created On' >= Today()
+                    ),
+                    "headerGUID",
+                    'Stock Transfer Header'
+                )
+            );*/
+            Clear(transferOutProductLines);
+            Clear(colManipulatedTransferLines)
+        Size: =_VarGblAppFonts.Size.Title
+        Text: ="New"
+        Visible: =Gallery13_3.Selected.Title = "Transfer OUT"
+        Width: =122
+        X: =345
+        Y: =20
+        ZIndex: =10
+
+    galVanTransferOutData_1 As gallery.galleryVertical:
+        AccessibleLabel: ="galVanTransferInData"
+        BorderColor: =RGBA(109, 109, 109, 1)
+        FocusedBorderColor: =Color.Transparent
+        FocusedBorderThickness: =0.1
+        Height: =876
+        Items: |-
+            =If(CountRows(varTransferOutSTockHeader)>0,
+            
+            SortByColumns(
+                Sort(
+                    Filter(
+                        //Filter(
+                            'Stock Transfer Lines',
+                            'Transfer Order No'.'Stock Transfer Header' in varTransferOutSTockHeader.headerGUID
+                        ),
+                        //IsToday('Created On')
+                    //),
+                    'Created On',
+                    SortOrder.Descending
+                ),
+                "zx_transferstatus",
+                [
+                    'Transfer status (Stock Transfer Lines)'.'Transfer generated',
+                    'Transfer status (Stock Transfer Lines)'.'Transfer accepted',
+                    'Transfer status (Stock Transfer Lines)'.'Transfer rejected'
+                ]
+            ))
+        Layout: =Layout.Vertical
+        NavigationStep: =0
+        OnSelect: =
+        ShowScrollbar: =false
+        TabIndex: =0
+        TemplateSize: =151
+        Visible: =Gallery13_3.Selected.Title = "Transfer OUT" && !varNewTransferRequest
+        Y: =154
+        ZIndex: =11
+
+        htmlblVanTransferInBackground_1 As htmlViewer:
+            Color: =RGBA(242, 242, 242, 1)
+            Height: =152
+            HtmlText: |-
+                ="<div style='border-radius:15px 15px 15px 15px; background-color:#E6F7F6; width:620px; height:140px'></div>"
+            OnSelect: =Select(Parent)
+            Width: =630
+            ZIndex: =1
+
+        lblVanTransferInVehicle_1 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Vehicle"
+            Width: =72
+            X: =24
+            Y: =70
+            ZIndex: =2
+
+        lblVanTransferInVehicleValue_1 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Bold
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: =LookUp('Stock Transfer Headers', 'Stock Transfer Header' =  ThisItem.'Transfer Order No'.'Stock Transfer Header').'To Location'.Name
+            Width: =170
+            X: =98
+            Y: =70
+            ZIndex: =3
+
+        lblVanTransferInQuantity_1 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Cases"
+            Width: =99
+            X: =24
+            Y: =105
+            ZIndex: =4
+
+        lblVanTransferInQuantityValue_1 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Bold
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: =ThisItem.Cases
+            Width: =170
+            X: =98
+            Y: =107
+            ZIndex: =5
+
+        lblVanTransferInSalesperson_1 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =23
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Salesman"
+            Width: =93
+            X: =304
+            Y: =70
+            ZIndex: =6
+
+        lblVanTransferInUOM_1 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =23
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Pcs."
+            Width: =93
+            X: =304
+            Y: =107
+            ZIndex: =7
+
+        lblVanTransferInUOMValue_1 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Bold
+            Height: =23
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: =ThisItem.PCs
+            Width: =171
+            X: =399
+            Y: =107
+            ZIndex: =8
+
+        lblVanTransferInSalespersonValue_1 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.BisleriBlue
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Bold
+            Height: =23
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: |-
+                =/*LookUp(
+                    'User Area Mappings',
+                    Area.Area = 
+                    LookUp(
+                        'Location VAN Mappings',
+                        Van.Warehouse = LookUp(
+                            'Stock Transfer Headers',
+                            'Stock Transfer Header' = ThisItem.'Transfer Order No'.'Stock Transfer Header'
+                        ).'To Location'.Warehouse
+                    ).Area.Area
+                ).Salesperson.'Full Name'*/
+                //ThisItem.ToSalesperson
+                LookUp(Warehouses,Name = lblVanTransferInVehicleValue_1.Text).'Salesman Code'.'Full Name'
+            Width: =220
+            X: =400
+            Y: =70
+            ZIndex: =9
+
+        htmGalCustomerLastOrder_2 As htmlViewer:
+            Color: =RGBA(242, 242, 242, 1)
+            Height: =52
+            HtmlText: |-
+                ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:1px solid #00B3A1; width:180px; height:30px'></div>"
+            OnSelect: =Select(Parent)
+            Width: =195
+            X: =422
+            Y: =9
+            ZIndex: =10
+
+        lblGalCustomerLastOrder_2 As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =_VarGblAppColors.PrimaryText
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            FontWeight: =FontWeight.Semibold
+            Height: =23
+            OnSelect: =
+            Size: =11
+            Text: =ThisItem.'Transfer status'
+            Width: =170
+            X: =431
+            Y: =17
+            ZIndex: =11
+
+        Label14_1 As label:
+            Color: =_VarGblAppColors.BisleriBlue
+            FontWeight: =FontWeight.Bold
+            Height: =52
+            OnSelect: =Select(Parent)
+            Size: =15
+            Text: =ThisItem.SKU.'Item Description '
+            Width: =407
+            X: =15
+            Y: =9
+            ZIndex: =12
+
+    canVanTransferOutData As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =862
+        Visible: =Gallery13_3.Selected.Title = "Transfer OUT" && varNewTransferRequest
+        Width: =Parent.Width
+        Y: =154
+        ZIndex: =12
+
+        dataCardVanTransferOut As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =833
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            Label2 As label:
+                Height: =50
+                Size: =21
+                Text: ="Salesman"
+                Width: =560
+                X: =25
+                Y: =190
+                ZIndex: =1
+
+            ComboBox4 As combobox:
+                AccessibleLabel: ="ComboBox4"
+                BorderColor: =_VarGblAppColors.BisleriBlue
+                ChevronBackground: =RGBA(255, 255, 255, 1)
+                ChevronFill: =_VarGblAppColors.BisleriBlue
+                ChevronHoverBackground: =_VarGblAppColors.BisleriBlueLight
+                ChevronHoverFill: =_VarGblAppColors.BisleriBlue
+                DefaultSelectedItems: |-
+                    =LookUp(
+                        colOfflineUsers,
+                        'Primary Email' = LookUp(
+                            'User Area Mappings',
+                            Area.Area = varSelectedLocation /*LookUp(
+                                'Location VAN Mappings',
+                                Van.Warehouse = varHarkamalAudi
+                            ).Area.Area*/
+                        ).Salesperson.'Primary Email' && Not(IsBlank('Primary Email')) && Not('Full Name' = "INTEGRATION")
+                    )
+                DisplayFields: =["fullname"]
+                DisplayMode: =//If(IsBlank(cmbVanTransferOutSelectVehicle.Selected.'Vehicle Number/Warehouse Name'), DisplayMode.Edit, DisplayMode.Disabled)
+                Height: =60
+                HoverColor: =_VarGblAppColors.BisleriBlue
+                HoverFill: =_VarGblAppColors.BisleriBlueLight
+                InputTextPlaceholder: ="Find Salesman"
+                Items: |-
+                    =/*Filter(
+                        Filter(
+                            Users,
+                            'Primary Email' in AddColumns(
+                                'User Area Mappings',
+                                "UserEmail",
+                                Salesperson.'Primary Email'
+                            ).UserEmail && Not('Primary Email' = User().Email)
+                        ),
+                        !IsBlank('Primary Email')
+                    )*/
+                    Filter(
+                      //  Filter(
+                            colOfflineUsers,
+                            'Primary Email' in AddColumns(
+                                'User Area Mappings',
+                                "UserEmail",
+                                Salesperson.'Primary Email'
+                            ).UserEmail && Not('Primary Email' = User().Email)
+                       && // ),
+                        !IsBlank('Primary Email')
+                    )
+                OnChange: |
+                    =/*Set(
+                        varSelectedSalesmanArea,
+                        LookUp(
+                            'User Area Mappings',
+                            Salesperson.'Primary Email' = ComboBox4.Selected.'Primary Email'
+                        )
+                    );
+                    Set(
+                        varSelectedSalesmanVan,
+                        LookUp(
+                            'Location VAN Mappings',
+                           Area.Area = varSelectedSalesmanArea.Area.Area
+                        )
+                    )*/
+                    Set(
+                        varVaishaliMercedes,
+                        Self.Selected.'Primary Email'
+                    );
+                    
+                    Set(varSelectedUserArea,LookUp(
+                                'User Area Mappings' As ItemUser,
+                                ItemUser.Salesperson.'Primary Email' = varVaishaliMercedes
+                            ).AreaCalculated );
+                    
+                    Set(varSelecteduserLocation,LookUp(
+                            'Location VAN Mappings' As itemLocation,
+                            itemLocation.Area.'Name (zx_name)' = varSelectedUserArea 
+                        ).VANCalculated)
+                OnSelect: =
+                PressedFill: =_VarGblAppColors.BisleriBlue
+                SearchFields: =["firstname"]
+                SearchItems: |-
+                    =Search(/*Filter(
+                        Filter(
+                            Users,
+                            'Primary Email' in AddColumns(
+                                'User Area Mappings',
+                                "UserEmail",
+                                Salesperson.'Primary Email'
+                            ).UserEmail && Not('Primary Email' = User().Email)
+                        ),
+                        !IsBlank('Primary Email')
+                    )*/
+                    Filter(
+                      //  Filter(
+                            colOfflineUsers,
+                            'Primary Email' in AddColumns(
+                                'User Area Mappings',
+                                "UserEmail",
+                                Salesperson.'Primary Email'
+                            ).UserEmail && Not('Primary Email' = User().Email)
+                       && // ),
+                        !IsBlank('Primary Email')
+                    ),ComboBox4.SearchText,"firstname")
+                SelectionFill: =_VarGblAppColors.BisleriBlue
+                SelectMultiple: =false
+                Size: =21
+                Width: =575
+                X: =25
+                Y: =240
+                ZIndex: =2
+
+            Label2_1 As label:
+                Height: =50
+                Size: =21
+                Text: ="Vehicle No"
+                Width: =560
+                X: =25
+                Y: =55
+                ZIndex: =3
+
+            cmbVanTransferOutSelectVehicle As combobox:
+                AccessibleLabel: ="cmbVanTransferOutSelectVehicle"
+                BorderColor: =_VarGblAppColors.BisleriBlue
+                ChevronBackground: =RGBA(255, 255, 255, 1)
+                ChevronFill: =_VarGblAppColors.BisleriBlue
+                ChevronHoverBackground: =_VarGblAppColors.BisleriBlueLight
+                ChevronHoverFill: =_VarGblAppColors.BisleriBlue
+                Default: =//If(!IsBlank(ComboBox4.Selected.'Full Name'), LookUp(Warehouses, Warehouse = varSelectedSalesmanVan.Van.Warehouse))
+                DefaultSelectedItems: |-
+                    =/*LookUp(
+                        Warehouses As OneWarehouse,
+                        OneWarehouse.Name = varSelecteduserLocation /*LookUp(
+                            'Location VAN Mappings' As itemLocation,
+                            itemLocation.Area.'Name (zx_name)' = varSelectedUserArea 
+                            LookUp(
+                                'User Area Mappings' As ItemUser,
+                                ItemUser.Salesperson.'Primary Email' = varVaishaliMercedes
+                            ).Area.Area
+                        ).Van.Warehouse && OneWarehouse.'Site Code'.'Branch Master' = dataforbranch
+                    )*/
+                    LookUp(
+                        Warehouses As OneWarehouse,
+                        OneWarehouse.Name = varSelecteduserLocation && OneWarehouse.'Site Code'.'Branch Master' = dataforbranch)
+                DisplayFields: =["zx_name"]
+                DisplayMode: =//If(IsBlank(ComboBox4.Selected.'Full Name'), DisplayMode.Edit, DisplayMode.Disabled)
+                Height: =60
+                HoverColor: =_VarGblAppColors.BisleriBlue
+                HoverFill: =_VarGblAppColors.BisleriBlueLight
+                InputTextPlaceholder: ="Find Vehicle"
+                Items: |-
+                    =Filter(
+                        Warehouses,
+                        'Warehouse Type' = 'Warehouse Type (Warehouses)'.Vehicle && Not(Warehouse = varUserVanNo.Van.Warehouse)&& 'Site Code'.'Branch Master' = dataforbranch)
+                OnChange: |-
+                    =/*Set(
+                        varSelectedWarehouseVan,
+                        LookUp(
+                            'Location VAN Mappings',
+                            Van.Warehouse = cmbVanTransferOutSelectVehicle.Selected.Warehouse
+                        )
+                    );
+                    Set(
+                        varSelectedWarehouseUser,
+                        LookUp(
+                            'User Area Mappings',
+                            Area.Area = varSelectedWarehouseVan.Area.Area
+                        )
+                    );*/
+                    Set(
+                        varHarkamalAudi,
+                        Self.Selected.Warehouse
+                    );
+                    Set(varSelectedLocation,LookUp(
+                                'Location VAN Mappings',
+                                Van.Warehouse = varHarkamalAudi ).Area.Area);
+                PressedFill: =_VarGblAppColors.BisleriBlue
+                Reset: =true
+                SearchFields: =["zx_name"]
+                SearchItems: |-
+                    =Search(Filter(
+                        Warehouses,
+                        'Warehouse Type' = 'Warehouse Type (Warehouses)'.Vehicle && Not(Warehouse = varUserVanNo.Van.Warehouse)&& 'Site Code'.'Branch Master' = dataforbranch),cmbVanTransferOutSelectVehicle.SearchText,"zx_name")
+                SelectionFill: =_VarGblAppColors.BisleriBlue
+                SelectMultiple: =false
+                Size: =21
+                Width: =575
+                X: =25
+                Y: =110
+                ZIndex: =4
+
+            btnVanTransferOutConfirm As button:
+                Color: =_VarGblAppColors.LightText
+                DisplayMode: =If(CountRows(transferOutProductLines)=0 || IsBlank(cmbVanTransferOutSelectVehicle.SelectedItems) || IsBlank(ComboBox4.SelectedItems), DisplayMode.Disabled, DisplayMode.Edit)
+                Fill: =_VarGblAppColors.BisleriBlue
+                FocusedBorderThickness: =2
+                HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+                OnSelect: |
+                    =//If(!IsBlank(txtVanTransferOutCases.Text && txtVanTransferOutPcs.Text), 
+                    //)
+                    /////////////////////////////////___________FIFO___________________________________________________________
+                    /////////////////////////////////////////////////////////__________________________________STOCK UPDATION FOR CASES
+                    ClearCollect(
+                        CurrentQtyCases,
+                        First(transferOutProductLines).qtyCases
+                    );
+                    Clear(StockLinesForFIFO);
+                    ForAll(
+                        transferOutProductLines As OneProductItem,
+                        Collect(
+                            StockLinesForFIFO,
+                            Sort(
+                                //Filter(
+                                    Filter(
+                                        'Stock Transfer Lines',
+                                        ('Transfer Order No'.'Stock Transfer Header' in varGatePassHeader.headerGUID) && (SKU.'SKU Master' = OneProductItem.productId)
+                                    ),
+                                    //IsToday('Created On')
+                                //),
+                                'Manufacturing date',
+                                SortOrder.Ascending
+                            )
+                        );
+                        Patch(
+                            CurrentQtyCases,
+                            First(CurrentQtyCases),
+                            {Value: OneProductItem.qtyCases}
+                        );
+                        ForAll(
+                            StockLinesForFIFO As OneFifoItem,
+                            If(
+                                First(CurrentQtyCases).Value > 0 && OneFifoItem.'Remaining Qty Cases' > 0 && OneFifoItem.SKU.'SKU Master' = OneProductItem.productId,
+                                //Checking First condition if the qty is less then remainining of old_______________________________________________
+                                If(
+                                    (First(CurrentQtyCases).Value <= OneFifoItem.'Remaining Qty Cases'),
+                                    If(
+                                        !IsBlank(
+                                            LookUp(
+                                                colManipulatedTransferLines,
+                                                skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                            )
+                                        ),
+                                        Patch(
+                                            colManipulatedTransferLines,
+                                            LookUp(
+                                                colManipulatedTransferLines,
+                                                skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                            ),
+                                            {
+                                                qtyCases: ((LookUp(
+                                                    colManipulatedTransferLines,
+                                                    skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                                ).qtyCases) + (First(CurrentQtyCases).Value))
+                                            }
+                                        ),
+                                        Collect(
+                                            colManipulatedTransferLines,
+                                            {
+                                                cartItem: OneProductItem,
+                                                manDate: OneFifoItem.'Manufacturing date',
+                                                skuId: OneFifoItem.SKU.'SKU Master',
+                                                qtyCases: First(CurrentQtyCases).Value,
+                                                qtyPcs: 0
+                                            }
+                                        );
+                                    );
+                                    ///////________________UPDATE STOCK IN STOCK TRANSFER LINES
+                    Patch(
+                                        'Stock Transfer Lines',
+                                        LookUp(
+                                            'Stock Transfer Lines' As oneStockLine,
+                                            ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date', "dd/mm/yyyy"))) /*&& IsToday(oneStockLine.'Created On')*/)
+                                        ),
+                                        {
+                                            'Remaining Qty Cases': OneFifoItem.'Remaining Qty Cases' - First(CurrentQtyCases).Value,
+                                            'Invoiced Qty Cases': ((LookUp(
+                                                'Stock Transfer Lines' As oneStockLine,
+                                                ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date', "dd/mm/yyyy"))) /*&& IsToday(oneStockLine.'Created On')*/)
+                                            ).'Invoiced Qty Cases') + First(CurrentQtyCases).Value),
+                                            'VanTransfer Out Cases Stock ': ((LookUp(
+                                                'Stock Transfer Lines' As oneStockLine,
+                                                ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date', "dd/mm/yyyy"))) /*&& IsToday(oneStockLine.'Created On')*/)
+                                            ). 'VanTransfer Out Cases Stock ') + First(CurrentQtyCases).Value)
+                                        }
+                                    );
+                                    Patch(
+                                        CurrentQtyCases,
+                                        First(CurrentQtyCases),
+                                        {Value: 0}
+                                    );
+                                    ,
+                                    //Checking Second condition if the (qty is greater then remainining cases) 
+                                    ((First(CurrentQtyCases).Value > OneFifoItem.'Remaining Qty Cases')),
+                                       //////______________CART MANIPULATION
+                                    If(
+                                        !IsBlank(
+                                            LookUp(
+                                                colManipulatedTransferLines,
+                                                skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                            )
+                                        ),
+                                        Patch(
+                                            colManipulatedTransferLines,
+                                            LookUp(
+                                                colManipulatedTransferLines,
+                                                skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                            ),
+                                            {
+                                                qtyCases: ((LookUp(
+                                                    colManipulatedTransferLines,
+                                                    skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                                ).qtyCases) + (OneFifoItem.'Remaining Qty Cases'))
+                                            }
+                                        ),
+                                        Collect(
+                                            colManipulatedTransferLines,
+                                            {
+                                                cartItem: OneProductItem,
+                                                manDate: OneFifoItem.'Manufacturing date',
+                                                skuId: OneFifoItem.SKU.'SKU Master',
+                                                qtyCases: OneFifoItem.'Remaining Qty Cases',
+                                                qtyPcs: 0
+                                            }
+                                        );
+                                    );
+                                    ///////________________UPDATE STOCK IN STOCK TRANSFER LINES
+                    Patch(
+                                        'Stock Transfer Lines',
+                                        LookUp(
+                                            'Stock Transfer Lines' As oneStockLine,
+                                            ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date', "dd/mm/yyyy"))) /*&& IsToday(oneStockLine.'Created On')*/)
+                                        ),
+                                        {
+                                            'Remaining Qty Cases': 0,
+                                            'Invoiced Qty Cases': ((LookUp(
+                                                'Stock Transfer Lines' As oneStockLine,
+                                                ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date', "dd/mm/yyyy"))) /*&& IsToday(oneStockLine.'Created On')*/)
+                                            ).'Invoiced Qty Cases') + OneFifoItem.'Remaining Qty Cases'),
+                                            'VanTransfer Out Cases Stock ': ((LookUp(
+                                                'Stock Transfer Lines' As oneStockLine,
+                                                ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date', "dd/mm/yyyy"))) /*&& IsToday(oneStockLine.'Created On')*/)
+                                            ). 'VanTransfer Out Cases Stock ') + OneFifoItem.'Remaining Qty Cases')
+                                        }
+                                    );
+                                    Patch(
+                                        CurrentQtyCases,
+                                        First(CurrentQtyCases),
+                                        {Value: ((First(CurrentQtyCases).Value - OneFifoItem.'Remaining Qty Cases'))}
+                                    );
+                                )
+                            )
+                        )
+                    );
+                    /////////////////////////////////////////////////////////_______________STOCK UPDATION FOR PCS       ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+                    ClearCollect(
+                        CurrentQty,
+                        First(transferOutProductLines).qtyPcs
+                    );
+                    ClearCollect(
+                        SequenceTestingVariable,
+                        false
+                    );
+                    ClearCollect(
+                        SequenceNo,
+                        0
+                    );
+                    Clear(StockLinesForFIFO);
+                    ForAll(
+                        transferOutProductLines As OneProductItem,
+                        Collect(
+                            StockLinesForFIFO,
+                            Sort(
+                                //Filter(
+                                    Filter(
+                                        'Stock Transfer Lines',
+                                        ('Transfer Order No'.'Stock Transfer Header' in varGatePassHeader.headerGUID) && (SKU.'SKU Master' = OneProductItem.productId)
+                                    ),
+                                    //IsToday('Created On')
+                                //),
+                                'Manufacturing date',
+                                SortOrder.Ascending
+                            )
+                        );
+                        Patch(
+                            CurrentQty,
+                            First(CurrentQty),
+                            {Value: OneProductItem.qtyPcs}
+                        );
+                        ForAll(
+                            StockLinesForFIFO As OneFifoItem,
+                            If(
+                                First(CurrentQty).Value > 0 && OneFifoItem.'Remaining Qty Pcs' > 0 && OneFifoItem.SKU.'SKU Master' = OneProductItem.productId,
+                                //Checking First condition if the qty is less then remainining of old_______________________________________________
+                                If(
+                                    (First(CurrentQty).Value <= OneFifoItem.'Remaining Qty Pcs'),
+                                    If(
+                                        !IsBlank(
+                                            LookUp(
+                                                colManipulatedTransferLines,
+                                                skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                            )
+                                        ),
+                                        Patch(
+                                            colManipulatedTransferLines,
+                                            LookUp(
+                                                colManipulatedTransferLines,
+                                                skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                            ),
+                                            {
+                                                qtyPcs: ((LookUp(
+                                                    colManipulatedTransferLines,
+                                                    skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                                ).qtyPcs) + (First(CurrentQty).Value))
+                                            }
+                                        ),
+                                        Collect(
+                                            colManipulatedTransferLines,
+                                            {
+                                                cartItem: OneProductItem,
+                                                manDate: OneFifoItem.'Manufacturing date',
+                                                skuId: OneFifoItem.SKU.'SKU Master',
+                                                qtyCases: 0,
+                                                qtyPcs: First(CurrentQty).Value
+                                            }
+                                        );
+                                    );
+                                    ///////________________UPDATE STOCK IN STOCK TRANSFER LINES
+                    Patch(
+                                        'Stock Transfer Lines',
+                                        LookUp(
+                                            'Stock Transfer Lines' As oneStockLine,
+                                            ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date', "dd/mm/yyyy"))) /*&& IsToday(oneStockLine.'Created On')*/)
+                                        ),
+                                        {
+                                            'Remaining Qty Pcs': OneFifoItem.'Remaining Qty Pcs' - First(CurrentQty).Value,
+                                            'Invoiced Qty Pcs.': ((LookUp(
+                                                'Stock Transfer Lines' As oneStockLine,
+                                                ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date', "dd/mm/yyyy"))) /*&& IsToday(oneStockLine.'Created On')*/)
+                                            ).'Invoiced Qty Pcs.') + First(CurrentQty).Value),
+                                            'VanTransfer Out PCs Stock': ((LookUp(
+                                                'Stock Transfer Lines' As oneStockLine,
+                                                ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date', "dd/mm/yyyy"))) /*&& IsToday(oneStockLine.'Created On')*/)
+                                            ).'VanTransfer Out PCs Stock') + First(CurrentQty).Value)
+                                        }
+                                    );
+                                    Patch(
+                                        CurrentQty,
+                                        First(CurrentQty),
+                                        {Value: 0}
+                                    );
+                                    ,
+                                    //Checking Second condition if the (qty is greater then remainining pcs) && ((Qty-Rem Pcs)< Conversion) ______
+                                    ((First(CurrentQty).Value > OneFifoItem.'Remaining Qty Pcs') && ((First(CurrentQty).Value - OneFifoItem.'Remaining Qty Pcs') < (OneFifoItem.'Remaining Qty Cases' * LookUp(
+                                        'Item UOMS',
+                                        SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master'
+                                    ).'Quantity Per UOM'))),
+                                    If(
+                                        !IsBlank(
+                                            LookUp(
+                                                colManipulatedTransferLines,
+                                                skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                            )
+                                        ),
+                                        Patch(
+                                            colManipulatedTransferLines,
+                                            LookUp(
+                                                colManipulatedTransferLines,
+                                                skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                            ),
+                                            {
+                                                qtyPcs: ((LookUp(
+                                                    colManipulatedTransferLines,
+                                                    skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                                ).qtyPcs) + (First(CurrentQty).Value))
+                                            }
+                                        ),
+                                        Collect(
+                                            colManipulatedTransferLines,
+                                            {
+                                                cartItem: OneProductItem,
+                                                manDate: OneFifoItem.'Manufacturing date',
+                                                skuId: OneFifoItem.SKU.'SKU Master',
+                                                qtyCases: 0,
+                                                qtyPcs: First(CurrentQty).Value
+                                            }
+                                        );
+                                    );
+                                    
+                    //Testingggggg__________________________________________________________________________________________________
+                    Patch(
+                                        SequenceTestingVariable,
+                                        First(SequenceTestingVariable),
+                                        {Value: true}
+                                    );
+                                    ForAll(
+                                        Sequence(OneFifoItem.'Remaining Qty Cases') As sequenceNo,
+                                        If(
+                                            First(SequenceTestingVariable).Value,
+                                            If(
+                                                ((sequenceNo.Value * LookUp(
+                                                    'Item UOMS',
+                                                    SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master'
+                                                ).'Quantity Per UOM') >= (First(CurrentQty).Value - OneFifoItem.'Remaining Qty Pcs')),
+                                                Patch(
+                                                    SequenceTestingVariable,
+                                                    First(SequenceTestingVariable),
+                                                    {Value: false}
+                                                );
+                                                Patch(
+                                                    SequenceNo,
+                                                    First(SequenceNo),
+                                                    {Value: sequenceNo.Value}
+                                                );
+                                            )
+                                        )
+                                    );
+                                    ///////________________UPDATE STOCK IN STOCK TRANSFER LINES
+                    Patch(
+                                        'Stock Transfer Lines',
+                                        LookUp(
+                                            'Stock Transfer Lines' As oneStockLine,
+                                            ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date', "dd/mm/yyyy"))) /*&& IsToday(oneStockLine.'Created On')*/)
+                                        ),
+                                        {
+                                            'Remaining Qty Pcs': ((First(SequenceNo).Value) * LookUp(
+                                                'Item UOMS',
+                                                SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master'
+                                            ).'Quantity Per UOM') - (First(CurrentQty).Value - OneFifoItem.'Remaining Qty Pcs'),
+                                            'Invoiced Qty Pcs.': ((LookUp(
+                                                'Stock Transfer Lines' As oneStockLine,
+                                                ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date', "dd/mm/yyyy"))) /*&& IsToday(oneStockLine.'Created On')*/)
+                                            ).'Invoiced Qty Pcs.') + First(CurrentQty).Value),
+                                            'Remaining Qty Cases': ((LookUp(
+                                                'Stock Transfer Lines' As oneStockLine,
+                                                ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date', "dd/mm/yyyy"))) /*&& IsToday(oneStockLine.'Created On')*/)
+                                            ).'Remaining Qty Cases') - First(SequenceNo).Value),
+                                            'VanTransfer Out PCs Stock': ((LookUp(
+                                                'Stock Transfer Lines' As oneStockLine,
+                                                ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date', "dd/mm/yyyy"))) /*&& IsToday(oneStockLine.'Created On')*/)
+                                            ).'VanTransfer Out PCs Stock') + First(CurrentQty).Value)
+                                        }
+                                    );
+                                    Patch(
+                                        CurrentQty,
+                                        First(CurrentQty),
+                                        {Value: 0}
+                                    );
+                                    ,
+                                    //Checking Third condition if the (qty is greater then remainining pcs) && ((Qty-Rem Pcs)> Conversion) ______
+                                    ((First(CurrentQty).Value > OneFifoItem.'Remaining Qty Pcs') && ((First(CurrentQty).Value - OneFifoItem.'Remaining Qty Pcs') > (OneFifoItem.'Remaining Qty Cases' * LookUp(
+                                        'Item UOMS',
+                                        SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master'
+                                    ).'Quantity Per UOM'))),
+                                    If(
+                                        !IsBlank(
+                                            LookUp(
+                                                colManipulatedTransferLines,
+                                                skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                            )
+                                        ),
+                                        Patch(
+                                            colManipulatedTransferLines,
+                                            LookUp(
+                                                colManipulatedTransferLines,
+                                                skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                            ),
+                                            {
+                                                qtyPcs: (( LookUp(
+                                                    colManipulatedTransferLines,
+                                                    skuId = OneFifoItem.SKU.'SKU Master' && manDate = OneFifoItem.'Manufacturing date'
+                                                ).qtyPcs) + ((OneFifoItem.'Remaining Qty Cases' * LookUp(
+                                                    'Item UOMS',
+                                                    SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master'
+                                                ).'Quantity Per UOM') + (OneFifoItem.'Remaining Qty Pcs')))
+                                            }
+                                        ),
+                                        Collect(
+                                            colManipulatedTransferLines,
+                                            {
+                                                cartItem: OneProductItem,
+                                                manDate: OneFifoItem.'Manufacturing date',
+                                                skuId: OneFifoItem.SKU.'SKU Master',
+                                                qtyCases: 0,
+                                                qtyPcs: ((OneFifoItem.'Remaining Qty Cases' * LookUp(
+                                                    'Item UOMS',
+                                                    SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master'
+                                                ).'Quantity Per UOM') + (OneFifoItem.'Remaining Qty Pcs'))
+                                            }
+                                        );
+                                    );
+                                    ///////________________UPDATE STOCK IN STOCK TRANSFER LINES
+                    Patch(
+                                        'Stock Transfer Lines',
+                                        LookUp(
+                                            'Stock Transfer Lines' As oneStockLine,
+                                            ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date', "dd/mm/yyyy"))) /*&& IsToday(oneStockLine.'Created On')*/)
+                                        ),
+                                        {
+                                            'Remaining Qty Pcs': 0,
+                                            'Invoiced Qty Pcs.': ((LookUp(
+                                                'Stock Transfer Lines' As oneStockLine,
+                                                ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date', "dd/mm/yyyy"))) /*&& IsToday(oneStockLine.'Created On')*/)
+                                            ).'Invoiced Qty Pcs.') + ((OneFifoItem.'Remaining Qty Cases' * LookUp(
+                                                'Item UOMS',
+                                                SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master'
+                                            ).'Quantity Per UOM') + (OneFifoItem.'Remaining Qty Pcs'))),
+                                            'VanTransfer Out PCs Stock': ((LookUp(
+                                                'Stock Transfer Lines' As oneStockLine,
+                                                ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (DateValue(Text(oneStockLine.'Manufacturing date', "dd/mm/yyyy")) = DateValue(Text(OneFifoItem.'Manufacturing date', "dd/mm/yyyy"))) /*&& IsToday(oneStockLine.'Created On')*/)
+                                            ).'VanTransfer Out PCs Stock') + ((OneFifoItem.'Remaining Qty Cases' * LookUp(
+                                                'Item UOMS',
+                                                SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master'
+                                            ).'Quantity Per UOM') + (OneFifoItem.'Remaining Qty Pcs'))),
+                                            'Remaining Qty Cases': 0
+                                          /*  'Invoiced Qty Cases': ((LookUp(
+                                                'Stock Transfer Lines' As oneStockLine,
+                                                ((oneStockLine.'Transfer Order No'.'Stock Transfer Header' = OneFifoItem.'Transfer Order No'.'Stock Transfer Header') && (oneStockLine.SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master') && (oneStockLine.'Manufacturing date' = OneFifoItem.'Manufacturing date') && IsToday(oneStockLine.'Created On'))
+                                            ).'Invoiced Qty Cases') + OneFifoItem.'Remaining Qty Cases') */
+                                        }
+                                    );
+                                    Patch(
+                                        CurrentQty,
+                                        First(CurrentQty),
+                                        {
+                                            Value: ((First(CurrentQty).Value - OneFifoItem.'Remaining Qty Pcs') - (OneFifoItem.'Remaining Qty Cases' * LookUp(
+                                                'Item UOMS',
+                                                SKU.'SKU Master' = OneFifoItem.SKU.'SKU Master'
+                                            ).'Quantity Per UOM'))
+                                        }
+                                    );
+                                )
+                            )
+                        )
+                    );
+                    ClearCollect(
+                        colTransferOutHeader,
+                        Patch(
+                            'Stock Transfer Headers',
+                            Defaults('Stock Transfer Headers'),
+                            {
+                                Date: Today(),
+                                'From Location': LookUp(
+                                    Warehouses,
+                                    Warehouse = varUserVanNo.Van.Warehouse
+                                ),
+                                'To Location': LookUp(
+                                    Warehouses,
+                                    Warehouse = cmbVanTransferOutSelectVehicle.Selected.Warehouse
+                                ),
+                                'Stock transfer type': 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer'
+                            }
+                        )
+                    );
+                    ClearCollect(
+                            colOfflineStockTransferHeader,
+                            Filter(
+                                'Stock Transfer Headers',
+                                'Created On' >= Today() && 'From Location'.Warehouse = StockTransferWarehouse && 'To Location'.Warehouse = StockTransferWarehouse
+                            )
+                        );
+                        Set(varStockHeader,First(colTransferOutHeader).'Stock Transfer Header');
+                    ForAll(
+                        colManipulatedTransferLines As OneProduct,
+                        Collect(
+                            colVanTransferLine,
+                            Patch(
+                                'Stock Transfer Lines',
+                                Defaults('Stock Transfer Lines'),
+                                {
+                                    Cases: OneProduct.qtyCases,
+                                    PCs: OneProduct.qtyPcs,
+                                    Date: Today(),
+                                    'Transfer Order No': LookUp(
+                                        'Stock Transfer Headers',
+                                        'Stock Transfer Header' = varStockHeader /*First(colTransferOutHeader).'Stock Transfer Header'*/
+                                    ),
+                                    SKU: LookUp(
+                                        'SKU Masters',
+                                        'SKU Master' = OneProduct.skuId
+                                    ),
+                                    'Remaining Qty Cases': OneProduct.qtyCases,
+                                    'Remaining Qty Pcs': OneProduct.qtyPcs,
+                                    'From Location': LookUp(
+                                        Warehouses,
+                                        Warehouse = varUserVanNo.Van.Warehouse
+                                    ),
+                                    'To Location': LookUp(
+                                        Warehouses,
+                                        Warehouse = cmbVanTransferOutSelectVehicle.Selected.Warehouse
+                                    ),
+                                    'Manufacturing date': OneProduct.manDate,
+                                    ToSalesperson:ComboBox4.Selected.'Full Name'}
+                            );
+                        );
+                        
+                    );
+                    Notify(
+                        "Transfer Out request submitted successfully",
+                        NotificationType.Success,
+                        2000
+                    );
+                    //////////////////////////////////////////_______________CURRENT STOCK UPDATION_________________________________________
+                    ForAll(
+                        transferOutProductLines As CurSt,
+                        Patch(
+                            'Current Stocks',
+                            LookUp(
+                                'Current Stocks',
+                                'Item SKU'.'SKU Master' = CurSt.productId && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse && 'Created Date' >= Today()
+                            ),
+                            {
+                                Cases: Sum(
+                                    Filter(
+                                        'Stock Transfer Lines',
+                                        'Transfer Order No'.'Stock Transfer Header' in varGatePassHeader.headerGUID && SKU.'SKU Master' = CurSt.productId /*&& IsToday('Created On')*/
+                                    ),
+                                    'Remaining Qty Cases'
+                                ),
+                                PCs: Sum(
+                                    Filter(
+                                        'Stock Transfer Lines',
+                                        'Transfer Order No'.'Stock Transfer Header' in varGatePassHeader.headerGUID && SKU.'SKU Master' = CurSt.productId /*&& IsToday('Created On')*/
+                                    ),
+                                    'Remaining Qty Pcs'
+                                )
+                            }
+                        )
+                    );
+                    Set(
+                        varNewTransferRequest,
+                        false
+                    );
+                    Reset(cmbVanTransferOutSelectVehicle);
+                    Reset(ComboBox4);
+                    Set(
+                        varHarkamalAudi,
+                        Blank()
+                    );
+                    Set(
+                        varVaishaliMercedes,
+                        Blank()
+                    );
+                    Clear(transferOutProductLines);
+                    Clear(colManipulatedTransferLines)
+                Size: =_VarGblAppFonts.Size.UpperMedium
+                Text: ="Confirm"
+                Width: =130
+                X: =255
+                Y: =758
+                ZIndex: =7
+
+            contHomeCheckInDemandUpperVertical_1 As groupContainer.verticalAutoLayoutContainer:
+                Height: =431
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMode: =LayoutMode.Auto
+                Width: =630
+                Y: =315
+                ZIndex: =8
+
+                contHomeCheckInDemandUpper_1 As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    FillPortions: =0
+                    Height: =978
+                    LayoutMinHeight: =112
+                    LayoutMinWidth: =250
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+                    contHomeCheckInDemandLowerVertical_1 As groupContainer.verticalAutoLayoutContainer:
+                        Height: =415
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutMode: =LayoutMode.Auto
+                        LayoutOverflowX: =LayoutOverflow.Scroll
+                        Width: =App.Width
+                        Y: =6
+                        ZIndex: =1
+
+                        contHomeCheckInDemandHeading_1 As groupContainer.manualLayoutContainer:
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            FillPortions: =0
+                            Height: =60
+                            LayoutMinHeight: =70
+                            LayoutMinWidth: =750
+                            Width: =App.Width
+                            ZIndex: =1
+
+                            btnNewOrderHeaderProduct_10 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Subtitle
+                                Text: ="Product"
+                                Width: =220
+                                X: =5
+                                Y: =5
+                                ZIndex: =1
+
+                            btnNewOrderHeaderCases_8 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Regular
+                                Text: ="Transfer Out (Cases)"
+                                Width: =98
+                                X: =btnNewOrderHeaderPcs_24.X + btnNewOrderHeaderPcs_24.Width +5
+                                Y: =5
+                                ZIndex: =2
+
+                            btnNewOrderHeaderPcs_11 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Regular
+                                Text: ="Transfer Out (Pcs)"
+                                Width: =98
+                                X: =btnNewOrderHeaderCases_8.X + btnNewOrderHeaderCases_8.Width +5
+                                Y: =5
+                                ZIndex: =3
+
+                            btnNewOrderHeaderCases_10 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Regular
+                                Text: ="Stock (Cases)"
+                                Width: =98
+                                X: =btnNewOrderHeaderProduct_10.X + btnNewOrderHeaderProduct_10.Width + 5
+                                Y: =5
+                                ZIndex: =4
+
+                            btnNewOrderHeaderPcs_24 As button:
+                                DisabledBorderColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisabledColor: |-
+                                    =//RGBA(166, 166, 166, 1)
+                                    _VarGblAppColors.LightText
+                                DisabledFill: |-
+                                    =//RGBA(244, 244, 244, 1)
+                                    _VarGblAppColors.BisleriBlue
+                                DisplayMode: =DisplayMode.Disabled
+                                Height: =50
+                                OnSelect: =
+                                Size: =_VarGblAppFonts.Size.Regular
+                                Text: ="Stock (Pcs)"
+                                Width: =98
+                                X: =btnNewOrderHeaderCases_10.X + btnNewOrderHeaderCases_10.Width +5
+                                Y: =5
+                                ZIndex: =5
+
+                        contHomeCheckInDemandData_1 As groupContainer.horizontalAutoLayoutContainer:
+                            AlignInContainer: =AlignInContainer.SetByContainer
+                            FillPortions: =0
+                            Height: =Parent.Height-100
+                            LayoutMinHeight: =570
+                            LayoutMinWidth: =850
+                            LayoutMode: =LayoutMode.Auto
+                            Width: =App.Width
+                            ZIndex: =2
+
+                            galVanTransferOutData As gallery.galleryVertical:
+                                AccessibleLabel: ="galVanTransferOutData"
+                                Fill: |-
+                                    =RGBA(0, 0, 0, 0)
+                                    //_VarGblAppColors.BackgroundColor
+                                FocusedBorderColor: =Color.Transparent
+                                FocusedBorderThickness: =0.1
+                                Height: =508
+                                Items: |-
+                                    =/*  Filter(
+                                        'Current Stocks',
+                                       'Route No'.Area = LookUp(
+                                            Areas,
+                                            Area = varUserArea.Area.Area
+                                        ).Area && 
+                                        'Van No'.Warehouse = LookUp(
+                                            Warehouses,
+                                            Warehouse = varUserVanNo.Van.Warehouse
+                                        ).Warehouse && IsToday('Created On')
+                                    ) */
+                                    Filter(
+                                        'Current Stocks',
+                                        'Created Date' >= Today()  && 'Van No'.Warehouse = varUserVanNo.Van.Warehouse
+                                    )
+                                Layout: =Layout.Vertical
+                                LayoutMinHeight: =120
+                                LayoutMinWidth: =320
+                                ShowScrollbar: =false
+                                TabIndex: =0
+                                TemplateSize: =80
+                                Width: =620
+                                X: =5
+                                Y: =354
+                                ZIndex: =1
+
+                                btnVanTransferOutBackground As button:
+                                    DisabledFill: |-
+                                        =//RGBA(244, 244, 244, 1)
+                                        ColorFade( _VarGblAppColors.BisleriBlue, 80%)
+                                    DisplayMode: =DisplayMode.Disabled
+                                    Height: =galVanTransferOutData.TemplateHeight
+                                    OnSelect: =Select(Parent)
+                                    Size: =24
+                                    Text: =""
+                                    Width: =Parent.Width-10
+                                    ZIndex: =1
+
+                                lblVanTransferOutProductName As label:
+                                    Align: =Align.Center
+                                    Color: =_VarGblAppColors.BisleriBlue
+                                    Height: =44
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Regular
+                                    Text: =ThisItem.'Item SKU'.'SKU Code'
+                                    Width: =220
+                                    Y: =1
+                                    ZIndex: =2
+
+                                txtVanTransferOutCases As text:
+                                    AccessibleLabel: ="txtVanTransferOutCases"
+                                    Align: =Align.Center
+                                    BorderColor: |-
+                                        =//RGBA(0, 18, 107, 1)
+                                        ColorFade( _VarGblAppColors.BisleriBlue, -30%)
+                                    Default: =LookUp(transferOutProductLines, productId=ThisItem.'Item SKU'.'SKU Master').qtyCases
+                                    DisplayMode: |-
+                                        =/*If(
+                                            LookUp(
+                                                'Item Masters',
+                                                'Item Master' = LookUp(
+                                                    'SKU Masters',
+                                                    'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                ).'Item Code'.'Item Master'
+                                            ).UOM = 'UOM (Item Masters)'.Cases,
+                                            DisplayMode.Edit,
+                                            DisplayMode.Disabled
+                                        )*/
+                                         DisplayMode.Edit
+                                    Fill: |-
+                                        =If(
+                                            Not(IsBlank(Self.Text)),
+                                            If(
+                                                Value(Self.Text) > ThisItem.Cases,
+                                                ColorFade(
+                                                    Color.Red,
+                                                    60%
+                                                ),
+                                                 Color.White
+                                            ),
+                                            Color.White
+                                        )
+                                    FocusedBorderThickness: =2
+                                    Format: =TextFormat.Number
+                                    Height: =41
+                                    HoverBorderColor: =ColorFade( _VarGblAppColors.BisleriBlue, 30%)
+                                    HoverFill: |-
+                                        =//RGBA(186, 202, 226, 1)
+                                        ColorFade(_VarGblAppColors.BisleriBlue, 100%)
+                                    OnChange: |-
+                                        =If(
+                                            (Self.Text <> "" And Value(Self.Text) <> RoundDown(
+                                                Value(Self.Text),
+                                                0
+                                            ) Or Value(Self.Text) < 1) And !IsBlank(Value(Self.Text)),
+                                            Notify(
+                                                "Please enter whole number",
+                                                NotificationType.Information,
+                                                1000
+                                            );
+                                            Reset(Self),
+                                            If(
+                                                (IsBlank(Self.Text) Or Value(Self.Text) = 0) && LookUp(
+                                                    transferOutProductLines,
+                                                    productId = ThisItem.'Item SKU'.'SKU Master'
+                                                ).qtyPcs = 0,
+                                                Remove(
+                                                    transferOutProductLines,
+                                                    LookUp(
+                                                        transferOutProductLines,
+                                                        productId = ThisItem.'Item SKU'.'SKU Master'
+                                                    )
+                                                )
+                                            );
+                                            If(
+                                                Value(Self.Text) <= ThisItem.Cases,
+                                                If(
+                                                    !IsBlank(
+                                                        LookUp(
+                                                            transferOutProductLines,
+                                                            productId = ThisItem.'Item SKU'.'SKU Master'
+                                                        )
+                                                    ),
+                                                    Patch(
+                                                        transferOutProductLines,
+                                                        LookUp(
+                                                            transferOutProductLines,
+                                                            productId = ThisItem.'Item SKU'.'SKU Master'
+                                                        ),
+                                                        {qtyCases: Value(Self.Text)}
+                                                    );
+                                                    ,
+                                                    Collect(
+                                                        transferOutProductLines,
+                                                        {
+                                                            productId: ThisItem.'Item SKU'.'SKU Master',
+                                                            qtyCases: Value(Self.Text),
+                                                            qtyPcs: 0
+                                                        }
+                                                    );
+                                                );
+                                                If(
+                                                    IsBlank(Self.Text) Or Value(Self.Text) = 0,
+                                                    Remove(
+                                                        transferOutProductLines,
+                                                        LookUp(
+                                                            transferOutProductLines,
+                                                            productId = ThisItem.'Item SKU'.'SKU Master'
+                                                        )
+                                                    )
+                                                );
+                                                ,
+                                                Notify(
+                                                    "Quantity cannot be greater than the current stock",
+                                                    NotificationType.Error,
+                                                    2000
+                                                );
+                                                Reset(txtVanTransferOutCases);
+                                            );
+                                            
+                                        )
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Width: =65
+                                    X: =450
+                                    Y: =19
+                                    ZIndex: =6
+
+                                txtVanTransferOutPcs As text:
+                                    AccessibleLabel: ="txtVanTransferOutPcs"
+                                    Align: =Align.Center
+                                    BorderColor: |-
+                                        =//RGBA(0, 18, 107, 1)
+                                        ColorFade( _VarGblAppColors.BisleriBlue, -30%)
+                                    Default: =LookUp(transferOutProductLines, productId=ThisItem.'Item SKU'.'SKU Master').qtyPcs
+                                    DisplayMode: |-
+                                        =/*If(
+                                            LookUp(
+                                                'Item Masters',
+                                                'Item Master' = LookUp(
+                                                    'SKU Masters',
+                                                    'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                ).'Item Code'.'Item Master'
+                                            ).UOM = 'UOM (Item Masters)'.PCs,
+                                            DisplayMode.Edit,
+                                            DisplayMode.Disabled
+                                        )*/
+                                         DisplayMode.Edit
+                                    Fill: |-
+                                        =If(
+                                            Not(IsBlank(Self.Text)),
+                                            If(
+                                                Value(Self.Text) > ThisItem.PCs,
+                                                ColorFade(
+                                                    Color.Red,
+                                                    60%
+                                                ),
+                                                 Color.White
+                                            ),
+                                            Color.White
+                                        )
+                                    FocusedBorderThickness: =2
+                                    Format: =TextFormat.Number
+                                    Height: =41
+                                    HoverBorderColor: =ColorFade( _VarGblAppColors.BisleriBlue, 30%)
+                                    HoverFill: |-
+                                        =//RGBA(186, 202, 226, 1)
+                                        ColorFade(_VarGblAppColors.BisleriBlue, 100%)
+                                    OnChange: |-
+                                        =If(
+                                            Self.Text <> "" And Value(Self.Text) <> RoundDown(
+                                                Value(Self.Text),
+                                                0
+                                            ) Or Value(Self.Text)<1,
+                                            Notify(
+                                                "Please enter whole number",
+                                                NotificationType.Information,
+                                                1000
+                                            );
+                                            Reset(Self),
+                                            If(
+                                                Value(Self.Text) <= ((ThisItem.PCs) + (LookUp(
+                                                    'Item UOMS',
+                                                    SKU.'SKU Master' = ThisItem.'Item SKU'.'SKU Master'
+                                                ).'Quantity Per UOM' * ThisItem.Cases)),
+                                                If(
+                                                    !IsBlank(
+                                                        LookUp(
+                                                            transferOutProductLines,
+                                                            productId = ThisItem.'Item SKU'.'SKU Master'
+                                                        )
+                                                    ),
+                                                    Patch(
+                                                        transferOutProductLines,
+                                                        LookUp(
+                                                            transferOutProductLines,
+                                                            productId = ThisItem.'Item SKU'.'SKU Master'
+                                                        ),
+                                                        {qtyPcs: Value(Self.Text)}
+                                                    );
+                                                    ,
+                                                    Collect(
+                                                        transferOutProductLines,
+                                                        {
+                                                            productId: ThisItem.'Item SKU'.'SKU Master',
+                                                            qtyCases: 0,
+                                                            qtyPcs: Value(Self.Text)
+                                                        }
+                                                    );
+                                                );
+                                                ,
+                                                Notify(
+                                                    "Quantity cannot be greater than the current stock",
+                                                    NotificationType.Error,
+                                                    2000
+                                                );
+                                                Reset(txtVanTransferOutPcs);
+                                            );
+                                            
+                                        )
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Width: =65
+                                    X: =550
+                                    Y: =19
+                                    ZIndex: =10
+
+                                lblVanTransferOutProductDescription As label:
+                                    Align: =Align.Center
+                                    Height: =44
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Tiny
+                                    Text: =ThisItem.'Item SKU'.'Item Description '
+                                    Width: =220
+                                    Y: =36
+                                    ZIndex: =11
+
+                                lblVanTransferOutProductDescription_1 As label:
+                                    Align: =Align.Center
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: =ThisItem.Cases
+                                    Width: =80
+                                    X: =237
+                                    Y: =15
+                                    ZIndex: =12
+
+                                lblVanTransferOutProductDescription_2 As label:
+                                    Align: =Align.Center
+                                    Height: =50
+                                    OnSelect: =Select(Parent)
+                                    Size: =_VarGblAppFonts.Size.Subtitle
+                                    Text: =ThisItem.PCs
+                                    Width: =80
+                                    X: =340
+                                    Y: =15
+                                    ZIndex: =13
+
+                                shpNewOrderDataRectangle1_1 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =galVanTransferOutData.TemplateHeight
+                                    OnSelect: =Select(Parent)
+                                    Width: =2
+                                    X: =222
+                                    ZIndex: =14
+
+                                shpNewOrderDataRectangle1_2 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =galVanTransferOutData.TemplateHeight
+                                    OnSelect: =Select(Parent)
+                                    Width: =2
+                                    X: =325
+                                    ZIndex: =15
+
+                                shpNewOrderDataRectangle1_3 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =galVanTransferOutData.TemplateHeight
+                                    OnSelect: =Select(Parent)
+                                    Width: =2
+                                    X: =428
+                                    ZIndex: =16
+
+                                shpNewOrderDataRectangle1_4 As rectangle:
+                                    Fill: |-
+                                        =//RGBA(56, 96, 178, 1)
+                                        _VarGblAppColors.LightText
+                                    Height: =galVanTransferOutData.TemplateHeight
+                                    OnSelect: =Select(Parent)
+                                    Width: =2
+                                    X: =532
+                                    ZIndex: =17
+
+            btnVanTransferOutConfirm_1 As button:
+                Color: =_VarGblAppColors.LightText
+                Fill: =_VarGblAppColors.BisleriBlue
+                FocusedBorderThickness: =2
+                HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+                OnSelect: |-
+                    =Set(
+                        varNewTransferRequest,
+                        false
+                    );
+                    ClearCollect(
+                        varMyVanSTockHeader,
+                        AddColumns(
+                            Filter(
+                                'Stock Transfer Headers',
+                                'To Location'.Warehouse = StockTransferWarehouse && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer' && 'Created On'>= Today()
+                            ),
+                            "headerGUID",
+                            'Stock Transfer Header'
+                        )
+                    );
+                    ClearCollect(
+                        varTransferOutSTockHeader,
+                        AddColumns(
+                            Filter(
+                                'Stock Transfer Headers',
+                                'From Location'.Warehouse = StockTransferWarehouse && 'Stock transfer type' = 'Stock transfer type (Stock Transfer Headers)'.'Van to van transfer' && 'Created On'>= Today()
+                            ),
+                            "headerGUID",
+                            'Stock Transfer Header'
+                        )
+                    );
+                    Refresh('Current Stocks');
+                    Reset(cmbVanTransferOutSelectVehicle);
+                    Reset(ComboBox4);
+                    Set(
+                        varHarkamalAudi,
+                        Blank()
+                    );
+                    Set(
+                        varVaishaliMercedes,
+                        Blank()
+                    )
+                Size: =_VarGblAppFonts.Size.Medium
+                Text: ="View Summary"
+                Visible: =Gallery13_3.Selected.Title = "Transfer OUT"
+                Width: =194
+                X: =406
+                Y: =15
+                ZIndex: =9
+

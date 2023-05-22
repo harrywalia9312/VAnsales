@@ -1,0 +1,105 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_checkindemandlineses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_checkindemandlines",
+    "MaxGetRowsCount": 2000,
+    "Name": "Check-in Demand Lines",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_cases": "Cases",
+      "zx_CheckinDemandHeader": "Check-in Demand Header",
+      "zx_checkindemandheadercalculated": "CheckInDemandHeaderCalculated",
+      "zx_checkindemandlines_AsyncOperations": "System Jobs",
+      "zx_checkindemandlines_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_checkindemandlines_DuplicateBaseRecord": "Duplicate Records (zx_checkindemandlines_DuplicateBaseRecord)",
+      "zx_checkindemandlines_DuplicateMatchingRecord": "Duplicate Records (zx_checkindemandlines_DuplicateMatchingRecord)",
+      "zx_checkindemandlines_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_checkindemandlines_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_checkindemandlines_ProcessSession": "Process Sessions",
+      "zx_checkindemandlines_SyncErrors": "Sync Errors",
+      "zx_checkindemandlinesid": "Check-in Demand Lines",
+      "zx_date": "Date",
+      "zx_name": "Demand Line No",
+      "zx_pcs": "PCs",
+      "zx_Product": "Product",
+      "zx_SKUMaster": "SKU Master"
+    },
+    "PreferredName": "Check-in Demand Lines",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Check-in Demand Lines (Views)",
+    "Name": "_zx_checkindemandlines_views",
+    "RelatedEntityName": "Check-in Demand Lines",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "07685f49-c192-42bb-bbba-db1ef3aeeeaf": "Inactive Check-in Demand Lines",
+      "64eaaca6-6c47-4ca1-8114-8f7cb0202f91": "Active Check-in Demand Lines",
+      "6cc7b1b3-b8c4-ed11-b597-002248d5da52": "Today's Demand Lines",
+      "6eb8522c-cd6c-4316-85ae-fb9740431a84": "Check-in Demand Lines Lookup View",
+      "a17a24f3-fb5d-4500-aa37-b122c90f9ea5": "Check-in Demand Lines Associated View",
+      "be252ee4-5c40-4442-927d-4d8b9d94b6c2": "Check-in Demand Lines Advanced Find View"
+    }
+  },
+  {
+    "DisplayName": "Status (Check-in Demand Lines)",
+    "Name": "zx_checkindemandlines_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Check-in Demand Lines"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Check-in Demand Lines",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Check-in Demand Lines)",
+    "Name": "zx_checkindemandlines_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Check-in Demand Lines"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Check-in Demand Lines",
+    "Type": "OptionSetInfo"
+  }
+]

@@ -1,0 +1,101 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_beatmasters",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_beatmaster",
+    "MaxGetRowsCount": 2000,
+    "Name": "Beat Masters",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_beatmaster_AsyncOperations": "System Jobs",
+      "zx_beatmaster_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_beatmaster_DuplicateBaseRecord": "Duplicate Records (zx_beatmaster_DuplicateBaseRecord)",
+      "zx_beatmaster_DuplicateMatchingRecord": "Duplicate Records (zx_beatmaster_DuplicateMatchingRecord)",
+      "zx_beatmaster_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_beatmaster_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_beatmaster_ProcessSession": "Process Sessions",
+      "zx_beatmaster_SyncErrors": "Sync Errors",
+      "zx_beatmasterid": "Beat Master",
+      "zx_beatname": "Beat name",
+      "zx_name": "Name",
+      "zx_zx_beatcustomermapping_Beatname_zx_beatma": "Beat customer mappings",
+      "zx_zx_beatplan_Beatname_zx_beatmaster": "Beat Plans",
+      "zx_zx_userbeatmapping_Beat_zx_beatmaster": "User beat mappings"
+    },
+    "PreferredName": "Beat Masters",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Beat Masters (Views)",
+    "Name": "_zx_beatmaster_views",
+    "RelatedEntityName": "Beat Masters",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "38e258bc-bbca-4e67-90f5-45bf7eb46e3b": "Inactive Beat Masters",
+      "5d2b86a6-f880-4c01-9841-ef42e402ee8e": "Beat Master Advanced Find View",
+      "88849003-1638-48de-8ee8-0f80c81c6910": "Beat Master Lookup View",
+      "bcd949c2-f493-44a6-9fa0-9f54f1d2af91": "Beat Master Associated View",
+      "c0e6f723-3add-4b54-9153-571ea1aeef07": "Active Beat Masters"
+    }
+  },
+  {
+    "DisplayName": "Status (Beat Masters)",
+    "Name": "zx_beatmaster_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Beat Masters"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Beat Masters",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Beat Masters)",
+    "Name": "zx_beatmaster_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Beat Masters"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Beat Masters",
+    "Type": "OptionSetInfo"
+  }
+]

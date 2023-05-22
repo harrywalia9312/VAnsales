@@ -1,0 +1,100 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_invoiceserieses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_invoiceseries",
+    "MaxGetRowsCount": 2000,
+    "Name": "Invoice Series",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_financialyear": "Financial Year",
+      "zx_invoiceseries_AsyncOperations": "System Jobs",
+      "zx_invoiceseries_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_invoiceseries_DuplicateBaseRecord": "Duplicate Records (zx_invoiceseries_DuplicateBaseRecord)",
+      "zx_invoiceseries_DuplicateMatchingRecord": "Duplicate Records (zx_invoiceseries_DuplicateMatchingRecord)",
+      "zx_invoiceseries_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_invoiceseries_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_invoiceseries_ProcessSession": "Process Sessions",
+      "zx_invoiceseries_SyncErrors": "Sync Errors",
+      "zx_invoiceseriesid": "Invoice Series",
+      "zx_name": "Last Sequence No",
+      "zx_RouteNo": "Route No",
+      "zx_sequenceno": "Sequence No"
+    },
+    "PreferredName": "Invoice Series",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Invoice Series (Views)",
+    "Name": "_zx_invoiceseries_views",
+    "RelatedEntityName": "Invoice Series",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "068d4461-b120-4309-84be-b5bb3dc73c5b": "Invoice Series Associated View",
+      "0a22aea3-5243-43f1-bc31-653123e260be": "Invoice Series Lookup View",
+      "1a4edde3-62b5-4337-bad8-b1323994811c": "Active Invoice Series",
+      "eeba8eb9-1591-4121-ba4f-f86080aade0f": "Invoice Series Advanced Find View",
+      "fca2f57b-166c-4154-bca8-ad185517439c": "Inactive Invoice Series"
+    }
+  },
+  {
+    "DisplayName": "Status (Invoice Series)",
+    "Name": "zx_invoiceseries_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Invoice Series"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Invoice Series",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Invoice Series)",
+    "Name": "zx_invoiceseries_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Invoice Series"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Invoice Series",
+    "Type": "OptionSetInfo"
+  }
+]

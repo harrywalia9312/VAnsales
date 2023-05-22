@@ -1,0 +1,511 @@
+"ReplacementPreviewScreen As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+    Fill: =_VarGblAppColors.LightText
+
+    compBaseHeader_4 As Header:
+        HeaderText: ="Replacement Preview"
+        ZIndex: =4
+
+    compBaseBottomBar_4 As BottomBar:
+        Y: =1026
+        ZIndex: =5
+
+    contNewReplacementUpperVertical_1 As groupContainer.verticalAutoLayoutContainer:
+        Fill: =Color.Transparent
+        Height: =500
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: |-
+            =//Parent.Width
+            640
+        Y: =145
+        ZIndex: =6
+
+        contNewReplacementUpper_1 As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: =Color.Transparent
+            Height: =978
+            LayoutMinHeight: =600
+            LayoutMinWidth: =250
+            Width: =Parent.Width
+            ZIndex: =1
+
+            contNewReplacementLowerVertical_1 As groupContainer.verticalAutoLayoutContainer:
+                Height: =600
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMode: =LayoutMode.Auto
+                LayoutOverflowX: =LayoutOverflow.Scroll
+                Width: =640
+                Y: =6
+                ZIndex: =1
+
+                contNewReplacementHeading_1 As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    FillPortions: =0
+                    Height: =60
+                    LayoutMinHeight: =70
+                    LayoutMinWidth: =750
+                    Width: =App.Width
+                    ZIndex: =1
+
+                    btnNewReplacementHeadingProduct_1 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Subtitle
+                        Text: ="Product"
+                        Width: =260
+                        X: =4
+                        ZIndex: =1
+
+                    btnNewReplacementHeadingCases_1 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Subtitle
+                        Text: ="Cases"
+                        Width: =118
+                        X: =btnNewReplacementHeadingProduct_1.X+btnNewReplacementHeadingProduct_1.Width+5
+                        ZIndex: =2
+
+                    btnNewReplacementHeadingPcs_1 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Subtitle
+                        Text: ="Pcs"
+                        Width: =118
+                        X: =btnNewReplacementHeadingCases_1.X+btnNewReplacementHeadingCases_1.Width+5
+                        ZIndex: =3
+
+                    btnNewReplacementHeadingReason_1 As button:
+                        DisabledBorderColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisabledColor: |-
+                            =//RGBA(166, 166, 166, 1)
+                            _VarGblAppColors.LightText
+                        DisabledFill: |-
+                            =//RGBA(244, 244, 244, 1)
+                            _VarGblAppColors.BisleriBlue
+                        DisplayMode: =DisplayMode.Disabled
+                        Height: =50
+                        OnSelect: =
+                        Size: =_VarGblAppFonts.Size.Subtitle
+                        Text: ="Reason"
+                        Width: =118
+                        X: =btnNewReplacementHeadingPcs_1.X+btnNewReplacementHeadingPcs_1.Width+5
+                        ZIndex: =4
+
+                contNewReplacementData_1 As groupContainer.horizontalAutoLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    Height: =287
+                    LayoutMinHeight: =600
+                    LayoutMinWidth: =App.Width
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =contNewReplacementHeading_1.Width
+                    ZIndex: =2
+
+                    galNewReplacementData_1 As gallery.galleryVertical:
+                        AccessibleLabel: ="galNewReplacementData"
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        Fill: =Color.Transparent
+                        FillPortions: =0
+                        Height: =430
+                        Items: |-
+                            =//Distinct(colReasonsVisits, 'SKU Masters'.'SKU Master')
+                            colReasonsVisits
+                        Layout: =Layout.Vertical
+                        LayoutMinHeight: =80
+                        LayoutMinWidth: =1300
+                        ShowScrollbar: =false
+                        TabIndex: =
+                        TemplateSize: =80
+                        ZIndex: =1
+
+                        btnNewReplacementDataBackground_1 As button:
+                            DisabledFill: |-
+                                =//RGBA(244, 244, 244, 1)
+                                ColorFade( _VarGblAppColors.BisleriBlue, 80%)
+                            DisplayMode: =DisplayMode.Disabled
+                            Height: =galNewReplacementData_1.TemplateHeight
+                            OnSelect: =Select(Parent)
+                            Size: =24
+                            Text: =""
+                            Width: =630
+                            ZIndex: =1
+
+                        lblNewReplacementDataProductName_1 As label:
+                            Align: =Align.Center
+                            Color: =_VarGblAppColors.BisleriBlue
+                            FontWeight: =FontWeight.Semibold
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Regular
+                            Text: =LookUp('SKU Masters', 'SKU Master' = ThisItem.id).'SKU Code'
+                            Width: =261
+                            ZIndex: =2
+
+                        txtNewReplacementDataCases_1 As text:
+                            AccessibleLabel: ="txtNewReplacementDataCases"
+                            Align: =Align.Center
+                            BorderColor: |-
+                                =//RGBA(0, 18, 107, 1)
+                                ColorFade( _VarGblAppColors.BisleriBlue, -30%)
+                            Default: |-
+                                =LookUp(
+                                        colReasonsVisits,
+                                        id = ThisItem.id
+                                    ).qtyCases
+                            DisabledColor: =RGBA(0, 0, 0, 1)
+                            DisplayMode: =DisplayMode.View
+                            FocusedBorderThickness: =2
+                            Format: =TextFormat.Number
+                            HoverBorderColor: =ColorFade( _VarGblAppColors.BisleriBlue, 30%)
+                            HoverFill: |-
+                                =//RGBA(186, 202, 226, 1)
+                                ColorFade(_VarGblAppColors.BisleriBlue, 100%)
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Subtitle
+                            Width: =80
+                            X: =287
+                            Y: =23
+                            ZIndex: =6
+
+                        txtNewReplacementDataPcs_1 As text:
+                            AccessibleLabel: ="txtNewReplacementDataPcs"
+                            Align: =Align.Center
+                            BorderColor: |-
+                                =//RGBA(0, 18, 107, 1)
+                                ColorFade( _VarGblAppColors.BisleriBlue, -30%)
+                            Default: |-
+                                =LookUp(
+                                        colReasonsVisits,
+                                        id = ThisItem.id
+                                    ).qtyPcs
+                            DisabledColor: =RGBA(0, 0, 0, 1)
+                            DisplayMode: =DisplayMode.View
+                            FocusedBorderThickness: =2
+                            Format: =TextFormat.Number
+                            HoverBorderColor: =ColorFade( _VarGblAppColors.BisleriBlue, 30%)
+                            HoverFill: |-
+                                =//RGBA(186, 202, 226, 1)
+                                ColorFade(_VarGblAppColors.BisleriBlue, 100%)
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Subtitle
+                            Width: =80
+                            X: =410
+                            Y: =23
+                            ZIndex: =7
+
+                        shpNewReplacementDataRect3_1 As rectangle:
+                            Fill: |-
+                                =//RGBA(56, 96, 178, 1)
+                                _VarGblAppColors.LightText
+                            Height: =galNewReplacementData_1.TemplateHeight
+                            OnSelect: =Select(Parent)
+                            Width: =2
+                            X: =btnNewReplacementHeadingProduct_1.Width+5
+                            ZIndex: =9
+
+                        shpNewReplacementDataRect2_1 As rectangle:
+                            Fill: |-
+                                =//RGBA(56, 96, 178, 1)
+                                _VarGblAppColors.LightText
+                            Height: =galNewReplacementData_1.TemplateHeight
+                            OnSelect: =Select(Parent)
+                            Width: =2
+                            X: =btnNewReplacementHeadingCases_1.Width+btnNewReplacementHeadingCases_1.X
+                            ZIndex: =10
+
+                        shpNewReplacementDataRect1_1 As rectangle:
+                            Fill: |-
+                                =//RGBA(56, 96, 178, 1)
+                                _VarGblAppColors.LightText
+                            Height: =galNewReplacementData_1.TemplateHeight
+                            OnSelect: =Select(Parent)
+                            Width: =2
+                            X: =btnNewReplacementHeadingPcs_1.Width+btnNewReplacementHeadingPcs_1.X
+                            ZIndex: =11
+
+                        lblNewReplacementDataProductDescription_1 As label:
+                            Align: =Align.Center
+                            FontWeight: =FontWeight.Semibold
+                            Height: =50
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Tiny
+                            Text: =LookUp('SKU Masters', 'SKU Master' = ThisItem.id).'Item Description '
+                            Width: =261
+                            X: =btnNewReplacementHeadingProduct_1.X
+                            Y: =30
+                            ZIndex: =15
+
+                        Label8_1 As label:
+                            Align: =Align.Center
+                            FontWeight: =FontWeight.Semibold
+                            Height: =47
+                            OnSelect: =Select(Parent)
+                            Size: =_VarGblAppFonts.Size.Regular
+                            Text: =ThisItem.reason
+                            Width: =118
+                            X: =512
+                            Y: =16
+                            ZIndex: =16
+
+    htmOrderListQty_3 As htmlViewer:
+        Color: =RGBA(242, 242, 242, 1)
+        Height: =71
+        HtmlText: |-
+            ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:0px solid #00B3A1; width:400px; height:50px'></div>"
+        Width: =411
+        X: =115
+        Y: =682
+        ZIndex: =7
+
+    htmOrderListQty_4 As htmlViewer:
+        Color: =RGBA(242, 242, 242, 1)
+        Height: =66
+        HtmlText: |-
+            ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:0px solid #00B3A1; width:400px; height:50px'></div>"
+        Width: =411
+        X: =114
+        Y: =749
+        ZIndex: =8
+
+    Label11 As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Bold
+        Height: =70
+        Size: =_VarGblAppFonts.Size.Title
+        Text: |-
+            =//cmbNewReplacementSelectCustomer.Selected.'Customer Name'
+            varCustomerNameReplace
+        Width: =560
+        X: =39
+        Y: =77
+        ZIndex: =15
+
+    Group7 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =15
+
+        Button9 As button:
+            Fill: =_VarGblAppColors.BisleriBlue
+            FocusedBorderThickness: =2
+            HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+            OnSelect: =Navigate(NewReplacement);
+            Size: =_VarGblAppFonts.Size.Title
+            Text: ="Edit"
+            Width: =150
+            X: =149
+            Y: =891
+            ZIndex: =13
+
+        Button9_1 As button:
+            Fill: =_VarGblAppColors.BisleriBlue
+            FocusedBorderThickness: =2
+            HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+            OnSelect: |-
+                =ClearCollect(
+                    CreateReplacementRecord,
+                    Patch(
+                        'Order Headers',
+                        Defaults('Order Headers'),
+                        {
+                            'Order Date': Now(),
+                            'Order Type': 'Order Type (Choice)'.'Replacement Order',
+                            //'Payment Type': 'Payment Type (Order Headers)'.Cash,
+                            'Total Quantity': (Sum(
+                                colReasonsVisits,
+                                qtyCases
+                            ) + Sum(
+                                colReasonsVisits,
+                                qtyPcs
+                            )),
+                            /*    'Total Amount': ((Sum(
+                                    colCartItems,
+                                    discountedPrice
+                                ) * 0.18) + Sum(
+                                    colCartItems,
+                                    discountedPrice
+                                ) + Sum(
+                                    colCartItems,
+                                    emptyJarValue
+                                )), */
+                            'Van No': LookUp(
+                                Warehouses,
+                                Warehouse = varUserVanNo.Van.Warehouse
+                            ),
+                            'Route No': LookUp(
+                                Areas,
+                                Area = varUserArea.Area.Area
+                            ),
+                            Customer: LookUp(
+                                Customers_1,
+                                Account = cmbNewReplacementSelectCustomer.Selected.Account
+                            ),
+                            Salesperson: LookUp(
+                                Users,
+                                'Primary Email' = User().Email
+                            ),
+                            'Delivery Date': Today(),
+                           'Reason (zx_reason)': 'Reason (Order Headers)'.Replacement,
+                           'Payment Status':'Payment Status Choice'.Completed
+                              /*  'Net Amount': (Sum(
+                                    colCartItems,
+                                    discountedPrice
+                                ) + Sum(
+                                    colCartItems,
+                                    emptyJarValue
+                                )),
+                                'Total Tax Amount': (Sum(
+                                    colCartItems,
+                                    discountedPrice
+                                ) * 0.18),
+                                'Total Discount Amount': Sum(
+                                    colCartItems,
+                                    discount
+                                ) */
+                        }
+                    )
+                );
+                If(
+                    !IsBlank(CreateReplacementRecord),
+                    ClearCollect(
+                        CreateReplacementItemsRecord,
+                        ForAll(
+                            colReasonsVisits As ThissItem,
+                            Patch(
+                                'Order Lines',
+                                Defaults('Order Lines'),
+                                {
+                                    'Total Quantity': ThissItem.qtyCases + ThissItem.qtyPcs,
+                                    Cases: ThissItem.qtyCases,
+                                    PCs: ThissItem.qtyPcs,
+                                    'Order Number': First(CreateReplacementRecord) /*LookUp(
+                                        'Order Headers',
+                                        'Order Number' = First(CreateReplacementRecord).'Order Number'
+                                    )*/,
+                                    Salesperson: LookUp(
+                                        Users,
+                                        'Primary Email' = User().Email
+                                    ),
+                                    'Van No': LookUp(
+                                        Warehouses,
+                                        Warehouse = varUserVanNo.Van.Warehouse
+                                    ),
+                                    'Item Type': 'Item Type (Choice)'.Paid,
+                                    'Item SKU': LookUp(
+                                        'SKU Masters',
+                                        'SKU Master' = ThissItem.id
+                                    ),
+                                    /*  'Base Price': ThissItem.price,
+                                        'Total Discount Amount': Value(ThissItem.discount),
+                                        'Tax Amount': ThissItem.discountedPrice * 0.18,
+                                        Rate: ThissItem.discountedPrice + (ThissItem.discountedPrice * 0.18) + ThissItem.emptyJarValue, */
+                                    'Customer no.': LookUp(
+                                        Customers_1,
+                                        Account = cmbNewReplacementSelectCustomer.Selected.Account
+                                    ),
+                                    'Route No': LookUp(
+                                        Areas,
+                                        Area = varUserArea.Area.Area
+                                    )
+                                }
+                            )
+                        )
+                    )
+                );
+                Set(
+                    varVisitReturnOrMenuReturn,
+                    false
+                );
+                Navigate(ReplacementScreen);
+                Clear(colReasonsVisits);
+            Size: =_VarGblAppFonts.Size.Title
+            Text: ="Confirm"
+            Width: =150
+            X: =342
+            Y: =891
+            ZIndex: =14
+
+    Group9 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =16
+
+        Label10 As label:
+            Height: =37
+            Size: =_VarGblAppFonts.Size.Title
+            Text: |-
+                ="Total Cases :"
+            Width: =170
+            X: =147
+            Y: =693
+            ZIndex: =9
+
+        Label10_2 As label:
+            Height: =37
+            Size: =_VarGblAppFonts.Size.Title
+            Text: =If(Sum(colReasonsVisits, qtyCases)>0, Sum(colReasonsVisits, qtyCases), 0)
+            Width: =170
+            X: =324
+            Y: =693
+            ZIndex: =11
+
+    Group11 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =16
+
+        Label10_1 As label:
+            Height: =37
+            Size: =_VarGblAppFonts.Size.Title
+            Text: |-
+                ="Total Pcs :"
+            Width: =170
+            X: =147
+            Y: =760
+            ZIndex: =10
+
+        Label10_3 As label:
+            Height: =37
+            Size: =_VarGblAppFonts.Size.Title
+            Text: =If(Sum(colReasonsVisits, qtyPcs)>0, Sum(colReasonsVisits, qtyPcs), 0)
+            Width: =170
+            X: =324
+            Y: =760
+            ZIndex: =12
+

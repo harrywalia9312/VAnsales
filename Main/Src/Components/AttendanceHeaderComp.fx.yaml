@@ -1,0 +1,155 @@
+AttendanceHeaderComp As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =400
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    btnAttendanceBackground As button:
+        BorderThickness: =0
+        DisabledFill: |-
+            =//RGBA(244, 244, 244, 1)
+            _VarGblAppColors.BisleriBlueLight
+        DisplayMode: =DisplayMode.Disabled
+        Height: =308
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =24
+        Text: =""
+        Width: =App.Width
+        ZIndex: =1
+
+    htmAttendanceBackground As htmlViewer:
+        BorderThickness: =1
+        Height: =343
+        HtmlText: |-
+            ="<div style='border-radius:10px; background-color:#00B3A1; width:500px; height:300px; box-shadow:rgba(0, 0, 0, 0.24) 0px 3px 8px;'></div>"
+        PaddingBottom: =0
+        PaddingLeft: =10
+        PaddingRight: =0
+        PaddingTop: =10
+        Width: =514
+        X: =62
+        Y: =62
+        ZIndex: =2
+
+    imgAttendanceProfile As image:
+        BorderColor: =RGBA(204, 204, 204, 1)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =1
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Height: =152
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Image: =User().Image
+        ImagePosition: =ImagePosition.Fill
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        RadiusBottomLeft: =100
+        RadiusBottomRight: =100
+        RadiusTopLeft: =100
+        RadiusTopRight: =100
+        Width: =152
+        X: =244
+        Y: =191
+        ZIndex: =3
+
+    lblUsernameAttendance As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        Color: =_VarGblAppColors.LightText
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Font: =_VarGblAppFonts.Heading
+        FontWeight: =FontWeight.Semibold
+        Height: =43
+        Size: =_VarGblAppFonts.Size.Title
+        Text: =User().FullName
+        Width: =419
+        X: =111
+        Y: =130
+        ZIndex: =4
+
+    lblWelcomeAttendance As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        Color: =_VarGblAppColors.PrimaryYellow
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Font: =_VarGblAppFonts.Heading
+        FontWeight: =FontWeight.Semibold
+        Height: =32
+        Size: =_VarGblAppFonts.Size.Title
+        Text: ="WELCOME"
+        X: =245
+        Y: =96
+        ZIndex: =13
+
+    icoBackAttendance As icon.BackArrow:
+        AccessibleLabel: ="icnBackHome"
+        BorderColor: =RGBA(109, 109, 109, 1)
+        Color: =_VarGblAppColors.BisleriBlue
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(220, 220, 220, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Height: =43
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Icon: =Icon.BackArrow
+        OnSelect: =Back()
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedColor: =ColorFade(RGBA(255, 200, 61, 1), 30%)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        TabIndex: =0
+        Width: =43
+        X: =22
+        Y: =18
+        ZIndex: =15
+
+    imgProfileAttendance As image:
+        AccessibleLabel: ="imgProfileHome"
+        BorderColor: =RGBA(204, 204, 204, 1)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =1
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Height: =45
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Image: =User().Image
+        ImagePosition: =ImagePosition.Fill
+        OnSelect: =Navigate('Profile Screen')
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        RadiusBottomLeft: =50
+        RadiusBottomRight: =50
+        RadiusTopLeft: =50
+        RadiusTopRight: =50
+        TabIndex: =0
+        Width: =45
+        X: =570
+        Y: =17
+        ZIndex: =16
+
+    imgBisleriAttendance As image:
+        AccessibleLabel: ="imgBisleri"
+        Height: =51
+        Image: |-
+            ="https://startupreporter.in/wp-content/uploads/2020/07/Bislerilogo.png"
+        Width: =103
+        X: =269
+        Y: =10
+        ZIndex: =17
+

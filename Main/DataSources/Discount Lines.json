@@ -1,0 +1,156 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_discountlineses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_discountlines",
+    "MaxGetRowsCount": 2000,
+    "Name": "Discount Lines",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "exchangerate": "Exchange Rate",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "transactioncurrencyid": "Currency",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_Applicablefor": "Applicable for",
+      "zx_availablequantity": "Available quantity",
+      "zx_Customer": "Customer",
+      "zx_date": "Date Discount",
+      "zx_discountamount": "Discount Amount",
+      "zx_discountamount_base": "Discount Amount (Base)",
+      "zx_discountdate": "Discount Date",
+      "zx_Discountheader": "Discount header",
+      "zx_discountin": "Discount (in %)",
+      "zx_discountlines_AsyncOperations": "System Jobs",
+      "zx_discountlines_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_discountlines_DuplicateBaseRecord": "Duplicate Records (zx_discountlines_DuplicateBaseRecord)",
+      "zx_discountlines_DuplicateMatchingRecord": "Duplicate Records (zx_discountlines_DuplicateMatchingRecord)",
+      "zx_discountlines_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_discountlines_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_discountlines_ProcessSession": "Process Sessions",
+      "zx_discountlines_SyncErrors": "Sync Errors",
+      "zx_discountlinesid": "Discount Lines",
+      "zx_maximumquantity": "Maximum Quantity",
+      "zx_minimumquantity": "Minimum Quantity",
+      "zx_name": "Code",
+      "zx_uom": "UOM",
+      "zx_Variant": "Variant"
+    },
+    "PreferredName": "Discount Lines",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Discount Lines (Views)",
+    "Name": "_zx_discountlines_views",
+    "RelatedEntityName": "Discount Lines",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "007b13fc-ceaa-4db3-a8d3-eb06f16be40d": "Discount Lines Lookup View",
+      "211801c5-1e1f-4c7c-a257-ff2c2e58c11f": "Discount Lines Advanced Find View",
+      "942655fd-4387-4947-b04a-16abc9366e2b": "Inactive Discount Lines",
+      "99d30c29-02d0-4428-a5cd-f7241c015f59": "Discount Lines Associated View",
+      "c03e6e64-96b6-ed11-b597-002248d5db8a": "Today's Discount",
+      "edce6844-989d-452d-826f-730e8e740f6d": "Active Discount Lines"
+    }
+  },
+  {
+    "DisplayName": "Status (Discount Lines)",
+    "Name": "zx_discountlines_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Discount Lines"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Discount Lines",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Discount Lines)",
+    "Name": "zx_discountlines_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Discount Lines"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Discount Lines",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "UOM Choice",
+    "Name": "zx_uom",
+    "OptionSetInfoNameMapping": {
+      "425120000": "CASE",
+      "425120001": "PCS",
+      "425120002": "NOS",
+      "425120003": "NO",
+      "425120004": "BOX"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_uom",
+        "OptionSetReferenceEntityName": "Discount Lines"
+      },
+      "OptionSetReferenceItem1": {
+        "OptionSetReferenceColumnName": "zx_skuuom",
+        "OptionSetReferenceEntityName": "Invoice Lines"
+      },
+      "OptionSetReferenceItem2": {
+        "OptionSetReferenceColumnName": "zx_uom",
+        "OptionSetReferenceEntityName": "Item UOMS"
+      },
+      "OptionSetReferenceItem3": {
+        "OptionSetReferenceColumnName": "zx_offeruom",
+        "OptionSetReferenceEntityName": "Scheme Offers"
+      },
+      "OptionSetReferenceItem4": {
+        "OptionSetReferenceColumnName": "zx_ordereduom",
+        "OptionSetReferenceEntityName": "Scheme Orders"
+      },
+      "OptionSetReferenceItem5": {
+        "OptionSetReferenceColumnName": "zx_uom",
+        "OptionSetReferenceEntityName": "SKU Masters"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_uom",
+    "RelatedEntityName": "Discount Lines",
+    "Type": "OptionSetInfo"
+  }
+]

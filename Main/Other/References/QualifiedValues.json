@@ -1,0 +1,530 @@
+{
+  "QualifiedValues": [
+    {
+      "Kind": "default.cds_customeraddress_forms",
+      "Namespace": "Addresses (Forms)",
+      "Values": {
+        "Information": "df5bef3a-9237-40bd-a27c-2cd7fd434706"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_arearetaileronboarding_forms",
+      "Namespace": "Area(Retailer Onboardings (Forms)",
+      "Values": {
+        "Information": "6cc98959-a5bf-4921-a03e-ddae109d7167"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_area_forms",
+      "Namespace": "Areas (Forms)",
+      "Values": {
+        "Information": "0ded9836-ae7a-45c1-90f7-4a5ce441462f"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_attendance_forms",
+      "Namespace": "Attendances (Forms)",
+      "Values": {
+        "Information": "c10cfca1-12a3-46b3-af4b-9371b80be556"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_bankmaster_forms",
+      "Namespace": "Bank Masters (Forms)",
+      "Values": {
+        "Information": "86bb11bd-2337-4b96-9573-f9dee4451e11"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_beatmaster_forms",
+      "Namespace": "Beat Masters (Forms)",
+      "Values": {
+        "Information": "3db62462-f6fc-4dc6-8d32-df94906955da"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_beatplan_forms",
+      "Namespace": "Beat Plans (Forms)",
+      "Values": {
+        "Information": "cd5136b5-9f71-4367-a933-c4a89fe19358"
+      }
+    },
+    {
+      "Kind": "default.cds_new_branchmaster_forms",
+      "Namespace": "Branch Masters (Forms)",
+      "Values": {
+        "Information": "3a4c8758-5f3e-4f91-982c-d69be617df1d"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_checkindemandheader_forms",
+      "Namespace": "Check-in Demand Headers (Forms)",
+      "Values": {
+        "Information": "6af882d3-2b8c-4ef0-9d3e-c595449d3327"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_checkindemandlines_forms",
+      "Namespace": "Check-in Demand Lines (Forms)",
+      "Values": {
+        "Information": "faa00c05-b1a5-4877-8e2e-466a5dda95cc"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_city_forms",
+      "Namespace": "Cities (Forms)",
+      "Values": {
+        "Information": "6cb668ed-ccb2-4a00-858f-e346b3af3c28"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_currentstock_forms",
+      "Namespace": "Current Stocks (Forms)",
+      "Values": {
+        "Information": "b99d027f-f325-4be4-8dd3-c72ce52f79f2"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_customercategory_forms",
+      "Namespace": "Customer categories (Forms)",
+      "Values": {
+        "Information": "11432ab5-bcdc-41ed-9f7a-d8e0bfe3eec9"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_customergroupdetails_forms",
+      "Namespace": "Customer group details (Forms)",
+      "Values": {
+        "Information": "01bf5526-8c16-440a-907b-d22a15221581"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_customergroup_forms",
+      "Namespace": "Customer groups (Forms)",
+      "Values": {
+        "Information": "e462b2b5-88c2-451b-a483-c384b68daf89"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_customersubcategory_forms",
+      "Namespace": "Customer sub-categories (Forms)",
+      "Values": {
+        "Information": "b84bacd3-fa47-4583-bc6c-d7c103196f9f"
+      }
+    },
+    {
+      "Kind": "default.cds_account_forms",
+      "Namespace": "Customers_1 (Forms)",
+      "Values": {
+        "Account": "8448b78f-8f42-454e-8e2a-f8196b0419af",
+        "account card": "b028db32-3619-48a5-ac51-cf3f947b0ef3",
+        "Account Card form": "cccff382-2b92-467e-bf1b-3db179512af8",
+        "Account for Interactive experience": "a72c7955-442b-4ea4-9499-b10cd18b4256",
+        "Account for Multisession experience": "ff49442f-8c60-4877-bdae-8fe51e6f4636",
+        "Account form for Customer Card": "f5f9a07e-0f28-ed11-9db1-000d3a8d107a",
+        "Account Hierarchy Tile Form": "69cff312-cfb6-4289-9631-249ab85d2c62",
+        "Account Quick Create": "c9e7ec2d-efca-4e4c-b3e3-f63c4bba5e4b",
+        "Account Reference Panel": "098ae145-1567-41ec-8398-86dbaac70c9b",
+        "Accounts Dashboard": "15915835-b87c-49ec-9ffc-bfac3ac44ef1",
+        "App for Outlook Account Card": "fb65cc73-181c-468b-9bb3-82ecde306991",
+        "App for Outlook Account Quick View": "76b81f10-2a08-4f1a-9454-ee38bea94eb5",
+        "Cases For Customer": "48028ae0-bf87-48c9-adf6-3dc9f29d7661",
+        "Customer main form": "06885587-918d-ed11-81ad-002248d5db8a",
+        "Customer profile": "e9a9c8a9-e94d-47a9-a6c3-ec37ddb83b99",
+        "In Context Form": "face3aa6-99c4-4b7e-af07-55f121cdca86",
+        "Information": "b053a39a-041a-4356-acef-ddf00182762b",
+        "Recent Cases and Entitlements": "43300723-f867-420b-ab28-976a4d12e6c4",
+        "Sales Insights": "cb430327-bcc1-416d-959d-db7592e685af",
+        "Social Profiles": "2205c86d-ed88-4a2f-a447-3b86a8781f2e",
+        "TimelineWallControl - Account- Main": "6df8e8ce-7655-468c-925e-660d59aa7f4c"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_discountheader_forms",
+      "Namespace": "Discount Headers (Forms)",
+      "Values": {
+        "Information": "446ed7aa-3afd-406d-83ea-cc5075b9663d"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_discountlines_forms",
+      "Namespace": "Discount Lines (Forms)",
+      "Values": {
+        "Information": "e28af5f5-088c-483b-a0a1-bbdf861d9426"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_district_forms",
+      "Namespace": "Districts (Forms)",
+      "Values": {
+        "Information": "042e4746-0cae-43a4-8d35-f09076ba8a92"
+      }
+    },
+    {
+      "Kind": "default.cds_duplicaterecord_forms",
+      "Namespace": "Duplicate Records (Forms)",
+      "Values": {}
+    },
+    {
+      "Kind": "default.cds_zx_hsnmasters_forms",
+      "Namespace": "HSN Masters (Forms)",
+      "Values": {
+        "Information": "0e679806-7ff5-4dce-baa4-eaa0e79d9cea"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_invoiceheader_forms",
+      "Namespace": "Invoice Headers (Forms)",
+      "Values": {
+        "Information": "5dcfa6bb-d60c-469d-b4bd-7a05cdcd9bab"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_invoicelines_forms",
+      "Namespace": "Invoice Lines (Forms)",
+      "Values": {
+        "Information": "d08cb635-fd15-4c1e-9d9c-e8dda7ecc4b5"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_invoiceseries_forms",
+      "Namespace": "Invoice Series (Forms)",
+      "Values": {
+        "Information": "3839e196-ae7a-464e-a7ea-f55f91ee5694"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_itemmaster_forms",
+      "Namespace": "Item Masters (Forms)",
+      "Values": {
+        "Information": "54a44bf2-8c1e-4ed6-a6d1-f61fbd6bbe16",
+        "Item Master main form": "e02e7640-548b-ed11-81ad-002248d5da52"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_itempricing_forms",
+      "Namespace": "Item Pricing lines (Forms)",
+      "Values": {
+        "Information": "002b27b8-7bd1-44ce-a3f5-fc8b6bfbadcc"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_itempricingmaster_forms",
+      "Namespace": "Item pricing masters (Forms)",
+      "Values": {
+        "Information": "1a66f478-6731-4a41-bdc0-a83c229bbe42"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_itemuom_forms",
+      "Namespace": "Item UOMS (Forms)",
+      "Values": {
+        "Information": "748cc640-5fef-49a7-b6ba-df932a7bee52"
+      }
+    },
+    {
+      "Kind": "default.cds_knowledgearticle_forms",
+      "Namespace": "Knowledge Articles (Forms)",
+      "Values": {
+        "Article Content": "f8a3420a-23b6-4098-9742-46f505602172",
+        "Article Related Versions": "53c74c18-823c-4d38-8f58-649252da6835",
+        "Article View Count": "ddc7bced-64ae-4496-a8cf-bc8699cf1ab0",
+        "Knowledge Article": "e7ef555e-7f57-4164-b604-59fa4f0a7e2e",
+        "Knowledge Article Card": "77d76460-872e-42f3-9a9c-a2465f465409",
+        "Knowledge Article for Interactive experience": "f7502aaf-4874-49fc-868d-cc201c6c4453",
+        "Knowledge Article Quick Create": "f7d3b417-6220-42ac-9aec-228621129f3b",
+        "Related Articles": "cb6b2f21-b844-4192-8561-b285f2708d08"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_locationvanmapping_forms",
+      "Namespace": "Location VAN Mappings (Forms)",
+      "Values": {
+        "Information": "803ce123-0f90-4d2b-8b4a-b5a661414ed9"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_orderheader_forms",
+      "Namespace": "Order Headers (Forms)",
+      "Values": {
+        "Information": "422b7adb-ed81-4fa0-ba71-9168f732ac68"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_orderlines_forms",
+      "Namespace": "Order Lines (Forms)",
+      "Values": {
+        "Information": "cd5bb0d5-6388-426d-9613-ea4e85b9d295"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_payments_forms",
+      "Namespace": "Payments (Forms)",
+      "Values": {
+        "Information": "542e5e82-1424-4ead-9bcf-933993a6e1d6"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_pincode_forms",
+      "Namespace": "Pincodes (Forms)",
+      "Values": {
+        "Information": "eff7ec68-073a-4b00-8416-eba9c11ade65"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_schemeapplicability_forms",
+      "Namespace": "Scheme Applicabilities (Forms)",
+      "Values": {
+        "Information": "a69e73a0-d541-4d43-a866-925e5db1f038"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_schemeheader_forms",
+      "Namespace": "Scheme Headers (Forms)",
+      "Values": {
+        "Information": "fdc9c5e2-7338-473f-832c-fb585c317dbe"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_schemeoffers_forms",
+      "Namespace": "Scheme Offers (Forms)",
+      "Values": {
+        "Information": "e9500253-180d-45ed-9465-dedc8b9d6f96"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_schemeorder_forms",
+      "Namespace": "Scheme Orders (Forms)",
+      "Values": {
+        "Information": "f1875c9e-651c-480d-aa9d-cb35492bfca4"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_skumaster_forms",
+      "Namespace": "SKU Masters (Forms)",
+      "Values": {
+        "Information": "1f8c3c80-2adc-4237-9f43-e8f218e43556"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_state_forms",
+      "Namespace": "States (Forms)",
+      "Values": {
+        "Information": "db920383-3094-4b53-a3b1-657c3f12e1d3"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_stockinventory_forms",
+      "Namespace": "Stock Inventories (Forms)",
+      "Values": {
+        "Information": "b61a59be-8153-4dda-bdb5-e09f7dd7a49d"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_stocktransferheader_forms",
+      "Namespace": "Stock Transfer Headers (Forms)",
+      "Values": {
+        "Information": "fe206aa0-8bef-477d-a9f9-c7d3e1b15f5a"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_stocktransferlines_forms",
+      "Namespace": "Stock Transfer Lines (Forms)",
+      "Values": {
+        "Information": "0c97d21f-2547-46bc-82f2-83e10286655f"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_taluka_forms",
+      "Namespace": "Talukas (Forms)",
+      "Values": {
+        "Information": "d351a338-086e-44f5-9cbc-c74a03046d36"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_temporarycreditlimit_forms",
+      "Namespace": "Temporary Credit Limits (Forms)",
+      "Values": {
+        "Information": "f5186f45-9508-4dc2-8bf4-fed5288de616"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_userareamapping_forms",
+      "Namespace": "User Area Mappings (Forms)",
+      "Values": {
+        "Information": "e01d14dc-b090-4602-95ff-d0ad30657f4a"
+      }
+    },
+    {
+      "Kind": "default.cds_systemuser_forms",
+      "Namespace": "Users (Forms)",
+      "Values": {
+        "Application User": "d26924ef-4d80-46f7-ab1d-e6ae80a54ce8",
+        "Information": "094fb08a-77bb-49e0-b7ea-8dbddfd01294",
+        "User": "c2cd9e55-d4b4-4b55-9951-16ead79643e5",
+        "User form – Business": "c2413504-7eb2-4c59-a087-95d819866114",
+        "User Hierarchy Tile Form": "c68d6c09-d7a7-4959-8d0f-44b8cff9b452",
+        "User main form": "68ed7b79-4f8b-ed11-81ad-002248d5db8a"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_visits_forms",
+      "Namespace": "Visits (Forms)",
+      "Values": {
+        "Information": "4f9a2774-74ae-4ce2-b090-f559286c0c77"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_warehouse_forms",
+      "Namespace": "Warehouses (Forms)",
+      "Values": {
+        "Information": "b72f83a5-92e6-4cf7-b95b-db6a6395a851"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_route_forms",
+      "Namespace": "Routes (Forms)",
+      "Values": {
+        "Information": "fff6abbe-0ed5-413c-970f-f44faf97a750"
+      }
+    },
+    {
+      "Kind": "default.cds_site_forms",
+      "Namespace": "Sites (Forms)",
+      "Values": {
+        "Information": "43ba7bd4-22ad-4993-b0e9-949540585faa"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_customer_forms",
+      "Namespace": "Customers (Forms)",
+      "Values": {
+        "Information": "956ec530-bfa3-45ab-bddc-ea1e63b31cbb"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_hsnmaster_forms",
+      "Namespace": "HSN Masters (Forms)1",
+      "Values": {
+        "Information": "22896905-19e9-473b-b1e6-856ee721308d"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_itempricing_forms",
+      "Namespace": "Item Pricings (Forms)",
+      "Values": {
+        "Information": "002b27b8-7bd1-44ce-a3f5-fc8b6bfbadcc"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_itemsmaster_forms",
+      "Namespace": "Items Masters (Forms)",
+      "Values": {
+        "Information": "fc6bf63d-6966-4f77-9cda-fc2b9f5cba76"
+      }
+    },
+    {
+      "Kind": "default.cds_account_forms",
+      "Namespace": "Accounts (Forms)",
+      "Values": {
+        "Account": "8448b78f-8f42-454e-8e2a-f8196b0419af",
+        "account card": "b028db32-3619-48a5-ac51-cf3f947b0ef3",
+        "Account Card form": "cccff382-2b92-467e-bf1b-3db179512af8",
+        "Account for Interactive experience": "a72c7955-442b-4ea4-9499-b10cd18b4256",
+        "Account for Multisession experience": "ff49442f-8c60-4877-bdae-8fe51e6f4636",
+        "Account Hierarchy Tile Form": "69cff312-cfb6-4289-9631-249ab85d2c62",
+        "Account Quick Create": "c9e7ec2d-efca-4e4c-b3e3-f63c4bba5e4b",
+        "Account Reference Panel": "098ae145-1567-41ec-8398-86dbaac70c9b",
+        "Accounts Dashboard": "15915835-b87c-49ec-9ffc-bfac3ac44ef1",
+        "App for Outlook Account Card": "fb65cc73-181c-468b-9bb3-82ecde306991",
+        "App for Outlook Account Quick View": "76b81f10-2a08-4f1a-9454-ee38bea94eb5",
+        "Customer profile": "e9a9c8a9-e94d-47a9-a6c3-ec37ddb83b99",
+        "In Context Form": "face3aa6-99c4-4b7e-af07-55f121cdca86",
+        "Information": "b053a39a-041a-4356-acef-ddf00182762b",
+        "Recent Cases and Entitlements": "43300723-f867-420b-ab28-976a4d12e6c4",
+        "Sales Insights": "cb430327-bcc1-416d-959d-db7592e685af",
+        "Social Profiles": "2205c86d-ed88-4a2f-a447-3b86a8781f2e",
+        "TimelineWallControl - Account- Main": "6df8e8ce-7655-468c-925e-660d59aa7f4c"
+      }
+    },
+    {
+      "Kind": "default.cds_new_beat_forms",
+      "Namespace": "Beats (Forms)",
+      "Values": {
+        "Information": "19d33ae2-e2c2-49cd-9148-e2c27fe73dad"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_userbeatmapping_forms",
+      "Namespace": "User beat mappings (Forms)",
+      "Values": {
+        "Information": "8bb282f3-14cf-45f7-a06d-ef1a9f112ec2"
+      }
+    },
+    {
+      "Kind": "default.cds_product_forms",
+      "Namespace": "Products (Forms)",
+      "Values": {
+        "Information": "42805efb-1f65-4ae8-91bc-618967a55c6e",
+        "Product": "a640be62-63f6-4027-90d7-48c014a7c6f3",
+        "Product family Quick Create": "fd57aeed-ab95-4a32-9c6c-61ae92d2a296",
+        "Product Hierarchy Tile Form": "44c9f1ee-9bce-4c6f-9a7f-6568be05c41c",
+        "Product Quick Create": "672e520b-6bbc-47f8-977f-228bfc6d8faf"
+      }
+    },
+    {
+      "Kind": "default.cds_salesorderdetail_forms",
+      "Namespace": "Order Products (Forms)",
+      "Values": {
+        "Information": "2bb64321-6da0-4a1a-8466-62b40cc6bc7a",
+        "SalesOrderDetail": "a54fa9b7-bd31-49c4-8ccd-b8ccc42f4fc4"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_user_forms",
+      "Namespace": "Users (Forms)1",
+      "Values": {
+        "Information": "902c62bc-06cf-4654-bccf-efcb1a25e9ff"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_user_forms",
+      "Namespace": "Users (Forms)2",
+      "Values": {
+        "Information": "902c62bc-06cf-4654-bccf-efcb1a25e9ff"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_user_forms",
+      "Namespace": "Users (Forms)3",
+      "Values": {
+        "Information": "902c62bc-06cf-4654-bccf-efcb1a25e9ff"
+      }
+    },
+    {
+      "Kind": "default.cds_systemuser_forms",
+      "Namespace": "Users_1 (Forms)",
+      "Values": {
+        "Application User": "d26924ef-4d80-46f7-ab1d-e6ae80a54ce8",
+        "Information": "094fb08a-77bb-49e0-b7ea-8dbddfd01294",
+        "User": "c2cd9e55-d4b4-4b55-9951-16ead79643e5",
+        "User form – Business": "c2413504-7eb2-4c59-a087-95d819866114",
+        "User Hierarchy Tile Form": "c68d6c09-d7a7-4959-8d0f-44b8cff9b452"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_user_forms",
+      "Namespace": "Users (Forms)4",
+      "Values": {
+        "Information": "902c62bc-06cf-4654-bccf-efcb1a25e9ff"
+      }
+    },
+    {
+      "Kind": "default.cds_zx_hsnmasters_forms",
+      "Namespace": "HSN Masters (Forms)11",
+      "Values": {
+        "Information": "0e679806-7ff5-4dce-baa4-eaa0e79d9cea"
+      }
+    }
+  ]
+}

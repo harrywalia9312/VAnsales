@@ -1,0 +1,100 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_bankmasters",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_bankmaster",
+    "MaxGetRowsCount": 2000,
+    "Name": "Bank Masters",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr8eb_bankid": "BankID",
+      "cr8eb_code": "Code",
+      "cr8eb_zx_payments_Bank_zx_bankmaster": "Payments",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_bankmaster_AsyncOperations": "System Jobs",
+      "zx_bankmaster_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_bankmaster_DuplicateBaseRecord": "Duplicate Records (zx_bankmaster_DuplicateBaseRecord)",
+      "zx_bankmaster_DuplicateMatchingRecord": "Duplicate Records (zx_bankmaster_DuplicateMatchingRecord)",
+      "zx_bankmaster_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_bankmaster_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_bankmaster_ProcessSession": "Process Sessions",
+      "zx_bankmaster_SyncErrors": "Sync Errors",
+      "zx_bankmasterid": "Bank Master",
+      "zx_name": "Name"
+    },
+    "PreferredName": "Bank Masters",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Bank Masters (Views)",
+    "Name": "_zx_bankmaster_views",
+    "RelatedEntityName": "Bank Masters",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "305304c0-1bb5-45f5-8563-a719c3f8b6a8": "Inactive Bank Masters",
+      "87d13321-54f6-48d2-b4ef-9f8ea69a7e13": "Bank Master Associated View",
+      "883775fe-57c1-4ca6-863e-36cd98f8a467": "Bank Master Lookup View",
+      "cf72fb7e-fa62-4f52-99d0-6ce43cef81f8": "Active Bank Masters",
+      "d217e12b-2128-45a1-8194-96a2a21b7708": "Bank Master Advanced Find View"
+    }
+  },
+  {
+    "DisplayName": "Status (Bank Masters)",
+    "Name": "zx_bankmaster_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Bank Masters"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Bank Masters",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Bank Masters)",
+    "Name": "zx_bankmaster_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Bank Masters"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Bank Masters",
+    "Type": "OptionSetInfo"
+  }
+]

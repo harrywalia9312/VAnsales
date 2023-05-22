@@ -1,0 +1,102 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_itempricingmasters",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_itempricingmaster",
+    "MaxGetRowsCount": 2000,
+    "Name": "Item pricing masters",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_branch": "Branch",
+      "zx_branchcalculated": "BranchCalculated",
+      "zx_BranchSite": "Branch/Site\u00A0",
+      "zx_Customerpricegroup": "Customer price group",
+      "zx_itempricingmaster_AsyncOperations": "System Jobs",
+      "zx_itempricingmaster_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_itempricingmaster_DuplicateBaseRecord": "Duplicate Records (zx_itempricingmaster_DuplicateBaseRecord)",
+      "zx_itempricingmaster_DuplicateMatchingRecord": "Duplicate Records (zx_itempricingmaster_DuplicateMatchingRecord)",
+      "zx_itempricingmaster_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_itempricingmaster_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_itempricingmaster_ProcessSession": "Process Sessions",
+      "zx_itempricingmaster_SyncErrors": "Sync Errors",
+      "zx_itempricingmasterid": "Item pricing master",
+      "zx_name": "Name",
+      "zx_zx_itempricing_Itempriceheader_zx_itempri": "Item Pricing lines"
+    },
+    "PreferredName": "Item pricing masters",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Item pricing masters (Views)",
+    "Name": "_zx_itempricingmaster_views",
+    "RelatedEntityName": "Item pricing masters",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "8b92315d-6e5c-4799-a0f9-503947bc4b99": "Active Item pricing masters",
+      "cc35ec43-ba11-47f2-b363-b181e9e3efd6": "Inactive Item pricing masters",
+      "ddca6019-a524-4507-9894-8e745a070a7d": "Item pricing master Advanced Find View",
+      "dec5d714-1a21-4b34-ab2b-b4408dde6eb0": "Item pricing master Lookup View",
+      "fb25f20f-6f53-4ced-a122-01709e72de88": "Item pricing master Associated View"
+    }
+  },
+  {
+    "DisplayName": "Status (Item pricing masters)",
+    "Name": "zx_itempricingmaster_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Item pricing masters"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Item pricing masters",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Item pricing masters)",
+    "Name": "zx_itempricingmaster_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Item pricing masters"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Item pricing masters",
+    "Type": "OptionSetInfo"
+  }
+]

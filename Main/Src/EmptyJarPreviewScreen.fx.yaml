@@ -1,0 +1,300 @@
+"EmptyJarPreviewScreen As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+    Fill: =_VarGblAppColors.LightText
+
+    compBaseHeader_5 As Header:
+        HeaderText: ="Empty Jar Preview"
+        ZIndex: =4
+
+    compBaseBottomBar_5 As BottomBar:
+        Y: =1026
+        ZIndex: =5
+
+    htmOrderListQty_5 As htmlViewer:
+        Color: =RGBA(242, 242, 242, 1)
+        Height: =71
+        HtmlText: |-
+            ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:0px solid #00B3A1; width:400px; height:50px'></div>"
+        Width: =411
+        X: =115
+        Y: =682
+        ZIndex: =7
+
+    htmOrderListQty_6 As htmlViewer:
+        Color: =RGBA(242, 242, 242, 1)
+        Height: =66
+        HtmlText: |-
+            ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:0px solid #00B3A1; width:400px; height:50px'></div>"
+        Width: =411
+        X: =114
+        Y: =749
+        ZIndex: =8
+
+    Label11_1 As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Bold
+        Height: =70
+        Size: =_VarGblAppFonts.Size.Title
+        Text: ="Akash Traders"
+        Width: =560
+        X: =39
+        Y: =77
+        ZIndex: =15
+
+    Group7_1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =15
+
+        Button9_2 As button:
+            Fill: =_VarGblAppColors.BisleriBlue
+            FocusedBorderThickness: =2
+            HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+            OnSelect: =Navigate(NewEmptyJar)
+            Size: =_VarGblAppFonts.Size.Title
+            Text: ="Edit"
+            Width: =150
+            X: =149
+            Y: =891
+            ZIndex: =13
+
+        Button9_3 As button:
+            Fill: =_VarGblAppColors.BisleriBlue
+            FocusedBorderThickness: =2
+            HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+            OnSelect: =Navigate(EmptyJarScreen)
+            Size: =_VarGblAppFonts.Size.Title
+            Text: ="Confirm"
+            Width: =150
+            X: =342
+            Y: =891
+            ZIndex: =14
+
+    htmOrderListQty_7 As htmlViewer:
+        Color: =RGBA(242, 242, 242, 1)
+        Height: =66
+        HtmlText: |-
+            ="<div style='border-radius:10px 10px 10px 10px; background-color:#B3E8E3; opacity:1; border:0px solid #00B3A1; width:400px; height:50px'></div>"
+        Width: =411
+        X: =113
+        Y: =815
+        ZIndex: =16
+
+    Group9_1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =16
+
+        Label10_4 As label:
+            Height: =37
+            Size: =_VarGblAppFonts.Size.Title
+            Text: |-
+                ="Price Per Unit :"
+            Width: =200
+            X: =147
+            Y: =693
+            ZIndex: =9
+
+        Label10_6 As label:
+            Height: =37
+            Size: =_VarGblAppFonts.Size.Title
+            Text: ="₹ 150"
+            Width: =170
+            X: =350
+            Y: =693
+            ZIndex: =11
+
+    Group11_1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =16
+
+        Label10_5 As label:
+            Height: =37
+            Size: =_VarGblAppFonts.Size.Title
+            Text: |-
+                ="Total Qty :"
+            Width: =170
+            X: =147
+            Y: =760
+            ZIndex: =10
+
+        Label10_7 As label:
+            Height: =37
+            Size: =_VarGblAppFonts.Size.Title
+            Text: ="14"
+            Width: =170
+            X: =350
+            Y: =760
+            ZIndex: =12
+
+    galNewEmptyJarData_1 As gallery.galleryVertical:
+        AccessibleLabel: ="galNewEmptyJarData"
+        Fill: |-
+            =//RGBA(0, 0, 0, 0)
+            _VarGblAppColors.LightText
+        Height: =456
+        Items: |-
+            =Table(
+                {
+                    Pcode:"FBB000501443600WHGNP",
+                    PDec:"By the Bay Hand Purifier Gel 50MLX144 PCS MRP 3600",
+                    Cases:"6",
+                    Pcs:"0",
+                    Reason:"Leakage"
+                },
+                {
+                    Pcode:"FVW00500200800WHGN",
+                    PDec:"BISLERI VEDICA MOUNTAIN 500ML (HEXA) (MRP 800)",
+                    Cases:"8",
+                    Pcs:"2",
+                    Reason:"Return"
+                }
+            )
+        Layout: =Layout.Vertical
+        ShowScrollbar: =false
+        TabIndex: =0
+        TemplateSize: =80
+        Width: =628
+        X: =4
+        Y: =197
+        ZIndex: =19
+
+        btnNewEmptyJarGalBackground_1 As button:
+            DisabledFill: |-
+                =//RGBA(244, 244, 244, 1)
+                ColorFade( _VarGblAppColors.BisleriBlue, 80%)
+            DisplayMode: =DisplayMode.Disabled
+            Height: =galNewEmptyJarData_1.TemplateHeight
+            OnSelect: =Select(Parent)
+            Size: =24
+            Text: =""
+            Width: =614
+            X: =2
+            ZIndex: =1
+
+        lblNewEmptyJarGalProductCode_1 As label:
+            Align: =Align.Center
+            Color: =_VarGblAppColors.BisleriBlue
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Size: =_VarGblAppFonts.Size.Regular
+            Text: =ThisItem.Pcode
+            Width: =404
+            X: =1
+            Y: =6
+            ZIndex: =2
+
+        shpNewEmptyJarGalRect1_1 As rectangle:
+            Fill: |-
+                =//RGBA(56, 96, 178, 1)
+                _VarGblAppColors.LightText
+            Height: =galNewEmptyJarData_1.TemplateHeight
+            OnSelect: =Select(Parent)
+            Width: =2
+            X: =405
+            ZIndex: =10
+
+        txtNewEmptyJarGalQty_1 As text:
+            AccessibleLabel: ="txtNewEmptyJarGalQty"
+            Align: =Align.Center
+            BorderColor: |-
+                =//RGBA(0, 18, 107, 1)
+                ColorFade( _VarGblAppColors.BisleriBlue, -30%)
+            Default: =ThisItem.Cases
+            DisplayMode: =DisplayMode.View
+            FocusedBorderThickness: =2
+            Format: =TextFormat.Number
+            HoverBorderColor: =ColorFade( _VarGblAppColors.BisleriBlue, 30%)
+            HoverFill: |-
+                =//RGBA(186, 202, 226, 1)
+                ColorFade(_VarGblAppColors.BisleriBlue, 100%)
+            OnSelect: =Select(Parent)
+            Size: =_VarGblAppFonts.Size.Subtitle
+            Width: =100
+            X: =472
+            Y: =23
+            ZIndex: =11
+
+        lblNewEmptyJarGalProductDescription_1 As label:
+            Align: =Align.Center
+            Height: =50
+            OnSelect: =Select(Parent)
+            Size: =_VarGblAppFonts.Size.Tiny
+            Text: =ThisItem.PDec
+            Width: =403
+            X: =2
+            Y: =30
+            ZIndex: =12
+
+    Group11_2 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =19
+
+        Label10_8 As label:
+            Height: =37
+            Size: =_VarGblAppFonts.Size.Title
+            Text: |-
+                ="Total Amount :"
+            Width: =200
+            X: =146
+            Y: =826
+            ZIndex: =17
+
+        Label10_9 As label:
+            Height: =37
+            Size: =_VarGblAppFonts.Size.Title
+            Text: ="₹ 2100"
+            Width: =170
+            X: =349
+            Y: =826
+            ZIndex: =18
+
+    btnNewOrderHeaderProduct_20 As button:
+        DisabledBorderColor: |-
+            =//RGBA(166, 166, 166, 1)
+            _VarGblAppColors.BisleriBlue
+        DisabledColor: |-
+            =//RGBA(166, 166, 166, 1)
+            _VarGblAppColors.LightText
+        DisabledFill: |-
+            =//RGBA(244, 244, 244, 1)
+            _VarGblAppColors.BisleriBlue
+        DisplayMode: =DisplayMode.Disabled
+        Height: =50
+        OnSelect: =
+        Size: =_VarGblAppFonts.Size.Subtitle
+        Text: ="Product"
+        Width: =400
+        X: =12
+        Y: =142
+        ZIndex: =20
+
+    btnNewOrderHeaderPcs_26 As button:
+        DisabledBorderColor: |-
+            =//RGBA(166, 166, 166, 1)
+            _VarGblAppColors.BisleriBlue
+        DisabledColor: |-
+            =//RGBA(166, 166, 166, 1)
+            _VarGblAppColors.LightText
+        DisabledFill: |-
+            =//RGBA(244, 244, 244, 1)
+            _VarGblAppColors.BisleriBlue
+        DisplayMode: =DisplayMode.Disabled
+        Height: =50
+        OnSelect: =
+        Size: =_VarGblAppFonts.Size.Subtitle
+        Text: ="Qty"
+        Width: =210
+        X: =417
+        Y: =142
+        ZIndex: =21
+

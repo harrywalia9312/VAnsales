@@ -1,0 +1,1209 @@
+"OrderInfo As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+    OnVisible: |-
+        = Set(datavar,oh.'Net Amount');
+         Set(WholeNumberVar, First(ForAll(Split(datavar,"."), {Result: ThisRecord.Value})));
+        Set(DecimalNumberVar,Last(ForAll(Split(datavar,"."), {Result: ThisRecord.Value})));
+        
+        Clear(expandedForm);
+        
+        
+        // Create a table that separates each digit to include its Value and Position. Make a placeholder for its Place and Period.
+        ForAll(RenameColumns(ForAll(Split(WholeNumberVar.Result,""), {Result: ThisRecord.Value}),"Result","Char"),
+            Collect(expandedForm,
+                {
+                    Value: Value(Char),
+                    Position: 
+                        // Determine the position of each character as a difference between the length of the number and how many digits have already been collected.
+                        Len(WholeNumberVar.Result)-CountRows(expandedForm),
+                    Place: 0,
+                    Period: 0
+                }
+            )
+        );
+        
+        // Update the Place and Period using the Position.
+        ForAll(RenameColumns(expandedForm,"Position","Pos"),
+            Patch(expandedForm,LookUp(expandedForm,Pos=Position),
+                {
+                    Place:
+                        // Determine if a given column is a one, ten, or hundred based on its position.
+                        Switch(true,
+                            Mod(Pos-1,3)=0,1,
+                            Mod(Pos+1,3)=0,10,
+                            100
+                        ),
+                    Period: 
+                        // Determine what Period a digit belongs to based on its position.
+                        RoundUp(Pos/3,0)-1
+                }
+            )
+        );
+        Clear(expandedForm1);
+        ForAll(RenameColumns(ForAll(Split(DecimalNumberVar.Result,""), {Result1: ThisRecord.Value}),"Result1","Char1"),
+            Collect(expandedForm1,
+                {
+                    Value1: Value(Char1),
+                    Position1: 
+                        // Determine the position of each character as a difference between the length of the number and how many digits have already been collected.
+                        Len(DecimalNumberVar.Result)-CountRows(expandedForm1),
+                    Place1: 0,
+                    Period1: 0
+                }
+            )
+        );
+        ForAll(RenameColumns(expandedForm1,"Position1","Pos1"),
+            Patch(expandedForm1,LookUp(expandedForm1,Pos1=Position1),
+                {
+                    Place1:
+                        // Determine if a given column is a one, ten, or hundred based on its position.
+                        Switch(true,
+                            Mod(Pos1-1,3)=0,1,
+                            Mod(Pos1+1,3)=0,1,
+                            100
+                        ),
+                    Period1: 
+                        // Determine what Period a digit belongs to based on its position.
+                        RoundUp(Pos1/3,0)-1
+                }
+            )
+        );
+        Set(numbertoword, If(IsBlank(Find(".",Text(datavar))),
+        Concatenate(
+        Concat(
+            GroupBy(expandedForm,"Period","PeriodGroup"),
+            
+        // Read the hundred in the period.
+        LookUp(PlaceValue,Digit=LookUp(PeriodGroup,Place=100).Value,Word & " ") &
+        
+        // For 10-19, read the tens and ones together, otherwise separately.
+        If(LookUp(PeriodGroup,Place=10).Value=1,
+            LookUp(PlaceValue,Digit=Value(Concat(Filter(PeriodGroup,Place<>100),Text(Value))),Word & " "),
+            Concat(Filter(PeriodGroup,Place<>100),LookUp(PlaceValue,Digit=Value && Column=Place,Word & " "))
+        ) &
+        
+        // Read the period.
+        Coalesce(LookUp(Table1,Group=Period,Name & ","),"")),
+        "Rupees"),
+        Concatenate(
+        Concat(
+            GroupBy(expandedForm,"Period","PeriodGroup"),
+            
+        // Read the hundred in the period.
+        LookUp(PlaceValue,Digit=LookUp(PeriodGroup,Place=100).Value,Word & " ") &
+        
+        // For 10-19, read the tens and ones together, otherwise separately.
+        If(LookUp(PeriodGroup,Place=10).Value=1,
+            LookUp(PlaceValue,Digit=Value(Concat(Filter(PeriodGroup,Place<>100),Text(Value))),Word & " "),
+            Concat(Filter(PeriodGroup,Place<>100),LookUp(PlaceValue,Digit=Value && Column=Place,Word & " "))
+        ) &
+        
+        // Read the period.
+        Coalesce(LookUp(Table1,Group=Period,Name & ","),"")
+        ),
+        Concatenate("Rupees & ",Concatenate(
+        Concat(
+            GroupBy(expandedForm1,"Period1","PeriodGroup1"),
+            
+        // Read the hundred in the period.
+        LookUp(PlaceValue,Digit=LookUp(PeriodGroup1,Place1=100).Value1,Word & " ") &
+        
+        // For 10-19, read the tens and ones together, otherwise separately.
+        If(LookUp(PeriodGroup1,Place1=10).Value1=1,
+            LookUp(PlaceValue,Digit=Value(Concat(Filter(PeriodGroup1,Place1<>100),Text(Value1))),Word & " "),
+            Concat(Filter(PeriodGroup1,Place1<>100),LookUp(PlaceValue,Digit=Value1 && Column=Place1,Word & " "))
+        ) &
+        
+        // Read the period.
+        Coalesce(LookUp(Table1,Group=Period1,Group & ","),"")
+        )
+        )))))
+
+    Canvas1 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =960
+        Width: =Parent.Width
+        Y: =Header_5.Y + Header_5.Height
+        ZIndex: =3
+
+        DataCard1 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =1601
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            btnCustomer360InfoBackground_2 As button:
+                DisabledBorderColor: =ColorFade(Self.Fill, -30%)
+                DisabledFill: =_VarGblAppColors.LightText
+                DisplayMode: =DisplayMode.Disabled
+                Fill: =_VarGblAppColors.LightText
+                Height: =688
+                RadiusBottomLeft: =20
+                RadiusBottomRight: =20
+                RadiusTopLeft: =20
+                RadiusTopRight: =20
+                Size: =24
+                Text: =""
+                Width: =Parent.Width-20
+                X: =10
+                Y: =199
+                ZIndex: =1
+
+            OrderHeader As gallery.variableTemplateHeightGallery:
+                AccessibleLabel: ="OrderHeader"
+                DelayItemLoading: =true
+                FocusedBorderColor: =Color.Transparent
+                FocusedBorderThickness: =0.5
+                Height: =1262
+                Items: |-
+                    =Table(
+                          {
+                            col1: "Order Type",
+                            col2: Text(oh.'Order Type')
+                        },
+                        {
+                            col1: "Order Date",
+                            col2: Text(
+                                oh.'Order Date',
+                                "dd-mm-yyyy"
+                            )
+                        },
+                        {
+                            col1: "Customer",
+                            col2: oh.Customer.'Customer Name'
+                        },
+                        {
+                            col1: "Delivery Date",
+                            col2: Text(
+                                oh.'Delivery Date',
+                                "dd-mm-yyyy"
+                            )
+                        },
+                        {
+                            col1: "Route",
+                            col2: Text(oh.'Route No'.'Name (zx_names)')
+                        },
+                        {
+                            col1: "Salesperson",
+                            col2: Text(oh.Salesperson.'First Name')
+                        },
+                        {
+                            col1: "Total Deposit Amount",
+                            col2: Text(oh.'Total Deposit Amount')
+                        },
+                        {
+                            col1: "Invoice No",
+                            //col2: Text(oh.'Van No'.Name)
+                            col2: LookUp('Invoice Headers', 'Order Number'.'Order Number'=oh.'Order Number').'Invoice Number'
+                        },
+                        {
+                            col1: "Reason",
+                            col2: Text(oh.'Reason (zx_reason)')
+                        },
+                        {
+                            col1: "Total Quantity",
+                            col2: Text(oh.'Total Quantity')
+                        }
+                    )
+                Layout: =Layout.Vertical
+                LoadingSpinner: =LoadingSpinner.Data
+                TabIndex: =0
+                TemplateSize: =84
+                Y: =199
+                ZIndex: =2
+
+                Col1 As label:
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =2
+                    Color: =Color.Black
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    FocusedBorderThickness: =4
+                    OnSelect: |-
+                        =//Navigate('customer info',ScreenTransition.Fade, {detailsssssss69: ThisItem.Account});
+                        //Reset(customerinfo)
+                        Navigate('Customer Detail Screen', ScreenTransition.Cover, {CustData:ThisItem})
+                    Size: =16
+                    TabIndex: =0
+                    Text: =ThisItem.col1
+                    Width: =379
+                    X: =30
+                    Y: =14
+                    ZIndex: =5
+
+                lblGalCustomerAddress_16 As label:
+                    Align: =Align.Right
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =2
+                    Color: =Color.Black
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    FocusedBorderThickness: =4
+                    Size: =16
+                    Text: =If(!IsBlank(ThisItem.col2),ThisItem.col2,"-")
+                    Width: =308
+                    X: =290
+                    Y: =14
+                    ZIndex: =18
+
+                shpCustomer360InfoRect2_2 As rectangle:
+                    BorderStyle: =BorderStyle.Dotted
+                    BorderThickness: =0.5
+                    Height: =0.5
+                    Width: |
+                        =Parent.Width-60
+                    X: =25
+                    Y: =60
+                    ZIndex: =19
+
+            OrderLine As gallery.variableTemplateHeightGallery:
+                AccessibleLabel: ="OrderLine"
+                DelayItemLoading: =true
+                Fill: =_VarGblAppColors.LightText
+                FocusedBorderColor: =Color.Transparent
+                FocusedBorderThickness: =0.5
+                Height: =824
+                Items: =Filter('Order Lines','Order Number'.'Order Id'=oh.'Order Id')
+                Layout: =Layout.Vertical
+                LoadingSpinner: =LoadingSpinner.Data
+                ShowScrollbar: =false
+                TabIndex: =0
+                TemplatePadding: =0
+                TemplateSize: =250
+                Y: =917
+                ZIndex: =3
+
+                htmPaymentSummary_1 As htmlViewer:
+                    Color: =RGBA(242, 242, 242, 1)
+                    Height: =212
+                    HtmlText: |-
+                        ="<div style='border-radius:15px 15px 15px 15px; background-color:#E6F7F6; width:620px; height:195px'></div>"
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingTop: =0
+                    Width: =630
+                    X: =10
+                    ZIndex: =1
+
+                lblPaymentSummaryTotalAmt_2 As label:
+                    Color: =_VarGblAppColors.HeaderBg
+                    Height: =30
+                    OnSelect: =Select(Parent)
+                    Size: =_VarGblAppFonts.Size.Regular
+                    Text: |-
+                        ="Total Amount:"
+                    X: =331
+                    Y: =113
+                    ZIndex: =2
+
+                lblPaymentSummaryTotalAmtValue_2 As label:
+                    Color: =_VarGblAppColors.BisleriBlue
+                    FontWeight: =FontWeight.Bold
+                    Height: =30
+                    OnSelect: =Select(Parent)
+                    Size: =_VarGblAppFonts.Size.Regular
+                    Text: ="₹" & ThisItem.'Rate (Base)'
+                    Width: =120
+                    X: =466
+                    Y: =113
+                    ZIndex: =3
+
+                lblPaymentSummaryRoute_1 As label:
+                    Color: =_VarGblAppColors.HeaderBg
+                    Height: =30
+                    OnSelect: =Select(Parent)
+                    Size: =_VarGblAppFonts.Size.Regular
+                    Text: |-
+                        ="Van No :"
+                    Width: =85
+                    X: =49
+                    Y: =113
+                    ZIndex: =4
+
+                lblPaymentSummaryRouteValue_1 As label:
+                    Color: =_VarGblAppColors.BisleriBlue
+                    FontWeight: =FontWeight.Bold
+                    Height: =30
+                    OnSelect: =Select(Parent)
+                    Size: =_VarGblAppFonts.Size.Regular
+                    Text: =ThisItem.'Van No'.Name
+                    Width: =200
+                    X: =137
+                    Y: =113
+                    ZIndex: =5
+
+                lblPaymentSummaryInvoice_1 As label:
+                    Color: =_VarGblAppColors.HeaderBg
+                    Height: =30
+                    OnSelect: =Select(Parent)
+                    Size: =_VarGblAppFonts.Size.Regular
+                    Text: ="Cases"
+                    Width: =120
+                    X: =49
+                    Y: =152
+                    ZIndex: =6
+
+                lblPaymentSummaryInvoiceValue_1 As label:
+                    Color: =_VarGblAppColors.BisleriBlue
+                    FontWeight: =FontWeight.Bold
+                    Height: =30
+                    OnSelect: =Select(Parent)
+                    Size: =_VarGblAppFonts.Size.Regular
+                    Text: =If(ThisItem.Cases>0, ThisItem.Cases, 0)
+                    Width: =159
+                    X: =137
+                    Y: =152
+                    ZIndex: =7
+
+                Button16 As button:
+                    BorderStyle: =BorderStyle.None
+                    DisabledFill: =_VarGblAppColors.BisleriBlue
+                    DisplayMode: =DisplayMode.Disabled
+                    Height: =56
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =24
+                    Text: =""
+                    Width: =Parent.Width-20
+                    X: =10
+                    ZIndex: =8
+
+                lblPaymentSummaryTotalAmt_3 As label:
+                    Color: =_VarGblAppColors.HeaderBg
+                    Height: =30
+                    OnSelect: =Select(Parent)
+                    Size: =_VarGblAppFonts.Size.Regular
+                    Text: ="Pcs"
+                    X: =332
+                    Y: =152
+                    ZIndex: =9
+
+                lblPaymentSummaryTotalAmtValue_3 As label:
+                    Color: =_VarGblAppColors.BisleriBlue
+                    FontWeight: =FontWeight.Bold
+                    Height: =30
+                    OnSelect: =Select(Parent)
+                    Size: =_VarGblAppFonts.Size.Regular
+                    Text: =If(ThisItem.PCs>0, ThisItem.PCs, 0)
+                    Width: =163
+                    X: =467
+                    Y: =152
+                    ZIndex: =10
+
+                lblVisitName_3 As label:
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =2
+                    Color: =_VarGblAppColors.LightText
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    FocusedBorderThickness: =4
+                    FontWeight: =FontWeight.Bold
+                    Height: =54
+                    OnSelect: =
+                    Size: =16
+                    TabIndex: =
+                    Text: ="Order Line No " & ThisItem.'Order Line No'
+                    Width: =350
+                    X: =41
+                    Y: =2
+                    ZIndex: =13
+
+                lblGalCustomerAddress_15 As label:
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =2
+                    Color: =_VarGblAppColors.PrimaryText
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    FocusedBorderThickness: =4
+                    FontWeight: =FontWeight.Semibold
+                    Height: =22
+                    Size: =12
+                    Text: |-
+                        ="Item SKU
+                        "
+                    Width: =140
+                    X: =49
+                    Y: =72
+                    ZIndex: =14
+
+                lblGalCustomerAddress_17 As label:
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =2
+                    Color: =_VarGblAppColors.BisleriBlue
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    FocusedBorderThickness: =4
+                    FontWeight: =FontWeight.Bold
+                    Height: =22
+                    Size: =12
+                    Text: =ThisItem.'Item SKU'.'SKU Code'
+                    Width: =250
+                    X: =137
+                    Y: =72
+                    ZIndex: =15
+
+                Button15 As button:
+                    BorderColor: =Color.White
+                    DisabledBorderColor: =RGBA(255, 255, 255, 1)
+                    DisabledColor: =_VarGblAppColors.BisleriBlue
+                    DisplayMode: =DisplayMode.Disabled
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Height: =27
+                    OnSelect: =Select(Parent)
+                    Size: =14
+                    Text: =ThisItem.'Item Type'
+                    Width: =87
+                    X: =493
+                    Y: =15
+                    ZIndex: =16
+
+            htmPaymentSummary_2 As htmlViewer:
+                Color: =RGBA(242, 242, 242, 1)
+                Height: =165
+                HtmlText: |-
+                    ="<div style='border-radius:15px 15px 15px 15px; background-color:#E6F7F6; width:620px; height:155px'></div>"
+                OnSelect: =
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingTop: =0
+                Width: =630
+                X: =5
+                Y: =21
+                ZIndex: =4
+
+            lblCustomer360CustomerId_2 As label:
+                FontWeight: =FontWeight.Semibold
+                Height: =38
+                Size: =_VarGblAppFonts.Size.Medium
+                Text: |-
+                    ="Order No :"
+                Width: =118
+                X: =35
+                Y: =54
+                ZIndex: =5
+
+            lblCustomer360CustomerIdValue_2 As label:
+                FocusedBorderColor: =Color.Transparent
+                FocusedBorderThickness: =0.5
+                FontWeight: =FontWeight.Semibold
+                Height: =35
+                OnSelect: |
+                    =oh
+                Size: =_VarGblAppFonts.Size.Medium
+                TabIndex: =
+                Text: =oh.'Order Id'
+                Width: =108
+                X: =172
+                Y: =57
+                ZIndex: =6
+
+            lblCustomer360Beat_2 As label:
+                FontWeight: =FontWeight.Semibold
+                Height: =30
+                Size: =_VarGblAppFonts.Size.Medium
+                Text: |-
+                    ="Order Date :"
+                Width: =155
+                X: =271
+                Y: =107
+                ZIndex: =7
+
+            lblCustomer360BeatValue_2 As label:
+                FontWeight: =FontWeight.Semibold
+                Height: =30
+                Size: =_VarGblAppFonts.Size.Medium
+                Text: |-
+                    = Text(
+                                oh.'Order Date',
+                                "dd-mm-yyyy"
+                            )
+                Width: =155
+                X: =440
+                Y: =107
+                ZIndex: =8
+
+            lblCustomer360ContactPerson_2 As label:
+                FontWeight: =FontWeight.Semibold
+                Height: =30
+                Size: =_VarGblAppFonts.Size.Medium
+                Text: |-
+                    ="Route No : "
+                Width: =180
+                X: =35
+                Y: =107
+                ZIndex: =9
+
+            lblCustomer360ContactPersonValue_2 As label:
+                FontWeight: =FontWeight.Semibold
+                Height: =30
+                Size: =_VarGblAppFonts.Size.Medium
+                Text: =oh.'Route No'.'Name (zx_name)'
+                Width: =118
+                X: =172
+                Y: =107
+                ZIndex: =10
+
+            Button15_1 As button:
+                BorderColor: =Color.White
+                DisabledBorderColor: =RGBA(255, 255, 255, 1)
+                DisabledColor: =_VarGblAppColors.BisleriBlue
+                DisabledFill: =RGBA(255, 255, 255, 1)
+                DisplayMode: =DisplayMode.Disabled
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =38
+                OnSelect: =
+                Size: =18
+                Text: ="₹ " &oh.'Net Amount'
+                Width: =133
+                X: =485
+                Y: =35
+                ZIndex: =11
+
+            Container10_1 As groupContainer.manualLayoutContainer:
+                Height: =0
+                Width: =640
+                Y: =1741
+                ZIndex: =12
+
+                HtmlText2_1 As htmlViewer:
+                    AutoHeight: =true
+                    Height: =68
+                    HtmlText: |-
+                        ="
+                         <p ><center style=""font-size:24px""><b>Bisleri International Pvt.Ltd.</b></center> </p>
+                        <p style=""font-size:24px"">Western Express Highway,Andheri<E>, Mumbai- 400099 Tel No. +(91)-22-61447000, Fax: +(91)-22-61447145</p>
+                        
+                        
+                        <p style=""line-height:2px;""></p>
+                        <p style=""line-height:5px;font-size:24px"">CIN:015540MH1984PC12572</p>
+                        <p style=""line-height:2px;font-size:24px"">GSTIN:27AACCA4355K1ZL </p>
+                        <p style=""line-height:2px;font-size:24px"">FSSAI Lic No:10013022001539 </p>
+                        <p style=""line-height:2px;font-size:24px"">State Code:27, MAHARASHTRA </p>
+                        <p></p>
+                        "& If(First(Invoicedata2).'IRN Message'="N","<p><center style=""font-size:24px""><b>DELIVERY CHALLAN </b></center></p>",
+                        "<p><center style=""font-size:24px""><b>TAX INVOICE </b></center></p>")&"
+                        <p></p>
+                        <p style=""line-height:2px;font-size:24px"">Invoice No.:" & First(Invoicedata2).'Invoice Number' & " </p>
+                        <p style=""line-height:2px;font-size:24px"">Invoice Date:" & Text(
+                            First(Invoicedata2).'Invoice Date',
+                            DateTimeFormat.ShortDate
+                        ) & " Route No.: " & First(Invoicedata2).'Route No'.'Name (zx_name)' & "</p>
+                        <p style=""line-height:2px;font-size:24px"">Customer Code:" & First(Invoicedata2).Customer.'Customer Code' & " </p>
+                        <p style=""font-size:24px"">Name & Add of Customer:" & First(Invoicedata2).Customer.'Customer Name' & First(Invoicedata2).Customer.'Address 1: Street 1' &"                                        </p>
+                        <p style=""font-size:24px"">State Code:27, MAHARASHTRA                                </p>
+                        <p style=""line-height:2px;font-size:24px"">GSTIN No.:" & First(Invoicedata2).Customer.GSTIN & "                                                          </p>
+                        <p style=""line-height:2px;font-size:24px"">FSSAI No.:" & First(Invoicedata2).Customer.FSSAI & "                                                          </p>
+                        <p style=""line-height:2px;font-size:24px"">Reverse Charge: No" & " </p>
+                        <p style=""font-size:24px"">IRN No.:" & First(Invoicedata2).'IRN Number' & "  </p>
+                        <p></p>
+                        <font size=""5"" style=""text-align:left;"" >
+                        <table  width='80%'>" & "<thead><tr><th>HSN No</th><th>Cases</th><th>Pcs&nbsp;&nbsp;</th><th>&nbsp;&nbsp;Rate</th><th>&nbsp;&nbsp;Amt</th></thead>" & "<tbody>" & Concat(
+                            Invoicelinedata2 As item,
+                            "<tr><td>" & item.'Item HSN Code' & "</td><td>" & item.Cases & "</td><td>" & item.PCs & "</td><td>" & item.'Base Amount' &"</td><td>" & item.Rate & "</td></tr>" & "<tr><td colspan=""6"">" & item.'Item SKU'.'Item Description ' & "<td></tr><tr><td colspan=""2"">Batch:" & item.'Batch No' & "</td><td colspan=""3"">Mfg Dt." & Text(
+                                item.'Manufacturing Date',
+                                DateTimeFormat.ShortDate
+                            ) & "</td></tr>"
+                        ) & "</tbody></table>""
+                        </font>
+                        <p></p>
+                        
+                        <p style=""line-height:2px;font-size:24px"">Total Price of Goods (INR) :&nbsp;" & First(Invoicedata2).'Total Amount (Base)' & " </p>
+                        " & If(
+                            (First(Invoicedata2).'9 Percent') > 0,
+                            "<p style=""line-height:2px;font-size:24px"">CGST 9% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" & First(Invoicedata2).'9 Percent' & "</p>"
+                        ) & "
+                        " & If(
+                            (First(Invoicedata2).'9 Percent') > 0,
+                            "<p style=""line-height:2px;font-size:24px"">SGST 9% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" & First(Invoicedata2).'9 Percent' & "</p>"
+                        ) & "
+                        " & If(
+                            (First(Invoicedata2).'6 Percent') > 0,
+                            "<p style=""line-height:2px;font-size:24px"">CGST 6% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" & First(Invoicedata2).'6 Percent' & "</p>"
+                        ) & "
+                        " & If(
+                            (First(Invoicedata2).'6 Percent') > 0,
+                            "<p style=""line-height:2px;font-size:24px"">SGST 6% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" & First(Invoicedata2).'6 Percent' & "</p>"
+                        ) & "
+                        " & If(
+                            (First(Invoicedata2).'14 Percent') > 0,
+                            "<p style=""line-height:2px;font-size:24px"">CGST 14% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" & First(Invoicedata2).'14 Percent' & "</p>"
+                        ) & "
+                        " & If(
+                            (First(Invoicedata2).'14 Percent') > 0,
+                            "<p style=""line-height:2px;font-size:24px"">SGST 14% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" & First(Invoicedata2).'14 Percent' & "</p>"
+                        ) & ""& If(
+                            (First(Invoicedata2).'CESS Percentage') > 0,
+                            "<p style=""line-height:2px;font-size:24px"">CESS 12% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" & First(Invoicedata2).'CESS Percentage' & "</p>"
+                        ) & "
+                        <p style=""line-height:2px;font-size:24px"">Rounding Off 0.0</p>
+                        <p></p>
+                        <p style=""font-size:24px"">Total (INR) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" & First(Invoicedata2).'Net Amount' & " </p>
+                        <p></p>
+                        <p style=""font-size:24px"">Invoice Amount (In Words):" & Upper(numbertoword) & "</p>
+                        <p></p>
+                        <p></p>
+                        <p style=""font-size:24px"">Please make all Payment in following Bank Account: </p>
+                        <p></p>
+                        <p style=""line-height:2px;font-size:24px"">Bank Name: KOTAK MAHINDRA BANK </p>
+                        <p style=""line-height:2px;font-size:24px"">Bank Account No.: 7311278470 </p>
+                        <p style=""line-height:2px;font-size:24px"">IFS/NEFT: KKBK0000674 </p>
+                        <p></p>
+                        <p> </p>
+                        <p></p>
+                        <p style=""font-size:24px"">We reserve to ourselves the right to demand payments of this bill at any time before due date. A 11 disputes are subject to Mumbai Jurisdiction. The Company reserves its right to charge interest on overdue unpaid bill. Claim of any nature whatsoever will lapse unless raised in 3 days from the date of Invoice. Goods once sold cannot be returned and/or exchanged. No claim for shortage, damage, breakage etc will be entertained. </p>
+                        <p></p>
+                        <p style=""font-size:24px"">We hereby declare that statutory details in respect of customer mentioned in this invoice are as per information provided by the customer. The receiver of the invoice should confirm the statutory details mentioned on the Invoice. The customer may revert to the company if any variations are observed in the Invoice details within 7 days from the date of Invoice. No claims and alternation would be entertained thereafter. </p>
+                        <p></p>
+                        <p style=""font-size:24px"">Certified that the particular's given above are true and correct. </p>
+                        <p ></p>
+                        <p style=""font-size:24px"">For BISLERI INTERNATIONAL PVT. LTD. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        "
+                    PaddingBottom: =20
+                    Width: =560
+                    X: =40
+                    Y: =432
+                    ZIndex: =1
+
+                Image1 As image:
+                    Height: =450
+                    Image: =First(Invoicedata2).QR.Value
+                    Width: =450
+                    X: =58
+                    ZIndex: =2
+
+            btnPaymentConfirm_9 As button:
+                DisplayMode: |-
+                    =If(
+                        (!IsBlank(
+                            LookUp(
+                                AllCustomerss,
+                                Account = oh.Customer.Account
+                            ).GSTIN
+                        ) && (((LookUp(
+                            AllCustomerss,
+                            Account = oh.Customer.Account
+                        ).'Customer Group'.Name <> "KEY-RT") && LookUp(
+                            AllCustomerss,
+                            Account = oh.Customer.Account
+                        ).Branch.Name = "PUNE") || ((LookUp(
+                            AllCustomerss,
+                            Account = oh.Customer.Account
+                        ).'Customer Group'.Name <> "COR-RT") && LookUp(
+                            AllCustomerss,
+                            Account = oh.Customer.Account
+                        ).Branch.Name = "Mumbai"))) && LookUp(
+                            'Invoice Headers',
+                            'Order Number'.'Order Number' = oh.'Order Number'
+                        ).'IRN Message' <> "Y" && oh.'Created On' >= Today() && oh.'Payment Status' = 'Payment Status Choice'.Completed,
+                        DisplayMode.Edit,
+                        DisplayMode.Disabled
+                    )
+                Fill: =_VarGblAppColors.BisleriBlue
+                FocusedBorderThickness: =2
+                Height: =38
+                HoverFill: =ColorFade(_VarGblAppColors.BisleriBlue, -20%)
+                OnSelect: |
+                    =//Clear(ManipulatedCartCollection);
+                    If(
+                        !IsBlank(
+                            LookUp(
+                                AllCustomerss,
+                                Account = oh.Customer.Account
+                            ).GSTIN
+                        ) && (((LookUp(
+                            AllCustomerss,
+                            Account = oh.Customer.Account
+                        ).'Customer Group'.Name <> "KEY-RT") && LookUp(
+                            AllCustomerss,
+                            Account = oh.Customer.Account
+                        ).Branch.Name = "PUNE") || ((LookUp(
+                            AllCustomerss,
+                            Account = oh.Customer.Account
+                        ).'Customer Group'.Name <> "COR-RT") && LookUp(
+                            AllCustomerss,
+                            Account = oh.Customer.Account
+                        ).Branch.Name = "Mumbai")),
+                        Set(
+                            testButton,
+                          IRNGeneration.Run(
+                                LookUp(
+                                    'Invoice Headers',
+                                    'Order Number'.'Order Number' = oh.'Order Number'
+                                ).'Invoice Header'
+                            );
+                        );
+                        
+                    /*If(!IsBlank(testButton.errormessage),
+                      
+                    Clear(coltempErrorMessage);
+                        ForAll(Split(testButton.errormessage, //"error_message",
+                        " : "),
+                        Collect(coltempErrorMessage, First(Split(First(Split(ThisRecord.Value,",")).Value, Char(34))));
+                        );
+                    
+                       ClearCollect(colFinalErrorMessage, LastN(coltempErrorMessage, CountRows(coltempErrorMessage)-1));
+                    );
+                    */
+                    If(!IsBlank(testButton.errormessage),
+                    
+                     
+                    
+                    ClearCollect(coltempSplit, Split(testButton.errormessage, //"error_message",
+                        "}"));
+                        ForAll(coltempSplit,
+                    //If("message" exactin Text(ThisRecord.Value), 
+                        Collect(coltempErrorMessage,LastN(Split(ThisRecord.Value, Char(34) & ","&Char(34)),2)   );
+                    //);
+                        );
+                        RemoveIf(coltempErrorMessage, !("message" exactin Text(ThisRecord.Value)));
+                      // ClearCollect(colFinalErrorMessage, LastN(coltempErrorMessage, CountRows(coltempErrorMessage)-1));
+                    Clear(colFinalErrorMessage);
+                    ForAll(coltempErrorMessage As I, 
+                    Collect(colFinalErrorMessage, Last(Split(I.Value, Char(34) & ":"&Char(34))) ));
+                      
+                    
+                    );
+                    
+                    
+                    
+                    
+                            /*Patch(
+                                'Invoice Headers',
+                                LookUp(
+                                    'Invoice Headers',
+                                    'Invoice Number' = LookUp(
+                            'Invoice Headers',
+                            'Order Number'.'Order Number' = oh.'Order Number'
+                        ).'Invoice Number'
+                                ),
+                                    {
+                                        'Signed QR Code': Text(testButton.qr),
+                                        'IRN Number': Text(testButton.qrno),
+                                        'IRN Message': Text(testButton.status)
+                                    }
+                            );*/
+                    Set(
+                            varConfirmationIRN,
+                            "signedQRGenerated"
+                        );
+                            /*Notify(
+                                NotificationType.Success,
+                                2000
+                            );*/
+                    If(
+                            !IsBlank(testButton),
+                            Patch(
+                                'Invoice Headers',
+                                LookUp(
+                                    'Invoice Headers',
+                                    'Invoice Number' = LookUp(
+                                        'Invoice Headers',
+                                        'Order Number'.'Order Number' = oh.'Order Number'
+                                    ).'Invoice Number'
+                                ),
+                                {
+                                    'Signed QR Code': Text(testButton.qr),
+                                    'IRN Number': Text(testButton.qrno),
+                                    'IRN Message': Text(testButton.status)
+                                }
+                            )
+                        );
+                        ,
+                        IsBlank(
+                            LookUp(
+                                AllCustomerss,
+                                Account = oh.Customer.Account
+                            ).GSTIN
+                        ),
+                        Patch(
+                            'Invoice Headers',
+                            LookUp(
+                                'Invoice Headers',
+                                'Invoice Number' = LookUp(
+                                    'Invoice Headers',
+                                    'Order Number'.'Order Number' = oh.'Order Number'
+                                ).'Invoice Number'
+                            ),
+                            {
+                                /*'Signed QR Code': Text(testButton.qr),
+                                    'IRN Number': Text(testButton.qrno),
+                                    'IRN Message': Text(testButton.status),*/
+                                'Local QR ': JSON(
+                                    {
+                                        gstin: "27AAFCD5862R013",
+                                        TranDtls: {
+                                            TaxSch: "GST",
+                                            SupTyp: "B2B",
+                                            RegRev: "N",
+                                            IgstOnIntra: "N"
+                                        },
+                                        DocDtls: {
+                                            Typ: "INV",
+                                            No: "RI2223C064007302",
+                                            Dt: "24/12/2022"
+                                        },
+                                        SellerDtls: {
+                                            Gstin: "27AAFCD5862R013",
+                                            LglNm: "MH04GR6972",
+                                            TrdNm: "MH04GR6972",
+                                            Addr1: "JUPITOR HOSPITAL",
+                                            Addr2: "THANE",
+                                            Loc: "V433",
+                                            Pin: 400407,
+                                            Stcd: "27",
+                                            Ph: "982565858",
+                                            Em: "Test123@gmail.com"
+                                        },
+                                        /*    
+                                    BuyerDtls: {
+                                        Gstin: "27AABCJ1982E1ZN",
+                                        LglNm: "FORTUNE PARK LAKE CITY",
+                                        TrdNm: "FORTUNE PARK LAKE CITY",
+                                        Pos: "27",
+                                        Addr1: "JUPITER MEDIPARKEASTERN EXPRESS HIGHWAY THANE",
+                                        Addr2: "WEST",
+                                        Loc: "Maharashtra",
+                                        Pin: 400601,
+                                        Stcd: "27",
+                                        Ph: "859657852",
+                                        Em: "Test123@gmail.com"
+                                    },
+                            */
+                                        BuyerDtls: {
+                                            LglNm: oh.Customer.'Customer Name',
+                                            TrdNm: "",
+                                            Addr1: LookUp(
+                                                AllCustomerss,
+                                                Account = oh.Customer.Account
+                                            ).'Address 1: Street 1',
+                                            Addr2: LookUp(
+                                                AllCustomerss,
+                                                Account = oh.Customer.Account
+                                            ).'Address 1: Street 2',
+                                            Loc: LookUp(
+                                                AllCustomerss,
+                                                Account = oh.Customer.Account
+                                            ).'Address 1: City',
+                                            Pin: LookUp(
+                                                AllCustomerss,
+                                                Account = oh.Customer.Account
+                                            ).'Address 1: ZIP/Postal Code',
+                                            Stcd: Left(
+                                                LookUp(
+                                                    AllCustomerss,
+                                                    Account = oh.Customer.Account
+                                                ).GSTIN,
+                                                2
+                                            ),
+                                            Ph: LookUp(
+                                                AllCustomerss,
+                                                Account = oh.Customer.Account
+                                            ).'Mobile No',
+                                            Em: LookUp(
+                                                AllCustomerss,
+                                                Account = oh.Customer.Account
+                                            ).Email
+                                        },
+                                        DispDtls: {
+                                            Nm: "MH04GR6972",
+                                            Addr1: "JUPITOR HOSPITAL",
+                                            Addr2: "THANE",
+                                            Loc: "V433",
+                                            Pin: 400407,
+                                            Stcd: "27"
+                                        },
+                                        /*
+                                    ShipDtls: {
+                                        Gstin: "27AABCJ1982E1ZN",
+                                        LglNm: "FORTUNE PARK LAKE CITY",
+                                        TrdNm: "FORTUNE PARK LAKE CITY",
+                                        Addr1: "JUPITER MEDIPARKEASTERN EXPRESS HIGHWAY THANE",
+                                        Addr2: "WEST",
+                                        Loc: "Maharashtra",
+                                        Pin: 400601,
+                                        Stcd: "27"
+                                    },
+                            */
+                                        ShipDtls: {
+                                            Gstin: LookUp(
+                                                AllCustomerss,
+                                                Account = oh.Customer.Account
+                                            ).GSTIN,
+                                            LglNm: oh.Customer.'Customer Name',
+                                            TrdNm: "",
+                                            Addr1: LookUp(
+                                                AllCustomerss,
+                                                Account = oh.Customer.Account
+                                            ).'Address 1: Street 1',
+                                            Addr2: LookUp(
+                                                AllCustomerss,
+                                                Account = oh.Customer.Account
+                                            ).'Address 1: Street 2',
+                                            Loc: LookUp(
+                                                AllCustomerss,
+                                                Account = oh.Customer.Account
+                                            ).'Address 1: City',
+                                            Pin: LookUp(
+                                                AllCustomerss,
+                                                Account = oh.Customer.Account
+                                            ).'Address 1: ZIP/Postal Code',
+                                            Stcd: Left(
+                                                LookUp(
+                                                    AllCustomerss,
+                                                    Account = oh.Customer.Account
+                                                ).GSTIN,
+                                                2
+                                            )
+                                        },
+                                        ItemList: ManipulatedCartCollection
+                                //  ItemList: First(ProductList)
+                                    }
+                                )
+                            }
+                        );
+                        Set(
+                            varConfirmationIRN,
+                            "localQRGenerated"
+                        );
+                        Notify(
+                            "QR has been generated sucessfully",
+                            NotificationType.Success,
+                            5000
+                        );
+                            /*,
+                            Notify(
+                                "IRN Genetared Successfully",
+                                NotificationType.Success,
+                                2000
+                            );*/
+                    );
+                    If(
+                        !IsBlank(varConfirmationIRN),
+                        If(
+                           
+                                LookUp(
+                                    'Invoice Headers',
+                                    'Order Number'.'Order Number' = oh.'Order Number'
+                                ).'IRN Message' = "Y"
+                            ,
+                            Notify(
+                                "IRN has been generated successfully.",
+                                NotificationType.Success,
+                                4000
+                            ),
+                            If(
+                                LookUp(
+                                    'Invoice Headers',
+                                    'Order Number'.'Order Number' = oh.'Order Number'
+                                ).'IRN Message' = "N",
+                                Notify(
+                                    "IRN not generated." & " "& Concat(colFinalErrorMessage,Value, " "),
+                                    NotificationType.Warning,
+                                    15000
+                                );
+                               // Notify(Concat(colFinalErrorMessage,Value, Char(10)));
+                    
+                            )
+                        ),
+                       Notify(
+                                    "IRN not generated." & " "& Concat(colFinalErrorMessage,Value, " "),
+                                    NotificationType.Warning,
+                                    15000
+                                );
+                        
+                    );
+                Size: =_VarGblAppFonts.Size.Medium
+                Text: ="Regenerate IRN"
+                Visible: |-
+                    =/*If(
+                       First(CreateInvHeader).'IRN Message'="N",
+                        true,
+                        false
+                    )*/
+                    true
+                Width: =181
+                X: =295
+                Y: =35
+                ZIndex: =13
+
+    Header_5 As Header:
+        HeaderText: ="Order Info"
+        ZIndex: =4
+
+    BottomBar_1 As BottomBar:
+        Y: =1026
+        ZIndex: =5
+
+    Icon10 As icon.Print:
+        AccessibleLabel: ="Icon10"
+        Color: =_VarGblAppColors.LightText
+        Height: =56
+        Icon: =Icon.Print
+        OnSelect: |
+            =
+            ClearCollect(
+                Invoicedata2,
+                Filter(
+                    'Invoice Headers',
+                    'Order Number'.'Order Number' = oh.'Order Number'
+                )
+            );
+            Set(datainv,First(Invoicedata2).'Invoice Header');
+            ClearCollect(
+                Invoicelinedata2,
+                Filter(
+                    'Invoice Lines',
+                    'Invoice Number'.'Invoice Header' = datainv && 'Invoice Type' = 'Invoice Type (Choice)'.'Parent'
+                )
+            );
+            Set(
+                varpdf23,
+                PDF(
+                    Container10_1,
+                    {ExpandContainers: true}
+                )
+            );
+            Set(
+                varrr23,
+                Patch(
+                    'Invoice Headers',
+                      LookUp(
+                        'Invoice Headers',
+                        'Invoice Header' = datainv
+                    ),
+                    {
+                      
+                        File: {
+                            FileName: "File.pdf",
+                            Value: varpdf23
+                        }
+                    }
+                ).'Invoice Header'
+            );
+            Set(varShowGatePassFile23, true);
+        TabIndex: =0
+        Visible: |-
+            =If(!IsBlank(LookUp(
+                    'Invoice Headers',
+                    'Order Number'.'Order Number' = oh.'Order Number'
+                ).'IRN Number') || !IsBlank(LookUp(
+                    'Invoice Headers',
+                    'Order Number'.'Order Number' = oh.'Order Number'
+                ).'Local QR ') || LookUp(
+                    'Invoice Headers',
+                    'Order Number'.'Order Number' = oh.'Order Number'
+                ).'IRN Message'="N", true, false)
+        X: =458
+        Y: =16
+        ZIndex: =6
+
+    FormViewer3 As formViewer:
+        DataSource: ='Invoice Headers'
+        Height: =70
+        Item: =LookUp('Invoice Headers','Invoice Header'=varrr23)
+        Visible: |-
+            =If(!IsBlank(LookUp(
+                    'Invoice Headers',
+                    'Order Number'.'Order Number' = oh.'Order Number'
+                ).'IRN Number') || !IsBlank(LookUp(
+                    'Invoice Headers',
+                    'Order Number'.'Order Number' = oh.'Order Number'
+                ).'Local QR '), true, false)
+        Width: =140
+        X: =275
+        Y: =5
+        ZIndex: =7
+
+        File_DataCard3 As typedDataCard.fileViewCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="new_file"
+            Default: |-
+                =If(!IsBlank(ThisItem.File.FileName), Table({DisplayName: ThisItem.File.FileName, Value: ThisItem.File.Value}), Blank())
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@'Invoice Headers'],DataSourceInfo.DisplayName,"new_file")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =Parent.Height
+            Required: =false
+            Width: =140
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            ErrorMessage3 As label:
+                AutoHeight: =true
+                Height: =10
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =24
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue2.Y + DataCardValue2.Height
+                ZIndex: =1
+
+            StarVisible3 As label:
+                Align: =Align.Center
+                Height: =DataCardKey2.Height
+                Size: =21
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey2.Y
+                ZIndex: =2
+
+            DataCardKey2 As label:
+                AutoHeight: =true
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                Y: =78
+                ZIndex: =3
+
+            DataCardValue2 As attachments:
+                AccessibleLabel: ="DataCardValue2"
+                AddAttachmentText: ="Upload file"
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                DisplayMode: =Parent.DisplayMode
+                Height: =70
+                IsInDataCard: =true
+                Items: =Parent.Default
+                MaxAttachments: =1
+                MaxAttachmentsText: =""
+                NoAttachmentsText: ="There is no file."
+                PaddingBottom: =5
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                PaddingRight: =5
+                PaddingTop: =5
+                Size: =21
+                Width: =91
+                X: =20
+                Y: |-
+                    =//DataCardKey2.Y + DataCardKey2.Height + 5
+                    0
+                ZIndex: =4
+

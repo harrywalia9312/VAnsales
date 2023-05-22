@@ -1,0 +1,63 @@
+Header As CanvasComponent:
+    Fill: =_VarGblAppColors.BisleriBlue
+    HeaderText: ="Text"
+    Height: =80
+    Width: =App.Width
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    icoHeaderBack As icon.BackArrow:
+        AccessibleLabel: ="icnBack"
+        Color: =_VarGblAppColors.LightText
+        FocusedBorderColor: =Color.Transparent
+        FocusedBorderThickness: =0.5
+        Height: =40
+        HoverBorderColor: =Color.Transparent
+        Icon: =Icon.BackArrow
+        OnSelect: =Back()
+        PressedBorderColor: =_VarGblAppColors.BisleriBlue
+        TabIndex: =0
+        Width: =40
+        X: =13
+        Y: =20
+        ZIndex: =1
+
+    lblHeader As label:
+        Color: =_VarGblAppColors.LightText
+        FontWeight: =FontWeight.Semibold
+        Height: =70
+        Size: =_VarGblAppFonts.Size.Title
+        Text: =Header.HeaderText
+        Width: =454
+        X: =66
+        Y: =5
+        ZIndex: =2
+
+    shpCircleHeader As circle:
+        Fill: |-
+            =//RGBA(56, 96, 178, 1)
+            If(Connection.Connected, Color.White, Color.Red)
+        Height: =70
+        Width: =70
+        X: =556
+        Y: =5
+        ZIndex: =3
+
+    imgHeaderProfile As image:
+        AccessibleLabel: ="imgProfile"
+        BorderColor: =_VarGblAppColors.BisleriBlue
+        Height: =60
+        Image: =User().Image
+        OnSelect: =Navigate('Profile Screen')
+        RadiusBottomLeft: =50
+        RadiusBottomRight: =50
+        RadiusTopLeft: =50
+        RadiusTopRight: =50
+        TabIndex: =0
+        Tooltip: ="Profile"
+        Width: =60
+        X: =561
+        Y: =10
+        ZIndex: =4
+

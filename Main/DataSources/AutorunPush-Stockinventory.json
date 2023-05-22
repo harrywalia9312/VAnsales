@@ -1,0 +1,10 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_logicflows",
+    "FlowNameId": "2aa11f85-c153-43b7-b456-bae009643a94",
+    "Name": "AutorunPush-Stockinventory",
+    "ServiceKind": "ConnectedWadl",
+    "Type": "ServiceInfo",
+    "WorkflowEntityId": "262c983e-93d7-ed11-a7c6-002248d5dd06"
+  }
+]

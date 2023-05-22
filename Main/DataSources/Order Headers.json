@@ -1,0 +1,244 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "zx_orderheaders",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "zx_orderheader",
+    "MaxGetRowsCount": 2000,
+    "Name": "Order Headers",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "cr8eb_Customer": "Customer",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "exchangerate": "Exchange Rate",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "new_push": "push",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "transactioncurrencyid": "Currency",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number",
+      "zx_deliverydate": "Delivery Date",
+      "zx_foccustomer": "FOC Customer",
+      "zx_invoicenumber": "Invoice Number",
+      "zx_irnmessage": "IRN Message",
+      "zx_irnnumber": "IRN Number",
+      "zx_irnstatus": "IRN Status",
+      "zx_latitude": "Latitude",
+      "zx_locationmatched": "Location Matched ",
+      "zx_longitude": "Longitude",
+      "zx_modeofpayment": "Mode of Payment",
+      "zx_name": "Order Id",
+      "zx_netamount": "Net Amount",
+      "zx_netamount_base": "Net Amount (Base)",
+      "zx_offlineordernumber": "Offline Order Number",
+      "zx_orderdate": "Order Date",
+      "zx_orderheader_AsyncOperations": "System Jobs",
+      "zx_orderheader_BulkDeleteFailures": "Bulk Delete Failures",
+      "zx_orderheader_DuplicateBaseRecord": "Duplicate Records (zx_orderheader_DuplicateBaseRecord)",
+      "zx_orderheader_DuplicateMatchingRecord": "Duplicate Records (zx_orderheader_DuplicateMatchingRecord)",
+      "zx_orderheader_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "zx_orderheader_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "zx_orderheader_ProcessSession": "Process Sessions",
+      "zx_orderheader_SyncErrors": "Sync Errors",
+      "zx_orderheaderid": "Order Number",
+      "zx_ordertype": "Order Type",
+      "zx_paymentstatus": "Payment Status",
+      "zx_paymenttype": "Payment Type",
+      "zx_reason": "Reason (zx_reason)",
+      "zx_reason_t_": "Reason (zx_reason_t_)",
+      "zx_RouteNo": "Route No",
+      "zx_Salesperson": "Salesperson",
+      "zx_salespersonemployeecode": "Sales Person Employee Code",
+      "zx_signedqrcode": "Signed QR Code",
+      "zx_synceddate": "Synced Date",
+      "zx_taxamount": "Tax amount",
+      "zx_taxamount_base": "Tax amount (Base)",
+      "zx_taxamount_date": "Tax amount (Last Updated On)",
+      "zx_taxamount_state": "Tax amount (State)",
+      "zx_totalamount": "Total Amount",
+      "zx_totalamount_base": "Total Amount (Base)",
+      "zx_totaldepositamount": "Total Deposit Amount",
+      "zx_totaldepositamount_base": "Total Deposit Amount (Base)",
+      "zx_totaldiscountamount": "Total Discount Amount",
+      "zx_totaldiscountamount_base": "Total Discount Amount (Base)",
+      "zx_totalquantity": "Total Quantity",
+      "zx_totaltaxamount": "Total Tax Amount",
+      "zx_totaltaxamount_base": "Total Tax Amount (Base)",
+      "zx_VanNo": "Van No",
+      "zx_Vists": "Vists",
+      "zx_zx_invoiceheader_OrderNumber_zx_orderhead": "Invoice Headers",
+      "zx_zx_invoicelines_OrderNumber_zx_orderheade": "Invoice Lines",
+      "zx_zx_orderlines_OrderNumber_zx_orderheader": "Order Lines",
+      "zx_zx_payments_Order_zx_orderheader": "Payments"
+    },
+    "PreferredName": "Order Headers",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Order Headers (Views)",
+    "Name": "_zx_orderheader_views",
+    "RelatedEntityName": "Order Headers",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "03e18016-348f-4e90-9143-8d1fd62943a9": "Order Header Lookup View",
+      "1df6ab36-b866-4607-8f13-74e4adf73f73": "Order Header Advanced Find View",
+      "316d4ab9-8bb6-ed11-b597-002248d5db8a": "Yesterday's Orders",
+      "5c3d1a95-5aab-ed11-83ff-002248d5db8a": "All Orders",
+      "a42ebd42-8bb6-ed11-b597-002248d5db8a": "Today's Orders",
+      "b3df9740-5bab-ed11-83ff-002248d5db8a": "This Month",
+      "b7d34752-d98c-4055-a928-f467a5f58989": "Inactive Order Headers",
+      "d9ba8249-c7b4-4662-bb90-2ef46ff10e19": "Active Order Headers",
+      "dd41bfa9-f0a7-4292-bb85-26c2383588e9": "Order Header Associated View",
+      "e8979819-8cb6-ed11-b597-002248d5db8a": "Last 7 days Orders"
+    }
+  },
+  {
+    "DisplayName": "push (Order Headers)",
+    "Name": "new_zx_orderheader_new_push",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "new_push",
+        "OptionSetReferenceEntityName": "Order Headers"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "new_push",
+    "RelatedEntityName": "Order Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Order Headers)",
+    "Name": "zx_orderheader_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Order Headers"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Order Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (Order Headers)",
+    "Name": "zx_orderheader_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Order Headers"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Order Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Location Matched  (Order Headers)",
+    "Name": "zx_orderheader_zx_locationmatched",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_locationmatched",
+        "OptionSetReferenceEntityName": "Order Headers"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "zx_locationmatched",
+    "RelatedEntityName": "Order Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Payment Type (Order Headers)",
+    "Name": "zx_orderheader_zx_paymenttype",
+    "OptionSetInfoNameMapping": {
+      "425120000": "Cash",
+      "425120001": "Coupon",
+      "425120002": "Credit"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_paymenttype",
+        "OptionSetReferenceEntityName": "Order Headers"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_paymenttype",
+    "RelatedEntityName": "Order Headers",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Reason (Order Headers)",
+    "Name": "zx_orderheader_zx_reason",
+    "OptionSetInfoNameMapping": {
+      "425120000": "Breakage",
+      "425120001": "Complaint",
+      "425120002": "Complimentary",
+      "425120003": "Self consumption",
+      "425120004": "Deposit",
+      "425120005": "Display",
+      "425120006": "Display Incentive",
+      "425120007": "DTH Sheme",
+      "425120008": "Expired Goods Can/Pet",
+      "425120009": "IDC Transfer",
+      "425120010": "Job Work",
+      "425120011": "Pop Scheme",
+      "425120012": "Replacement",
+      "425120013": "Returnable",
+      "425120014": "Route Replacement",
+      "425120015": "RTO"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "zx_reason",
+        "OptionSetReferenceEntityName": "Order Headers"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "zx_reason",
+    "RelatedEntityName": "Order Headers",
+    "Type": "OptionSetInfo"
+  }
+]
