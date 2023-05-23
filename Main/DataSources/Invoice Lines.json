@@ -33,6 +33,8 @@
       "versionnumber": "Version Number",
       "zx_baseamount": "Base Amount",
       "zx_baseamount_base": "Base Amount (Base)",
+      "zx_baseamountwithouttax": "Base Amount Without Tax",
+      "zx_baseamountwithouttax_base": "Base Amount Without Tax (Base)",
       "zx_baseprice": "Cases Unit Price",
       "zx_baseprice_base": "Base Price (Base)",
       "zx_batchno": "Batch No",
